@@ -164,7 +164,7 @@ namespace DblMetaData
   <format dcds:propertyURI=""format"" dcds:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
 </DBLScriptureProject>";
 
-        List<string> _firstList = new List<string> {"1st", "first"};
+        List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
 
         protected string _title;
         protected string _languageCode;
@@ -186,19 +186,19 @@ namespace DblMetaData
             _title = GetValue("//default:title");
             _languageCode = GetField("//default:meta[@name='DC.language'][1]/@content", 0);
             _languageName = GetField("//default:meta[@name='DC.language'][1]/@content", 1);
-            _scope = GetValue("//default:meta[@name='DC.title'][2]/@content");
+            _scope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
-            _reapUrl = GetValue("//default:meta[@name='DC.identifier'][3]/@content");
+            _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
-            _edition = GetValue("//default:meta[@name='DC.description'][1]/@content");
+            _edition = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
             var valueWords = _edition.Split(' ');
             _editionType = valueWords.Contains(valueWords[0]) ? "New": "<><> Check Edition <><>";
-            var range = GetField("//default:meta[@name='DC.title'][2]/@content", 0) == "WNT" ? "NT": "<><> Check Range <><>";
+            var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
             _range = range + ":" + _edition;
-            _rangeDescription = GetField("//default:meta[@name='DC.title'][2]/@content", 1);
+            _rangeDescription = TextField(_scope, 1);
         }
 
         public void InsertDataInDblMetaData(string publicationDescription)
@@ -268,6 +268,12 @@ namespace DblMetaData
         private string GetField(string xpath, int i)
         {
             string value = GetValue(xpath);
+            var fields = value.Split(':');
+            return fields[i];
+        }
+
+        private string TextField(string value, int i)
+        {
             var fields = value.Split(':');
             return fields[i];
         }

@@ -50,5 +50,27 @@ namespace Test
             Assert.AreEqual("NT:1st ed.", _range);
             Assert.AreEqual("New Testament", _rangeDescription);
         }
+
+        [Test]
+        public void ScrapeAcuReapDataTest()
+        {
+            var dblMetaDataScraper = new DblMetaDataScraper();
+            dblMetaDataScraper.Load(_tf.InputData("acuReap.xml"));
+            dblMetaDataScraper.ScrapeReapData();
+            Assert.AreEqual("Yuse chichame aarmauri: Yamaram chicham", _title);
+            Assert.AreEqual("acu", _languageCode);
+            Assert.AreEqual("Achuar-shiwiar", _languageName);
+            Assert.AreEqual("WNT:New Testament", _scope);
+            Assert.AreEqual("No", _confidential);
+            Assert.AreEqual("1981", _dateCompleted);
+            Assert.AreEqual("Liga Bíblica Mundial del Hogar", _publisher);
+            Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/16286", _reapUrl);
+            Assert.AreEqual("PE", _countryCode);
+            Assert.AreEqual("Peru", _countryName);
+            Assert.AreEqual("[1st] ed.", _edition);
+            Assert.AreEqual("New", _editionType);
+            Assert.AreEqual("NT:[1st] ed.", _range);
+            Assert.AreEqual("New Testament", _rangeDescription);
+        }
     }
 }

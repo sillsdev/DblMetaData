@@ -42,7 +42,9 @@ namespace DblMetaData
 
         public void AddParagraph(string value)
         {
-            _sb.Append("<p>" + value + "</p>\r\n\r\n");
+            if (value.Substring(0,1) != "<")
+                value = "<p>" + value + "</p>\r\n"; 
+            _sb.Append(value + "\r\n");
         }
 
         public void AddLicense()
