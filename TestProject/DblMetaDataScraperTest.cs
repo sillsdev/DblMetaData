@@ -250,14 +250,12 @@ namespace TestProject
         [DeploymentItem("DblMetaData.exe")]
         public void TextFieldTest()
         {
-            DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
-            string value = string.Empty; // TODO: Initialize to an appropriate value
-            int i = 0; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.TextField(value, i);
+            var target = new DblMetaDataScraper_Accessor();
+            const string value = "WNT:New Testament";
+            const int i = 0;
+            const string expected = "WNT";
+            string actual = target.TextField(value, i);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }
