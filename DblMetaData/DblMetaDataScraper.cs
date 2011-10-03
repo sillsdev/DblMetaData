@@ -11,12 +11,9 @@
 // File: DblMetaDataScraper.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace DblMetaData
@@ -151,10 +148,10 @@ namespace DblMetaData
         #endregion RangeDescription
 #endregion Properties
 
-        private XmlDocument _webDoc;
-        private XmlNamespaceManager _namespaceManager;
+        private readonly XmlDocument _webDoc;
+        private readonly XmlNamespaceManager _namespaceManager;
 
-        private XmlDocument _dblMetaDataDoc;
+        private readonly XmlDocument _dblMetaDataDoc;
 
         public DblMetaDataScraper()
         {

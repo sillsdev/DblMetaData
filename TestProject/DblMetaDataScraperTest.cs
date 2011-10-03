@@ -12,6 +12,7 @@
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
 using System.IO;
+using System.Xml;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -148,10 +149,12 @@ namespace TestProject
         [TestMethod()]
         public void LoadTest()
         {
-            DblMetaDataScraper target = new DblMetaDataScraper(); // TODO: Initialize to an appropriate value
-            string webDocText = string.Empty; // TODO: Initialize to an appropriate value
+            var target = new DblMetaDataScraper_Accessor();
+            string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
             target.Load(webDocText);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            var titleNode = target._webDoc.SelectSingleNode("//title");
+            var title = (titleNode != null) ? titleNode.InnerText : "Missing Title Node";
+            Assert.AreEqual("My Title", title);
         }
 
         /// <summary>
