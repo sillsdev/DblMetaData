@@ -15,7 +15,7 @@ using System;
 using System.IO;
 using System.Threading;
 
-namespace Test
+namespace TestProject
 {
     public class TestFiles
     {
@@ -26,7 +26,7 @@ namespace Test
         public TestFiles()
         {
             string curDir = Environment.CurrentDirectory;
-            int testPart = curDir.IndexOf("Test") + 4;
+            int testPart = curDir.IndexOf("TestProject") + 11;
             string testPath = Path.Combine(curDir.Substring(0, testPart), "TestFiles");
             _inputPath = Path.Combine(testPath, "Input");
             _outputPath = Path.Combine(testPath, "output");

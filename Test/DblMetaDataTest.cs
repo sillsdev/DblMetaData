@@ -35,7 +35,7 @@ namespace Test
             var dblMetaDataScraper = new DblMetaDataScraper();
             dblMetaDataScraper.Load(_tf.InputData("REAP record page.xml"));
             dblMetaDataScraper.ScrapeReapData();
-            Assert.AreEqual("Da Jesus book", _title);
+            Assert.AreEqual("Da Jesus book", dblMetaDataScraper.Title);
             Assert.AreEqual("hwc", _languageCode);
             Assert.AreEqual("Hawai'i Creole English", _languageName);
             Assert.AreEqual("WNT:New Testament", _scope);
@@ -57,7 +57,7 @@ namespace Test
             var dblMetaDataScraper = new DblMetaDataScraper();
             dblMetaDataScraper.Load(_tf.InputData("acuReap.xml"));
             dblMetaDataScraper.ScrapeReapData();
-            Assert.AreEqual("Yuse chichame aarmauri: Yamaram chicham", _title);
+            Assert.AreEqual("Yuse chichame aarmauri: Yamaram chicham", dblMetaDataScraper.Title);
             Assert.AreEqual("acu", _languageCode);
             Assert.AreEqual("Achuar-shiwiar", _languageName);
             Assert.AreEqual("WNT:New Testament", _scope);

@@ -23,6 +23,134 @@ namespace DblMetaData
 {
     public class DblMetaDataScraper
     {
+        #region Properties
+        #region Title
+        private string _title;
+        public string Title
+        {
+            get { return _title; }
+            set { _title = value; }
+        }
+        #endregion Title
+
+        #region LanguageCode
+        private string _languageCode;
+        public string LanguageCode
+        {
+            get { return _languageCode; }
+            set { _languageCode = value; }
+        }
+        #endregion LanguageCode
+
+        #region LanguageName
+        private string _languageName;
+        public string LanguageName
+        {
+            get { return _languageName; }
+            set { _languageName = value; }
+        }
+        #endregion LanguageName
+
+        #region Scope
+        private string _scope;
+        public string Scope
+        {
+            get { return _scope; }
+            set { _scope = value; }
+        }
+        #endregion Scope
+
+        #region Confidential
+        private string _confidential;
+        public string Confidential
+        {
+            get { return _confidential; }
+            set { _confidential = value; }
+        }
+        #endregion Confidential
+
+        #region DateCompleted
+        private string _dateCompleted;
+        public string DateCompleted
+        {
+            get { return _dateCompleted; }
+            set { _dateCompleted = value; }
+        }
+        #endregion DateCompleted
+
+        #region Publisher
+        private string _publisher;
+        public string Publisher
+        {
+            get { return _publisher; }
+            set { _publisher = value; }
+        }
+        #endregion Publisher
+
+        #region ReapUrl
+        private string _reapUrl;
+        public string ReapUrl
+        {
+            get { return _reapUrl; }
+            set { _reapUrl = value; }
+        }
+        #endregion ReapUrl
+
+        #region CountryCode
+        private string _countryCode;
+        public string CountryCode
+        {
+            get { return _countryCode; }
+            set { _countryCode = value; }
+        }
+        #endregion CountryCode
+
+        #region CountryName
+        private string _countryName;
+        public string CountryName
+        {
+            get { return _countryName; }
+            set { _countryName = value; }
+        }
+        #endregion CountryName
+
+        #region Edition
+        private string _edition;
+        public string Edition
+        {
+            get { return _edition; }
+            set { _edition = value; }
+        }
+        #endregion Edition
+
+        #region EditionType
+        private string _editionType;
+        public string EditionType
+        {
+            get { return _editionType; }
+            set { _editionType = value; }
+        }
+        #endregion EditionType
+
+        #region Range
+        private string _range;
+        public string Range
+        {
+            get { return _range; }
+            set { _range = value; }
+        }
+        #endregion Range
+
+        #region RangeDescription
+        private string _rangeDescription;
+        public string RangeDescription
+        {
+            get { return _rangeDescription; }
+            set { _rangeDescription = value; }
+        }
+        #endregion RangeDescription
+#endregion Properties
+
         private XmlDocument _webDoc;
         private XmlNamespaceManager _namespaceManager;
 
@@ -165,21 +293,6 @@ namespace DblMetaData
 </DBLScriptureProject>";
 
         List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
-
-        protected string _title;
-        protected string _languageCode;
-        protected string _languageName;
-        protected string _scope;
-        protected string _confidential;
-        protected string _dateCompleted;
-        protected string _publisher;
-        protected string _reapUrl;
-        protected string _countryCode;
-        protected string _countryName;
-        protected string _edition;
-        protected string _editionType;
-        protected string _range;
-        protected string _rangeDescription;
 
         public void ScrapeReapData()
         {
