@@ -1,0 +1,5 @@
+_ReSharper.DblMetaData
+.*/obj/
+.*/bin/
+.*\.user
+.*\.suo
