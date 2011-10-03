@@ -317,11 +317,12 @@ namespace DblMetaData
             SetValue(_title, "/DBLScriptureProject/identification/nameLocal");
             SetValue(_title, "/DBLScriptureProject/contents/bookList/name");
             SetValue(_title, "/DBLScriptureProject/contents/bookList/nameLocal");
-            SetValue(_languageCode, "/DBLScriptureProject/identification/abbreviation");
-            SetValue(_languageCode, "/DBLScriptureProject/identification/abbreviationLocal");
+            var abbreviation = _languageCode + "-" + TextField(_scope, 0).Substring(1);
+            SetValue(abbreviation, "/DBLScriptureProject/identification/abbreviation");
+            SetValue(abbreviation, "/DBLScriptureProject/identification/abbreviationLocal");
+            SetValue(abbreviation, "/DBLScriptureProject/contents/bookList/abbreviation");
+            SetValue(abbreviation, "/DBLScriptureProject/contents/bookList/abbreviationLocal");
             SetValue(_languageCode, "/DBLScriptureProject/language/iso");
-            SetValue(_languageCode, "/DBLScriptureProject/contents/bookList/abbreviation");
-            SetValue(_languageCode, "/DBLScriptureProject/contents/bookList/abbreviationLocal");
             SetValue(_languageName, "/DBLScriptureProject/language/name");
             SetValue(_scope, "/DBLScriptureProject/identification/scope");
             SetValue(_confidential, "/DBLScriptureProject/confidential");
