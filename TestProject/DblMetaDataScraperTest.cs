@@ -11,11 +11,8 @@
 // File: DblMetaDataScraperTest.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
-using System.IO;
-using System.Xml;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace TestProject
 {
@@ -26,7 +23,7 @@ namespace TestProject
     ///to contain all DblMetaDataScraperTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DblMetaDataScraperTest : DblMetaDataScraper
+    public class DblMetaDataScraperTest
     {
         #region TestContext
         private TestContext testContextInstance;
@@ -185,7 +182,7 @@ namespace TestProject
         [DeploymentItem("DblMetaData.exe")]
         public void GetValueTest()
         {
-            DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
+            var target = new DblMetaDataScraper_Accessor();
             const string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
             target.Load(webDocText);
             const string xpath = "//title";
@@ -235,8 +232,8 @@ namespace TestProject
         public void SetXmlValueTest()
         {
             var target = new DblMetaDataScraper_Accessor();
-            string value = "<p>My Description</p>";
-            string xpath = "//promoVersionInfo";
+            const string value = "<p>My Description</p>";
+            const string xpath = "//promoVersionInfo";
             target.SetXmlValue(value, xpath);
             var promoInfNode = target._dblMetaDataDoc.SelectSingleNode(xpath);
             var actualTitle = (promoInfNode != null) ? promoInfNode.InnerText : "Missing promoVersionInfo node!";
