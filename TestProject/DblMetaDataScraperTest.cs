@@ -147,6 +147,7 @@ namespace TestProject
         ///A test for Load
         ///</summary>
         [TestMethod()]
+        [DeploymentItem("DblMetaData.exe")]
         public void LoadTest()
         {
             var target = new DblMetaDataScraper_Accessor();
@@ -161,6 +162,7 @@ namespace TestProject
         ///A test for InsertDataInDblMetaData
         ///</summary>
         [TestMethod()]
+        [DeploymentItem("DblMetaData.exe")]
         public void InsertDataInDblMetaDataTest()
         {
             var target = new DblMetaDataScraper_Accessor();
@@ -169,11 +171,11 @@ namespace TestProject
             target.ScrapeReapData();
             target.InsertDataInDblMetaData(publicationDescription);
             var abbrNode = target._dblMetaDataDoc.SelectSingleNode("//abbreviation");
-            var ActualAbbr = (abbrNode != null) ? abbrNode.InnerText : "No abbreviation node!";
-            Assert.AreEqual("hwc-NT", ActualAbbr);
+            var actualAbbr = (abbrNode != null) ? abbrNode.InnerText : "No abbreviation node!";
+            Assert.AreEqual("hwc-NT", actualAbbr);
             var promoInfNode = target._dblMetaDataDoc.SelectSingleNode("//promoVersionInfo");
-            var ActualPromoInf = (promoInfNode != null) ? promoInfNode.InnerText : "No promoVersionInfo node!";
-            Assert.AreEqual(publicationDescription, ActualPromoInf.Substring(0, publicationDescription.Length));
+            var actualPromoInf = (promoInfNode != null) ? promoInfNode.InnerText : "No promoVersionInfo node!";
+            Assert.AreEqual(publicationDescription, actualPromoInf.Substring(0, publicationDescription.Length));
         }
 
         /// <summary>
@@ -184,12 +186,12 @@ namespace TestProject
         public void GetValueTest()
         {
             DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
-            string xpath = string.Empty; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.GetValue(xpath);
+            const string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
+            target.Load(webDocText);
+            const string xpath = "//title";
+            const string expected = "My Title";
+            string actual = target.GetValue(xpath);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -199,14 +201,14 @@ namespace TestProject
         [DeploymentItem("DblMetaData.exe")]
         public void GetFieldTest()
         {
-            DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
-            string xpath = string.Empty; // TODO: Initialize to an appropriate value
-            int i = 0; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.GetField(xpath, i);
+            var target = new DblMetaDataScraper_Accessor();
+            const string webDocText = @"<?xml version=""1.0""?><html><head><title>Type:My Title</title></head><body></body></html>";
+            target.Load(webDocText);
+            const string xpath = "//title";
+            const int i = 0;
+            const string expected = "Type";
+            string actual = target.GetField(xpath, i);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -216,13 +218,15 @@ namespace TestProject
         [DeploymentItem("DblMetaData.exe")]
         public void SetValueTest()
         {
-            DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
-            string value = string.Empty; // TODO: Initialize to an appropriate value
-            string xpath = string.Empty; // TODO: Initialize to an appropriate value
+            var target = new DblMetaDataScraper_Accessor();
+            const string value = "hwc-NT";
+            const string xpath = "//abbreviation";
             target.SetValue(value, xpath);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            var titleNode = target._dblMetaDataDoc.SelectSingleNode("//abbreviation");
+            var actualTitle = (titleNode != null) ? titleNode.InnerText : "Missing Title node!";
+            Assert.AreEqual("hwc-NT", actualTitle);
         }
-
+        
         /// <summary>
         ///A test for SetXmlValue
         ///</summary>
@@ -230,11 +234,13 @@ namespace TestProject
         [DeploymentItem("DblMetaData.exe")]
         public void SetXmlValueTest()
         {
-            DblMetaDataScraper_Accessor target = new DblMetaDataScraper_Accessor(); // TODO: Initialize to an appropriate value
-            string value = string.Empty; // TODO: Initialize to an appropriate value
-            string xpath = string.Empty; // TODO: Initialize to an appropriate value
+            var target = new DblMetaDataScraper_Accessor();
+            string value = "<p>My Description</p>";
+            string xpath = "//promoVersionInfo";
             target.SetXmlValue(value, xpath);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            var promoInfNode = target._dblMetaDataDoc.SelectSingleNode(xpath);
+            var actualTitle = (promoInfNode != null) ? promoInfNode.InnerText : "Missing promoVersionInfo node!";
+            Assert.AreEqual("My Description", actualTitle);
         }
 
         /// <summary>
