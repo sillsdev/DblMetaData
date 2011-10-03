@@ -86,7 +86,7 @@ namespace TestProject
         [TestMethod()]
         public void ScrapeReapDataTest()
         {
-            DblMetaDataScraper target = new DblMetaDataScraper();
+            var target = new DblMetaDataScraper();
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             Assert.AreEqual("Da Jesus book", target.Title);
@@ -111,7 +111,7 @@ namespace TestProject
         [TestMethod()]
         public void ScrapeReapDataTest2()
         {
-            DblMetaDataScraper target = new DblMetaDataScraper();
+            var target = new DblMetaDataScraper();
             target.Load(_tf.InputData("acuReap.xml"));
             target.ScrapeReapData();
             Assert.AreEqual("Yuse chichame aarmauri: Yamaram chicham", target.Title);
@@ -136,7 +136,7 @@ namespace TestProject
         [TestMethod()]
         public void SaveTest()
         {
-            DblMetaDataScraper target = new DblMetaDataScraper();
+            var target = new DblMetaDataScraper();
             const string template = "MetaDataTemplate.xml";
             string p = _tf.Output(template);
             target.Save(p);
@@ -150,7 +150,7 @@ namespace TestProject
         public void LoadTest()
         {
             var target = new DblMetaDataScraper_Accessor();
-            string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
+            const string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
             target.Load(webDocText);
             var titleNode = target._webDoc.SelectSingleNode("//title");
             var title = (titleNode != null) ? titleNode.InnerText : "Missing Title Node";
@@ -163,10 +163,17 @@ namespace TestProject
         [TestMethod()]
         public void InsertDataInDblMetaDataTest()
         {
-            DblMetaDataScraper target = new DblMetaDataScraper(); // TODO: Initialize to an appropriate value
-            string publicationDescription = string.Empty; // TODO: Initialize to an appropriate value
+            var target = new DblMetaDataScraper_Accessor();
+            const string publicationDescription = "My Description";
+            target.Load(_tf.InputData("REAP record page.xml"));
+            target.ScrapeReapData();
             target.InsertDataInDblMetaData(publicationDescription);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            var abbrNode = target._dblMetaDataDoc.SelectSingleNode("//abbreviation");
+            var ActualAbbr = (abbrNode != null) ? abbrNode.InnerText : "No abbreviation node!";
+            Assert.AreEqual("hwc-NT", ActualAbbr);
+            var promoInfNode = target._dblMetaDataDoc.SelectSingleNode("//promoVersionInfo");
+            var ActualPromoInf = (promoInfNode != null) ? promoInfNode.InnerText : "No promoVersionInfo node!";
+            Assert.AreEqual(publicationDescription, ActualPromoInf.Substring(0, publicationDescription.Length));
         }
 
         /// <summary>
