@@ -23,7 +23,7 @@ namespace TestProject
     ///to contain all DblMetaDataScraperTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DblMetaDataScraperTest
+    public class DblMetaDataScraperTest : Form1
     {
         #region TestContext
         private TestContext testContextInstance;
@@ -102,6 +102,12 @@ namespace TestProject
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
+        [TestMethod()]
+        public void HwcRevewTest()
+        {
+            ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
+        }
+
         /// <summary>
         ///A test for ScrapeReapData
         ///</summary>
@@ -164,9 +170,10 @@ namespace TestProject
         {
             var target = new DblMetaDataScraper_Accessor();
             const string publicationDescription = "My Description";
+            target.PublicationDescription = publicationDescription;
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
-            target.InsertDataInDblMetaData(publicationDescription);
+            target.InsertDataInDblMetaData();
             var abbrNode = target._dblMetaDataDoc.SelectSingleNode("//abbreviation");
             var actualAbbr = (abbrNode != null) ? abbrNode.InnerText : "No abbreviation node!";
             Assert.AreEqual("hwc-NT", actualAbbr);

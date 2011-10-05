@@ -57,6 +57,15 @@ namespace DblMetaData
         }
         #endregion Scope
 
+        #region Abbreviation
+        private string _abbreviation;
+        public string Abbreviation
+        {
+            get { return _abbreviation; }
+            set { _abbreviation = value; }
+        }
+        #endregion Abbreviation
+
         #region Confidential
         private string _confidential;
         public string Confidential
@@ -83,6 +92,24 @@ namespace DblMetaData
             set { _publisher = value; }
         }
         #endregion Publisher
+
+        #region PublisherUrl
+        private string _publisherUrl;
+        public string PublisherUrl
+        {
+            get { return _publisherUrl; }
+            set { _publisherUrl = value; }
+        }
+        #endregion PublisherUrl
+
+        #region PublisherFacebook
+        private string _publisherFacebook;
+        public string PublisherFacebook
+        {
+            get { return _publisherFacebook; }
+            set { _publisherFacebook = value; }
+        }
+        #endregion PublisherFacebook
 
         #region ReapUrl
         private string _reapUrl;
@@ -146,6 +173,42 @@ namespace DblMetaData
             set { _rangeDescription = value; }
         }
         #endregion RangeDescription
+
+        #region RightsStatement
+        private string _rightsStatement;
+        public string RightsStatement
+        {
+            get { return _rightsStatement; }
+            set { _rightsStatement = value; }
+        }
+        #endregion RightsStatement
+
+        #region PromoInfo
+        private string _promoInfo;
+        public string PromoInfo
+        {
+            get { return _promoInfo; }
+            set { _promoInfo = value; }
+        }
+        #endregion PromoInfo
+
+        #region PromoEmail
+        private string _promoEmail;
+        public string PromoEmail
+        {
+            get { return _promoEmail; }
+            set { _promoEmail = value; }
+        }
+        #endregion PromoEmail
+
+        #region PublicationDescription
+        private string _publicationDescription;
+        public string PublicationDescription
+        {
+            get { return _publicationDescription; }
+            set { _publicationDescription = value; }
+        }
+        #endregion PublicationDescription
 #endregion Properties
 
         private readonly XmlDocument _webDoc;
@@ -289,7 +352,16 @@ namespace DblMetaData
   <format dcds:propertyURI=""format"" dcds:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
 </DBLScriptureProject>";
 
-        List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
+        readonly List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
+
+        readonly Dictionary<string, string> _publisherUrls = new Dictionary<string, string>
+        {
+            {"Wycliffe Bible Translators", "http://www.wycliffe.org"}
+        };
+        readonly Dictionary<string, string> _publisherFacebookUrls = new Dictionary<string, string>
+        {
+            {"Wycliffe Bible Translators", "http://www.facebook.com/WycliffeUSA"}
+        };
 
         public void ScrapeReapData()
         {
@@ -297,31 +369,70 @@ namespace DblMetaData
             _languageCode = GetField("//default:meta[@name='DC.language'][1]/@content", 0);
             _languageName = GetField("//default:meta[@name='DC.language'][1]/@content", 1);
             _scope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
+            _abbreviation = _languageCode + "-" + TextField(_scope, 0).Substring(1);
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
+            if (_publisherUrls.Keys.Contains(_publisher))
+                _publisherUrl = _publisherUrls[_publisher];
+            else
+                _publisherUrl = "<><> Publisher Email <><>";
+            if (_publisherFacebookUrls.Keys.Contains(_publisher))
+                _publisherFacebook = _publisherFacebookUrls[_publisher];
+            else
+                _publisherFacebook = "<><> Publisher Email <><>";
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
             _edition = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
-            var valueWords = _edition.Split(' ');
-            _editionType = valueWords.Contains(valueWords[0]) ? "New": "<><> Check Edition <><>";
             var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
-            _range = range + ":" + _edition;
+            var valueWords = _edition.Split(' ');
+            if (_firstList.Contains(valueWords[0]))
+            {
+                _editionType = "New";
+                _range = range + ":First edition";
+            }
+            else
+            {
+                _editionType = "<><> Check Edition <><>";
+                _range = range + ":" + _edition.Replace("ed.", "edition");
+            }
             _rangeDescription = TextField(_scope, 1);
+            _rightsStatement = "©" + _publisher + " " + _dateCompleted;
+            if (_confidential == "No")
+            {
+                ResetPromoStatements();
+            }
+            else
+            {
+                _promoInfo = "<><>No promoVersionInfo<><>";
+                _promoEmail = "<><>No promoVersionEmail<><>";
+            }
         }
 
-        public void InsertDataInDblMetaData(string publicationDescription)
+        public void ResetPromoStatements()
+        {
+            var promoStatements = new PromoStatements();
+            var trimmedDescription = _publicationDescription.Trim();
+            if (trimmedDescription.Length > 0)
+                promoStatements.AddParagraph(trimmedDescription);
+            promoStatements.AddParagraph(_rightsStatement);
+            promoStatements.AddLicense();
+            promoStatements.AddDescription(_edition, _rangeDescription, _languageName);
+            _promoInfo = promoStatements.ToHtml();
+            _promoEmail = promoStatements.ToEscapedString();
+        }
+
+        public void InsertDataInDblMetaData()
         {
             SetValue(_title, "/DBLScriptureProject/identification/name");
             SetValue(_title, "/DBLScriptureProject/identification/nameLocal");
             SetValue(_title, "/DBLScriptureProject/contents/bookList/name");
             SetValue(_title, "/DBLScriptureProject/contents/bookList/nameLocal");
-            var abbreviation = _languageCode + "-" + TextField(_scope, 0).Substring(1);
-            SetValue(abbreviation, "/DBLScriptureProject/identification/abbreviation");
-            SetValue(abbreviation, "/DBLScriptureProject/identification/abbreviationLocal");
-            SetValue(abbreviation, "/DBLScriptureProject/contents/bookList/abbreviation");
-            SetValue(abbreviation, "/DBLScriptureProject/contents/bookList/abbreviationLocal");
+            SetValue(_abbreviation, "/DBLScriptureProject/identification/abbreviation");
+            SetValue(_abbreviation, "/DBLScriptureProject/identification/abbreviationLocal");
+            SetValue(_abbreviation, "/DBLScriptureProject/contents/bookList/abbreviation");
+            SetValue(_abbreviation, "/DBLScriptureProject/contents/bookList/abbreviationLocal");
             SetValue(_languageCode, "/DBLScriptureProject/language/iso");
             SetValue(_languageName, "/DBLScriptureProject/language/name");
             SetValue(_scope, "/DBLScriptureProject/identification/scope");
@@ -336,24 +447,11 @@ namespace DblMetaData
             SetValue(_countryName, "/DBLScriptureProject/country/name");
             SetValue(_editionType, "/DBLScriptureProject/translation/type");
             SetValue(_range, "/DBLScriptureProject/contents/bookList/description");
-            if (_publisher != "Wycliffe Bible Translators")
-            {
-                SetValue("<><> Publisher Email <><>", "/DBLScriptureProject/contact/rightsHolderURL");
-                SetValue("<><> Publisher Facebook <><>", "/DBLScriptureProject/contact/rightsHolderFacebook");
-            }
-            string rightsStatement = "©" + _publisher + " " + _dateCompleted;
-            SetValue(rightsStatement, "/DBLScriptureProject/rights/rightsStatement");
-            if (_confidential == "No")
-            {
-                var promoStatements = new PromoStatements();
-                if (publicationDescription.Trim().Length > 0)
-                    promoStatements.AddParagraph(publicationDescription);
-                promoStatements.AddParagraph(rightsStatement);
-                promoStatements.AddLicense();
-                promoStatements.AddDescription(_edition, _rangeDescription, _languageName);
-                SetXmlValue(promoStatements.ToHtml(), "/DBLScriptureProject/promotion/promoVersionInfo");
-                SetValue(promoStatements.ToEscapedString(), "/DBLScriptureProject/promotion/promoEmail");
-            }
+            SetValue(_publisherUrl, "/DBLScriptureProject/contact/rightsHolderURL");
+            SetValue(_publisherFacebook, "/DBLScriptureProject/contact/rightsHolderFacebook");
+            SetValue(_rightsStatement, "/DBLScriptureProject/rights/rightsStatement");
+            SetXmlValue(_promoInfo, "/DBLScriptureProject/promotion/promoVersionInfo");
+            SetValue(_promoEmail, "/DBLScriptureProject/promotion/promoEmail");
         }
 
         private void SetValue(string value, string xpath)

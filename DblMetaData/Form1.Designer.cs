@@ -33,6 +33,7 @@
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.review = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // save
@@ -47,7 +48,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(774, 636);
+            this.button2.Location = new System.Drawing.Point(687, 636);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -81,11 +82,22 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Publication Description (from Rights page):";
             // 
+            // review
+            // 
+            this.review.Location = new System.Drawing.Point(774, 636);
+            this.review.Name = "review";
+            this.review.Size = new System.Drawing.Size(75, 23);
+            this.review.TabIndex = 5;
+            this.review.Text = "Review";
+            this.review.UseVisualStyleBackColor = true;
+            this.review.Click += new System.EventHandler(this.review_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 775);
+            this.Controls.Add(this.review);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.webBrowser1);
@@ -93,6 +105,7 @@
             this.Controls.Add(this.save);
             this.Name = "Form1";
             this.Text = "DBL Meta Data";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -105,6 +118,7 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button review;
 
     }
 }

@@ -54,7 +54,9 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DblMetaDataScraperTest.cs" />
+    <Compile Include="DblMetaDataScraperTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FileAssert.cs" />
     <Compile Include="PromoStatementsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
