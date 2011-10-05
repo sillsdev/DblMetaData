@@ -133,6 +133,12 @@ namespace TestProject
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
+        [TestMethod()]
+        public void AcuRevewTest()
+        {
+            ReviewSiteData(_tf.InputData("acuReap.xml"), "My Description");
+        }
+
         /// <summary>
         ///A test for Save
         ///</summary>
