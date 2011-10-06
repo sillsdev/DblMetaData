@@ -362,7 +362,7 @@ namespace DblMetaData
         private readonly string _publisherData = @"
 <root>
 <publisher name=""Wycliffe Bible Translators"" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
-<publisher name=""La Liga Biblica"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher name=""La Liga Bíblica"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <!-- publisher name="" url="" fb=""/ -->
 </root>
 ";

@@ -51,9 +51,25 @@ namespace DblMetaData
 
         public void ReviewSiteData(string webDocData, string description)
         {
-            _scraper.Load(webDocData);
+            try
+            {
+                _scraper.Load(webDocData);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter Insite Authentication data.");
+                return;
+            }
             _scraper.PublicationDescription = description;
-            _scraper.ScrapeReapData();
+            try
+            {
+                _scraper.ScrapeReapData();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid Reap Page. Browse to 'Show full item record' for the appropriate publication.");
+                return;
+            }
             var reviewDialog = new Review {Data = _scraper};
             if (reviewDialog.ShowDialog() == DialogResult.OK)
             {

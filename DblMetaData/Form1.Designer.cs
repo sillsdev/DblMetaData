@@ -39,7 +39,7 @@
             this.save.Location = new System.Drawing.Point(855, 636);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 0;
+            this.save.TabIndex = 3;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.button1_Click);
@@ -60,7 +60,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(918, 618);
-            this.webBrowser1.TabIndex = 2;
+            this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/browse?type=language", System.UriKind.Absolute);
             // 
             // review
@@ -68,7 +68,7 @@
             this.review.Location = new System.Drawing.Point(774, 636);
             this.review.Name = "review";
             this.review.Size = new System.Drawing.Size(75, 23);
-            this.review.TabIndex = 5;
+            this.review.TabIndex = 2;
             this.review.Text = "Review";
             this.review.UseVisualStyleBackColor = true;
             this.review.Click += new System.EventHandler(this.review_Click);

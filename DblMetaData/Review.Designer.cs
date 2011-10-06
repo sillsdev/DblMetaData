@@ -78,7 +78,7 @@
             // 
             this.title.Location = new System.Drawing.Point(204, 24);
             this.title.Name = "title";
-            this.title.Size = new System.Drawing.Size(189, 22);
+            this.title.Size = new System.Drawing.Size(327, 22);
             this.title.TabIndex = 0;
             this.title.TextChanged += new System.EventHandler(this.title_TextChanged);
             // 
@@ -88,7 +88,7 @@
             this.label1.Location = new System.Drawing.Point(19, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 24;
             this.label1.Text = "Title";
             // 
             // label2
@@ -97,7 +97,7 @@
             this.label2.Location = new System.Drawing.Point(19, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(109, 17);
-            this.label2.TabIndex = 2;
+            this.label2.TabIndex = 25;
             this.label2.Text = "Language Code";
             // 
             // label3
@@ -106,7 +106,7 @@
             this.label3.Location = new System.Drawing.Point(19, 85);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(113, 17);
-            this.label3.TabIndex = 3;
+            this.label3.TabIndex = 26;
             this.label3.Text = "Language Name";
             // 
             // label4
@@ -115,7 +115,7 @@
             this.label4.Location = new System.Drawing.Point(19, 113);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(48, 17);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 27;
             this.label4.Text = "Scope";
             // 
             // label5
@@ -124,7 +124,7 @@
             this.label5.Location = new System.Drawing.Point(19, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 17);
-            this.label5.TabIndex = 5;
+            this.label5.TabIndex = 29;
             this.label5.Text = "Confidential";
             // 
             // label6
@@ -133,7 +133,7 @@
             this.label6.Location = new System.Drawing.Point(19, 200);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 17);
-            this.label6.TabIndex = 6;
+            this.label6.TabIndex = 30;
             this.label6.Text = "Date Completed";
             // 
             // label7
@@ -142,7 +142,7 @@
             this.label7.Location = new System.Drawing.Point(19, 230);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 17);
-            this.label7.TabIndex = 7;
+            this.label7.TabIndex = 31;
             this.label7.Text = "Publisher";
             // 
             // label8
@@ -151,7 +151,7 @@
             this.label8.Location = new System.Drawing.Point(19, 314);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(64, 17);
-            this.label8.TabIndex = 8;
+            this.label8.TabIndex = 34;
             this.label8.Text = "Reap Url";
             // 
             // label9
@@ -160,7 +160,7 @@
             this.label9.Location = new System.Drawing.Point(19, 342);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(94, 17);
-            this.label9.TabIndex = 9;
+            this.label9.TabIndex = 35;
             this.label9.Text = "Country Code";
             // 
             // label10
@@ -169,7 +169,7 @@
             this.label10.Location = new System.Drawing.Point(19, 370);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(98, 17);
-            this.label10.TabIndex = 10;
+            this.label10.TabIndex = 36;
             this.label10.Text = "Country Name";
             // 
             // label11
@@ -178,7 +178,7 @@
             this.label11.Location = new System.Drawing.Point(19, 400);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(51, 17);
-            this.label11.TabIndex = 11;
+            this.label11.TabIndex = 37;
             this.label11.Text = "Edition";
             // 
             // label12
@@ -187,7 +187,7 @@
             this.label12.Location = new System.Drawing.Point(19, 428);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(87, 17);
-            this.label12.TabIndex = 12;
+            this.label12.TabIndex = 38;
             this.label12.Text = "Edition Type";
             // 
             // label13
@@ -196,7 +196,7 @@
             this.label13.Location = new System.Drawing.Point(19, 454);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 17);
-            this.label13.TabIndex = 13;
+            this.label13.TabIndex = 39;
             this.label13.Text = "Range";
             // 
             // label14
@@ -205,7 +205,7 @@
             this.label14.Location = new System.Drawing.Point(19, 482);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(125, 17);
-            this.label14.TabIndex = 14;
+            this.label14.TabIndex = 40;
             this.label14.Text = "Range Description";
             // 
             // languageCode
@@ -213,7 +213,7 @@
             this.languageCode.Location = new System.Drawing.Point(204, 53);
             this.languageCode.Name = "languageCode";
             this.languageCode.Size = new System.Drawing.Size(100, 22);
-            this.languageCode.TabIndex = 15;
+            this.languageCode.TabIndex = 1;
             this.languageCode.TextChanged += new System.EventHandler(this.languageCode_TextChanged);
             // 
             // languageName
@@ -221,7 +221,7 @@
             this.languageName.Location = new System.Drawing.Point(204, 82);
             this.languageName.Name = "languageName";
             this.languageName.Size = new System.Drawing.Size(189, 22);
-            this.languageName.TabIndex = 16;
+            this.languageName.TabIndex = 2;
             this.languageName.TextChanged += new System.EventHandler(this.languageName_TextChanged);
             // 
             // scope
@@ -229,7 +229,7 @@
             this.scope.Location = new System.Drawing.Point(204, 110);
             this.scope.Name = "scope";
             this.scope.Size = new System.Drawing.Size(189, 22);
-            this.scope.TabIndex = 17;
+            this.scope.TabIndex = 3;
             this.scope.TextChanged += new System.EventHandler(this.scope_TextChanged);
             // 
             // confidential
@@ -237,7 +237,7 @@
             this.confidential.Location = new System.Drawing.Point(204, 169);
             this.confidential.Name = "confidential";
             this.confidential.Size = new System.Drawing.Size(100, 22);
-            this.confidential.TabIndex = 18;
+            this.confidential.TabIndex = 5;
             this.confidential.TextChanged += new System.EventHandler(this.confidential_TextChanged);
             // 
             // dateCompleted
@@ -245,7 +245,7 @@
             this.dateCompleted.Location = new System.Drawing.Point(204, 197);
             this.dateCompleted.Name = "dateCompleted";
             this.dateCompleted.Size = new System.Drawing.Size(100, 22);
-            this.dateCompleted.TabIndex = 19;
+            this.dateCompleted.TabIndex = 6;
             this.dateCompleted.TextChanged += new System.EventHandler(this.dateCompleted_TextChanged);
             // 
             // publisher
@@ -253,7 +253,7 @@
             this.publisher.Location = new System.Drawing.Point(204, 225);
             this.publisher.Name = "publisher";
             this.publisher.Size = new System.Drawing.Size(189, 22);
-            this.publisher.TabIndex = 20;
+            this.publisher.TabIndex = 7;
             this.publisher.TextChanged += new System.EventHandler(this.publisher_TextChanged);
             // 
             // reapUrl
@@ -261,7 +261,7 @@
             this.reapUrl.Location = new System.Drawing.Point(204, 311);
             this.reapUrl.Name = "reapUrl";
             this.reapUrl.Size = new System.Drawing.Size(327, 22);
-            this.reapUrl.TabIndex = 21;
+            this.reapUrl.TabIndex = 10;
             this.reapUrl.TextChanged += new System.EventHandler(this.reapUrl_TextChanged);
             // 
             // countryCode
@@ -269,7 +269,7 @@
             this.countryCode.Location = new System.Drawing.Point(204, 339);
             this.countryCode.Name = "countryCode";
             this.countryCode.Size = new System.Drawing.Size(100, 22);
-            this.countryCode.TabIndex = 22;
+            this.countryCode.TabIndex = 11;
             this.countryCode.TextChanged += new System.EventHandler(this.countryCode_TextChanged);
             // 
             // countryName
@@ -277,7 +277,7 @@
             this.countryName.Location = new System.Drawing.Point(204, 367);
             this.countryName.Name = "countryName";
             this.countryName.Size = new System.Drawing.Size(189, 22);
-            this.countryName.TabIndex = 23;
+            this.countryName.TabIndex = 12;
             this.countryName.TextChanged += new System.EventHandler(this.countryName_TextChanged);
             // 
             // Edition
@@ -285,7 +285,7 @@
             this.Edition.Location = new System.Drawing.Point(204, 395);
             this.Edition.Name = "Edition";
             this.Edition.Size = new System.Drawing.Size(100, 22);
-            this.Edition.TabIndex = 24;
+            this.Edition.TabIndex = 13;
             this.Edition.TextChanged += new System.EventHandler(this.Edition_TextChanged);
             // 
             // editionType
@@ -293,7 +293,7 @@
             this.editionType.Location = new System.Drawing.Point(204, 423);
             this.editionType.Name = "editionType";
             this.editionType.Size = new System.Drawing.Size(100, 22);
-            this.editionType.TabIndex = 25;
+            this.editionType.TabIndex = 14;
             this.editionType.TextChanged += new System.EventHandler(this.editionType_TextChanged);
             // 
             // range
@@ -301,7 +301,7 @@
             this.range.Location = new System.Drawing.Point(204, 451);
             this.range.Name = "range";
             this.range.Size = new System.Drawing.Size(189, 22);
-            this.range.TabIndex = 26;
+            this.range.TabIndex = 15;
             this.range.TextChanged += new System.EventHandler(this.range_TextChanged);
             // 
             // rangeDescription
@@ -309,7 +309,7 @@
             this.rangeDescription.Location = new System.Drawing.Point(204, 479);
             this.rangeDescription.Name = "rangeDescription";
             this.rangeDescription.Size = new System.Drawing.Size(189, 22);
-            this.rangeDescription.TabIndex = 28;
+            this.rangeDescription.TabIndex = 16;
             this.rangeDescription.TextChanged += new System.EventHandler(this.rangeDescription_TextChanged);
             // 
             // Ok
@@ -317,7 +317,7 @@
             this.Ok.Location = new System.Drawing.Point(537, 522);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 23);
-            this.Ok.TabIndex = 29;
+            this.Ok.TabIndex = 23;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
             this.Ok.Click += new System.EventHandler(this.Ok_Click);
@@ -328,7 +328,7 @@
             this.Cancel.Location = new System.Drawing.Point(456, 522);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 30;
+            this.Cancel.TabIndex = 22;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -339,7 +339,7 @@
             this.label15.Location = new System.Drawing.Point(19, 256);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(89, 17);
-            this.label15.TabIndex = 31;
+            this.label15.TabIndex = 32;
             this.label15.Text = "Publisher Url";
             // 
             // label16
@@ -348,7 +348,7 @@
             this.label16.Location = new System.Drawing.Point(19, 284);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(133, 17);
-            this.label16.TabIndex = 32;
+            this.label16.TabIndex = 33;
             this.label16.Text = "Publisher Facebook";
             // 
             // publisherUrl
@@ -356,7 +356,7 @@
             this.publisherUrl.Location = new System.Drawing.Point(204, 253);
             this.publisherUrl.Name = "publisherUrl";
             this.publisherUrl.Size = new System.Drawing.Size(189, 22);
-            this.publisherUrl.TabIndex = 33;
+            this.publisherUrl.TabIndex = 8;
             this.publisherUrl.TextChanged += new System.EventHandler(this.publisherUrl_TextChanged);
             // 
             // publisherFacebook
@@ -364,7 +364,7 @@
             this.publisherFacebook.Location = new System.Drawing.Point(204, 281);
             this.publisherFacebook.Name = "publisherFacebook";
             this.publisherFacebook.Size = new System.Drawing.Size(327, 22);
-            this.publisherFacebook.TabIndex = 34;
+            this.publisherFacebook.TabIndex = 9;
             this.publisherFacebook.TextChanged += new System.EventHandler(this.publisherFacebook_TextChanged);
             // 
             // label17
@@ -373,7 +373,7 @@
             this.label17.Location = new System.Drawing.Point(534, 150);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(108, 17);
-            this.label17.TabIndex = 35;
+            this.label17.TabIndex = 42;
             this.label17.Text = "Promo Html Info";
             // 
             // promoInfo
@@ -383,7 +383,7 @@
             this.promoInfo.Name = "promoInfo";
             this.promoInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.promoInfo.Size = new System.Drawing.Size(386, 132);
-            this.promoInfo.TabIndex = 37;
+            this.promoInfo.TabIndex = 19;
             // 
             // label19
             // 
@@ -391,7 +391,7 @@
             this.label19.Location = new System.Drawing.Point(534, 332);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(118, 17);
-            this.label19.TabIndex = 38;
+            this.label19.TabIndex = 43;
             this.label19.Text = "Promo Email Text";
             // 
             // promoEmail
@@ -401,7 +401,7 @@
             this.promoEmail.Name = "promoEmail";
             this.promoEmail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.promoEmail.Size = new System.Drawing.Size(386, 145);
-            this.promoEmail.TabIndex = 39;
+            this.promoEmail.TabIndex = 21;
             // 
             // label18
             // 
@@ -409,7 +409,7 @@
             this.label18.Location = new System.Drawing.Point(19, 141);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(87, 17);
-            this.label18.TabIndex = 40;
+            this.label18.TabIndex = 28;
             this.label18.Text = "Abbreviation";
             // 
             // abbreviation
@@ -417,7 +417,7 @@
             this.abbreviation.Location = new System.Drawing.Point(204, 138);
             this.abbreviation.Name = "abbreviation";
             this.abbreviation.Size = new System.Drawing.Size(100, 22);
-            this.abbreviation.TabIndex = 41;
+            this.abbreviation.TabIndex = 4;
             this.abbreviation.TextChanged += new System.EventHandler(this.abbreviation_TextChanged);
             // 
             // Preview
@@ -425,7 +425,7 @@
             this.Preview.Location = new System.Drawing.Point(848, 308);
             this.Preview.Name = "Preview";
             this.Preview.Size = new System.Drawing.Size(75, 23);
-            this.Preview.TabIndex = 42;
+            this.Preview.TabIndex = 20;
             this.Preview.Text = "Preview";
             this.Preview.UseVisualStyleBackColor = true;
             this.Preview.Click += new System.EventHandler(this.Preview_Click);
@@ -436,7 +436,7 @@
             this.label20.Location = new System.Drawing.Point(534, 24);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(269, 17);
-            this.label20.TabIndex = 43;
+            this.label20.TabIndex = 41;
             this.label20.Text = "Publication Description (from rights page)";
             // 
             // PubDescTextBox
@@ -446,7 +446,7 @@
             this.PubDescTextBox.Name = "PubDescTextBox";
             this.PubDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PubDescTextBox.Size = new System.Drawing.Size(386, 86);
-            this.PubDescTextBox.TabIndex = 44;
+            this.PubDescTextBox.TabIndex = 17;
             this.PubDescTextBox.TextChanged += new System.EventHandler(this.PubDescTextBox_TextChanged);
             // 
             // Reset
@@ -454,7 +454,7 @@
             this.Reset.Location = new System.Drawing.Point(817, 136);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(106, 23);
-            this.Reset.TabIndex = 45;
+            this.Reset.TabIndex = 18;
             this.Reset.Text = "Reset Promo";
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
