@@ -306,6 +306,7 @@
             this.Ok.TabIndex = 29;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
+            this.Ok.Click += new System.EventHandler(this.Ok_Click);
             // 
             // Cancel
             // 
@@ -316,6 +317,7 @@
             this.Cancel.TabIndex = 30;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // label15
             // 

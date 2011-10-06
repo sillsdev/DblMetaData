@@ -385,8 +385,9 @@ namespace DblMetaData
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
             _range = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
-            //var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
             var valueWords = _range.Split(' ');
+            var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
+            _range = range + ":" + _range;
             if (_firstList.Contains(valueWords[0]))
             {
                 _editionType = "New";

@@ -76,5 +76,17 @@ namespace DblMetaData
             this.promoInfo.Text = _data.PromoInfo;
             this.promoEmail.Text = _data.PromoEmail;
         }
+
+        private void Ok_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }
