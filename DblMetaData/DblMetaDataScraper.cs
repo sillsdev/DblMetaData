@@ -413,9 +413,12 @@ namespace DblMetaData
         public void ResetPromoStatements()
         {
             var promoStatements = new PromoStatements();
-            var trimmedDescription = _publicationDescription.Trim();
-            if (trimmedDescription.Length > 0)
-                promoStatements.AddParagraph(trimmedDescription);
+            if (_publicationDescription != null)
+            {
+                var trimmedDescription = _publicationDescription.Trim();
+                if (trimmedDescription.Length > 0)
+                    promoStatements.AddParagraph(trimmedDescription);
+            }
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
             promoStatements.AddDescription(_edition, _rangeDescription, _languageName);

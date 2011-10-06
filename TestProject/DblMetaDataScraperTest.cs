@@ -98,7 +98,7 @@ namespace TestProject
             Assert.AreEqual("United States", target.CountryName);
             Assert.AreEqual("1st ed.", target.Edition);
             Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:1st ed.", target.Range);
+            Assert.AreEqual("NT:First edition", target.Range);
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
@@ -129,7 +129,7 @@ namespace TestProject
             Assert.AreEqual("Peru", target.CountryName);
             Assert.AreEqual("[1st] ed.", target.Edition);
             Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:[1st] ed.", target.Range);
+            Assert.AreEqual("NT:First edition", target.Range);
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
