@@ -39,7 +39,7 @@ namespace DblMetaData
 
         private void review_Click(object sender, EventArgs e)
         {
-            ReviewSiteData(webBrowser1.DocumentText, textBox1.Text);
+            ReviewSiteData(webBrowser1.DocumentText, "");
         }
 
         public void ReviewSiteData(string webDocData, string description)

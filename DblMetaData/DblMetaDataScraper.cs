@@ -384,18 +384,18 @@ namespace DblMetaData
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
-            _edition = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
-            var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
-            var valueWords = _edition.Split(' ');
+            _range = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
+            //var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
+            var valueWords = _range.Split(' ');
             if (_firstList.Contains(valueWords[0]))
             {
                 _editionType = "New";
-                _range = range + ":First edition";
+                _edition = "First edition";
             }
             else
             {
                 _editionType = "<><> Check Edition <><>";
-                _range = range + ":" + _edition.Replace("ed.", "edition");
+                _edition = _range.Replace("ed.", "edition");
             }
             _rangeDescription = TextField(_scope, 1);
             _rightsStatement = "©" + _publisher + " " + _dateCompleted;

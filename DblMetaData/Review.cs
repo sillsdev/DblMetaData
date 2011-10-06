@@ -68,5 +68,13 @@ namespace DblMetaData
             previewDialog.XmlData = "<html><body>" + this.promoInfo.Text + "</body></html>";
             previewDialog.ShowDialog();
         }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            _data.PublicationDescription = PubDescTextBox.Text;
+            _data.ResetPromoStatements();
+            this.promoInfo.Text = _data.PromoInfo;
+            this.promoEmail.Text = _data.PromoEmail;
+        }
     }
 }

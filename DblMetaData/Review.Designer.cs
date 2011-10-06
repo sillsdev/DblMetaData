@@ -69,6 +69,9 @@
             this.label18 = new System.Windows.Forms.Label();
             this.abbreviation = new System.Windows.Forms.TextBox();
             this.Preview = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.PubDescTextBox = new System.Windows.Forms.TextBox();
+            this.Reset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // title
@@ -349,7 +352,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(534, 24);
+            this.label17.Location = new System.Drawing.Point(534, 150);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(108, 17);
             this.label17.TabIndex = 35;
@@ -357,10 +360,10 @@
             // 
             // promoInfo
             // 
-            this.promoInfo.Location = new System.Drawing.Point(537, 53);
+            this.promoInfo.Location = new System.Drawing.Point(537, 170);
             this.promoInfo.Multiline = true;
             this.promoInfo.Name = "promoInfo";
-            this.promoInfo.Size = new System.Drawing.Size(386, 217);
+            this.promoInfo.Size = new System.Drawing.Size(386, 132);
             this.promoInfo.TabIndex = 37;
             // 
             // label19
@@ -398,13 +401,40 @@
             // 
             // Preview
             // 
-            this.Preview.Location = new System.Drawing.Point(848, 276);
+            this.Preview.Location = new System.Drawing.Point(848, 308);
             this.Preview.Name = "Preview";
             this.Preview.Size = new System.Drawing.Size(75, 23);
             this.Preview.TabIndex = 42;
             this.Preview.Text = "Preview";
             this.Preview.UseVisualStyleBackColor = true;
             this.Preview.Click += new System.EventHandler(this.Preview_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(534, 24);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(269, 17);
+            this.label20.TabIndex = 43;
+            this.label20.Text = "Publication Description (from rights page)";
+            // 
+            // PubDescTextBox
+            // 
+            this.PubDescTextBox.Location = new System.Drawing.Point(537, 44);
+            this.PubDescTextBox.Multiline = true;
+            this.PubDescTextBox.Name = "PubDescTextBox";
+            this.PubDescTextBox.Size = new System.Drawing.Size(386, 86);
+            this.PubDescTextBox.TabIndex = 44;
+            // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(817, 136);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(106, 23);
+            this.Reset.TabIndex = 45;
+            this.Reset.Text = "Reset Promo";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // Review
             // 
@@ -413,6 +443,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
             this.ClientSize = new System.Drawing.Size(948, 563);
+            this.Controls.Add(this.Reset);
+            this.Controls.Add(this.PubDescTextBox);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.Preview);
             this.Controls.Add(this.abbreviation);
             this.Controls.Add(this.label18);
@@ -505,5 +538,8 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox abbreviation;
         private System.Windows.Forms.Button Preview;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox PubDescTextBox;
+        private System.Windows.Forms.Button Reset;
     }
 }

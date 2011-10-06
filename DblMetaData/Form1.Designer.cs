@@ -31,8 +31,6 @@
             this.save = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.review = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -65,23 +63,6 @@
             this.webBrowser1.TabIndex = 2;
             this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/browse?type=language", System.UriKind.Absolute);
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 664);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(750, 99);
-            this.textBox1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 642);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(278, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Publication Description (from Rights page):";
-            // 
             // review
             // 
             this.review.Location = new System.Drawing.Point(774, 636);
@@ -96,10 +77,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 775);
+            this.ClientSize = new System.Drawing.Size(942, 669);
             this.Controls.Add(this.review);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.save);
@@ -107,7 +86,6 @@
             this.Text = "DBL Meta Data";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -116,8 +94,6 @@
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button review;
 
     }
