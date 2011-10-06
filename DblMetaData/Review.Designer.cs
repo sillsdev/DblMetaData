@@ -365,6 +365,7 @@
             this.promoInfo.Location = new System.Drawing.Point(537, 170);
             this.promoInfo.Multiline = true;
             this.promoInfo.Name = "promoInfo";
+            this.promoInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.promoInfo.Size = new System.Drawing.Size(386, 132);
             this.promoInfo.TabIndex = 37;
             // 
@@ -382,6 +383,7 @@
             this.promoEmail.Location = new System.Drawing.Point(537, 354);
             this.promoEmail.Multiline = true;
             this.promoEmail.Name = "promoEmail";
+            this.promoEmail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.promoEmail.Size = new System.Drawing.Size(386, 145);
             this.promoEmail.TabIndex = 39;
             // 
@@ -425,6 +427,7 @@
             this.PubDescTextBox.Location = new System.Drawing.Point(537, 44);
             this.PubDescTextBox.Multiline = true;
             this.PubDescTextBox.Name = "PubDescTextBox";
+            this.PubDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PubDescTextBox.Size = new System.Drawing.Size(386, 86);
             this.PubDescTextBox.TabIndex = 44;
             // 
@@ -440,7 +443,6 @@
             // 
             // Review
             // 
-            this.AcceptButton = this.Ok;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;

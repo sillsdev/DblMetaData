@@ -376,7 +376,7 @@ namespace DblMetaData
             if (_publisherUrls.Keys.Contains(_publisher))
                 _publisherUrl = _publisherUrls[_publisher];
             else
-                _publisherUrl = "<><> Publisher Email <><>";
+                _publisherUrl = "<><> Publisher URL <><>";
             if (_publisherFacebookUrls.Keys.Contains(_publisher))
                 _publisherFacebook = _publisherFacebookUrls[_publisher];
             else
@@ -399,13 +399,13 @@ namespace DblMetaData
                 _edition = _range.Replace("ed.", "edition");
             }
             _rangeDescription = TextField(_scope, 1);
-            _rightsStatement = "©" + _publisher + " " + _dateCompleted;
             if (_confidential == "No")
             {
                 ResetPromoStatements();
             }
             else
             {
+                _rightsStatement = "©" + _publisher + " " + _dateCompleted;
                 _promoInfo = "<><>No promoVersionInfo<><>";
                 _promoEmail = "<><>No promoVersionEmail<><>";
             }
@@ -416,10 +416,11 @@ namespace DblMetaData
             var promoStatements = new PromoStatements();
             if (_publicationDescription != null)
             {
-                var trimmedDescription = _publicationDescription.Trim();
+                var trimmedDescription = _publicationDescription.Trim().Replace("\r\n", "<br/>\r\n");
                 if (trimmedDescription.Length > 0)
                     promoStatements.AddParagraph(trimmedDescription);
             }
+            _rightsStatement = "©" + _publisher + " " + _dateCompleted;
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
             promoStatements.AddDescription(_edition, _rangeDescription, _languageName);
