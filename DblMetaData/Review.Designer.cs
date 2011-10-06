@@ -80,6 +80,7 @@
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(189, 22);
             this.title.TabIndex = 0;
+            this.title.TextChanged += new System.EventHandler(this.title_TextChanged);
             // 
             // label1
             // 
@@ -213,6 +214,7 @@
             this.languageCode.Name = "languageCode";
             this.languageCode.Size = new System.Drawing.Size(100, 22);
             this.languageCode.TabIndex = 15;
+            this.languageCode.TextChanged += new System.EventHandler(this.languageCode_TextChanged);
             // 
             // languageName
             // 
@@ -220,6 +222,7 @@
             this.languageName.Name = "languageName";
             this.languageName.Size = new System.Drawing.Size(189, 22);
             this.languageName.TabIndex = 16;
+            this.languageName.TextChanged += new System.EventHandler(this.languageName_TextChanged);
             // 
             // scope
             // 
@@ -227,6 +230,7 @@
             this.scope.Name = "scope";
             this.scope.Size = new System.Drawing.Size(189, 22);
             this.scope.TabIndex = 17;
+            this.scope.TextChanged += new System.EventHandler(this.scope_TextChanged);
             // 
             // confidential
             // 
@@ -234,6 +238,7 @@
             this.confidential.Name = "confidential";
             this.confidential.Size = new System.Drawing.Size(100, 22);
             this.confidential.TabIndex = 18;
+            this.confidential.TextChanged += new System.EventHandler(this.confidential_TextChanged);
             // 
             // dateCompleted
             // 
@@ -241,6 +246,7 @@
             this.dateCompleted.Name = "dateCompleted";
             this.dateCompleted.Size = new System.Drawing.Size(100, 22);
             this.dateCompleted.TabIndex = 19;
+            this.dateCompleted.TextChanged += new System.EventHandler(this.dateCompleted_TextChanged);
             // 
             // publisher
             // 
@@ -248,6 +254,7 @@
             this.publisher.Name = "publisher";
             this.publisher.Size = new System.Drawing.Size(189, 22);
             this.publisher.TabIndex = 20;
+            this.publisher.TextChanged += new System.EventHandler(this.publisher_TextChanged);
             // 
             // reapUrl
             // 
@@ -255,6 +262,7 @@
             this.reapUrl.Name = "reapUrl";
             this.reapUrl.Size = new System.Drawing.Size(327, 22);
             this.reapUrl.TabIndex = 21;
+            this.reapUrl.TextChanged += new System.EventHandler(this.reapUrl_TextChanged);
             // 
             // countryCode
             // 
@@ -262,6 +270,7 @@
             this.countryCode.Name = "countryCode";
             this.countryCode.Size = new System.Drawing.Size(100, 22);
             this.countryCode.TabIndex = 22;
+            this.countryCode.TextChanged += new System.EventHandler(this.countryCode_TextChanged);
             // 
             // countryName
             // 
@@ -269,6 +278,7 @@
             this.countryName.Name = "countryName";
             this.countryName.Size = new System.Drawing.Size(189, 22);
             this.countryName.TabIndex = 23;
+            this.countryName.TextChanged += new System.EventHandler(this.countryName_TextChanged);
             // 
             // Edition
             // 
@@ -276,6 +286,7 @@
             this.Edition.Name = "Edition";
             this.Edition.Size = new System.Drawing.Size(100, 22);
             this.Edition.TabIndex = 24;
+            this.Edition.TextChanged += new System.EventHandler(this.Edition_TextChanged);
             // 
             // editionType
             // 
@@ -283,6 +294,7 @@
             this.editionType.Name = "editionType";
             this.editionType.Size = new System.Drawing.Size(100, 22);
             this.editionType.TabIndex = 25;
+            this.editionType.TextChanged += new System.EventHandler(this.editionType_TextChanged);
             // 
             // range
             // 
@@ -290,6 +302,7 @@
             this.range.Name = "range";
             this.range.Size = new System.Drawing.Size(189, 22);
             this.range.TabIndex = 26;
+            this.range.TextChanged += new System.EventHandler(this.range_TextChanged);
             // 
             // rangeDescription
             // 
@@ -297,6 +310,7 @@
             this.rangeDescription.Name = "rangeDescription";
             this.rangeDescription.Size = new System.Drawing.Size(189, 22);
             this.rangeDescription.TabIndex = 28;
+            this.rangeDescription.TextChanged += new System.EventHandler(this.rangeDescription_TextChanged);
             // 
             // Ok
             // 
@@ -343,6 +357,7 @@
             this.publisherUrl.Name = "publisherUrl";
             this.publisherUrl.Size = new System.Drawing.Size(189, 22);
             this.publisherUrl.TabIndex = 33;
+            this.publisherUrl.TextChanged += new System.EventHandler(this.publisherUrl_TextChanged);
             // 
             // publisherFacebook
             // 
@@ -350,6 +365,7 @@
             this.publisherFacebook.Name = "publisherFacebook";
             this.publisherFacebook.Size = new System.Drawing.Size(327, 22);
             this.publisherFacebook.TabIndex = 34;
+            this.publisherFacebook.TextChanged += new System.EventHandler(this.publisherFacebook_TextChanged);
             // 
             // label17
             // 
@@ -402,6 +418,7 @@
             this.abbreviation.Name = "abbreviation";
             this.abbreviation.Size = new System.Drawing.Size(100, 22);
             this.abbreviation.TabIndex = 41;
+            this.abbreviation.TextChanged += new System.EventHandler(this.abbreviation_TextChanged);
             // 
             // Preview
             // 
@@ -430,6 +447,7 @@
             this.PubDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PubDescTextBox.Size = new System.Drawing.Size(386, 86);
             this.PubDescTextBox.TabIndex = 44;
+            this.PubDescTextBox.TextChanged += new System.EventHandler(this.PubDescTextBox_TextChanged);
             // 
             // Reset
             // 

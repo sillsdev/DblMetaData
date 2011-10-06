@@ -1,17 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿// ---------------------------------------------------------------------------------------------
+#region // Copyright (c) 2011, SIL International. All Rights Reserved.
+// <copyright from='2011' to='2011' company='SIL International'>
+//		Copyright (c) 2011, SIL International. All Rights Reserved.
+//
+//		Distributable under the terms of either the Common Public License or the
+//		GNU Lesser General Public License, as specified in the LICENSING.txt file.
+// </copyright>
+#endregion
+//
+// File: Form1.cs
+// Responsibility: Trihus
+// ---------------------------------------------------------------------------------------------
+using System;
 using System.Windows.Forms;
 
 namespace DblMetaData
 {
     public partial class Form1 : Form
     {
-        private readonly DblMetaDataScraper _scraper;
+        private DblMetaDataScraper _scraper;
 
         public Form1()
         {
@@ -22,10 +29,10 @@ namespace DblMetaData
         private void button1_Click(object sender, EventArgs e)
         {
             _scraper.InsertDataInDblMetaData();
-            var dialog = new SaveFileDialog();
-            dialog.FileName = _scraper.GetDefaultName();
-            dialog.AddExtension = true;
-            dialog.DefaultExt = ".xml";
+            var dialog = new SaveFileDialog
+                             {FileName = _scraper.GetDefaultName(), 
+                                 AddExtension = true, 
+                                 DefaultExt = ".xml"};
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 _scraper.Save(dialog.FileName);
@@ -47,29 +54,10 @@ namespace DblMetaData
             _scraper.Load(webDocData);
             _scraper.PublicationDescription = description;
             _scraper.ScrapeReapData();
-            var review = new Review();
-            review.Data = _scraper;
-            if (review.ShowDialog() == DialogResult.OK)
+            var reviewDialog = new Review {Data = _scraper};
+            if (reviewDialog.ShowDialog() == DialogResult.OK)
             {
-                _scraper.Title = review.Data.Title;
-                _scraper.LanguageCode = review.Data.LanguageCode;
-                _scraper.LanguageName = review.Data.LanguageName;
-                _scraper.Scope = review.Data.Scope;
-                _scraper.Abbreviation = review.Data.Abbreviation;
-                _scraper.Confidential = review.Data.Confidential;
-                _scraper.DateCompleted = review.Data.DateCompleted;
-                _scraper.Publisher = review.Data.Publisher;
-                _scraper.PublisherUrl = review.Data.PublisherUrl;
-                _scraper.PublisherFacebook = review.Data.PublisherFacebook;
-                _scraper.ReapUrl = review.Data.ReapUrl;
-                _scraper.CountryCode = review.Data.CountryCode;
-                _scraper.CountryName = review.Data.CountryName;
-                _scraper.Edition = review.Data.Edition;
-                _scraper.EditionType = review.Data.EditionType;
-                _scraper.Range = review.Data.Range;
-                _scraper.RangeDescription = review.Data.RangeDescription;
-                _scraper.PromoInfo = review.Data.PromoInfo;
-                _scraper.PromoEmail = review.Data.PromoEmail;
+                _scraper = reviewDialog.Data;
                 save.Enabled = true;
             }
         }

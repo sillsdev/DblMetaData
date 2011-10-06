@@ -221,7 +221,7 @@ namespace DblMetaData
             _webDoc = new XmlDocument {XmlResolver = null};
             _namespaceManager = new XmlNamespaceManager(_webDoc.NameTable);
             _namespaceManager.AddNamespace("default", "http://www.w3.org/1999/xhtml");
-            _namespaceManager.AddNamespace("fn", "http://www.w3.org/2005/xpath-functions");
+            //_namespaceManager.AddNamespace("fn", "http://www.w3.org/2005/xpath-functions");
             _dblMetaDataDoc = new XmlDocument();
             _dblMetaDataDoc.LoadXml(_dblMetaData);
         }
@@ -231,6 +231,7 @@ namespace DblMetaData
             _webDoc.LoadXml(webDocText);
         }
 
+        #region dblMetaData (template)
         private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""utf-8""?>
 <?oxygen RNGSchema=""metadata.rnc"" type=""compact""?>
 <DBLScriptureProject resourceURI="""" xml:base=""http://purl.org/ubs/metadata/dc/terms/"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
@@ -351,6 +352,7 @@ namespace DblMetaData
   </archiveStatus>
   <format dcds:propertyURI=""format"" dcds:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
 </DBLScriptureProject>";
+        #endregion dblMetaData (template)
 
         readonly List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
 
@@ -430,33 +432,33 @@ namespace DblMetaData
 
         public void InsertDataInDblMetaData()
         {
-            SetValue(_title, "/DBLScriptureProject/identification/name");
-            SetValue(_title, "/DBLScriptureProject/identification/nameLocal");
-            SetValue(_title, "/DBLScriptureProject/contents/bookList/name");
-            SetValue(_title, "/DBLScriptureProject/contents/bookList/nameLocal");
-            SetValue(_abbreviation, "/DBLScriptureProject/identification/abbreviation");
-            SetValue(_abbreviation, "/DBLScriptureProject/identification/abbreviationLocal");
-            SetValue(_abbreviation, "/DBLScriptureProject/contents/bookList/abbreviation");
-            SetValue(_abbreviation, "/DBLScriptureProject/contents/bookList/abbreviationLocal");
-            SetValue(_languageCode, "/DBLScriptureProject/language/iso");
-            SetValue(_languageName, "/DBLScriptureProject/language/name");
-            SetValue(_scope, "/DBLScriptureProject/identification/scope");
-            SetValue(_confidential, "/DBLScriptureProject/confidential");
-            SetValue(_dateCompleted, "/DBLScriptureProject/identification/dateCompleted");
-            SetValue(_reapUrl, "/DBLScriptureProject/identification/systemId[@type='reap']");
-            SetValue(_publisher, "/DBLScriptureProject/agencies/translation");
-            SetValue(_publisher, "/DBLScriptureProject/agencies/publishing");
-            SetValue(_publisher, "/DBLScriptureProject/contact/rightsHolder");
-            SetValue(_publisher, "/DBLScriptureProject/contact/rightsHolderLocal");
-            SetValue(_countryCode, "/DBLScriptureProject/country/iso");
-            SetValue(_countryName, "/DBLScriptureProject/country/name");
-            SetValue(_editionType, "/DBLScriptureProject/translation/type");
-            SetValue(_range, "/DBLScriptureProject/contents/bookList/description");
-            SetValue(_publisherUrl, "/DBLScriptureProject/contact/rightsHolderURL");
-            SetValue(_publisherFacebook, "/DBLScriptureProject/contact/rightsHolderFacebook");
-            SetValue(_rightsStatement, "/DBLScriptureProject/rights/rightsStatement");
-            SetXmlValue(_promoInfo, "/DBLScriptureProject/promotion/promoVersionInfo");
-            SetValue(_promoEmail, "/DBLScriptureProject/promotion/promoEmail");
+            SetValue(_title, "//identification/name");
+            SetValue(_title, "//identification/nameLocal");
+            SetValue(_title, "//contents/bookList/name");
+            SetValue(_title, "//contents/bookList/nameLocal");
+            SetValue(_abbreviation, "//identification/abbreviation");
+            SetValue(_abbreviation, "//identification/abbreviationLocal");
+            SetValue(_abbreviation, "//contents/bookList/abbreviation");
+            SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
+            SetValue(_languageCode, "//language/iso");
+            SetValue(_languageName, "//language/name");
+            SetValue(_scope, "//identification/scope");
+            SetValue(_confidential, "//confidential");
+            SetValue(_dateCompleted, "//identification/dateCompleted");
+            SetValue(_reapUrl, "//identification/systemId[@type='reap']");
+            SetValue(_publisher, "//agencies/translation");
+            SetValue(_publisher, "//agencies/publishing");
+            SetValue(_publisher, "//contact/rightsHolder");
+            SetValue(_publisher, "//contact/rightsHolderLocal");
+            SetValue(_countryCode, "//country/iso");
+            SetValue(_countryName, "//country/name");
+            SetValue(_editionType, "//translation/type");
+            SetValue(_range, "//contents/bookList/description");
+            SetValue(_publisherUrl, "//contact/rightsHolderURL");
+            SetValue(_publisherFacebook, "//contact/rightsHolderFacebook");
+            SetValue(_rightsStatement, "//rights/rightsStatement");
+            SetXmlValue(_promoInfo, "//promotion/promoVersionInfo");
+            SetValue(_promoEmail, "//promotion/promoEmail");
         }
 
         private void SetValue(string value, string xpath)
@@ -493,8 +495,8 @@ namespace DblMetaData
         }
 
 
-        //TODO: Copy script name to /DBLScriptureProject/language/script
-        //TODO: Copy script direction to /DBLScriptureProject/language/scriptDirection
+        //TODO: Copy script name to //language/script
+        //TODO: Copy script direction to //language/scriptDirection
 
         internal void Save(string p)
         {

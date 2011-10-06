@@ -96,9 +96,9 @@ namespace TestProject
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/16286", target.ReapUrl);
             Assert.AreEqual("US", target.CountryCode);
             Assert.AreEqual("United States", target.CountryName);
-            Assert.AreEqual("1st ed.", target.Edition);
+            Assert.AreEqual("First edition", target.Edition);
             Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:First edition", target.Range);
+            Assert.AreEqual("NT:1st ed.", target.Range);
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
@@ -127,9 +127,9 @@ namespace TestProject
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/29385", target.ReapUrl);
             Assert.AreEqual("PE", target.CountryCode);
             Assert.AreEqual("Peru", target.CountryName);
-            Assert.AreEqual("[1st] ed.", target.Edition);
+            Assert.AreEqual("First edition", target.Edition);
             Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:First edition", target.Range);
+            Assert.AreEqual("NT:[1st] ed.", target.Range);
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
@@ -180,12 +180,34 @@ namespace TestProject
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
-            var abbrNode = target._dblMetaDataDoc.SelectSingleNode("//abbreviation");
-            var actualAbbr = (abbrNode != null) ? abbrNode.InnerText : "No abbreviation node!";
-            Assert.AreEqual("hwc-NT", actualAbbr);
-            var promoInfNode = target._dblMetaDataDoc.SelectSingleNode("//promoVersionInfo");
-            var actualPromoInf = (promoInfNode != null) ? promoInfNode.InnerText : "No promoVersionInfo node!";
-            Assert.AreEqual(publicationDescription, actualPromoInf.Substring(0, publicationDescription.Length));
+            TestXpathValue("hwc-NT", "//abbreviation", target);
+            TestXpathValue("Da Jesus book", "//identification/name", target);
+            TestXpathValue("hwc", "//language/iso", target);
+            TestXpathValue("Hawai'i Creole English", "//language/name", target);
+            TestXpathValue("WNT:New Testament", "//identification/scope", target);
+            TestXpathValue("No", "//confidential", target);
+            TestXpathValue("2000", "//identification/dateCompleted", target);
+            TestXpathValue("http://www.reap.insitehome.org/handle/9284745/16286", "//identification/systemId[@type='reap']", target);
+            TestXpathValue("Wycliffe Bible Translators", "//agencies/publishing", target);
+            TestXpathValue("US", "//country/iso", target);
+            TestXpathValue("United States", "//country/name", target);
+            TestXpathValue("New", "//translation/type", target);
+            TestXpathValue("NT:1st ed.", "//contents/bookList/description", target);
+            TestXpathValue("http://www.wycliffe.org", "//contact/rightsHolderURL", target);
+            TestXpathValue("http://www.facebook.com/WycliffeUSA", "//contact/rightsHolderFacebook", target);
+            TestXpathValue("©Wycliffe Bible Translators 2000", "//rights/rightsStatement", target);
+            TestXpathValue(publicationDescription, "//promoVersionInfo", target, publicationDescription.Length);
+            TestXpathValue("&lt;p&gt;" + publicationDescription, "//promotion/promoEmail", target, publicationDescription.Length + 9);
+        }
+
+        private static void TestXpathValue(string expected, string xpath, DblMetaDataScraper_Accessor target, int len = 0)
+        {
+            var node = target._dblMetaDataDoc.SelectSingleNode(xpath);
+            var actual = (node != null) ? node.InnerText : "No " + xpath.Substring(2) + " node!";
+            if (len > 0)
+                Assert.AreEqual(expected, actual.Substring(0, len));
+            else
+                Assert.AreEqual(expected, actual);
         }
 
         /// <summary>

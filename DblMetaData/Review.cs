@@ -12,12 +12,6 @@
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace DblMetaData
@@ -40,32 +34,33 @@ namespace DblMetaData
 
         private void Review_Load(object sender, EventArgs e)
         {
-            this.title.Text = _data.Title;
-            this.languageCode.Text = _data.LanguageCode;
-            this.languageName.Text = _data.LanguageName;
-            this.scope.Text = _data.Scope;
-            this.abbreviation.Text = _data.Abbreviation;
-            this.confidential.Text = _data.Confidential;
-            this.dateCompleted.Text = _data.DateCompleted;
-            this.publisher.Text = _data.Publisher;
-            this.publisherUrl.Text = _data.PublisherUrl;
-            this.publisherFacebook.Text = _data.PublisherFacebook;
-            this.reapUrl.Text = _data.ReapUrl;
-            this.countryCode.Text = _data.CountryCode;
-            this.countryName.Text = _data.CountryName;
-            this.Edition.Text = _data.Edition;
-            this.editionType.Text = _data.EditionType;
-            this.range.Text = _data.Range;
-            this.rangeDescription.Text = _data.RangeDescription;
-            this.promoInfo.Text = _data.PromoInfo;
-            this.promoEmail.Text = _data.PromoEmail;
-            
+            title.Text = _data.Title;
+            languageCode.Text = _data.LanguageCode;
+            languageName.Text = _data.LanguageName;
+            scope.Text = _data.Scope;
+            abbreviation.Text = _data.Abbreviation;
+            confidential.Text = _data.Confidential;
+            dateCompleted.Text = _data.DateCompleted;
+            publisher.Text = _data.Publisher;
+            publisherUrl.Text = _data.PublisherUrl;
+            publisherFacebook.Text = _data.PublisherFacebook;
+            reapUrl.Text = _data.ReapUrl;
+            countryCode.Text = _data.CountryCode;
+            countryName.Text = _data.CountryName;
+            Edition.Text = _data.Edition;
+            editionType.Text = _data.EditionType;
+            range.Text = _data.Range;
+            rangeDescription.Text = _data.RangeDescription;
+            promoInfo.Text = _data.PromoInfo;
+            promoEmail.Text = _data.PromoEmail;
+            PubDescTextBox.Text = _data.PublicationDescription;
+
         }
 
         private void Preview_Click(object sender, EventArgs e)
         {
             var previewDialog = new PromoPreview();
-            previewDialog.XmlData = "<html><body>" + this.promoInfo.Text + "</body></html>";
+            previewDialog.XmlData = "<html><body>" + promoInfo.Text + "</body></html>";
             previewDialog.ShowDialog();
         }
 
@@ -73,8 +68,8 @@ namespace DblMetaData
         {
             _data.PublicationDescription = PubDescTextBox.Text;
             _data.ResetPromoStatements();
-            this.promoInfo.Text = _data.PromoInfo;
-            this.promoEmail.Text = _data.PromoEmail;
+            promoInfo.Text = _data.PromoInfo;
+            promoEmail.Text = _data.PromoEmail;
         }
 
         private void Ok_Click(object sender, EventArgs e)
@@ -87,6 +82,96 @@ namespace DblMetaData
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void title_TextChanged(object sender, EventArgs e)
+        {
+            _data.Title = title.Text;
+        }
+
+        private void languageCode_TextChanged(object sender, EventArgs e)
+        {
+            _data.LanguageCode = languageCode.Text;
+        }
+
+        private void languageName_TextChanged(object sender, EventArgs e)
+        {
+            _data.LanguageName = languageName.Text;
+        }
+
+        private void scope_TextChanged(object sender, EventArgs e)
+        {
+            _data.Scope = scope.Text;
+        }
+
+        private void abbreviation_TextChanged(object sender, EventArgs e)
+        {
+            _data.Abbreviation = abbreviation.Text;
+        }
+
+        private void confidential_TextChanged(object sender, EventArgs e)
+        {
+            _data.Confidential = confidential.Text;
+        }
+
+        private void dateCompleted_TextChanged(object sender, EventArgs e)
+        {
+            _data.DateCompleted = dateCompleted.Text;
+        }
+
+        private void publisher_TextChanged(object sender, EventArgs e)
+        {
+            _data.Publisher = publisher.Text;
+        }
+
+        private void publisherUrl_TextChanged(object sender, EventArgs e)
+        {
+            _data.PublisherUrl = publisherUrl.Text;
+        }
+
+        private void publisherFacebook_TextChanged(object sender, EventArgs e)
+        {
+            _data.PublisherFacebook = publisherFacebook.Text;
+        }
+
+        private void reapUrl_TextChanged(object sender, EventArgs e)
+        {
+            _data.ReapUrl = rangeDescription.Text;
+        }
+
+        private void countryCode_TextChanged(object sender, EventArgs e)
+        {
+            _data.CountryCode = countryCode.Text;
+        }
+
+        private void countryName_TextChanged(object sender, EventArgs e)
+        {
+            _data.CountryName = countryName.Text;
+        }
+
+        private void Edition_TextChanged(object sender, EventArgs e)
+        {
+            _data.Edition = Edition.Text;
+        }
+
+        private void editionType_TextChanged(object sender, EventArgs e)
+        {
+            _data.EditionType = editionType.Text;
+        }
+
+        private void range_TextChanged(object sender, EventArgs e)
+        {
+            _data.Range = rangeDescription.Text;
+        }
+
+        private void rangeDescription_TextChanged(object sender, EventArgs e)
+        {
+            _data.RangeDescription = rangeDescription.Text;
+        }
+
+        private void PubDescTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _data.PublicationDescription = PubDescTextBox.Text;
         }
     }
 }
