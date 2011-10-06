@@ -136,7 +136,7 @@ namespace DblMetaData
 
         private void reapUrl_TextChanged(object sender, EventArgs e)
         {
-            _data.ReapUrl = rangeDescription.Text;
+            _data.ReapUrl = reapUrl.Text;
         }
 
         private void countryCode_TextChanged(object sender, EventArgs e)
@@ -161,7 +161,7 @@ namespace DblMetaData
 
         private void range_TextChanged(object sender, EventArgs e)
         {
-            _data.Range = rangeDescription.Text;
+            _data.Range = range.Text;
         }
 
         private void rangeDescription_TextChanged(object sender, EventArgs e)
