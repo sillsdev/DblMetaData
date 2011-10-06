@@ -216,6 +216,8 @@ namespace DblMetaData
 
         private readonly XmlDocument _dblMetaDataDoc;
 
+        private readonly XmlDocument _publisherDoc;
+
         public DblMetaDataScraper()
         {
             _webDoc = new XmlDocument {XmlResolver = null};
@@ -224,6 +226,8 @@ namespace DblMetaData
             //_namespaceManager.AddNamespace("fn", "http://www.w3.org/2005/xpath-functions");
             _dblMetaDataDoc = new XmlDocument();
             _dblMetaDataDoc.LoadXml(_dblMetaData);
+            _publisherDoc = new XmlDocument();
+            _publisherDoc.LoadXml(_publisherData);
         }
 
         public void Load(string webDocText)
@@ -354,16 +358,17 @@ namespace DblMetaData
 </DBLScriptureProject>";
         #endregion dblMetaData (template)
 
-        readonly List<string> _firstList = new List<string> {"1st", "first", "[1st]"};
+        #region _publisherData
+        private readonly string _publisherData = @"
+<root>
+<publisher name=""Wycliffe Bible Translators"" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher name=""La Liga Biblica"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<!-- publisher name="" url="" fb=""/ -->
+</root>
+";
+        #endregion _publisherData
 
-        readonly Dictionary<string, string> _publisherUrls = new Dictionary<string, string>
-        {
-            {"Wycliffe Bible Translators", "http://www.wycliffe.org"}
-        };
-        readonly Dictionary<string, string> _publisherFacebookUrls = new Dictionary<string, string>
-        {
-            {"Wycliffe Bible Translators", "http://www.facebook.com/WycliffeUSA"}
-        };
+        readonly List<string> _firstList = new List<string> { "1st", "first", "[1st]" };
 
         public void ScrapeReapData()
         {
@@ -375,14 +380,16 @@ namespace DblMetaData
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
-            if (_publisherUrls.Keys.Contains(_publisher))
-                _publisherUrl = _publisherUrls[_publisher];
+            var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _publisher));
+            if (publisherUrlNode != null)
+                _publisherUrl = publisherUrlNode.InnerText;
             else
                 _publisherUrl = "<><> Publisher URL <><>";
-            if (_publisherFacebookUrls.Keys.Contains(_publisher))
-                _publisherFacebook = _publisherFacebookUrls[_publisher];
+            var publisherFbNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@fb", _publisher));
+            if (publisherFbNode != null)
+                _publisherFacebook = publisherFbNode.InnerText;
             else
-                _publisherFacebook = "<><> Publisher Email <><>";
+                _publisherFacebook = "<><> Publisher Facebook <><>";
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
