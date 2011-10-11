@@ -1,0 +1,626 @@
+DBLScriptureProject {
+  content: "Digital Bible Library Meta Data";
+  font-size: 16pt;
+  display: block;
+}
+identification {
+  content: "  Identification";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+systemId[type="dbl"]:before {
+  content: "    DBL systemid= ";
+  font-size: 12pt;
+  color: black;
+}
+systemId[type="dbl"] {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+systemId[type="tms"]:before {
+  content: "    Translation Management System Id= ";
+  font-size: 12pt;
+  color: black;
+}
+systemId[type="tms"] {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+systemId[type="reap"]:before {
+  content: "    REAP archive id= ";
+  font-size: 12pt;
+  color: black;
+}
+systemId[type="reap"] {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+systemId[type="paratext"]:before {
+  content: "    Paratext systemid= ";
+  font-size: 12pt;
+  color: black;
+}
+systemId[type="paratext"] {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+identification > name:before {
+  content: "    Title= ";
+  font-size: 12pt;
+  color: black;
+}
+identification > name {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+nameLocal:before {
+  content: "    Local Title= ";
+  font-size: 12pt;
+  color: black;
+}
+nameLocal {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+abbreviation:before {
+  content: "    Abbreviation= ";
+  font-size: 12pt;
+  color: black;
+}
+abbreviation {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+abbreviationLocal:before {
+  content: "    Local abbreviation= ";
+  font-size: 12pt;
+  color: black;
+}
+abbreviationLocal {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+scope:before {
+  content: "    Scope= ";
+  font-size: 12pt;
+  color: black;
+}
+scope {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+dateCompleted:before {
+  content: "    Date completed= ";
+  font-size: 12pt;
+  color: black;
+}
+dateCompleted {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+description:before {
+  content: "    Description= ";
+  font-size: 12pt;
+  color: black;
+}
+description {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+isResource:before {
+  content: "    Is this a Paratext resource?= ";
+  font-size: 12pt;
+  color: black;
+}
+isResource {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bundleVersion:before {
+  content: "    DBL Bundle Version= ";
+  font-size: 12pt;
+  color: black;
+}
+bundleVersion {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bundleProducer:before {
+  content: "    Bundle producer= ";
+  font-size: 12pt;
+  color: black;
+}
+bundleProducer {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+confidential:before {
+  content: "    Is this corpus confidential= ";
+  font-size: 12pt;
+  color: black;
+}
+confidential {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+agencies {
+  content: "  Agencies";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+etenPartner:before {
+  content: "    ETEN Partner= ";
+  font-size: 12pt;
+  color: black;
+}
+etenPartner {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+agencies > translation:before {
+  content: "    Translation Agency= ";
+  font-size: 12pt;
+  color: black;
+}
+agencies > translation {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+publishing:before {
+  content: "    Publishing Agency= ";
+  font-size: 12pt;
+  color: black;
+}
+publishing {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+language {
+  content: "  Language";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+language > iso:before {
+  content: "    Language code= ";
+  font-size: 12pt;
+  color: black;
+}
+language > iso {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+language > name:before {
+  content: "    Language name= ";
+  font-size: 12pt;
+  color: black;
+}
+language > name {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+language > script2:before {
+  content: "    Script= ";
+  font-size: 12pt;
+  color: black;
+}
+language > script2 {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+scriptDirection:before {
+  content: "    Script direction= ";
+  font-size: 12pt;
+  color: black;
+}
+scriptDirection {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+country {
+  content: "  Country";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+country > iso:before {
+  content: "    Country code= ";
+  font-size: 12pt;
+  color: black;
+}
+country > iso {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+country > name:before {
+  content: "    Country name= ";
+  font-size: 12pt;
+  color: black;
+}
+country > name {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+DBLScriptureProject > translation {
+  content: "  Type of translation";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+type:before {
+  content: "    Type (New/Revision)= ";
+  font-size: 12pt;
+  color: black;
+}
+type {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+level:before {
+  content: "    Level (Common / Literary)= ";
+  font-size: 12pt;
+  color: black;
+}
+level {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+DBLScriptureProject > bookNames {
+  content: "  Book names included";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+bookNames > book:before {
+  content: "    Book(" attr(code) ")";
+  font-size: 12pt;
+  color: black;
+}
+bookNames > book {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bookNames > book > name[type='long']:before {
+  content: "      Long name=";
+  font-size: 12pt;
+  color: black;
+}
+bookNames > book > name[type='short']:before {
+  content: "      Short name=";
+  font-size: 12pt;
+  color: black;
+}
+bookNames > book > name[type='abbr']:before {
+  content: "      Book abbreviation=";
+  font-size: 12pt;
+  color: black;
+}
+bookNames > book  > name {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+DBLScriptureProject > contents {
+  content: "  Book contents";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+bookList:before {
+  content: "    Book list";
+  font-size: 12pt;
+  color: black;
+}
+bookList {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bookList > name:before {
+  content: "    Title=";
+  font-size: 12pt;
+  color: black;
+}
+bookList  > name {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bookList > range:before {
+  content: "    Range=";
+  font-size: 12pt;
+  color: black;
+}
+bookList  > range {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+bookList > tradition:before {
+  content: "    Tradition=";
+  font-size: 12pt;
+  color: black;
+}
+bookList  > tradition {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+division:before {
+  content: "    Division(" attr(id) ")";
+  font-size: 12pt;
+  color: black;
+}
+divition  {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+books > book {
+  content: "    Book(" attr(code) ")";
+  font-size: 12pt;
+  color: black;
+}
+
+
+checking {
+  content: "  Checking";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+validatedMarkers:before {
+  content: "    Do Markers validate= ";
+  font-size: 12pt;
+  color: black;
+}
+validatedMarkers {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+validatedVerses:before {
+  content: "    Do verses validate= ";
+  font-size: 12pt;
+  color: black;
+}
+validatedVerses {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+contact {
+  content: "  Rights";
+  font-size: 14pt;
+  display: block;
+  text-indent: .5in;
+}
+rightsHolder:before {
+  content: "    Rights Holder= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsHolder {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+rightsHolderLocal:before {
+  content: "    Local rights holder= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsHolderLocal {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+rightsHolderAbbreviation :before {
+  content: "    Local rights holder= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsHolderAbbreviation {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+/*
+rightsHolderURL:before {
+  content: "    Rights holder URL= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsHolderURL {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+rightsHolderFacebook:before {
+  content: "    Rights holder Facebook= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsHolderFacebook {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+rights { }
+dateLicense:before {
+  content: "    License date= ";
+  font-size: 12pt;
+  color: black;
+}
+dateLicense {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+dateLicenseExpiry:before {
+  content: "    Date License expires= ";
+  font-size: 12pt;
+  color: black;
+}
+dateLicenseExpiry {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+rightsStatement:before {
+  content: "    Rights statement= ";
+  font-size: 12pt;
+  color: black;
+}
+rightsStatement {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+publicationRights { }
+allowOffline:before {
+  content: "    Is offline viewing allowed?= ";
+  font-size: 12pt;
+  color: black;
+}
+allowOffline {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+allowAudio:before {
+  content: "    Is audio distribution allowed= ";
+  font-size: 12pt;
+  color: black;
+}
+allowAudio {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+allowFootnotes:before {
+  content: "    Should footnotes be displayed?= ";
+  font-size: 12pt;
+  color: black;
+}
+allowFootnotes {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+allowCrossReferences:before {
+  content: "    Should cross references be displayed?= ";
+  font-size: 12pt;
+  color: black;
+}
+allowCrossReferences {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+allowNewPublishers:before {
+  content: "    Can a publisher redistribute this corpus to other publishers?= ";
+  font-size: 12pt;
+  color: black;
+}
+allowNewPublishers {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+exchangeLicenseFCBH:before {
+  content: "    Can FCBH receive a copy of the corpus?= ";
+  font-size: 12pt;
+  color: black;
+}
+exchangeLicenseFCBH {
+  display: block;
+  font-size: 12pt;
+  color: green;
+}
+
+
+  <promotion>
+    <promoVersionInfo dcds:propertyURI="description/pubPromoVersionInfo" contentType="xhtml"><p>©Wycliffe and Bible League 2010</p>
+<p>User License: Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Unported
+        License, <a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</a></p>
+<ul>
+  <li>You may make an exact copy of this Work and share it with others.</li>
+  <li>You must credit all shared copies using the attribution text.</li>
+  <li>You may not sell this Work or use it to make money.</li>
+  <li>You may not change or imitate this Work to create new Works.</li>
+  <li>You must share this Work using the same by-nc-nd license.</li>
+  <li>Attribution: (c) The Publisher; and, (c) Named Rights holders for materials used by
+          permission as specified in the resource file description.</li>
+</ul>
+<p>First edition<br /><b>The New Testament</b><br /> in Nkonya</p></promoVersionInfo>
+    <promoEmail dcds:propertyURI="description/pubPromoEmail">&amp;lt;p&amp;gt;©Wycliffe and
+      Bible League 2010&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;User License: Creative
+      Commons Attribution-Noncommercial-No Derivative Works 3.0 Unported License, &amp;lt;a
+      href=&amp;quot;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;quot;&amp;gt;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+      &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;You may make an exact copy of this Work
+      and share it with others.&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;You must credit
+      all shared copies using the attribution text.&amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;You may not sell this Work or use it to make
+      money.&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;You may not change or imitate this
+      Work to create new Works.&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;You must share
+      this Work using the same by-nc-nd license.&amp;lt;/li&amp;gt;
+      &amp;lt;li&amp;gt;Attribution: (c) The Publisher; and, (c) Named Rights holders for
+      materials used by permission as specified in the resource file
+      description.&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;
+      &amp;lt;p&amp;gt;First edition&amp;lt;br/&amp;gt; &amp;lt;b&amp;gt;The
+      New Testament&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt; in
+      Nkonya&amp;lt;/p&amp;gt; </promoEmail>
+  </promotion>
+  <archiveStatus>
+    <archivistName dcds:propertyURI="contributor/archivist">Greg Trihus</archivistName>
+    <dateArchived dcds:propertyURI="dateSubmitted" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-10-07</dateArchived>
+    <dateUpdated dcds:propertyURI="modified" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-10-07</dateUpdated>
+    <comments dcds:propertyURI="abstract"></comments>
+  </archiveStatus>
+  <format dcds:propertyURI="format" dcds:sesURI="http://purl.org/dc/terms/IMT">text/xml</format>
+</DBLScriptureProject>
+*/

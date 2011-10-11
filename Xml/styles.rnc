@@ -1,0 +1,36 @@
+default namespace = ""
+
+start =
+  element stylesheet {
+    property+,
+    element style {
+      attribute id { xsd:NCName },
+      attribute publishable { xsd:boolean },
+      attribute versetext { xsd:boolean },
+      element name { text },
+      element description { text },
+      property+
+    }+
+  }
+property =
+  element property {
+    attribute name { ( "color"
+    | "font-family"
+    | "font-size"
+    | "font-style"
+    | "font-weight"
+    | "margin-bottom"
+    | "margin-left"
+    | "margin-right"
+    | "margin-bottom"
+    | "margin-top"
+    | "text-align"
+    | "text-decoration"
+    | "text-indent"
+    | "vertical-align"
+    | "white-space") },
+    attribute unit { ( "%"
+    | "in"
+    | "pt") }?,
+    text
+  }
