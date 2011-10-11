@@ -74,6 +74,7 @@
     <Compile Include="Preview.Designer.cs">
       <DependentUpon>Preview.cs</DependentUpon>
     </Compile>
+    <Compile Include="PtxExtras.cs" />
     <Compile Include="Review.cs">
       <SubType>Form</SubType>
     </Compile>
