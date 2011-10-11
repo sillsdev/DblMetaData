@@ -1,0 +1,26 @@
+start = usfm
+usfm = element usfm { attlist.usfm, (book | para | verse | chapter)* }
+attlist.usfm &= empty
+chapter = element chapter { attlist.chapter }
+attlist.chapter &= attribute number { xsd:integer }
+attlist.chapter &= attribute style { "c" }
+verse = element verse { attlist.verse }
+attlist.verse &= attribute number {
+    xsd:string { pattern = "\d+[abcd]?(-\d+[abcd]?)?" }
+  }
+attlist.verse &= attribute style { text }
+char = element char { attlist.char, text }
+attlist.char &= attribute style { text }
+attlist.char &= attribute closed { "true" | "false" }?
+book = element book { attlist.book, text }
+attlist.book &= attribute id {
+    xsd:string { pattern = "[\i\d]{3}" }
+}
+attlist.book &= attribute style { "id" }
+note = element note { attlist.note, (text | char)* }
+attlist.note &= attribute style { text }
+attlist.note &= attribute caller { text }
+attlist.note &= attribute closed { "true" | "false" }?
+para = element para { attlist.para, (text | verse | note | char)* }
+attlist.para &= attribute style { text }
+attlist.para &= attribute status { "unknown" }?
