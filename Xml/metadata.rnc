@@ -63,7 +63,7 @@ start =
       element iso { 
         attribute dcds:propertyURI { "language/iso" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/ISO639-3" },
-        xsd:NCName 
+        xsd:string { pattern = "[a-z][a-z][a-z]" } 
         },
       element name { 
         attribute dcds:propertyURI { "subject/subjectLanguage" },
