@@ -23,7 +23,7 @@ start =
        | element dateCompleted {
            attribute dcds:propertyURI { "date" },
            attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-           text 
+           xsd:string { pattern = "\d\d\d\d" }
            }
        | element scope {
            attribute dcds:propertyURI { "title/scriptureScope" },
@@ -32,8 +32,8 @@ start =
          # systemId[@type='dbl'] is overwritten by Paratext
          # systemId[@type='paratext'] is overwritten by Paratext
        | element systemId {
-           attribute type { "dbl" | "tms" | "reap" | "paratext" },
-           attribute dcds:propertyURI { "identifier/dblID" | "identifier/tmsID" | "identifier/reapID" | "identifier/ptxID" },
+           attribute type { "dbl" | "tms" | "reap" | "paratext" | "biblica" },
+           attribute dcds:propertyURI { "identifier/dblID" | "identifier/tmsID" | "identifier/reapID" | "identifier/ptxID" | "identifier/biblicaID" },
            text 
            })+,
       # isResource is overwritten by Paratext
@@ -48,7 +48,7 @@ start =
       ("Yes" | "No")
     },
     element agencies {
-      element etenPartner { "UBS" | "WBT" },
+      element etenPartner { "UBS" | "WBT" | "Biblica" },
       element translation { 
         attribute dcds:propertyURI { "description/sponsorship" },
         text 
@@ -94,11 +94,11 @@ start =
     element translation { 
       element type { 
         attribute dcds:propertyURI { "type/translationType" }, 
-        ("New" | "Revision") 
+        ("First" | "New" | "Revision") 
         }, 
       element level {
         attribute dcds:propertyURI { "audience" }, 
-        ( "Common - Literary" | "Common" )
+        ( "Basic" | "Common" | "Common - Literary" | "Literary" | "Liturgical")
         }},
     # bookNames/book is overwritten by Paratext
     element bookNames { 
@@ -144,7 +144,7 @@ start =
       attribute dcds:propertyURI { "description/stage" },
       element book {
         attribute code { bookCode },
-        attribute stage {"1" | "2" | "3" | "4"}
+        attribute stage {"1" | "2" | "3" | "4" | "-1"}
       }*
     },
     element checking {
@@ -188,13 +188,13 @@ start =
       element dateLicense {
         attribute dcds:propertyURI { "accessRights/pubLicenseDate" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:NMTOKEN
+        xsd:date
       },
 	  # yyyy-mm-dd (must be after dateLicense) 
       element dateLicenseExpiry {
         attribute dcds:propertyURI { "accessRights/pubLicenseExpiryDate" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:NMTOKEN
+        xsd:date
       },
 	  # For example: ©1983, 1992 SIL International 
       element rightsStatement {
@@ -210,7 +210,7 @@ start =
 		# default to No? 
         element allowNewPublishers { "Yes" | "No" },
         element denyPlatforms { empty },
-        element exchangeLicenseFCBH { "Yes" | "No" }
+        element exchangeLicenseFCBH { licenseType | "No" }
       }
     },
     element promotion {
@@ -235,13 +235,13 @@ start =
       element dateArchived {
         attribute dcds:propertyURI { "dateSubmitted" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:NMTOKEN
+        xsd:date
       },
       # dateUpdated is overwritten by Paratext
       element dateUpdated {
         attribute dcds:propertyURI { "modified" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:NMTOKEN
+        xsd:date
       },
       element comments {
         attribute dcds:propertyURI { "abstract" },
@@ -395,4 +395,10 @@ bookCode = ("GEN"   # Genesis
          | "GLO" # Glossary 
          | "TDX" # Topical Index 
          | "NDX") # Names Index 
-
+licenseType = ("BY" # Attributaion only
+         | "BY-ND"       #  Attribution-NoDerivatives
+         | "BY-NC-ND" # Attribution-NonCommercial- NoDerivatives 
+         | "BY-NC"       # Attribution-NonCommercial 
+         | "BY-NC-SA" # Attribution-NonCommercial- ShareAlike 
+         | "BY-SA"       # Attribution-ShareAlike 
+         | "PD")           # Dedicated to or marked as being in the public domain
