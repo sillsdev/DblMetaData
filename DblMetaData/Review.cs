@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DblMetaData
 {
@@ -54,11 +55,24 @@ namespace DblMetaData
             promoInfo.Text = _data.PromoInfo;
             promoEmail.Text = _data.PromoEmail;
             PubDescTextBox.Text = _data.PublicationDescription;
-
+            publisherUrl.Items.AddRange(_data.publisherUrls().ToArray());
+            publisherFacebook.Items.AddRange(_data.publisherFacebooks().ToArray());
         }
 
         private void Preview_Click(object sender, EventArgs e)
         {
+            var xml = new XmlDocument{XmlResolver = null};
+            xml.LoadXml("<root/>");
+            var node = xml.SelectSingleNode("/root");
+            try
+            {
+                node.InnerXml = promoInfo.Text;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Promo Info Html is not well formed xml");
+                return;
+            }
             var previewDialog = new PromoPreview();
             previewDialog.XmlData = "<html><body>" + promoInfo.Text + "</body></html>";
             previewDialog.ShowDialog();

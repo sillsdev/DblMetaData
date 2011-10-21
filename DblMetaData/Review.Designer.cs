@@ -53,15 +53,12 @@
             this.countryCode = new System.Windows.Forms.TextBox();
             this.countryName = new System.Windows.Forms.TextBox();
             this.Edition = new System.Windows.Forms.TextBox();
-            this.editionType = new System.Windows.Forms.TextBox();
             this.range = new System.Windows.Forms.TextBox();
             this.rangeDescription = new System.Windows.Forms.TextBox();
             this.Ok = new System.Windows.Forms.Button();
             this.Cancel = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.publisherUrl = new System.Windows.Forms.TextBox();
-            this.publisherFacebook = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.promoInfo = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -72,6 +69,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.PubDescTextBox = new System.Windows.Forms.TextBox();
             this.Reset = new System.Windows.Forms.Button();
+            this.editionType = new System.Windows.Forms.ComboBox();
+            this.publisherUrl = new System.Windows.Forms.ComboBox();
+            this.publisherFacebook = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // title
@@ -288,14 +288,6 @@
             this.Edition.TabIndex = 13;
             this.Edition.TextChanged += new System.EventHandler(this.Edition_TextChanged);
             // 
-            // editionType
-            // 
-            this.editionType.Location = new System.Drawing.Point(204, 423);
-            this.editionType.Name = "editionType";
-            this.editionType.Size = new System.Drawing.Size(100, 22);
-            this.editionType.TabIndex = 14;
-            this.editionType.TextChanged += new System.EventHandler(this.editionType_TextChanged);
-            // 
             // range
             // 
             this.range.Location = new System.Drawing.Point(204, 451);
@@ -350,22 +342,6 @@
             this.label16.Size = new System.Drawing.Size(133, 17);
             this.label16.TabIndex = 33;
             this.label16.Text = "Publisher Facebook";
-            // 
-            // publisherUrl
-            // 
-            this.publisherUrl.Location = new System.Drawing.Point(204, 253);
-            this.publisherUrl.Name = "publisherUrl";
-            this.publisherUrl.Size = new System.Drawing.Size(189, 22);
-            this.publisherUrl.TabIndex = 8;
-            this.publisherUrl.TextChanged += new System.EventHandler(this.publisherUrl_TextChanged);
-            // 
-            // publisherFacebook
-            // 
-            this.publisherFacebook.Location = new System.Drawing.Point(204, 281);
-            this.publisherFacebook.Name = "publisherFacebook";
-            this.publisherFacebook.Size = new System.Drawing.Size(327, 22);
-            this.publisherFacebook.TabIndex = 9;
-            this.publisherFacebook.TextChanged += new System.EventHandler(this.publisherFacebook_TextChanged);
             // 
             // label17
             // 
@@ -459,12 +435,44 @@
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
+            // editionType
+            // 
+            this.editionType.FormattingEnabled = true;
+            this.editionType.Items.AddRange(new object[] {
+            "First",
+            "New",
+            "Revision"});
+            this.editionType.Location = new System.Drawing.Point(204, 422);
+            this.editionType.Name = "editionType";
+            this.editionType.Size = new System.Drawing.Size(121, 24);
+            this.editionType.TabIndex = 14;
+            this.editionType.Text = "New";
+            // 
+            // publisherUrl
+            // 
+            this.publisherUrl.FormattingEnabled = true;
+            this.publisherUrl.Location = new System.Drawing.Point(204, 253);
+            this.publisherUrl.Name = "publisherUrl";
+            this.publisherUrl.Size = new System.Drawing.Size(189, 24);
+            this.publisherUrl.TabIndex = 8;
+            // 
+            // publisherFacebook
+            // 
+            this.publisherFacebook.FormattingEnabled = true;
+            this.publisherFacebook.Location = new System.Drawing.Point(204, 283);
+            this.publisherFacebook.Name = "publisherFacebook";
+            this.publisherFacebook.Size = new System.Drawing.Size(327, 24);
+            this.publisherFacebook.TabIndex = 9;
+            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
             this.ClientSize = new System.Drawing.Size(948, 563);
+            this.Controls.Add(this.publisherFacebook);
+            this.Controls.Add(this.publisherUrl);
+            this.Controls.Add(this.editionType);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.PubDescTextBox);
             this.Controls.Add(this.label20);
@@ -475,15 +483,12 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.promoInfo);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.publisherFacebook);
-            this.Controls.Add(this.publisherUrl);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.Cancel);
             this.Controls.Add(this.Ok);
             this.Controls.Add(this.rangeDescription);
             this.Controls.Add(this.range);
-            this.Controls.Add(this.editionType);
             this.Controls.Add(this.Edition);
             this.Controls.Add(this.countryName);
             this.Controls.Add(this.countryCode);
@@ -544,15 +549,12 @@
         private System.Windows.Forms.TextBox countryCode;
         private System.Windows.Forms.TextBox countryName;
         private System.Windows.Forms.TextBox Edition;
-        private System.Windows.Forms.TextBox editionType;
         private System.Windows.Forms.TextBox range;
         private System.Windows.Forms.TextBox rangeDescription;
         private System.Windows.Forms.Button Ok;
         private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox publisherUrl;
-        private System.Windows.Forms.TextBox publisherFacebook;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox promoInfo;
         private System.Windows.Forms.Label label19;
@@ -563,5 +565,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox PubDescTextBox;
         private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.ComboBox editionType;
+        private System.Windows.Forms.ComboBox publisherUrl;
+        private System.Windows.Forms.ComboBox publisherFacebook;
     }
 }

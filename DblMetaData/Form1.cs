@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace DblMetaData
 {
@@ -28,7 +29,15 @@ namespace DblMetaData
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _scraper.InsertDataInDblMetaData();
+            try
+            {
+                _scraper.InsertDataInDblMetaData();
+            }
+            catch(XmlException)
+            {
+                MessageBox.Show("The Xml field (probably the Promo Html Info) is not well formed");
+                return;
+            }
             var dialog = new SaveFileDialog
                              {FileName = _scraper.GetDefaultName(), 
                                  AddExtension = true, 

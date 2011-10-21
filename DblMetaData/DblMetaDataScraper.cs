@@ -11,6 +11,7 @@
 // File: DblMetaDataScraper.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -465,6 +466,28 @@ namespace DblMetaData
             SetValue(_rightsStatement, "//rights/rightsStatement");
             SetXmlValue(_promoInfo, "//promotion/promoVersionInfo");
             SetValue(_promoEmail, "//promotion/promoEmail");
+        }
+
+        public List<string> publisherUrls()
+        {
+            var urls = new List<string>();
+            var results = _publisherDoc.SelectNodes("//publisher/@url");
+            foreach (XmlNode node in results)
+            {
+                urls.Add(node.InnerText);
+            }
+            return urls;
+        }
+
+        public List<string> publisherFacebooks()
+        {
+            var urls = new List<string>();
+            var results = _publisherDoc.SelectNodes("//publisher/@fb");
+            foreach (XmlNode node in results)
+            {
+                urls.Add(node.InnerText);
+            }
+            return urls;
         }
 
         private void SetValue(string value, string xpath)
