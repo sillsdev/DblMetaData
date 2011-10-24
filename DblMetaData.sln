@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DblDataPrepSetup", "Setup1\Setup1.vdproj", "{CC69479D-2957-49D5-9833-5A1A5DA059D5}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DblMetaData.vsmdi
@@ -45,6 +47,12 @@ Global
 		{1DD699FD-AA6A-4DCE-A42D-B4BBFF621A67}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{1DD699FD-AA6A-4DCE-A42D-B4BBFF621A67}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{1DD699FD-AA6A-4DCE-A42D-B4BBFF621A67}.Release|x86.ActiveCfg = Release|Any CPU
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Debug|Any CPU.ActiveCfg = Debug
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Debug|x86.ActiveCfg = Debug
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Release|Any CPU.ActiveCfg = Release
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Release|Mixed Platforms.ActiveCfg = Release
+		{CC69479D-2957-49D5-9833-5A1A5DA059D5}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
