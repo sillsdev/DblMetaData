@@ -140,6 +140,38 @@ namespace TestProject
         }
 
         /// <summary>
+        ///A test for ScrapeReapData
+        ///</summary>
+        [TestMethod()]
+        public void ScrapeReapDataTest3()
+        {
+            var target = new DblMetaDataScraper();
+            target.Load(_tf.InputData("shu-chad.xhtml"));
+            target.ScrapeReapData();
+            Assert.AreEqual("أمثال واحدين من الملك سليمان، الجزء التاني", target.Title);
+            Assert.AreEqual("shu", target.LanguageCode);
+            Assert.AreEqual("Arabic, Chadian", target.LanguageName);
+            Assert.AreEqual("Arabic", target.Script); 
+            Assert.AreEqual("PRO:Proverbs", target.Scope);
+            Assert.AreEqual("Yes", target.Confidential);
+            Assert.AreEqual("2010", target.DateCompleted);
+            Assert.AreEqual("Alliance Biblique du Tchad", target.Publisher);
+            Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/41224", target.ReapUrl);
+            Assert.AreEqual("CD", target.CountryCode);
+            Assert.AreEqual("Chad", target.CountryName);
+            Assert.AreEqual("<><> Check Range <><>:<><> Value not found <><>", target.Edition);
+            Assert.AreEqual("<><> Check Edition <><>", target.EditionType);
+            Assert.AreEqual("<><> Check Range <><>:<><> Value not found <><>", target.Range);
+            Assert.AreEqual("Proverbs", target.RangeDescription);
+        }
+
+        [TestMethod()]
+        public void ShuRevewTest()
+        {
+            ReviewSiteData(_tf.InputData("shu-chad.xhtml"), "My Description");
+        }
+
+        /// <summary>
         ///A test for Save
         ///</summary>
         [TestMethod()]

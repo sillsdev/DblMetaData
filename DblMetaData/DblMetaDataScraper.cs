@@ -209,7 +209,25 @@ namespace DblMetaData
             set { _publicationDescription = value; }
         }
         #endregion PublicationDescription
-#endregion Properties
+
+        #region Script
+        private string _script;
+        public string Script
+        {
+            get { return _script; }
+            set { _script = value; }
+        }
+        #endregion Script
+
+        #region ScriptDirection
+        private string _scriptDirection;
+        public string ScriptDirection
+        {
+            get { return _scriptDirection; }
+            set { _scriptDirection = value; }
+        }
+        #endregion ScriptDirection
+        #endregion Properties
 
         private readonly XmlDocument _webDoc;
         private readonly XmlNamespaceManager _namespaceManager;
@@ -358,6 +376,414 @@ namespace DblMetaData
 </DBLScriptureProject>";
         #endregion dblMetaData (template)
 
+        #region dblMetaDataSchema
+        private const string DblMetaDataSchema = @"default namespace = """"
+namespace dcds = ""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/""
+
+start =
+  element DBLScriptureProject {
+    # resourceURI is overwritten by Paratext
+    attribute resourceURI { xsd:anyURI },
+    attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" },
+    element identification {
+      (abbreviation
+         # abbreviation local should default to abbreviation
+       | abbreviationLocal
+       | element description {
+           attribute dcds:propertyURI { ""description"" },
+           text 
+           }
+       | element name {
+           attribute dcds:propertyURI { ""title"" },
+            text 
+            }
+         # Name local should default to name 
+       | nameLocal
+       | element dateCompleted {
+           attribute dcds:propertyURI { ""date"" },
+           attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+           xsd:string { pattern = ""\d\d\d\d"" }
+           }
+       | element scope {
+           attribute dcds:propertyURI { ""title/scriptureScope"" },
+           text 
+           }
+         # systemId[@type='dbl'] is overwritten by Paratext
+         # systemId[@type='paratext'] is overwritten by Paratext
+       | element systemId {
+           attribute type { ""dbl"" | ""tms"" | ""reap"" | ""paratext"" | ""biblica"" },
+           attribute dcds:propertyURI { ""identifier/dblID"" | ""identifier/tmsID"" | ""identifier/reapID"" | ""identifier/ptxID"" | ""identifier/biblicaID"" },
+           text 
+           })+,
+      # isResource is overwritten by Paratext
+      element isResource { ""Yes"" | ""No"" },
+      # bundleVersion is overwritten by Paratext
+      element bundleVersion { xsd:decimal },
+      # bundleProducer is overwritten by Paratext
+      element bundleProducer { text }
+    },
+    element confidential {
+      attribute dcds:propertyURI { ""accessRights/confidential"" },
+      (""Yes"" | ""No"")
+    },
+    element agencies {
+      element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" },
+      element translation { 
+        attribute dcds:propertyURI { ""description/sponsorship"" },
+        text 
+        },
+      # publishing may be the same as translation (description/sponsorship) 
+      element publishing {
+        attribute dcds:propertyURI { ""publisher"" },
+        text 
+        }
+    },
+    element language {
+      element iso { 
+        attribute dcds:propertyURI { ""language/iso"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
+        xsd:string { pattern = ""[a-z][a-z][a-z]"" } 
+        },
+      element name { 
+        attribute dcds:propertyURI { ""subject/subjectLanguage"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" }, 
+        text 
+        },
+      element script {
+        attribute dcds:propertyURI { ""language/script"" },
+        xsd:NCName 
+        },
+      # LTR (Left to Right) or RTL (Right to Left) 
+      # scriptDirection is overwritten by Paratext
+      element scriptDirection {
+        attribute dcds:propertyURI { ""language/scriptDirection"" },
+        (""LTR"" | ""RTL"") 
+        }
+    },
+    element country { 
+      element iso { 
+      attribute dcds:propertyURI { ""coverage/spatial"" },
+      attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO3166"" }, 
+      xsd:NCName 
+      }, 
+    element name { 
+      attribute dcds:propertyURI { ""subject/subjectCountry"" }, 
+      text 
+      }},
+    element translation { 
+      element type { 
+        attribute dcds:propertyURI { ""type/translationType"" }, 
+        (""First"" | ""New"" | ""Revision"") 
+        }, 
+      element level {
+        attribute dcds:propertyURI { ""audience"" }, 
+        ( ""Basic"" | ""Common"" | ""Common - Literary"" | ""Literary"" | ""Liturgical"")
+        }},
+    # bookNames/book is overwritten by Paratext
+    element bookNames { 
+      element book { 
+        attribute code { bookCode }, 
+        element name { 
+          attribute type {""long""}, 
+          text 
+          }, 
+        element name { 
+          attribute type {""short""}, 
+          text 
+          }, 
+        element name { 
+          attribute type {""abbr""}, 
+          text 
+          } }* },
+    element contents {
+      attribute dcds:propertyURI { ""tableOfContents"" },
+      element bookList {
+        attribute id { ""default"" }?, 
+        # default to name from identification section  
+        element name { text }, 
+        # default to name local from identification section 
+        nameLocal, 
+        abbreviation, 
+        abbreviationLocal, 
+        # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
+        element description { text }, 
+        # Protestant Bible (66 books) 
+        element range { text }, 
+        # Western Protestant order 
+        element tradition { text },
+        element division {
+          attribute id { ""OT"" | ""NT"" | ""DC"" },
+          element books { 
+            element book { 
+              attribute code { bookCode }
+            }+ } }+ }+ },
+    # 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview 
+    # progress is overwritten by Paratext
+    element progress {
+      attribute dcds:propertyURI { ""description/stage"" },
+      element book {
+        attribute code { bookCode },
+        attribute stage {""1"" | ""2"" | ""3"" | ""4"" | ""-1""}
+      }*
+    },
+    element checking {
+      # validatedMarkers is overwritten by Paratext
+      element validatedMarkers {
+        attribute dcds:propertyURI { ""conformsTo/validatedMarkers"" },
+        (""Yes"" | ""No"")
+      },
+      # validatedVerses is overwritten by Paratext
+      element validatedVerses {
+        attribute dcds:propertyURI { ""conformsTo/validatedVerses"" },
+        (""Yes"" | ""No"")
+      }
+    },
+	# Default to Publisher (from agencies) 
+    element contact {
+      element rightsHolder {
+        attribute dcds:propertyURI { ""rightsHolder"" },
+        text
+      },
+	  # Default to rights holder 
+      element rightsHolderLocal {
+        attribute dcds:propertyURI { ""rightsHolder/contactLocal"" },
+        text
+      },
+      element rightsHolderAbbreviation {
+        attribute dcds:propertyURI { ""rightsHolder/contactAbbreviation"" },
+        xsd:NCName
+      },
+      element rightsHolderURL {
+        attribute dcds:propertyURI { ""rightsHolder/contactURL"" },
+        xsd:anyURI
+      },
+      element rightsHolderFacebook {
+        attribute dcds:propertyURI { ""rightsHolder/contactFacebook"" },
+        xsd:anyURI
+      }
+    },
+    element rights {
+	  # yyyy-mm-dd 
+      element dateLicense {
+        attribute dcds:propertyURI { ""accessRights/pubLicenseDate"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+        xsd:date
+      },
+	  # yyyy-mm-dd (must be after dateLicense) 
+      element dateLicenseExpiry {
+        attribute dcds:propertyURI { ""accessRights/pubLicenseExpiryDate"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+        xsd:date
+      },
+	  # For example: ©1983, 1992 SIL International 
+      element rightsStatement {
+        attribute contentType { ""xhtml"" },
+        attribute dcds:propertyURI { ""rights"" },
+        htmlMarkup
+      },
+      element publicationRights {
+        element allowOffline { ""Yes"" | ""No"" },
+        element allowAudio { ""Yes"" | ""No"" },
+        element allowFootnotes { ""Yes"" | ""No"" },
+        element allowCrossReferences { ""Yes"" | ""No"" },
+		# default to No? 
+        element allowNewPublishers { ""Yes"" | ""No"" },
+        element denyPlatforms { empty },
+        element exchangeLicenseFCBH { licenseType | ""No"" }
+      }
+    },
+    element promotion {
+      element promoVersionInfo {
+        attribute contentType { ""xhtml"" },
+        attribute dcds:propertyURI { ""description/pubPromoVersionInfo"" },
+		htmlMarkup
+      },
+      element promoEmail {
+        attribute dcds:propertyURI { ""description/pubPromoEmail"" },
+        text
+      }
+    },
+    element archiveStatus {
+      # archivistName is overwritten by Paratext
+      element archivistName {
+        attribute dcds:propertyURI { ""contributor/archivist"" },
+        text
+      },
+	  # yyyy-mm-dd
+      # dateArchived is overwritten by Paratext
+      element dateArchived {
+        attribute dcds:propertyURI { ""dateSubmitted"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+        xsd:date
+      },
+      # dateUpdated is overwritten by Paratext
+      element dateUpdated {
+        attribute dcds:propertyURI { ""modified"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+        xsd:date
+      },
+      element comments {
+        attribute dcds:propertyURI { ""abstract"" },
+        text
+      }
+    },
+    # format is overwritten by Paratext
+    element format {
+      attribute dcds:propertyURI { ""format"" },
+      attribute dcds:sesURI { ""http://purl.org/dc/terms/IMT"" },
+      ""text/xml""
+    }
+  }
+nameLocal = element nameLocal { text }
+abbreviation = element abbreviation { xsd:NCName }
+abbreviationLocal = element abbreviationLocal { xsd:NCName }
+htmlMarkup = (text
+         | element p { (text | htmlCharMarkup)+ }
+         | element h1 { text }
+         | element h2 { text }
+         | element h3 { text }
+         | element ul { 
+             element li { text }+}
+         | element ol { 
+             element li { text }+}
+         | element blockquote { text }
+         | htmlCharMarkup)+
+htmlCharMarkup = (element a {
+             attribute href { xsd:anyURI },
+             text
+           }
+         | element br { empty }
+         | element strong { text }
+         | element b { text }
+         | element em { text }
+         | element i { text })
+bookCode = (""GEN""   # Genesis
+         | ""EXO"" # Exodus
+         | ""LEV"" # Leviticus
+         | ""NUM"" # Numbers
+         | ""DEU"" # Deuteronomy   
+         | ""JOS"" # Joshua 
+         | ""JDG"" # Judges 
+         | ""RUT"" # Ruth 
+         | ""1SA"" # 1 Samuel 
+         | ""2SA"" # 2 Samuel 
+         | ""1KI"" # 1 Kings 
+         | ""2KI"" # 2 Kings 
+         | ""1CH"" # 1 Chronicles 
+         | ""2CH"" # 2 Chronicles 
+         | ""EZR"" # Ezra 
+         | ""NEH"" # Nehemiah 
+         | ""EST"" # Esther (Hebrew)
+         | ""JOB"" # Job 
+         | ""PSA"" # Psalms 
+         | ""PRO"" # Proverbs 
+         | ""ECC"" # Ecclesiastes 
+         | ""SNG"" # Song of Songs 
+         | ""ISA"" # Isaiah 
+         | ""JER"" # Jeremiah 
+         | ""LAM"" # Lamentations 
+         | ""EZK"" # Ezekiel 
+         | ""DAN"" # Daniel (Hebrew)
+         | ""HOS"" # Hosea 
+         | ""JOL"" # Joel 
+         | ""AMO"" # Amos 
+         | ""OBA"" # Obadiah 
+         | ""JON"" # Jonah 
+         | ""MIC"" # Micah 
+         | ""NAM"" # Nahum 
+         | ""HAB"" # Habakkuk 
+         | ""ZEP"" # Zephaniah 
+         | ""HAG"" # Haggai 
+         | ""ZEC"" # Zechariah 
+         | ""MAL"" # Malachi 
+         | ""MAT"" # Matthew 
+         | ""MRK"" # Mark 
+         | ""LUK"" # Luke 
+         | ""JHN"" # John 
+         | ""ACT"" # Acts 
+         | ""ROM"" # Romans 
+         | ""1CO"" # 1 Corinthians 
+         | ""2CO"" # 2 Corinthians 
+         | ""GAL"" # Galatians 
+         | ""EPH"" # Ephesians 
+         | ""PHP"" # Philippians 
+         | ""COL"" # Colossians 
+         | ""1TH"" # 1 Thessalonians 
+         | ""2TH"" # 2 Thessalonians 
+         | ""1TI"" # 1 Timothy 
+         | ""2TI"" # 2 Timothy 
+         | ""TIT"" # Titus 
+         | ""PHM"" # Philemon 
+         | ""HEB"" # Hebrews 
+         | ""JAS"" # James 
+         | ""1PE"" # 1 Peter 
+         | ""2PE"" # 2 Peter 
+         | ""1JN"" # 1 John 
+         | ""2JN"" # 2 John 
+         | ""3JN"" # 3 John 
+         | ""JUD"" # Jude 
+         | ""REV"" # Revelation 
+         | ""TOB"" # Tobit 
+         | ""JDT"" # Judith 
+         | ""ESG"" # Esther Greek 
+         | ""WIS"" # Wisdom of Solomon 
+         | ""SIR"" # Sirach (Ecclesiasticus)
+         | ""BAR"" # Baruch 
+         | ""LJE"" # Letter of Jeremiah 
+         | ""S3Y"" # Song of 3 Young Men 
+         | ""SUS"" # Susanna 
+         | ""BEL"" # Bel and the Dragon 
+         | ""1MA"" # 1 Maccabees 
+         | ""2MA"" # 2 Maccabees 
+         | ""3MA"" # 3 Maccabees 
+         | ""4MA"" # 4 Maccabees 
+         | ""1ES"" # 1 Esdras (Greek)
+         | ""2ES"" # 2 Esdras (Latin)
+         | ""MAN"" # Prayer of Manasseh 
+         | ""PS2"" # Psalm 151
+         | ""ODA"" # Odes 
+         | ""PSS"" # Psalms of Solomon 
+         | ""EZA"" # Apocalypse of Ezra 
+         | ""5EZ"" # 5 Ezra 
+         | ""6EZ"" # 6 Ezra 
+         | ""DAG"" # Daniel Greek 
+         | ""PS3"" # Psalms 152-155
+         | ""2BA"" # 2 Baruch (Apocalypse)
+         | ""LBA"" # Letter of Baruch 
+         | ""JUB"" # Jubilees 
+         | ""ENO"" # Enoch 
+         | ""1MQ"" # 1 Meqabyan 
+         | ""2MQ"" # 2 Meqabyan 
+         | ""3MQ"" # 3 Meqabyan 
+         | ""REP"" # Reproof 
+         | ""4BA"" # 4 Baruch 
+         | ""LAO"" # Laodiceans 
+           # Non scripture text Id's
+         | ""XXA"" # Extra A, e.g. a hymnal 
+         | ""XXB"" # Extra B 
+         | ""XXC"" # Extra C 
+         | ""XXD"" # Extra D 
+         | ""XXE"" # Extra E 
+         | ""XXF"" # Extra F 
+         | ""XXG"" # Extra G 
+         | ""FRT"" # Front Matter 
+         | ""BAK"" # Back Matter 
+         | ""OTH"" # Other Matter 
+         | ""INT"" # Introduction 
+         | ""CNC"" # Concordance 
+         | ""GLO"" # Glossary 
+         | ""TDX"" # Topical Index 
+         | ""NDX"") # Names Index 
+licenseType = (""BY"" # Attributaion only
+         | ""BY-ND""       #  Attribution-NoDerivatives
+         | ""BY-NC-ND"" # Attribution-NonCommercial- NoDerivatives 
+         | ""BY-NC""       # Attribution-NonCommercial 
+         | ""BY-NC-SA"" # Attribution-NonCommercial- ShareAlike 
+         | ""BY-SA""       # Attribution-ShareAlike 
+         | ""PD"")           # Dedicated to or marked as being in the public domain
+";
+        #endregion dblMetaDataSchema
+
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
@@ -375,6 +801,16 @@ namespace DblMetaData
             _title = GetValue("//default:title");
             _languageCode = GetField("//default:meta[@name='DC.language'][1]/@content", 0);
             _languageName = GetField("//default:meta[@name='DC.language'][1]/@content", 1);
+            try
+            {
+                _script = GetField("//default:tr[default:td='dc.language.script']/default:td[2]", 1);
+                _scriptDirection = "<><> Direction unknown <><>";
+            }
+            catch (Exception)
+            {
+                _script = "Latin";
+                _scriptDirection = "LTR";
+            }
             _scope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
             _abbreviation = _languageCode + "-" + TextField(_scope, 0).Substring(1);
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
@@ -449,6 +885,8 @@ namespace DblMetaData
             SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
             SetValue(_languageCode, "//language/iso");
             SetValue(_languageName, "//language/name");
+            SetValue(_script, "//language/script");
+            SetValue(_scriptDirection, "//language/scriptDirection");
             SetValue(_scope, "//identification/scope");
             SetValue(_confidential, "//confidential");
             SetValue(_dateCompleted, "//identification/dateCompleted");
@@ -523,10 +961,6 @@ namespace DblMetaData
             return fields[i];
         }
 
-
-        //TODO: Copy script name to //language/script
-        //TODO: Copy script direction to //language/scriptDirection
-
         internal void Save(string p)
         {
             var sw = new StreamWriter(p);
@@ -534,6 +968,12 @@ namespace DblMetaData
             _dblMetaDataDoc.WriteContentTo(xw);
             xw.Close();
             sw.Close();
+
+            var folder = Path.GetDirectoryName(p);
+            var schemaName = Path.Combine(folder, "metadata.rnc");
+            var schemaStreamWriter = new StreamWriter(schemaName);
+            schemaStreamWriter.Write(DblMetaDataSchema);
+            schemaStreamWriter.Close();
         }
 
         internal string GetDefaultName()

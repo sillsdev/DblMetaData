@@ -38,6 +38,8 @@ namespace DblMetaData
             title.Text = _data.Title;
             languageCode.Text = _data.LanguageCode;
             languageName.Text = _data.LanguageName;
+            script.Text = _data.Script;
+            scriptDirection.Text = _data.ScriptDirection;
             scope.Text = _data.Scope;
             abbreviation.Text = _data.Abbreviation;
             confidential.Text = _data.Confidential;
@@ -186,6 +188,16 @@ namespace DblMetaData
         private void PubDescTextBox_TextChanged(object sender, EventArgs e)
         {
             _data.PublicationDescription = PubDescTextBox.Text;
+        }
+
+        private void script_TextChanged(object sender, EventArgs e)
+        {
+            _data.Script = script.Text;
+        }
+
+        private void scriptDirection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _data.ScriptDirection = scriptDirection.Text;
         }
     }
 }
