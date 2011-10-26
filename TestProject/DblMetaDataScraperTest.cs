@@ -172,6 +172,32 @@ namespace TestProject
         }
 
         /// <summary>
+        ///A test for ScrapeReapData
+        ///</summary>
+        [TestMethod()]
+        public void ScrapeReapDataTest4()
+        {
+            var target = new DblMetaDataScraper();
+            target.Load(_tf.InputData("acrReap.xhtml"));
+            target.ScrapeReapData();
+            Assert.AreEqual("I 'utz laj tzij re i dios", target.Title);
+            Assert.AreEqual("acr", target.LanguageCode);
+            Assert.AreEqual("Achi", target.LanguageName);
+            Assert.AreEqual("Latin", target.Script);
+            Assert.AreEqual("WNT:New Testament", target.Scope);
+            Assert.AreEqual("No", target.Confidential);
+            Assert.AreEqual("2009", target.DateCompleted);
+            Assert.AreEqual("Wycliffe Bible Translators", target.Publisher);
+            Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/10273", target.ReapUrl);
+            Assert.AreEqual("GT", target.CountryCode);
+            Assert.AreEqual("Guatemala", target.CountryName);
+            Assert.AreEqual("NT:segunda edición", target.Edition);
+            Assert.AreEqual("<><> Check Edition <><>", target.EditionType);
+            Assert.AreEqual("NT:segunda edición", target.Range);
+            Assert.AreEqual("New Testament", target.RangeDescription);
+        }
+
+        /// <summary>
         ///A test for Save
         ///</summary>
         [TestMethod()]

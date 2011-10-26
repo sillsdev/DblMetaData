@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.save = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.reap = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.review = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -44,15 +44,15 @@
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // reap
             // 
-            this.button2.Location = new System.Drawing.Point(687, 636);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Go Reap";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.reap.Location = new System.Drawing.Point(687, 636);
+            this.reap.Name = "reap";
+            this.reap.Size = new System.Drawing.Size(75, 23);
+            this.reap.TabIndex = 1;
+            this.reap.Text = "Go Reap";
+            this.reap.UseVisualStyleBackColor = true;
+            this.reap.Click += new System.EventHandler(this.reap_Click);
             // 
             // webBrowser1
             // 
@@ -80,11 +80,13 @@
             this.ClientSize = new System.Drawing.Size(942, 669);
             this.Controls.Add(this.review);
             this.Controls.Add(this.webBrowser1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.reap);
             this.Controls.Add(this.save);
+            this.MinimumSize = new System.Drawing.Size(960, 714);
             this.Name = "Form1";
             this.Text = "DBL Meta Data";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.ResumeLayout(false);
 
         }
@@ -92,7 +94,7 @@
         #endregion
 
         private System.Windows.Forms.Button save;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button reap;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button review;
 

@@ -792,7 +792,24 @@ licenseType = (""BY"" # Attributaion only
 <!-- publisher name="" url="" fb=""/ -->
 </root>
 ";
-        #endregion _publisherData
+        #endregion _SubjectBreakout
+
+        //Todo This was included based on an email from Joan Spanne to ETEN Text Format Group 10/26/2011 but upon verification with acr her logic didn't hold
+        #region _SubjectBreakout
+        private readonly string _subjectBreakout = @"
+<root>
+<silSubject value=""New Testament"" range=""New Testament"" abbr=""NT"" editionType=""New""/>
+<silSubject value=""Old Testament"" range=""Old Testament"" abbr=""OT"" editionType=""New""/>
+<silSubject value=""Complete Bible"" range=""Complete Bible"" abbr=""BL"" editionType=""New""/>
+<silSubject value=""New Testament revision"" range=""New Testament"" abbr=""NT"" editionType=""Revision""/>
+<silSubject value=""Old Testament revision"" range=""Old Testament"" abbr=""OT"" editionType=""Revision""/>
+<silSubject value=""Complete Bible revision"" range=""Complete Bible"" abbr=""BL"" editionType=""Revision""/>
+<silSubject value=""New Testament reprint"" range=""New Testament"" abbr=""NT"" editionType=""New""/>
+<silSubject value=""Old Testament reprint"" range=""Old Testament"" abbr=""OT"" editionType=""New""/>
+<silSubject value=""Complete Bible reprint"" range=""Complete Bible"" abbr=""BL"" editionType=""New""/>
+</root>
+";
+        #endregion _subjectBreakout
 
         readonly List<string> _firstList = new List<string> { "1st", "first", "[1st]" };
 

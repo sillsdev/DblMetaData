@@ -12,6 +12,7 @@
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -48,7 +49,7 @@ namespace DblMetaData
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void reap_Click(object sender, EventArgs e)
         {
             webBrowser1.Url = new Uri("https://www.reap.insitehome.org/browse?type=language");
         }
@@ -90,6 +91,19 @@ namespace DblMetaData
         private void Form1_Load(object sender, EventArgs e)
         {
             save.Enabled = false;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Control control = (Control) sender;
+
+            int deltaWidth = control.Size.Width - 960;
+            int deltaHeight = control.Size.Height - 714;
+            webBrowser1.Size = new Size(918 + deltaWidth, 618 + deltaHeight);
+            int buttonTop = deltaHeight + 636;
+            reap.Location = new Point(reap.Location.X, buttonTop);
+            review.Location = new Point(review.Location.X, buttonTop);
+            save.Location = new Point(save.Location.X, buttonTop);
         }
 
 
