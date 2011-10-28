@@ -20,18 +20,13 @@ namespace DblMetaData
 {
     class PromoStatements
     {
-        private string _license = @"      <p>User License: Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Unported 
-        License, <a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">http://creativecommons.org/licenses/by-nc-nd/3.0/</a></p>
-      
-      <ul>
-        <li>You may make an exact copy of this Work and share it with others.</li>
-        <li>You must credit all shared copies using the attribution text.</li>
-        <li>You may not sell this Work or use it to make money.</li>
-        <li>You may not change or imitate this Work to create new Works.</li>
-        <li>You must share this Work using the same by-nc-nd license.</li>
-        <li>Attribution: (c) The Publisher; and, (c) Named Rights holders for materials used by permission as specified in the resource file description.</li>
-      </ul>
-
+        private string _license = @"
+<p>This translation is presented for informative purposes and may be used, reproduced in 
+whole or in part, copied for information, documentation and study from this Site for the 
+User’s personal, non-commercial use, without any right to resell them or to compile or 
+create derivative works for sale. Subject to the terms and conditions of the Creative 
+Commons License (Attribution-Noncommercial-No Derivative Works). </p>
+<p><a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">http://creativecommons.org/licenses/by-nc-nd/3.0/</a></p>
 ";
         private StringBuilder _sb;
 
@@ -47,6 +42,13 @@ namespace DblMetaData
             _sb.Append(value + "\r\n");
         }
 
+        internal void AddSubhead(string value)
+        {
+            if (value.Substring(0, 1) != "<")
+                value = "<h2>" + value + "</h2>\r\n";
+            _sb.Append(value + "\r\n");
+        }
+
         public void AddLicense()
         {
             _sb.Append(_license);
@@ -57,7 +59,7 @@ namespace DblMetaData
             _sb.Append(string.Format("<p>Printed book ISBN {0}</p>\r\n\r\n", isbn));
         }
 
-        public void AddDescription(string edition, string range, string language)
+        public void AddDescription(string edition, string range, string language, string isocode)
         {
             if (edition == "1st ed.")
             {
@@ -68,7 +70,7 @@ namespace DblMetaData
                 _sb.Append(string.Format("<p>{0}<br/>\r\n", edition));
             }
             _sb.Append(string.Format("<b>The {0}</b><br/>\r\n", range));
-            _sb.Append(string.Format("in {0}</p>\r\n", language));
+            _sb.Append(string.Format("in <a href=\"http://www.ethnologue.com/show_language.asp?code={0}\">{1}</a></p>\r\n", isocode, language));
         }
 
         public string ToHtml()

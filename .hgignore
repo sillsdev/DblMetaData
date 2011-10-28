@@ -4,3 +4,7 @@ _ReSharper.DblMetaData
 .*/bin/
 .*\.user
 .*\.suo
+TestResults
+Data
+.*/Debug/.*\.exe
+.*/Release/.*\.exe

@@ -83,12 +83,17 @@ namespace TestProject
         [TestMethod()]
         public void AddDescriptionTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
-            string edition = string.Empty; // TODO: Initialize to an appropriate value
-            string range = string.Empty; // TODO: Initialize to an appropriate value
-            string language = string.Empty; // TODO: Initialize to an appropriate value
-            target.AddDescription(edition, range, language);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            const string promostatement = @"<p>First edition<br/>
+<b>The New Testament</b><br/>
+in <a href=""http://www.ethnologue.com/show_language.asp?code=acr"">Achi</a></p>
+";
+            PromoStatements target = new PromoStatements();
+            string edition = "1st ed.";
+            string range = "New Testament";
+            string language = "Achi";
+            string isoCode = "acr";
+            target.AddDescription(edition, range, language, isoCode);
+            Assert.AreEqual(promostatement, target.ToHtml());
         }
 
         /// <summary>
@@ -97,10 +102,11 @@ namespace TestProject
         [TestMethod()]
         public void AddIsbnTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
-            string isbn = string.Empty; // TODO: Initialize to an appropriate value
+            const string expectedstatement = @"<p>Printed book ISBN 0938978217</p>";
+            PromoStatements target = new PromoStatements();
+            string isbn = "0938978217";
             target.AddIsbn(isbn);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            Assert.AreEqual(expectedstatement, target.ToHtml().Trim());
         }
 
         /// <summary>
@@ -109,9 +115,15 @@ namespace TestProject
         [TestMethod()]
         public void AddLicenseTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
+            const string expectedstatement = @"<p>This translation is presented for informative purposes and may be used, reproduced in 
+whole or in part, copied for information, documentation and study from this Site for the 
+User’s personal, non-commercial use, without any right to resell them or to compile or 
+create derivative works for sale. Subject to the terms and conditions of the Creative 
+Commons License (Attribution-Noncommercial-No Derivative Works). </p>
+<p><a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">http://creativecommons.org/licenses/by-nc-nd/3.0/</a></p>";
+            PromoStatements target = new PromoStatements();
             target.AddLicense();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            Assert.AreEqual(expectedstatement, target.ToHtml().Trim());
         }
 
         /// <summary>
@@ -120,10 +132,10 @@ namespace TestProject
         [TestMethod()]
         public void AddParagraphTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
-            string value = string.Empty; // TODO: Initialize to an appropriate value
-            target.AddParagraph(value);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            const string expectedstatement = @"<p>My Paragraph</p>";
+            PromoStatements target = new PromoStatements(); 
+            target.AddParagraph("My Paragraph");
+            Assert.AreEqual(expectedstatement, target.ToHtml().Trim());
         }
 
         /// <summary>
@@ -132,12 +144,11 @@ namespace TestProject
         [TestMethod()]
         public void ToEscapedStringTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToEscapedString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            PromoStatements target = new PromoStatements();
+            target.AddParagraph("&\"");
+            string expected = "&lt;p&gt;&amp;&quot;&lt;/p&gt;";
+            string actual = target.ToEscapedString();
+            Assert.AreEqual(expected, actual.Trim());
         }
 
         /// <summary>
@@ -146,12 +157,11 @@ namespace TestProject
         [TestMethod()]
         public void ToHtmlTest()
         {
-            PromoStatements target = new PromoStatements(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToHtml();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            PromoStatements target = new PromoStatements();
+            target.AddParagraph("My Paragraph");
+            string expected = "<p>My Paragraph</p>";
+            string actual = target.ToHtml();
+            Assert.AreEqual(expected, actual.Trim());
         }
     }
 }

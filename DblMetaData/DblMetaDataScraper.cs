@@ -183,6 +183,15 @@ namespace DblMetaData
         }
         #endregion RightsStatement
 
+        #region Isbn
+        private string _isbn;
+        public string Isbn
+        {
+            get { return _isbn; }
+            set { _isbn = value; }
+        }
+        #endregion RightsStatement
+
         #region PromoInfo
         private string _promoInfo;
         public string PromoInfo
@@ -843,6 +852,7 @@ licenseType = (""BY"" # Attributaion only
                 _publisherFacebook = publisherFbNode.InnerText;
             else
                 _publisherFacebook = "<><> Publisher Facebook <><>";
+            _isbn = GetValue("//default:tr[default:td='dc.identifier.isbn']/default:td[2]");
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
@@ -882,10 +892,13 @@ licenseType = (""BY"" # Attributaion only
                 if (trimmedDescription.Length > 0)
                     promoStatements.AddParagraph(trimmedDescription);
             }
-            _rightsStatement = "©" + _publisher + " " + _dateCompleted;
+            promoStatements.AddSubhead("Copyright Information");
+            _rightsStatement = "© " + _dateCompleted + ", " + _publisher + ". All rights reserved.";
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
-            promoStatements.AddDescription(_edition, _rangeDescription, _languageName);
+            if (_isbn.Substring(0,4) != "<><>")
+                promoStatements.AddIsbn(_isbn);
+            promoStatements.AddDescription(_edition, _rangeDescription, _languageName, _languageCode);
             _promoInfo = promoStatements.ToHtml();
             _promoEmail = promoStatements.ToEscapedString();
         }

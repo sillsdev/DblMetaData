@@ -91,6 +91,7 @@ namespace DblMetaData
         private void Form1_Load(object sender, EventArgs e)
         {
             save.Enabled = false;
+            Form1_Resize(sender, e);
         }
 
         private void Form1_Resize(object sender, EventArgs e)

@@ -11,6 +11,8 @@
 // File: DblMetaDataScraperTest.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
+using System.IO;
+using System.Text;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -23,26 +25,16 @@ namespace TestProject
     ///to contain all DblMetaDataScraperTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DblMetaDataScraperTest : Form1
+    public class DblMetaDataScraperTest
     {
         #region TestContext
-        private TestContext testContextInstance;
 
         /// <summary>
         ///Gets or sets the test context which provides
         ///information about and functionality for the current test run.
         ///</summary>
-        public TestContext TestContext
-        {
-            get
-            {
-                return testContextInstance;
-            }
-            set
-            {
-                testContextInstance = value;
-            }
-        }
+        public TestContext TestContext { get; set; }
+
         #endregion TestContext
 
         #region Additional test attributes
@@ -54,7 +46,7 @@ namespace TestProject
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
-            _tf = new TestFiles();
+            _tf = new TestFiles("TestProject");
         }
         //
         //Use ClassCleanup to run code after all tests in a class have run
@@ -102,11 +94,11 @@ namespace TestProject
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
-        [TestMethod()]
-        public void HwcRevewTest()
-        {
-            ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
-        }
+        //[TestMethod()]
+        //public void HwcRevewTest()
+        //{
+        //    ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
+        //}
 
         /// <summary>
         ///A test for ScrapeReapData
@@ -133,11 +125,11 @@ namespace TestProject
             Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
-        [TestMethod()]
-        public void AcuRevewTest()
-        {
-            ReviewSiteData(_tf.InputData("acuReap.xml"), "My Description");
-        }
+        //[TestMethod()]
+        //public void AcuRevewTest()
+        //{
+        //    ReviewSiteData(_tf.InputData("acuReap.xml"), "My Description");
+        //}
 
         /// <summary>
         ///A test for ScrapeReapData
@@ -165,11 +157,11 @@ namespace TestProject
             Assert.AreEqual("Proverbs", target.RangeDescription);
         }
 
-        [TestMethod()]
-        public void ShuRevewTest()
-        {
-            ReviewSiteData(_tf.InputData("shu-chad.xhtml"), "My Description");
-        }
+        //[TestMethod()]
+        //public void ShuRevewTest()
+        //{
+        //    ReviewSiteData(_tf.InputData("shu-chad.xhtml"), "My Description");
+        //}
 
         /// <summary>
         ///A test for ScrapeReapData
@@ -253,7 +245,7 @@ namespace TestProject
             TestXpathValue("NT:1st ed.", "//contents/bookList/description", target);
             TestXpathValue("http://www.wycliffe.org", "//contact/rightsHolderURL", target);
             TestXpathValue("http://www.facebook.com/WycliffeUSA", "//contact/rightsHolderFacebook", target);
-            TestXpathValue("©Wycliffe Bible Translators 2000", "//rights/rightsStatement", target);
+            TestXpathValue("© 2000, Wycliffe Bible Translators. All rights reserved.", "//rights/rightsStatement", target);
             TestXpathValue(publicationDescription, "//promoVersionInfo", target, publicationDescription.Length);
             TestXpathValue("&lt;p&gt;" + publicationDescription, "//promotion/promoEmail", target, publicationDescription.Length + 9);
         }

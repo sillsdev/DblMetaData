@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading;
 
 namespace TestProject
@@ -23,11 +24,19 @@ namespace TestProject
         private string _outputPath;
         private string _expectedPath;
 
-        public TestFiles()
+        public TestFiles(string projectName)
         {
-            string curDir = Environment.CurrentDirectory;
-            int testPart = curDir.IndexOf("TestProject") + 11;
-            string testPath = Path.Combine(curDir.Substring(0, testPart), "TestFiles");
+            const string TestFolderName = "TestFiles";
+            var assemblyName = Assembly.GetCallingAssembly().GetName().Name;
+            string assemblyFolder = Environment.CurrentDirectory;
+            int projectFolderIndex = assemblyFolder.IndexOf(assemblyName);
+            if (projectFolderIndex < 0)     // Microsoft's test runner creates a separate TestResults location
+            {
+                assemblyFolder = Assembly.GetCallingAssembly().Location;    // Resharper moves the Assembly in a folder in Temp
+                projectFolderIndex = assemblyFolder.IndexOf(assemblyName);
+            }
+            int testPart = projectFolderIndex + assemblyName.Length;
+            string testPath = Path.Combine(assemblyFolder.Substring(0, testPart), TestFolderName);
             _inputPath = Path.Combine(testPath, "Input");
             _outputPath = Path.Combine(testPath, "output");
             _expectedPath = Path.Combine(testPath, "Expected");
