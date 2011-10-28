@@ -103,6 +103,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -119,6 +140,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -153,7 +195,7 @@
             "SourcePath" = "8:..\\Xml\\usx.rnc"
             "TargetName" = "8:usx.rnc"
             "Tag" = "8:"
-            "Folder" = "8:_C685DDC6AF9D40BC942D97573B73C82E"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -173,7 +215,7 @@
             "SourcePath" = "8:..\\dist\\usxChars.exe"
             "TargetName" = "8:usxChars.exe"
             "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -193,7 +235,7 @@
             "SourcePath" = "8:..\\Xml\\jing.jar"
             "TargetName" = "8:jing.jar"
             "Tag" = "8:"
-            "Folder" = "8:_C685DDC6AF9D40BC942D97573B73C82E"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -213,7 +255,7 @@
             "SourcePath" = "8:..\\dist\\xmlMarkup.exe"
             "TargetName" = "8:xmlMarkup.exe"
             "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -233,7 +275,7 @@
             "SourcePath" = "8:..\\Xml\\metadata.rnc"
             "TargetName" = "8:metadata.rnc"
             "Tag" = "8:"
-            "Folder" = "8:_C685DDC6AF9D40BC942D97573B73C82E"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -253,7 +295,7 @@
             "SourcePath" = "8:..\\dist\\usxVerseWordCount.exe"
             "TargetName" = "8:usxVerseWordCount.exe"
             "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -273,7 +315,7 @@
             "SourcePath" = "8:..\\dist\\MSVCR71.dll"
             "TargetName" = "8:MSVCR71.dll"
             "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -293,7 +335,7 @@
             "SourcePath" = "8:..\\dist\\w9xpopen.exe"
             "TargetName" = "8:w9xpopen.exe"
             "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -313,7 +355,7 @@
             "SourcePath" = "8:..\\Xml\\styles.rnc"
             "TargetName" = "8:styles.rnc"
             "Tag" = "8:"
-            "Folder" = "8:_C685DDC6AF9D40BC942D97573B73C82E"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -333,7 +375,7 @@
             "SourcePath" = "8:..\\Xml\\dblmetadata.xsl"
             "TargetName" = "8:dblmetadata.xsl"
             "Tag" = "8:"
-            "Folder" = "8:_C685DDC6AF9D40BC942D97573B73C82E"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -397,15 +439,81 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C685DDC6AF9D40BC942D97573B73C82E"
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_CEF25DF29ED34E33AD1083162D9B011D"
+            {
+            "Name" = "8:#1910"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:CommonFilesFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_810EF60437004081A833E9DE777FE150"
                     {
-                    "Name" = "8:Xml"
+                    "Name" = "8:SIL"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_D8FD6F8B5DB24EF3B29ED3F040435DB9"
+                    "Property" = "8:_A31FDB7ACD2A4F2C8D9C1B03B72AC1A2"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_8EFEB84609F04CBCB78E95D622859613"
+                            {
+                            "Name" = "8:DblDataPrep"
+                            "AlwaysCreate" = "11:TRUE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_2128BD75FFAF43E18FE6C6935F9AB2B2"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_F28CAC2A63B14B2BA2CA812C6158D692"
+            {
+            "Name" = "8:#1915"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:AppDataFolder"
+                "Folders"
+                {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9114F6205C68432EB38C342B9F8BDABB"
+                    {
+                    "Name" = "8:SIL"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_746580A9F7E5479A86FFA03A5EA25352"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_2C3E6CA1904541DFB8CA18756525DEE4"
+                            {
+                            "Name" = "8:DblDataPrep"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_DE0B74732F654A81A58FB88E3188BA4C"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+                                    {
+                                    "Name" = "8:Xml"
+                                    "AlwaysCreate" = "11:TRUE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_D8FD6F8B5DB24EF3B29ED3F040435DB9"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -427,7 +535,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SIL DblDataPrep"
         "ProductCode" = "8:{765F06E9-E1F7-428B-BDE4-885DD7DB39B8}"
-        "PackageCode" = "8:{4AB2A406-1001-420E-ADC0-5F6F7F0A1AE9}"
+        "PackageCode" = "8:{9CCDB1B0-01AC-4BD2-A22C-9A4039465245}"
         "UpgradeCode" = "8:{09D64854-86D6-4D25-A31B-4A93FCEB2F12}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -547,59 +655,31 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_27AE4AD1BE6C492081B0C438F3A78595"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_25F31873B1034BE8B5B91938990E3944"
             {
-            "Name" = "8:usxVerseWordCount"
+            "Name" = "8:Xml Resources"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_96999FCD4B3B41218BA85FC3F1BE65D5"
-            "Folder" = "8:_2F92E64A752E444CA8A896752787CC0D"
-            "WorkingFolder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Target" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Folder" = "8:_94E9F7A68F904D91AA4902B3B804FD42"
+            "WorkingFolder" = "8:_2C3E6CA1904541DFB8CA18756525DEE4"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_29CC01CAA0BF4FC9830D961B6B0F741D"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B2D937003EB3404C9ACFE74EAEFE89FF"
             {
-            "Name" = "8:xmlMarkup"
+            "Name" = "8:Validation Tools"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_6ADBBEEE7C0548D28712393B49149CD6"
-            "Folder" = "8:_2F92E64A752E444CA8A896752787CC0D"
-            "WorkingFolder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C102C5EE4B7D4775801B1879970AE826"
-            {
-            "Name" = "8:usxChars"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_5949BFA4D29F4F1399BEBE524D537179"
-            "Folder" = "8:_2F92E64A752E444CA8A896752787CC0D"
-            "WorkingFolder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_D36ABFD6CCE2472F90075D36D646E86C"
-            {
-            "Name" = "8:DblMetaData"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_AF5DB21FAE2148619C4711918EEBA5B1"
-            "Folder" = "8:_2F92E64A752E444CA8A896752787CC0D"
-            "WorkingFolder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
+            "Target" = "8:_8EFEB84609F04CBCB78E95D622859613"
+            "Folder" = "8:_94E9F7A68F904D91AA4902B3B804FD42"
+            "WorkingFolder" = "8:_810EF60437004081A833E9DE777FE150"
             "Icon" = "8:"
             "Feature" = "8:"
             }
@@ -1016,34 +1096,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_14B8C4AA2F0C4644BF6B7D20B179E755"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_712D57C08C0C4135AB41D12AF60F6F04"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:ContentFiles"
-            "OutputProjectGuid" = "8:{B0C521F6-544D-408C-A21A-E7036E57B259}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AF5DB21FAE2148619C4711918EEBA5B1"
             {
             "SourcePath" = "8:..\\DblMetaData\\obj\\x86\\Release\\DblMetaData.exe"
