@@ -11,9 +11,6 @@
 // File: PromoStatements.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace DblMetaData
@@ -21,12 +18,28 @@ namespace DblMetaData
     class PromoStatements
     {
         private string _license = @"
-<p>This translation is presented for informative purposes and may be used, reproduced in 
-whole or in part, copied for information, documentation and study from this Site for the 
-User’s personal, non-commercial use, without any right to resell them or to compile or 
-create derivative works for sale. Subject to the terms and conditions of the Creative 
-Commons License (Attribution-Noncommercial-No Derivative Works). </p>
-<p><a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">http://creativecommons.org/licenses/by-nc-nd/3.0/</a></p>
+<p>This translation text is made available to you under the
+terms of the <a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">Creative
+Commons License: Attribution-Noncommercial-No Derivative Works.</a> In addition,
+you have permission to port the text to different file formats, as long as you
+do not change any of the text or punctuation of the Bible.</p>
+
+<p>You may share, copy, distribute, transmit, and extract portions
+or quotations from this work, provided that you include the above copyright
+information:</p>
+<ul>
+<li>You must give Attribution to the work</li>
+<li>You do not sell this work for a profit.</li>
+<li>You do not make any derivative
+works that change any of the actual words or punctuation of the Scriptures.</li>
+</ul>
+<p>Permissions beyond the scope of this license may be
+available if you <a href=""mailto:ScritureCopyrightPrermission_Intl@sil.org"">contact
+us</a> with your request. If you want to revise a translation, use a translation
+in an adaptation, or use a translation commercially, we will consider your
+request.</p>
+
+<p><a rel=""license"" href=""http://creativecommons.org/licenses/by-nc-nd/3.0/""><img alt=""Creative Commons License"" style=""border-width:0"" src=""http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"" /></a></p>
 ";
         private StringBuilder _sb;
 
