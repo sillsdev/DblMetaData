@@ -896,7 +896,7 @@ licenseType = (""BY"" # Attributaion only
             _rightsStatement = "© " + _dateCompleted + ", " + _publisher + ". All rights reserved.";
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
-            if (_isbn.Substring(0,4) != "<><>")
+            if (_isbn != null && _isbn.Substring(0,4) != "<><>")
                 promoStatements.AddIsbn(_isbn);
             promoStatements.AddDescription(_edition, _rangeDescription, _languageName, _languageCode);
             _promoInfo = promoStatements.ToHtml();

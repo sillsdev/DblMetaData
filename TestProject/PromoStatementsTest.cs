@@ -116,9 +116,9 @@ in <a href=""http://www.ethnologue.com/show_language.asp?code=acr"">Achi</a></p>
         public void AddLicenseTest()
         {
             const string expectedstatement = @"<p>This translation text is made available to you under the
-terms of the <a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">Creative
-Commons License: Attribution-Noncommercial-No Derivative Works.</a> In addition,
-you have permission to port the text to different file formats, as long as you
+terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works.
+(<a href=""http://creativecommons.org/licenses/by-nc-nd/3.0/"">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>)
+In addition, you have permission to port the text to different file formats, as long as you
 do not change any of the text or punctuation of the Bible.</p>
 
 <p>You may share, copy, distribute, transmit, and extract portions
@@ -134,9 +134,7 @@ works that change any of the actual words or punctuation of the Scriptures.</li>
 available if you <a href=""mailto:ScritureCopyrightPrermission_Intl@sil.org"">contact
 us</a> with your request. If you want to revise a translation, use a translation
 in an adaptation, or use a translation commercially, we will consider your
-request.</p>
-
-<p><a rel=""license"" href=""http://creativecommons.org/licenses/by-nc-nd/3.0/""><img alt=""Creative Commons License"" style=""border-width:0"" src=""http://i.creativecommons.org/l/by-nc-nd/3.0/88x31.png"" /></a></p>";
+request.</p>";
             PromoStatements target = new PromoStatements();
             target.AddLicense();
             Assert.AreEqual(expectedstatement, target.ToHtml().Trim());

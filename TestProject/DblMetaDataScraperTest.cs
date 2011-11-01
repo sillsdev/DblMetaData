@@ -11,6 +11,7 @@
 // File: DblMetaDataScraperTest.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using DblMetaData;
@@ -338,6 +339,24 @@ namespace TestProject
             const string expected = "WNT";
             string actual = target.TextField(value, i);
             Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod()]
+        public void PromoStatementSchemaTest()
+        {
+            const string testName = "PromoStatementSchema";
+            var target = new DblMetaDataScraper();
+            target.Load(_tf.InputData("REAP record page.xml"));
+            target.ScrapeReapData();
+            target.InsertDataInDblMetaData();
+            target.Save(_tf.Output(testName + ".xml"));
+            var process = new Process();
+            process.StartInfo.WorkingDirectory = _tf.Output("");
+            process.StartInfo.FileName = Path.Combine("..", "..", "..", "xml", "jing.jar");
+            process.StartInfo.Arguments = "-c metadata.rnc " + testName + ".xml";
+            process.Start();
+            process.WaitForExit();
+            Assert.AreEqual(0, process.ExitCode);
         }
     }
 }
