@@ -135,21 +135,6 @@ namespace DblMetaData
             _data.DateCompleted = dateCompleted.Text;
         }
 
-        private void publisher_TextChanged(object sender, EventArgs e)
-        {
-            _data.Publisher = publisher.Text;
-        }
-
-        private void publisherUrl_TextChanged(object sender, EventArgs e)
-        {
-            _data.PublisherUrl = publisherUrl.Text;
-        }
-
-        private void publisherFacebook_TextChanged(object sender, EventArgs e)
-        {
-            _data.PublisherFacebook = publisherFacebook.Text;
-        }
-
         private void reapUrl_TextChanged(object sender, EventArgs e)
         {
             _data.ReapUrl = reapUrl.Text;
@@ -168,11 +153,6 @@ namespace DblMetaData
         private void Edition_TextChanged(object sender, EventArgs e)
         {
             _data.Edition = Edition.Text;
-        }
-
-        private void editionType_TextChanged(object sender, EventArgs e)
-        {
-            _data.EditionType = editionType.Text;
         }
 
         private void range_TextChanged(object sender, EventArgs e)
@@ -198,6 +178,26 @@ namespace DblMetaData
         private void scriptDirection_SelectedIndexChanged(object sender, EventArgs e)
         {
             _data.ScriptDirection = scriptDirection.Text;
+        }
+
+        private void editionType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _data.EditionType = editionType.Text;
+        }
+
+        private void publisherUrl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _data.PublisherUrl = publisherUrl.Text;
+        }
+
+        private void publisherFacebook_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _data.PublisherFacebook = publisherFacebook.Text;
+        }
+
+        private void publisher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _data.Publisher = publisher.Text;
         }
     }
 }

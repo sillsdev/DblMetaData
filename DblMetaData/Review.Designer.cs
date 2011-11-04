@@ -48,7 +48,6 @@
             this.scope = new System.Windows.Forms.TextBox();
             this.confidential = new System.Windows.Forms.TextBox();
             this.dateCompleted = new System.Windows.Forms.TextBox();
-            this.publisher = new System.Windows.Forms.TextBox();
             this.reapUrl = new System.Windows.Forms.TextBox();
             this.countryCode = new System.Windows.Forms.TextBox();
             this.countryName = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.scriptDirection = new System.Windows.Forms.ComboBox();
+            this.publisher = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // title
@@ -251,14 +251,6 @@
             this.dateCompleted.Size = new System.Drawing.Size(100, 22);
             this.dateCompleted.TabIndex = 8;
             this.dateCompleted.TextChanged += new System.EventHandler(this.dateCompleted_TextChanged);
-            // 
-            // publisher
-            // 
-            this.publisher.Location = new System.Drawing.Point(204, 283);
-            this.publisher.Name = "publisher";
-            this.publisher.Size = new System.Drawing.Size(189, 22);
-            this.publisher.TabIndex = 9;
-            this.publisher.TextChanged += new System.EventHandler(this.publisher_TextChanged);
             // 
             // reapUrl
             // 
@@ -451,6 +443,7 @@
             this.editionType.Size = new System.Drawing.Size(121, 24);
             this.editionType.TabIndex = 16;
             this.editionType.Text = "New";
+            this.editionType.SelectedIndexChanged += new System.EventHandler(this.editionType_SelectedIndexChanged);
             // 
             // publisherUrl
             // 
@@ -459,6 +452,7 @@
             this.publisherUrl.Name = "publisherUrl";
             this.publisherUrl.Size = new System.Drawing.Size(189, 24);
             this.publisherUrl.TabIndex = 10;
+            this.publisherUrl.SelectedIndexChanged += new System.EventHandler(this.publisherUrl_SelectedIndexChanged);
             // 
             // publisherFacebook
             // 
@@ -467,6 +461,7 @@
             this.publisherFacebook.Name = "publisherFacebook";
             this.publisherFacebook.Size = new System.Drawing.Size(327, 24);
             this.publisherFacebook.TabIndex = 11;
+            this.publisherFacebook.SelectedIndexChanged += new System.EventHandler(this.publisherFacebook_SelectedIndexChanged);
             // 
             // script
             // 
@@ -508,12 +503,24 @@
             this.scriptDirection.Text = "LTR";
             this.scriptDirection.SelectedIndexChanged += new System.EventHandler(this.scriptDirection_SelectedIndexChanged);
             // 
+            // publisher
+            // 
+            this.publisher.FormattingEnabled = true;
+            this.publisher.Items.AddRange(new object[] {
+            "Wycliffe Bible Translators"});
+            this.publisher.Location = new System.Drawing.Point(204, 283);
+            this.publisher.Name = "publisher";
+            this.publisher.Size = new System.Drawing.Size(189, 24);
+            this.publisher.TabIndex = 48;
+            this.publisher.SelectedIndexChanged += new System.EventHandler(this.publisher_SelectedIndexChanged);
+            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
             this.ClientSize = new System.Drawing.Size(948, 612);
+            this.Controls.Add(this.publisher);
             this.Controls.Add(this.scriptDirection);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.script);
@@ -541,7 +548,6 @@
             this.Controls.Add(this.countryName);
             this.Controls.Add(this.countryCode);
             this.Controls.Add(this.reapUrl);
-            this.Controls.Add(this.publisher);
             this.Controls.Add(this.dateCompleted);
             this.Controls.Add(this.confidential);
             this.Controls.Add(this.scope);
@@ -592,7 +598,6 @@
         private System.Windows.Forms.TextBox scope;
         private System.Windows.Forms.TextBox confidential;
         private System.Windows.Forms.TextBox dateCompleted;
-        private System.Windows.Forms.TextBox publisher;
         private System.Windows.Forms.TextBox reapUrl;
         private System.Windows.Forms.TextBox countryCode;
         private System.Windows.Forms.TextBox countryName;
@@ -620,5 +625,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox scriptDirection;
+        private System.Windows.Forms.ComboBox publisher;
     }
 }
