@@ -34,7 +34,7 @@ information:</p>
 works that change any of the actual words or punctuation of the Scriptures.</li>
 </ul>
 <p>Permissions beyond the scope of this license may be
-available if you <a href=""mailto:ScritureCopyrightPrermission_Intl@sil.org"">contact
+available if you <a href=""mailto:ScriptureCopyrightPermission_Intl@sil.org"">contact
 us</a> with your request. If you want to revise a translation, use a translation
 in an adaptation, or use a translation commercially, we will consider your
 request.</p>
