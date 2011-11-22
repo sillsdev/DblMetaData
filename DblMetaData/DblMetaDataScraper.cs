@@ -285,8 +285,8 @@ namespace DblMetaData
   <confidential dcds:propertyURI=""accessRights/confidential"">No</confidential>
   <agencies>
     <etenPartner>WBT</etenPartner>
-    <translation dcds:propertyURI=""description/sponsorship"">Wycliffe Bible Translators</translation>
-    <publishing dcds:propertyURI=""publisher"">Wycliffe Bible Translators</publishing>
+    <translation dcds:propertyURI=""description/sponsorship"">Wycliffe Inc.</translation>
+    <publishing dcds:propertyURI=""publisher"">Wycliffe Inc.</publishing>
   </agencies>
   <language>
     <iso dcds:propertyURI=""language/iso"" dcds:sesURI=""http://purl.org/dc/terms/ISO639-3"">hwc</iso>
@@ -351,8 +351,8 @@ namespace DblMetaData
     <validatedVerses dcds:propertyURI=""conformsTo/validatedVerses"">Yes</validatedVerses>
   </checking>
   <contact>
-    <rightsHolder dcds:propertyURI=""rightsHolder"">Wycliffe Bible Translators</rightsHolder>
-    <rightsHolderLocal dcds:propertyURI=""rightsHolder/contactLocal"">Wycliffe Bible Translators</rightsHolderLocal>
+    <rightsHolder dcds:propertyURI=""rightsHolder"">Wycliffe Inc.</rightsHolder>
+    <rightsHolderLocal dcds:propertyURI=""rightsHolder/contactLocal"">Wycliffe Inc.</rightsHolderLocal>
     <rightsHolderAbbreviation dcds:propertyURI=""rightsHolder/contactAbbreviation"">WBT</rightsHolderAbbreviation>
     <rightsHolderURL dcds:propertyURI=""rightsHolder/contactURL"">http://www.wycliffe.org</rightsHolderURL>
     <rightsHolderFacebook dcds:propertyURI=""rightsHolder/contactFacebook"">http://www.facebook.com/WycliffeUSA</rightsHolderFacebook>
@@ -360,7 +360,7 @@ namespace DblMetaData
   <rights>
     <dateLicense dcds:propertyURI=""accessRights/pubLicenseDate"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2011-06-22</dateLicense>
     <dateLicenseExpiry dcds:propertyURI=""accessRights/pubLicenseExpiryDate"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2014-06-22</dateLicenseExpiry>
-    <rightsStatement dcds:propertyURI=""rights"" contentType=""xhtml"">©2000 Wycliffe Bible Translators, All Rights Reserved.</rightsStatement>
+    <rightsStatement dcds:propertyURI=""rights"" contentType=""xhtml"">© 2000, Wycliffe Inc. All Rights Reserved.</rightsStatement>
     <publicationRights>
       <allowOffline>Yes</allowOffline>
       <allowAudio>Yes</allowAudio>
@@ -796,7 +796,7 @@ licenseType = (""BY"" # Attributaion only
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
-<publisher name=""Wycliffe Bible Translators"" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher name=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
 <publisher name=""La Liga Bíblica"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <!-- publisher name="" url="" fb=""/ -->
 </root>
@@ -842,6 +842,8 @@ licenseType = (""BY"" # Attributaion only
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
+            if (_publisher.ToLower().Contains("wycliffe"))
+                _publisher = "Wycliffe Inc.";
             var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _publisher));
             if (publisherUrlNode != null)
                 _publisherUrl = publisherUrlNode.InnerText;
@@ -877,7 +879,7 @@ licenseType = (""BY"" # Attributaion only
             }
             else
             {
-                _rightsStatement = "©" + _publisher + " " + _dateCompleted;
+                _rightsStatement = "© " + _dateCompleted + ", " + _publisher;
                 _promoInfo = "<><>No promoVersionInfo<><>";
                 _promoEmail = "<><>No promoVersionEmail<><>";
             }
@@ -893,7 +895,7 @@ licenseType = (""BY"" # Attributaion only
                     promoStatements.AddParagraph(trimmedDescription);
             }
             promoStatements.AddSubhead("Copyright Information");
-            _rightsStatement = "© " + _dateCompleted + ", " + _publisher + ". All rights reserved.";
+            _rightsStatement = "© " + _dateCompleted + ", " + _publisher + " All rights reserved.";
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
             if (_isbn != null && _isbn.Substring(0,4) != "<><>")

@@ -507,7 +507,7 @@
             // 
             this.publisher.FormattingEnabled = true;
             this.publisher.Items.AddRange(new object[] {
-            "Wycliffe Bible Translators"});
+            "Wycliffe Inc."});
             this.publisher.Location = new System.Drawing.Point(204, 283);
             this.publisher.Name = "publisher";
             this.publisher.Size = new System.Drawing.Size(189, 24);

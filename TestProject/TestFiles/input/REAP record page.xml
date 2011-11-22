@@ -45,11 +45,11 @@
 	    </script>
 <script type="text/javascript" src="/themes/Reference/lib/fontsize.js"> 
 	    </script>
-<title>Da Jesus book</title>
+<title>Da Jesus Book</title>
 <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" />
 <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
-<meta name="DC.creator" content="Grimes, Barbara F." xml:lang="eng" />
-<meta name="DC.creator" content="Grimes, Joseph E." xml:lang="eng" />
+<meta name="DC.contributor" content="Grimes, Barbara F." xml:lang="eng" />
+<meta name="DC.contributor" content="Grimes, Joseph E." xml:lang="eng" />
 <meta name="DCTERMS.spatial" content="US:United States" xml:lang="eng" />
 <meta name="DCTERMS.dateAccepted" content="2011-01-25T18:42:15Z" scheme="DCTERMS.W3CDTF" />
 <meta name="DCTERMS.available" content="2011-01-25T18:42:15Z" scheme="DCTERMS.W3CDTF" />
@@ -57,18 +57,21 @@
 <meta name="DC.date" content="2001-07-05T00:00:00" xml:lang="eng" scheme="DCTERMS.W3CDTF" />
 <meta name="DC.description" content="1st ed." xml:lang="eng" />
 <meta name="DC.description" content="Grimes, Joseph E. and Barbara F. Grimes" xml:lang="eng" />
-<meta name="DC.format" content="" xml:lang="eng" />
 <meta name="DCTERMS.extent" content="vii, 744 pages" xml:lang="eng" />
 <meta name="DCTERMS.medium" content="Paper" xml:lang="eng" />
+<meta name="DCTERMS.medium" content="Microform" xml:lang="eng" />
 <meta name="DC.identifier" content="0938978217" xml:lang="eng" />
 <meta name="DC.identifier" content="41456" xml:lang="eng" />
 <meta name="DC.identifier" content="http://www.reap.insitehome.org/handle/9284745/16286" scheme="DCTERMS.URI" />
+<meta name="DC.identifier" content="http://www.pidginbible.org" xml:lang="eng" scheme="DCTERMS.URI" />
+<meta name="DC.identifier" content="http://www.youversion.com/bible/hwc-hwc/matt/1/1" scheme="DCTERMS.URI" />
 <meta name="DC.language" content="hwc:Hawai'i Creole English" xml:lang="eng" scheme="DCTERMS.RFC1766" />
-<meta name="DC.publisher" content="Wycliffe Bible Translators" xml:lang="eng" />
+<meta name="DC.publisher" content="Wycliffe Bible Translators, Inc." xml:lang="eng" />
 <meta name="DC.publisher" content="Orlando, FL" xml:lang="eng" />
+<meta name="DC.relation" content="© Wycliffe Bible Translators.  All illustrations © The British &amp; Foreign Bible Society except picture on page 91 by Lori MacLean (used with permission)." xml:lang="eng" />
 <meta name="DC.subject" content="New Testament" xml:lang="eng" />
 <meta name="DC.subject" content="hwc:Hawai'i Creole English" xml:lang="eng" />
-<meta name="DC.title" content="Da Jesus book" xml:lang="eng" />
+<meta name="DC.title" content="Da Jesus Book" xml:lang="eng" />
 <meta name="DC.title" content="WNT:New Testament" xml:lang="eng" />
 <meta name="DC.type" content="Text" xml:lang="eng" />
 <meta name="DC.type" content="Bible text complete" xml:lang="eng" />
@@ -93,7 +96,7 @@
 </a>
 </div>
 <div id="ds-header">
-<h1 class="pagetitle">Da Jesus book</h1>
+<h1 class="pagetitle">Da Jesus Book</h1>
 <h2 class="static-pagetitle">Repository for Electronic Archiving and Publishing</h2>
 <table width="95%" cellspacing="0" cellpadding="0" border="0">
 <tr>
@@ -147,21 +150,21 @@
 </div>
 </div>
 <div id="ds-body">
-<h1 style="font-size: 272%;" class="ds-div-head">Da Jesus book</h1>
+<h1 style="font-size: 272%;" class="ds-div-head">Da Jesus Book</h1>
 <div id="aspect_artifactbrowser_ItemViewer_div_item-view" class="ds-static-div primary">
 <p class="ds-paragraph item-view-toggle item-view-toggle-top">
 <a href="/handle/9284745/16286" class="">Show summary item record</a>
 </p>
 <!-- External Metadata URL: cocoon://metadata/handle/9284745/16286/mets.xml-->
-<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=0938978217&amp;rft_id=41456&amp;rft_id=http%3A%2F%2Fwww.reap.insitehome.org%2Fhandle%2F9284745%2F16286&amp;rfr_id=info%3Asid%2Fdatadryad.org%3Arepo&amp;rft.holdings=ME%3A01-0650+%2813%29&amp;rft.holdings=PA%3AMuseum&amp;rft.sensitivity=Public&amp;rft.sensitivity=Entity&amp;rft.report=Yes&amp;rft.managedcontributor=2959%3AGrimes%2C+Barbara+F.%3A450389&amp;rft.managedcontributor=2961%3AGrimes%2C+Joseph+E.%3A450390" />
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=0938978217&amp;rft_id=41456&amp;rft_id=http%3A%2F%2Fwww.reap.insitehome.org%2Fhandle%2F9284745%2F16286&amp;rft_id=http%3A%2F%2Fwww.pidginbible.org&amp;rft_id=http%3A%2F%2Fwww.youversion.com%2Fbible%2Fhwc-hwc%2Fmatt%2F1%2F1&amp;rfr_id=info%3Asid%2Fdatadryad.org%3Arepo&amp;rft.holdings=ME%3A01-0650+%2813%29&amp;rft.holdings=PA%3AMuseum&amp;rft.note=Verso+page+says+%22Third+printing+-+revised+2002%22++Should+we+have+a+new+item+record+for+the+2002+version%3F++-JN&amp;rft.production=2000%3A7%2C000&amp;rft.production=2001%3A3%2C500&amp;rft.production=2002%3A10%2C000&amp;rft.production=2004%3A10%2C000&amp;rft.sensitivity=Public&amp;rft.sensitivity=Strategic+partners&amp;rft.sensitivity=Entity&amp;rft.report=Yes&amp;rft.managedcontributor=2959%3AGrimes%2C+Barbara+F.%3A1431909&amp;rft.managedcontributor=2961%3AGrimes%2C+Joseph+E.%3A1431910" />
 <table class="ds-includeSet-table">
 <tr class="ds-table-row odd ">
-<td>dc.contributor.author</td>
+<td>dc.contributor.translator</td>
 <td>Grimes, Barbara F.</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row even ">
-<td>dc.contributor.author</td>
+<td>dc.contributor.translator</td>
 <td>Grimes, Joseph E.</td>
 <td>eng</td>
 </tr>
@@ -201,18 +204,18 @@
 <td>eng</td>
 </tr>
 <tr class="ds-table-row even ">
-<td>dc.format</td>
-<td />
-<td>eng</td>
-</tr>
-<tr class="ds-table-row odd ">
 <td>dc.format.extent</td>
 <td>vii, 744 pages</td>
 <td>eng</td>
 </tr>
-<tr class="ds-table-row even ">
+<tr class="ds-table-row odd ">
 <td>dc.format.medium</td>
 <td>Paper</td>
+<td>eng</td>
+</tr>
+<tr class="ds-table-row even ">
+<td>dc.format.medium</td>
+<td>Microform</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row odd ">
@@ -231,19 +234,50 @@
 <td />
 </tr>
 <tr class="ds-table-row even ">
+<td>dc.identifier.uri</td>
+<td>http://www.pidginbible.org</td>
+<td>eng</td>
+</tr>
+<tr class="ds-table-row odd ">
+<td>dc.identifier.uri</td>
+<td>http://www.youversion.com/bible/hwc-hwc/matt/1/1</td>
+<td />
+</tr>
+<tr class="ds-table-row even ">
 <td>dc.language.iso</td>
 <td>hwc:Hawai'i Creole English</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row odd ">
 <td>dc.publisher</td>
-<td>Wycliffe Bible Translators</td>
+<td>Wycliffe Bible Translators, Inc.</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row even ">
 <td>dc.publisher.place</td>
 <td>Orlando, FL</td>
 <td>eng</td>
+</tr>
+<tr class="ds-table-row odd ">
+<td>dc.rights</td>
+<td>© Wycliffe Bible Translators.  All illustrations © The British &amp; Foreign Bible Society except picture on page 91 by Lori MacLean (used with permission).</td>
+<td>eng</td>
+</tr>
+<tr class="ds-table-row even ">
+<td>dc.rightsHolder</td>
+<td>The British&#13;
+&amp; Foreign Bible Society</td>
+<td />
+</tr>
+<tr class="ds-table-row odd ">
+<td>dc.rightsHolder</td>
+<td>Lori MacLean</td>
+<td />
+</tr>
+<tr class="ds-table-row even ">
+<td>dc.rightsHolder</td>
+<td>Wycliffe Bible Translators, Inc.</td>
+<td />
 </tr>
 <tr class="ds-table-row odd ">
 <td>dc.subject.silSubject</td>
@@ -257,7 +291,7 @@
 </tr>
 <tr class="ds-table-row odd ">
 <td>dc.title</td>
-<td>Da Jesus book</td>
+<td>Da Jesus Book</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row even ">
@@ -286,8 +320,38 @@
 <td>eng</td>
 </tr>
 <tr class="ds-table-row odd ">
+<td>sil.note.entity</td>
+<td>Verso page says "Third printing - revised 2002"  Should we have a new item record for the 2002 version?  -JN</td>
+<td>eng</td>
+</tr>
+<tr class="ds-table-row even ">
+<td>sil.production.run</td>
+<td>2000:7,000</td>
+<td />
+</tr>
+<tr class="ds-table-row odd ">
+<td>sil.production.run</td>
+<td>2001:3,500</td>
+<td />
+</tr>
+<tr class="ds-table-row even ">
+<td>sil.production.run</td>
+<td>2002:10,000</td>
+<td />
+</tr>
+<tr class="ds-table-row odd ">
+<td>sil.production.run</td>
+<td>2004:10,000</td>
+<td />
+</tr>
+<tr class="ds-table-row even ">
 <td>sil.sensitivity.metadata</td>
 <td>Public</td>
+<td>eng</td>
+</tr>
+<tr class="ds-table-row odd ">
+<td>sil.sensitivity.presentation</td>
+<td>Strategic partners</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row even ">
@@ -302,12 +366,12 @@
 </tr>
 <tr class="ds-table-row even ">
 <td>sil.managedcontributor.id</td>
-<td>2959:Grimes, Barbara F.:450389</td>
+<td>2959:Grimes, Barbara F.:1431909</td>
 <td>eng</td>
 </tr>
 <tr class="ds-table-row odd ">
 <td>sil.managedcontributor.id</td>
-<td>2961:Grimes, Joseph E.:450390</td>
+<td>2961:Grimes, Joseph E.:1431910</td>
 <td>eng</td>
 </tr>
 </table>
@@ -318,6 +382,7 @@
 <th>Size</th>
 <th>Format</th>
 <th>View</th>
+<th>Description</th>
 </tr>
 <tr class="ds-table-row odd ">
 <td>
@@ -328,6 +393,40 @@
 <td>
 <a href="/bitstream/handle/9284745/16286/0938978217-13.zip?sequence=1">View/<wbr />Open</a>
 </td>
+<td>2000 Print edition source files</td>
+</tr>
+<tr class="ds-table-row even ">
+<td>
+<a href="/bitstream/handle/9284745/16286/hwc-2011-10-24.zip?sequence=5" title="hwc-2011-10-24.zip">hwc-2011-10-24.zip</a>
+</td>
+<td>2.779Mb</td>
+<td>application/zip</td>
+<td>
+<a href="/bitstream/handle/9284745/16286/hwc-2011-10-24.zip?sequence=5">View/<wbr />Open</a>
+</td>
+<td>2011 Unicode compliant Paratext files Public Bundle</td>
+</tr>
+<tr class="ds-table-row odd ">
+<td>
+<a href="/bitstream/handle/9284745/16286/hwcMetadata.htm?sequence=7" title="hwcMetadata.htm">hwcMetadata.htm</a>
+</td>
+<td>17.50Kb</td>
+<td>HTML</td>
+<td>
+<a href="/bitstream/handle/9284745/16286/hwcMetadata.htm?sequence=7">View/<wbr />Open</a>
+</td>
+<td>DBL metadata report</td>
+</tr>
+<tr class="ds-table-row even ">
+<td>
+<a href="/bitstream/handle/9284745/16286/hwcprivate_bundle.zip?sequence=6" title="hwcprivate_bundle.zip">hwcprivate_bundle.zip</a>
+</td>
+<td>916.4Kb</td>
+<td>application/zip</td>
+<td>
+<a href="/bitstream/handle/9284745/16286/hwcprivate_bundle.zip?sequence=6">View/<wbr />Open</a>
+</td>
+<td>2011 Unicode compliant Paratext files Private Bundle</td>
 </tr>
 </table>
 <div class="license-info">

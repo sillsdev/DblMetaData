@@ -125,10 +125,9 @@ do not change any of the text or punctuation of the Bible.</p>
 or quotations from this work, provided that you include the above copyright
 information:</p>
 <ul>
-<li>You must give Attribution to the work</li>
+<li>You must give Attribution to the work.</li>
 <li>You do not sell this work for a profit.</li>
-<li>You do not make any derivative
-works that change any of the actual words or punctuation of the Scriptures.</li>
+<li>You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.</li>
 </ul>
 <p>Permissions beyond the scope of this license may be
 available if you <a href=""mailto:ScriptureCopyrightPermission_Intl@sil.org"">contact
