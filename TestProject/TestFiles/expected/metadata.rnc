@@ -196,7 +196,7 @@ start =
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
         xsd:date
       },
-	  # For example: ©1983, 1992 SIL International 
+	  # For example: Â©1983, 1992 SIL International 
       element rightsStatement {
         attribute contentType { "xhtml" },
         attribute dcds:propertyURI { "rights" },
@@ -271,7 +271,13 @@ htmlMarkup = (text
          | htmlCharMarkup)+
 htmlCharMarkup = (element a {
              attribute href { xsd:anyURI },
-             text
+             attribute rel { text }?,
+             (htmlCharMarkup | text)
+           }
+         | element img {
+             attribute alt { text }?,
+             attribute style { text }?,
+             attribute src { xsd:anyURI }
            }
          | element br { empty }
          | element strong { text }
