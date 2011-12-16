@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:dcds="http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/">
+  <xs:import namespace="http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/" schemaLocation="dcds.xsd"/>
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
+  <xs:element name="DBLScriptureProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="identification"/>
+        <xs:element ref="confidential"/>
+        <xs:element ref="agencies"/>
+        <xs:element ref="language"/>
+        <xs:element ref="country"/>
+        <xs:element name="translation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="type"/>
+              <xs:element ref="level"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="bookNames"/>
+        <xs:element ref="contents"/>
+        <xs:element ref="progress"/>
+        <xs:element ref="checking"/>
+        <xs:element ref="contact"/>
+        <xs:element ref="rights"/>
+        <xs:element ref="promotion"/>
+        <xs:element ref="archiveStatus"/>
+        <xs:element ref="format"/>
+      </xs:sequence>
+      <xs:attribute name="resourceURI" use="required" type="xs:anyURI"/>
+      <xs:attribute ref="xml:base" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="identification">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="abbreviation"/>
+          <xs:element ref="abbreviationLocal"/>
+          <xs:element name="description">
+            <xs:complexType mixed="true">
+              <xs:attributeGroup ref="dcds:propertyURI"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="name">
+            <xs:complexType mixed="true">
+              <xs:attributeGroup ref="dcds:propertyURI1"/>
+            </xs:complexType>
+          </xs:element>
+          <xs:element ref="nameLocal"/>
+          <xs:element ref="dateCompleted"/>
+          <xs:element ref="scope"/>
+          <xs:element ref="systemId"/>
+        </xs:choice>
+        <xs:element ref="isResource"/>
+        <xs:element ref="bundleVersion"/>
+        <xs:element ref="bundleProducer"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateCompleted">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="\d\d\d\d"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI2"/>
+          <xs:attributeGroup ref="dcds:sesURI"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="scope">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI3"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="systemId">
+    <xs:complexType mixed="true">
+      <xs:attribute name="type" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="dbl"/>
+            <xs:enumeration value="tms"/>
+            <xs:enumeration value="reap"/>
+            <xs:enumeration value="paratext"/>
+            <xs:enumeration value="biblica"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+      <xs:attributeGroup ref="dcds:propertyURI4"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="isResource">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="bundleVersion" type="xs:decimal"/>
+  <xs:element name="bundleProducer" type="xs:string"/>
+  <xs:element name="confidential">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="Yes"/>
+              <xs:enumeration value="No"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI5"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="agencies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="etenPartner"/>
+        <xs:element name="translation">
+          <xs:complexType mixed="true">
+            <xs:attributeGroup ref="dcds:propertyURI6"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="publishing"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="etenPartner">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="UBS"/>
+        <xs:enumeration value="WBT"/>
+        <xs:enumeration value="Biblica"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="publishing">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI7"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="language">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="iso">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:restriction base="xs:anyType">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-z][a-z][a-z]"/>
+                  </xs:restriction>
+                </xs:simpleType>
+                <xs:attributeGroup ref="dcds:propertyURI8"/>
+                <xs:attributeGroup ref="dcds:sesURI1"/>
+              </xs:restriction>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="name">
+          <xs:complexType mixed="true">
+            <xs:attributeGroup ref="dcds:propertyURI9"/>
+            <xs:attributeGroup ref="dcds:sesURI1"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element ref="script"/>
+        <xs:element ref="scriptDirection"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="script">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attributeGroup ref="dcds:propertyURI10"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="scriptDirection">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="LTR"/>
+              <xs:enumeration value="RTL"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI11"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="country">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="iso">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:NCName">
+                <xs:attributeGroup ref="dcds:propertyURI12"/>
+                <xs:attributeGroup ref="dcds:sesURI2"/>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="name">
+          <xs:complexType mixed="true">
+            <xs:attributeGroup ref="dcds:propertyURI13"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="type">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="First"/>
+              <xs:enumeration value="New"/>
+              <xs:enumeration value="Revision"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI14"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="level">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="Basic"/>
+              <xs:enumeration value="Common"/>
+              <xs:enumeration value="Common - Literary"/>
+              <xs:enumeration value="Literary"/>
+              <xs:enumeration value="Liturgical"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI15"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bookNames">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="book">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name">
+                <xs:complexType mixed="true">
+                  <xs:attribute name="type" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:token">
+                        <xs:enumeration value="long"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="name">
+                <xs:complexType mixed="true">
+                  <xs:attribute name="type" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:token">
+                        <xs:enumeration value="short"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="name">
+                <xs:complexType mixed="true">
+                  <xs:attribute name="type" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:token">
+                        <xs:enumeration value="abbr"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="code" use="required" type="bookCode"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="bookList"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="dcds:propertyURI16"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="bookList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="name" type="xs:string"/>
+        <xs:element ref="nameLocal"/>
+        <xs:element ref="abbreviation"/>
+        <xs:element ref="abbreviationLocal"/>
+        <xs:element name="description" type="xs:string"/>
+        <xs:element ref="range"/>
+        <xs:element ref="tradition"/>
+        <xs:element maxOccurs="unbounded" ref="division"/>
+      </xs:sequence>
+      <xs:attribute name="id">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="default"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="range" type="xs:string"/>
+  <xs:element name="tradition" type="xs:string"/>
+  <xs:element name="division">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="books"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="OT"/>
+            <xs:enumeration value="NT"/>
+            <xs:enumeration value="DC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="books">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="book">
+          <xs:complexType>
+            <xs:attribute name="code" use="required" type="bookCode"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="progress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" name="book">
+          <xs:complexType>
+            <xs:attribute name="code" use="required" type="bookCode"/>
+            <xs:attribute name="stage" use="required">
+              <xs:simpleType>
+                <xs:restriction base="xs:token">
+                  <xs:enumeration value="1"/>
+                  <xs:enumeration value="2"/>
+                  <xs:enumeration value="3"/>
+                  <xs:enumeration value="4"/>
+                  <xs:enumeration value="-1"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attributeGroup ref="dcds:propertyURI17"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="checking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="validatedMarkers"/>
+        <xs:element ref="validatedVerses"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validatedMarkers">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="Yes"/>
+              <xs:enumeration value="No"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI18"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validatedVerses">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="Yes"/>
+              <xs:enumeration value="No"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI19"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="contact">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="rightsHolder"/>
+        <xs:element ref="rightsHolderLocal"/>
+        <xs:element ref="rightsHolderAbbreviation"/>
+        <xs:element ref="rightsHolderURL"/>
+        <xs:element ref="rightsHolderFacebook"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsHolder">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI20"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsHolderLocal">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI21"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsHolderAbbreviation">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:NCName">
+          <xs:attributeGroup ref="dcds:propertyURI22"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsHolderURL">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:anyURI">
+          <xs:attributeGroup ref="dcds:propertyURI23"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsHolderFacebook">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:anyURI">
+          <xs:attributeGroup ref="dcds:propertyURI24"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rights">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="dateLicense"/>
+        <xs:element ref="dateLicenseExpiry"/>
+        <xs:element ref="rightsStatement"/>
+        <xs:element ref="publicationRights"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateLicense">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attributeGroup ref="dcds:propertyURI25"/>
+          <xs:attributeGroup ref="dcds:sesURI"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateLicenseExpiry">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attributeGroup ref="dcds:propertyURI26"/>
+          <xs:attributeGroup ref="dcds:sesURI"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rightsStatement">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="htmlMarkup">
+          <xs:attribute name="contentType" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:token">
+                <xs:enumeration value="xhtml"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attributeGroup ref="dcds:propertyURI27"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="publicationRights">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="allowOffline"/>
+        <xs:element ref="allowAudio"/>
+        <xs:element ref="allowFootnotes"/>
+        <xs:element ref="allowCrossReferences"/>
+        <xs:element ref="allowNewPublishers"/>
+        <xs:element ref="denyPlatforms"/>
+        <xs:element ref="exchangeLicenseFCBH"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="allowOffline">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="allowAudio">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="allowFootnotes">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="allowCrossReferences">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="allowNewPublishers">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="Yes"/>
+        <xs:enumeration value="No"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="denyPlatforms">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="exchangeLicenseFCBH">
+    <xs:simpleType>
+      <xs:union memberTypes="licenseType">
+        <xs:simpleType>
+          <xs:restriction base="xs:token">
+            <xs:enumeration value="No"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="promotion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="promoVersionInfo"/>
+        <xs:element ref="promoEmail"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="promoVersionInfo">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="htmlMarkup">
+          <xs:attribute name="contentType" use="required">
+            <xs:simpleType>
+              <xs:restriction base="xs:token">
+                <xs:enumeration value="xhtml"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:attribute>
+          <xs:attributeGroup ref="dcds:propertyURI28"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="promoEmail">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI29"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="archiveStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="archivistName"/>
+        <xs:element ref="dateArchived"/>
+        <xs:element ref="dateUpdated"/>
+        <xs:element ref="comments"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="archivistName">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI30"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateArchived">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attributeGroup ref="dcds:propertyURI31"/>
+          <xs:attributeGroup ref="dcds:sesURI"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dateUpdated">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:date">
+          <xs:attributeGroup ref="dcds:propertyURI32"/>
+          <xs:attributeGroup ref="dcds:sesURI"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="comments">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="dcds:propertyURI33"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="format">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:token">
+              <xs:enumeration value="text/xml"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="dcds:propertyURI34"/>
+          <xs:attributeGroup ref="dcds:sesURI3"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nameLocal" type="xs:string"/>
+  <xs:element name="abbreviation" type="xs:NCName"/>
+  <xs:element name="abbreviationLocal" type="xs:NCName"/>
+  <xs:complexType name="htmlMarkup" mixed="true">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element ref="p"/>
+      <xs:element ref="h1"/>
+      <xs:element ref="h2"/>
+      <xs:element ref="h3"/>
+      <xs:element ref="ul"/>
+      <xs:element ref="ol"/>
+      <xs:element ref="blockquote"/>
+      <xs:element ref="htmlCharMarkup"/>
+    </xs:choice>
+  </xs:complexType>
+  <xs:element name="p">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="htmlCharMarkup"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="h1" type="xs:string"/>
+  <xs:element name="h2" type="xs:string"/>
+  <xs:element name="h3" type="xs:string"/>
+  <xs:element name="ul">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="li"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="li" type="xs:string"/>
+  <xs:element name="ol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="li"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="blockquote" type="xs:string"/>
+  <xs:element name="htmlCharMarkup" abstract="true"/>
+  <xs:element name="a" substitutionGroup="htmlCharMarkup">
+    <xs:complexType mixed="true">
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="htmlCharMarkup"/>
+      </xs:sequence>
+      <xs:attribute name="href" use="required" type="xs:anyURI"/>
+      <xs:attribute name="rel"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="img" substitutionGroup="htmlCharMarkup">
+    <xs:complexType>
+      <xs:attribute name="alt"/>
+      <xs:attribute name="style"/>
+      <xs:attribute name="src" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="br" substitutionGroup="htmlCharMarkup">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="strong" substitutionGroup="htmlCharMarkup" type="xs:string"/>
+  <xs:element name="b" substitutionGroup="htmlCharMarkup" type="xs:string"/>
+  <xs:element name="em" substitutionGroup="htmlCharMarkup" type="xs:string"/>
+  <xs:element name="i" substitutionGroup="htmlCharMarkup" type="xs:string"/>
+  <xs:simpleType name="bookCode">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="GEN"/>
+      <xs:enumeration value="EXO"/>
+      <xs:enumeration value="LEV"/>
+      <xs:enumeration value="NUM"/>
+      <xs:enumeration value="DEU"/>
+      <xs:enumeration value="JOS"/>
+      <xs:enumeration value="JDG"/>
+      <xs:enumeration value="RUT"/>
+      <xs:enumeration value="1SA"/>
+      <xs:enumeration value="2SA"/>
+      <xs:enumeration value="1KI"/>
+      <xs:enumeration value="2KI"/>
+      <xs:enumeration value="1CH"/>
+      <xs:enumeration value="2CH"/>
+      <xs:enumeration value="EZR"/>
+      <xs:enumeration value="NEH"/>
+      <xs:enumeration value="EST"/>
+      <xs:enumeration value="JOB"/>
+      <xs:enumeration value="PSA"/>
+      <xs:enumeration value="PRO"/>
+      <xs:enumeration value="ECC"/>
+      <xs:enumeration value="SNG"/>
+      <xs:enumeration value="ISA"/>
+      <xs:enumeration value="JER"/>
+      <xs:enumeration value="LAM"/>
+      <xs:enumeration value="EZK"/>
+      <xs:enumeration value="DAN"/>
+      <xs:enumeration value="HOS"/>
+      <xs:enumeration value="JOL"/>
+      <xs:enumeration value="AMO"/>
+      <xs:enumeration value="OBA"/>
+      <xs:enumeration value="JON"/>
+      <xs:enumeration value="MIC"/>
+      <xs:enumeration value="NAM"/>
+      <xs:enumeration value="HAB"/>
+      <xs:enumeration value="ZEP"/>
+      <xs:enumeration value="HAG"/>
+      <xs:enumeration value="ZEC"/>
+      <xs:enumeration value="MAL"/>
+      <xs:enumeration value="MAT"/>
+      <xs:enumeration value="MRK"/>
+      <xs:enumeration value="LUK"/>
+      <xs:enumeration value="JHN"/>
+      <xs:enumeration value="ACT"/>
+      <xs:enumeration value="ROM"/>
+      <xs:enumeration value="1CO"/>
+      <xs:enumeration value="2CO"/>
+      <xs:enumeration value="GAL"/>
+      <xs:enumeration value="EPH"/>
+      <xs:enumeration value="PHP"/>
+      <xs:enumeration value="COL"/>
+      <xs:enumeration value="1TH"/>
+      <xs:enumeration value="2TH"/>
+      <xs:enumeration value="1TI"/>
+      <xs:enumeration value="2TI"/>
+      <xs:enumeration value="TIT"/>
+      <xs:enumeration value="PHM"/>
+      <xs:enumeration value="HEB"/>
+      <xs:enumeration value="JAS"/>
+      <xs:enumeration value="1PE"/>
+      <xs:enumeration value="2PE"/>
+      <xs:enumeration value="1JN"/>
+      <xs:enumeration value="2JN"/>
+      <xs:enumeration value="3JN"/>
+      <xs:enumeration value="JUD"/>
+      <xs:enumeration value="REV"/>
+      <xs:enumeration value="TOB"/>
+      <xs:enumeration value="JDT"/>
+      <xs:enumeration value="ESG"/>
+      <xs:enumeration value="WIS"/>
+      <xs:enumeration value="SIR"/>
+      <xs:enumeration value="BAR"/>
+      <xs:enumeration value="LJE"/>
+      <xs:enumeration value="S3Y"/>
+      <xs:enumeration value="SUS"/>
+      <xs:enumeration value="BEL"/>
+      <xs:enumeration value="1MA"/>
+      <xs:enumeration value="2MA"/>
+      <xs:enumeration value="3MA"/>
+      <xs:enumeration value="4MA"/>
+      <xs:enumeration value="1ES"/>
+      <xs:enumeration value="2ES"/>
+      <xs:enumeration value="MAN"/>
+      <xs:enumeration value="PS2"/>
+      <xs:enumeration value="ODA"/>
+      <xs:enumeration value="PSS"/>
+      <xs:enumeration value="EZA"/>
+      <xs:enumeration value="5EZ"/>
+      <xs:enumeration value="6EZ"/>
+      <xs:enumeration value="DAG"/>
+      <xs:enumeration value="PS3"/>
+      <xs:enumeration value="2BA"/>
+      <xs:enumeration value="LBA"/>
+      <xs:enumeration value="JUB"/>
+      <xs:enumeration value="ENO"/>
+      <xs:enumeration value="1MQ"/>
+      <xs:enumeration value="2MQ"/>
+      <xs:enumeration value="3MQ"/>
+      <xs:enumeration value="REP"/>
+      <xs:enumeration value="4BA"/>
+      <xs:enumeration value="LAO"/>
+      <xs:enumeration value="XXA"/>
+      <xs:enumeration value="XXB"/>
+      <xs:enumeration value="XXC"/>
+      <xs:enumeration value="XXD"/>
+      <xs:enumeration value="XXE"/>
+      <xs:enumeration value="XXF"/>
+      <xs:enumeration value="XXG"/>
+      <xs:enumeration value="FRT"/>
+      <xs:enumeration value="BAK"/>
+      <xs:enumeration value="OTH"/>
+      <xs:enumeration value="INT"/>
+      <xs:enumeration value="CNC"/>
+      <xs:enumeration value="GLO"/>
+      <xs:enumeration value="TDX"/>
+      <xs:enumeration value="NDX"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <!-- Names Index -->
+  <xs:simpleType name="licenseType">
+    <xs:restriction base="xs:token">
+      <xs:enumeration value="BY"/>
+      <xs:enumeration value="BY-ND"/>
+      <xs:enumeration value="BY-NC-ND"/>
+      <xs:enumeration value="BY-NC"/>
+      <xs:enumeration value="BY-NC-SA"/>
+      <xs:enumeration value="BY-SA"/>
+      <xs:enumeration value="PD"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+<!-- Dedicated to or marked as being in the public domain -->
