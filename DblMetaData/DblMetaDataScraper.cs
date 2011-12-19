@@ -93,6 +93,15 @@ namespace DblMetaData
         }
         #endregion Publisher
 
+        #region RightsHolder
+        private string _rightsHolder;
+        public string RightsHolder
+        {
+            get { return _rightsHolder; }
+            set { _rightsHolder = value; }
+        }
+        #endregion RightsHolder
+
         #region PublisherUrl
         private string _publisherUrl;
         public string PublisherUrl
@@ -659,7 +668,13 @@ htmlMarkup = (text
          | htmlCharMarkup)+
 htmlCharMarkup = (element a {
              attribute href { xsd:anyURI },
-             text
+             attribute rel { text }?,
+             (htmlCharMarkup | text)
+           }
+         | element img {
+             attribute alt { text }?,
+             attribute style { text }?,
+             attribute src { xsd:anyURI }
            }
          | element br { empty }
          | element strong { text }
@@ -796,8 +811,8 @@ licenseType = (""BY"" # Attributaion only
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
-<publisher name=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
-<publisher name=""La Liga Bíblica"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher name=""Wycliffe Inc."" rights=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <!-- publisher name="" url="" fb=""/ -->
 </root>
 ";
@@ -825,8 +840,8 @@ licenseType = (""BY"" # Attributaion only
         public void ScrapeReapData()
         {
             _title = GetValue("//default:title");
-            _languageCode = GetField("//default:meta[@name='DC.language'][1]/@content", 0);
-            _languageName = GetField("//default:meta[@name='DC.language'][1]/@content", 1);
+            _languageCode = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 0);
+            _languageName = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 1);
             try
             {
                 _script = GetField("//default:tr[default:td='dc.language.script']/default:td[2]", 1);
@@ -838,12 +853,17 @@ licenseType = (""BY"" # Attributaion only
                 _scriptDirection = "LTR";
             }
             _scope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
-            _abbreviation = _languageCode + "-" + TextField(_scope, 0).Substring(1);
+            _abbreviation = _languageCode + TextField(_scope, 0).Substring(1);
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
             if (_publisher.ToLower().Contains("wycliffe"))
                 _publisher = "Wycliffe Inc.";
+            var rightsHolderNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@rights", _publisher));
+            if (rightsHolderNode != null)
+                _rightsHolder = rightsHolderNode.InnerText;
+            else
+                _rightsHolder = _publisher;
             var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _publisher));
             if (publisherUrlNode != null)
                 _publisherUrl = publisherUrlNode.InnerText;
@@ -879,7 +899,7 @@ licenseType = (""BY"" # Attributaion only
             }
             else
             {
-                _rightsStatement = "© " + _dateCompleted + ", " + _publisher;
+                _rightsStatement = "© " + _dateCompleted + ", " + _rightsHolder;
                 _promoInfo = "<><>No promoVersionInfo<><>";
                 _promoEmail = "<><>No promoVersionEmail<><>";
             }
@@ -895,7 +915,8 @@ licenseType = (""BY"" # Attributaion only
                     promoStatements.AddParagraph(trimmedDescription);
             }
             promoStatements.AddSubhead("Copyright Information");
-            _rightsStatement = "© " + _dateCompleted + ", " + _publisher + " All rights reserved.";
+            _rightsStatement = "© " + _dateCompleted + ", " + _rightsHolder + ". All rights reserved.";
+            _rightsStatement = _rightsStatement.Replace("..", ".");
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
             if (_isbn != null && _isbn.Substring(0,4) != "<><>")
@@ -925,7 +946,7 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_reapUrl, "//identification/systemId[@type='reap']");
             SetValue(_publisher, "//agencies/translation");
             SetValue(_publisher, "//agencies/publishing");
-            SetValue(_publisher, "//contact/rightsHolder");
+            SetValue(_rightsHolder, "//contact/rightsHolder");
             SetValue(_publisher, "//contact/rightsHolderLocal");
             SetValue(_countryCode, "//country/iso");
             SetValue(_countryName, "//country/name");

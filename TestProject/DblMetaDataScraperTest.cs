@@ -231,7 +231,7 @@ namespace TestProject
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
-            TestXpathValue("hwc-NT", "//abbreviation", target);
+            TestXpathValue("hwcNT", "//abbreviation", target);
             TestXpathValue("Da Jesus Book", "//identification/name", target);
             TestXpathValue("hwc", "//language/iso", target);
             TestXpathValue("Hawai'i Creole English", "//language/name", target);

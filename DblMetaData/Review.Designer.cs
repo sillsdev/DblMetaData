@@ -507,7 +507,8 @@
             // 
             this.publisher.FormattingEnabled = true;
             this.publisher.Items.AddRange(new object[] {
-            "Wycliffe Inc."});
+            "Wycliffe Inc.",
+            "La Liga Bíblica"});
             this.publisher.Location = new System.Drawing.Point(204, 283);
             this.publisher.Name = "publisher";
             this.publisher.Size = new System.Drawing.Size(189, 24);
