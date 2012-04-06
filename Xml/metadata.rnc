@@ -23,7 +23,7 @@ start =
        | element dateCompleted {
            attribute dcds:propertyURI { "date" },
            attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-           xsd:string { pattern = "\d\d\d\d" }
+           (xsd:date | xsd:gYear)?
            }
        | element scope {
            attribute dcds:propertyURI { "title/scriptureScope" },
@@ -72,7 +72,7 @@ start =
         },
       element script {
         attribute dcds:propertyURI { "language/script" },
-        xsd:NCName 
+        text # Re #24.  Was xsd:NCName 
         },
       # LTR (Left to Right) or RTL (Right to Left) 
       # scriptDirection is overwritten by Paratext
@@ -85,7 +85,7 @@ start =
       element iso { 
       attribute dcds:propertyURI { "coverage/spatial" },
       attribute dcds:sesURI { "http://purl.org/dc/terms/ISO3166" }, 
-      xsd:NCName 
+      xsd:NCName? 
       }, 
     element name { 
       attribute dcds:propertyURI { "subject/subjectCountry" }, 
@@ -94,11 +94,11 @@ start =
     element translation { 
       element type { 
         attribute dcds:propertyURI { "type/translationType" }, 
-        ("First" | "New" | "Revision") 
+        ("First" | "New" | "Revision")?
         }, 
       element level {
         attribute dcds:propertyURI { "audience" }, 
-        ( "Basic" | "Common" | "Common - Literary" | "Literary" | "Liturgical")
+        ( "Basic" | "Common" | "Common - Literary" | "Literary" | "Liturgical")?
         }},
     # bookNames/book is overwritten by Paratext
     element bookNames { 
@@ -188,15 +188,15 @@ start =
       element dateLicense {
         attribute dcds:propertyURI { "accessRights/pubLicenseDate" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date
+        xsd:date? # re #22.
       },
 	  # yyyy-mm-dd (must be after dateLicense) 
       element dateLicenseExpiry {
         attribute dcds:propertyURI { "accessRights/pubLicenseExpiryDate" },
         attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date
+        xsd:date? # re #22.
       },
-	  # For example: ©1983, 1992 SIL International 
+	  # For example: (c)1983, 1992 SIL International 
       element rightsStatement {
         attribute contentType { "xhtml" },
         attribute dcds:propertyURI { "rights" },
@@ -205,11 +205,15 @@ start =
       element publicationRights {
         element allowOffline { "Yes" | "No" },
         element allowAudio { "Yes" | "No" },
-        element allowFootnotes { "Yes" | "No" },
-        element allowCrossReferences { "Yes" | "No" },
+        element allowFootnotes { ("Yes" | "No")? }, # Re #27.
+        element allowCrossReferences { ("Yes" | "No")? }, # Re #27.
 		# default to No? 
         element allowNewPublishers { "Yes" | "No" },
-        element denyPlatforms { empty },
+        element denyPlatforms {
+           element platform { # Re #26.
+              text
+           }*
+        },
         element exchangeLicenseFCBH { licenseType | "No" }
       }
     },
@@ -256,8 +260,8 @@ start =
     }
   }
 nameLocal = element nameLocal { text }
-abbreviation = element abbreviation { xsd:NCName }
-abbreviationLocal = element abbreviationLocal { xsd:NCName }
+abbreviation = element abbreviation { text } # Re #24.  Was {xsd:NCName }
+abbreviationLocal = element abbreviationLocal { text } # Re #24.  Was {xsd:NCName }
 htmlMarkup = (text
          | element p { (text | htmlCharMarkup)+ }
          | element h1 { text }
@@ -271,13 +275,7 @@ htmlMarkup = (text
          | htmlCharMarkup)+
 htmlCharMarkup = (element a {
              attribute href { xsd:anyURI },
-             attribute rel { text }?,
-             (htmlCharMarkup | text)
-           }
-         | element img {
-             attribute alt { text }?,
-             attribute style { text }?,
-             attribute src { xsd:anyURI }
+             text
            }
          | element br { empty }
          | element strong { text }
@@ -400,11 +398,17 @@ bookCode = ("GEN"   # Genesis
          | "CNC" # Concordance 
          | "GLO" # Glossary 
          | "TDX" # Topical Index 
-         | "NDX") # Names Index 
-licenseType = ("BY" # Attributaion only
+         | "NDX" # Names Index 
+         # Extras to get bundles to 'validate':
+         | "BLT" # BEL EN DIE DRAAK
+)
+licenseType = ("BY" # Attribution only
          | "BY-ND"       #  Attribution-NoDerivatives
          | "BY-NC-ND" # Attribution-NonCommercial- NoDerivatives 
          | "BY-NC"       # Attribution-NonCommercial 
          | "BY-NC-SA" # Attribution-NonCommercial- ShareAlike 
          | "BY-SA"       # Attribution-ShareAlike 
-         | "PD")           # Dedicated to or marked as being in the public domain
+         | "PD"          # Dedicated to or marked as being in the public domain
+         # Extra codes added to make more documents 'valid':
+         | "Yes"
+)
