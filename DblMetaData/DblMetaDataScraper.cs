@@ -245,6 +245,15 @@ namespace DblMetaData
             set { _scriptDirection = value; }
         }
         #endregion ScriptDirection
+
+        #region Options
+        private Options _options;
+        public Options Options
+        {
+            get { return _options; }
+            set { _options = value; }
+        }
+        #endregion Options
         #endregion Properties
 
         private readonly XmlDocument _webDoc;
@@ -273,15 +282,15 @@ namespace DblMetaData
 
         #region dblMetaData (template)
         private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<?oxygen RNGSchema=""metadata.rnc"" type=""compact""?>
+<?xml-model href=""metadata.rnc"" type=""application/relax-ng-compact-syntax""?>
 <DBLScriptureProject resourceURI="""" xml:base=""http://purl.org/ubs/metadata/dc/terms/"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
   <identification>
     <systemId type=""dbl"" dcds:propertyURI=""identifier/dblID""/>
     <name dcds:propertyURI=""title"">Da Jesus book</name>
     <nameLocal>Da Jesus book</nameLocal>
-    <abbreviation>hwc</abbreviation>
-    <abbreviationLocal>hwc</abbreviationLocal>
-    <scope dcds:propertyURI=""title/scriptureScope"">WNT:New Testament</scope>
+    <abbreviation>hwcNT</abbreviation>
+    <abbreviationLocal>hwcNT</abbreviationLocal>
+    <scope dcds:propertyURI=""title/scriptureScope"">NT</scope>
     <description dcds:propertyURI=""description"">1st ed.</description>
     <dateCompleted dcds:propertyURI=""date"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2000</dateCompleted>
     <systemId type=""tms"" dcds:propertyURI=""identifier/tmsID""/>
@@ -289,7 +298,7 @@ namespace DblMetaData
     <systemId type=""paratext"" dcds:propertyURI=""identifier/ptxID""/>
     <isResource>No</isResource>
     <bundleVersion>1.1</bundleVersion>
-    <bundleProducer/>
+    <bundleProducer>Paratext/7.3.0.60</bundleProducer>
   </identification>
   <confidential dcds:propertyURI=""accessRights/confidential"">No</confidential>
   <agencies>
@@ -316,9 +325,9 @@ namespace DblMetaData
     <bookList id=""default"">
       <name>Da Jesus book</name>
       <nameLocal>Da Jesus book</nameLocal>
-      <abbreviation>hwc</abbreviation>
-      <abbreviationLocal>hwc</abbreviationLocal>
-      <description>NT: 1st ed.</description>
+      <abbreviation>hwcNT</abbreviation>
+      <abbreviationLocal>hwcNT</abbreviationLocal>
+      <description>NT: 1st Edition</description>
       <range>Protestant New Testament (27 books)</range>
       <tradition>Western Protestant order</tradition>
       <division id=""NT"">
@@ -813,6 +822,8 @@ licenseType = (""BY"" # Attributaion only
 <root>
 <publisher name=""Wycliffe Inc."" rights=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
 <publisher name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher name=""Bible League International"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher name=""Bible League"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <!-- publisher name="" url="" fb=""/ -->
 </root>
 ";
@@ -852,8 +863,11 @@ licenseType = (""BY"" # Attributaion only
                 _script = "Latin";
                 _scriptDirection = "LTR";
             }
-            _scope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
-            _abbreviation = _languageCode + TextField(_scope, 0).Substring(1);
+            var rawScope = "WNT:New Testament";
+            if (!_options.AlwaysUseNT)
+                rawScope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
+            _scope = TextField(rawScope, 0).Substring(1);
+            _abbreviation = _languageCode + _scope;
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
             _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
@@ -861,7 +875,10 @@ licenseType = (""BY"" # Attributaion only
                 _publisher = "Wycliffe Inc.";
             var rightsHolderNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@rights", _publisher));
             if (rightsHolderNode != null)
+            {
                 _rightsHolder = rightsHolderNode.InnerText;
+                _publisher = _rightsHolder;
+            }
             else
                 _rightsHolder = _publisher;
             var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _publisher));
@@ -880,7 +897,7 @@ licenseType = (""BY"" # Attributaion only
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
             _range = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
             var valueWords = _range.Split(' ');
-            var range = TextField(_scope, 0) == "WNT" ? "NT" : "<><> Check Range <><>";
+            var range = _scope == "NT" ? "NT" : "<><> Check Range <><>";
             _range = range + ":" + _range;
             if (_firstList.Contains(valueWords[0]))
             {
@@ -892,7 +909,7 @@ licenseType = (""BY"" # Attributaion only
                 _editionType = "<><> Check Edition <><>";
                 _edition = _range.Replace("ed.", "edition");
             }
-            _rangeDescription = TextField(_scope, 1);
+            _rangeDescription = TextField(rawScope, 1);
             if (_confidential == "No")
             {
                 ResetPromoStatements();
@@ -944,8 +961,10 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_confidential, "//confidential");
             SetValue(_dateCompleted, "//identification/dateCompleted");
             SetValue(_reapUrl, "//identification/systemId[@type='reap']");
-            SetValue(_publisher, "//agencies/translation");
-            SetValue(_publisher, "//agencies/publishing");
+            //SetValue(_publisher, "//agencies/translation"); -- we are using the agency in the constant above for all uploaded files.
+            //SetValue(_publisher, "//agencies/publishing");
+            SetValue(_options.TransAgency, "//agencies/translation"); 
+            SetValue(_options.TransAgency, "//agencies/publishing");
             SetValue(_rightsHolder, "//contact/rightsHolder");
             SetValue(_publisher, "//contact/rightsHolderLocal");
             SetValue(_countryCode, "//country/iso");

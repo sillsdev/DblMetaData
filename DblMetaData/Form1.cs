@@ -21,10 +21,12 @@ namespace DblMetaData
     public partial class Form1 : Form
     {
         private DblMetaDataScraper _scraper;
+        private Options _options;
 
         public Form1()
         {
             _scraper = new DblMetaDataScraper();
+            _options = new Options();
             InitializeComponent();
         }
 
@@ -51,7 +53,7 @@ namespace DblMetaData
 
         private void reap_Click(object sender, EventArgs e)
         {
-            webBrowser1.Url = new Uri("https://www.reap.insitehome.org/browse?type=language");
+            webBrowser1.Url = new Uri("https://www.reap.insitehome.org/advanced-search");
         }
 
         private void review_Click(object sender, EventArgs e)
@@ -61,6 +63,7 @@ namespace DblMetaData
 
         public void ReviewSiteData(string webDocData, string description)
         {
+            _scraper.Options = _options;
             try
             {
                 _scraper.Load(webDocData);
@@ -105,6 +108,12 @@ namespace DblMetaData
             reap.Location = new Point(reap.Location.X, buttonTop);
             review.Location = new Point(review.Location.X, buttonTop);
             save.Location = new Point(save.Location.X, buttonTop);
+            options.Location = new Point(options.Location.X, buttonTop);
+        }
+
+        private void options_Click(object sender, EventArgs e)
+        {
+            _options.ShowDialog();
         }
 
 

@@ -32,6 +32,7 @@
             this.reap = new System.Windows.Forms.Button();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.review = new System.Windows.Forms.Button();
+            this.options = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // save
@@ -61,7 +62,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(918, 618);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/browse?type=language", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/advanced-search", System.UriKind.Absolute);
             // 
             // review
             // 
@@ -73,11 +74,22 @@
             this.review.UseVisualStyleBackColor = true;
             this.review.Click += new System.EventHandler(this.review_Click);
             // 
+            // options
+            // 
+            this.options.Location = new System.Drawing.Point(606, 636);
+            this.options.Name = "options";
+            this.options.Size = new System.Drawing.Size(75, 23);
+            this.options.TabIndex = 4;
+            this.options.Text = "Options";
+            this.options.UseVisualStyleBackColor = true;
+            this.options.Click += new System.EventHandler(this.options_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(942, 669);
+            this.Controls.Add(this.options);
             this.Controls.Add(this.review);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.reap);
@@ -97,6 +109,7 @@
         private System.Windows.Forms.Button reap;
         private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button review;
+        private System.Windows.Forms.Button options;
 
     }
 }

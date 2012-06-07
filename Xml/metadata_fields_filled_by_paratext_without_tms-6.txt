@@ -1,0 +1,37 @@
+﻿Metadata fields filled by Paratext without TMS
+==============================================
+
+Note: These fields must be present and empty when loaded from metadata
+on disk.
+
+@ResourceURI
+
+Identification/SystemId[@type=`dbl']
+
+Identification/SystemId[@type=`paratext']
+
+Language/ScriptDirection
+
+ArchiveStatus/Comments
+
+Identification/IsResource
+
+Identification/BundleProducer
+
+Identification/BundleVersion
+
+Format
+
+Checking/ValidatedMarkers
+
+Checking/ValidatedVerses
+
+BookNames/Books
+
+Progress
+
+ArchiveStatus/ArchivistName
+
+ArchiveStatus/DateArchived
+
+ArchiveStatus/DateUpdated

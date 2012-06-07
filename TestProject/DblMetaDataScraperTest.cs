@@ -77,12 +77,13 @@ namespace TestProject
         public void ScrapeReapDataTest()
         {
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             Assert.AreEqual("Da Jesus Book", target.Title);
             Assert.AreEqual("hwc", target.LanguageCode);
             Assert.AreEqual("Hawai'i Creole English", target.LanguageName);
-            Assert.AreEqual("WNT:New Testament", target.Scope);
+            Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("No", target.Confidential);
             Assert.AreEqual("2000", target.DateCompleted);
             Assert.AreEqual("Wycliffe Inc.", target.Publisher);
@@ -108,12 +109,13 @@ namespace TestProject
         public void ScrapeReapDataTest2()
         {
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             target.Load(_tf.InputData("acuReap.xml"));
             target.ScrapeReapData();
             Assert.AreEqual("Yuse chichame aarmauri: Yamaram chicham", target.Title);
             Assert.AreEqual("acu", target.LanguageCode);
             Assert.AreEqual("Achuar-shiwiar", target.LanguageName);
-            Assert.AreEqual("WNT:New Testament", target.Scope);
+            Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("No", target.Confidential);
             Assert.AreEqual("1981", target.DateCompleted);
             Assert.AreEqual("Liga Bíblica Mundial del Hogar", target.Publisher);
@@ -139,23 +141,24 @@ namespace TestProject
         public void ScrapeReapDataTest3()
         {
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             target.Load(_tf.InputData("shu-chad.xhtml"));
             target.ScrapeReapData();
             Assert.AreEqual("أمثال واحدين من الملك سليمان، الجزء التاني", target.Title);
             Assert.AreEqual("shu", target.LanguageCode);
             Assert.AreEqual("Arabic, Chadian", target.LanguageName);
             Assert.AreEqual("Arabic", target.Script); 
-            Assert.AreEqual("PRO:Proverbs", target.Scope);
+            Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("Yes", target.Confidential);
             Assert.AreEqual("2010", target.DateCompleted);
             Assert.AreEqual("Alliance Biblique du Tchad", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/41224", target.ReapUrl);
             Assert.AreEqual("CD", target.CountryCode);
             Assert.AreEqual("Chad", target.CountryName);
-            Assert.AreEqual("<><> Check Range <><>:<><> Value not found <><>", target.Edition);
+            Assert.AreEqual("NT:<><> Value not found <><>", target.Edition);
             Assert.AreEqual("<><> Check Edition <><>", target.EditionType);
-            Assert.AreEqual("<><> Check Range <><>:<><> Value not found <><>", target.Range);
-            Assert.AreEqual("Proverbs", target.RangeDescription);
+            Assert.AreEqual("NT:<><> Value not found <><>", target.Range);
+            Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
         //[TestMethod()]
@@ -171,13 +174,14 @@ namespace TestProject
         public void ScrapeReapDataTest4()
         {
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             target.Load(_tf.InputData("acrReap.xhtml"));
             target.ScrapeReapData();
             Assert.AreEqual("I 'utz laj tzij re i dios", target.Title);
             Assert.AreEqual("acr", target.LanguageCode);
             Assert.AreEqual("Achi", target.LanguageName);
             Assert.AreEqual("Latin", target.Script);
-            Assert.AreEqual("WNT:New Testament", target.Scope);
+            Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("No", target.Confidential);
             Assert.AreEqual("2009", target.DateCompleted);
             Assert.AreEqual("Wycliffe Inc.", target.Publisher);
@@ -228,6 +232,7 @@ namespace TestProject
             var target = new DblMetaDataScraper_Accessor();
             const string publicationDescription = "My Description";
             target.PublicationDescription = publicationDescription;
+            target.Options = new Options();
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
@@ -235,7 +240,7 @@ namespace TestProject
             TestXpathValue("Da Jesus Book", "//identification/name", target);
             TestXpathValue("hwc", "//language/iso", target);
             TestXpathValue("Hawai'i Creole English", "//language/name", target);
-            TestXpathValue("WNT:New Testament", "//identification/scope", target);
+            TestXpathValue("NT", "//identification/scope", target);
             TestXpathValue("No", "//confidential", target);
             TestXpathValue("2000", "//identification/dateCompleted", target);
             TestXpathValue("http://www.reap.insitehome.org/handle/9284745/16286", "//identification/systemId[@type='reap']", target);
@@ -346,6 +351,7 @@ namespace TestProject
         {
             const string testName = "PromoStatementSchema";
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             target.Load(_tf.InputData("REAP record page.xml"));
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
