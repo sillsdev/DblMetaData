@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Xml;
 
 namespace DblMetaData
@@ -282,7 +283,7 @@ namespace DblMetaData
 
         #region dblMetaData (template)
         private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<?xml-model href=""metadata.rnc"" type=""application/relax-ng-compact-syntax""?>
+<?xml-model href=""metadataWbt-1.1.rnc"" type=""application/relax-ng-compact-syntax""?>
 <DBLScriptureProject resourceURI="""" xml:base=""http://purl.org/ubs/metadata/dc/terms/"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
   <identification>
     <systemId type=""dbl"" dcds:propertyURI=""identifier/dblID""/>
@@ -433,7 +434,7 @@ start =
            }
        | element scope {
            attribute dcds:propertyURI { ""title/scriptureScope"" },
-           text 
+           (""NT"" | ""BI"") 
            }
          # systemId[@type='dbl'] is overwritten by Paratext
          # systemId[@type='paratext'] is overwritten by Paratext
@@ -457,12 +458,12 @@ start =
       element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" },
       element translation { 
         attribute dcds:propertyURI { ""description/sponsorship"" },
-        text 
+        (""Wycliffe Inc."")
         },
       # publishing may be the same as translation (description/sponsorship) 
       element publishing {
         attribute dcds:propertyURI { ""publisher"" },
-        text 
+        (""Wycliffe Inc."")
         }
     },
     element language {
@@ -535,9 +536,9 @@ start =
         # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
         element description { text }, 
         # Protestant Bible (66 books) 
-        element range { text }, 
+        element range { (""Protestant New Testament (27 books)"" | ""Protestant Bible (66 books)"") }, 
         # Western Protestant order 
-        element tradition { text },
+        element tradition { ""Western Protestant order"" },
         element division {
           attribute id { ""OT"" | ""NT"" | ""DC"" },
           element books { 
@@ -662,8 +663,12 @@ start =
     }
   }
 nameLocal = element nameLocal { text }
-abbreviation = element abbreviation { xsd:NCName }
-abbreviationLocal = element abbreviationLocal { xsd:NCName }
+abbreviation = element abbreviation { 
+	xsd:string { pattern = ""[a-z][a-z][a-z]NT"" } 
+	}
+abbreviationLocal = element abbreviationLocal { 
+	xsd:string { pattern = ""[a-z][a-z][a-z]NT"" } 
+	}
 htmlMarkup = (text
          | element p { (text | htmlCharMarkup)+ }
          | element h1 { text }
@@ -927,7 +932,10 @@ licenseType = (""BY"" # Attributaion only
             var promoStatements = new PromoStatements();
             if (_publicationDescription != null)
             {
-                var trimmedDescription = _publicationDescription.Trim().Replace("\r\n", "<br/>\r\n");
+                var trimmedDescription0 = _publicationDescription.Trim();
+                var spaceB4NewLine = new Regex(@"\s+\n", RegexOptions.Multiline | RegexOptions.Compiled);
+                var trimmedDescription1 = spaceB4NewLine.Replace(trimmedDescription0, "\n");
+                var trimmedDescription = trimmedDescription1.Replace("\n", "<br/>\r\n");
                 if (trimmedDescription.Length > 0)
                     promoStatements.AddParagraph(trimmedDescription);
             }
@@ -1042,7 +1050,7 @@ licenseType = (""BY"" # Attributaion only
             sw.Close();
 
             var folder = Path.GetDirectoryName(p);
-            var schemaName = Path.Combine(folder, "metadata.rnc");
+            var schemaName = Path.Combine(folder, "metadataWbt-1.1.rnc");
             var schemaStreamWriter = new StreamWriter(schemaName);
             schemaStreamWriter.Write(DblMetaDataSchema);
             schemaStreamWriter.Close();

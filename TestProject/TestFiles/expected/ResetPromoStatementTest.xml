@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-model href="metadataWbt-1.1.rnc" type="application/relax-ng-compact-syntax"?><DBLScriptureProject resourceURI="" xml:base="http://purl.org/ubs/metadata/dc/terms/" xmlns:dcds="http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"><identification><systemId type="dbl" dcds:propertyURI="identifier/dblID" /><name dcds:propertyURI="title">Da Jesus Book</name><nameLocal>Da Jesus Book</nameLocal><abbreviation>hwcNT</abbreviation><abbreviationLocal>hwcNT</abbreviationLocal><scope dcds:propertyURI="title/scriptureScope">NT</scope><description dcds:propertyURI="description">1st ed.</description><dateCompleted dcds:propertyURI="date" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2000</dateCompleted><systemId type="tms" dcds:propertyURI="identifier/tmsID" /><systemId type="reap" dcds:propertyURI="identifier/reapID">http://www.reap.insitehome.org/handle/9284745/16286</systemId><systemId type="paratext" dcds:propertyURI="identifier/ptxID" /><isResource>No</isResource><bundleVersion>1.1</bundleVersion><bundleProducer>Paratext/7.3.0.60</bundleProducer></identification><confidential dcds:propertyURI="accessRights/confidential">No</confidential><agencies><etenPartner>WBT</etenPartner><translation dcds:propertyURI="description/sponsorship">Wycliffe Inc.</translation><publishing dcds:propertyURI="publisher">Wycliffe Inc.</publishing></agencies><language><iso dcds:propertyURI="language/iso" dcds:sesURI="http://purl.org/dc/terms/ISO639-3">hwc</iso><name dcds:propertyURI="subject/subjectLanguage" dcds:sesURI="http://purl.org/dc/terms/ISO639-3">Hawai'i Creole English</name><script dcds:propertyURI="language/script">Latin</script><scriptDirection dcds:propertyURI="language/scriptDirection">LTR</scriptDirection></language><country><iso dcds:propertyURI="coverage/spatial" dcds:sesURI="http://purl.org/dc/terms/ISO3166">US</iso><name dcds:propertyURI="subject/subjectCountry">United States</name></country><translation><type dcds:propertyURI="type/translationType">New</type><level dcds:propertyURI="audience">Common</level></translation><bookNames /><contents dcds:propertyURI="tableOfContents"><bookList id="default"><name>Da Jesus Book</name><nameLocal>Da Jesus Book</nameLocal><abbreviation>hwcNT</abbreviation><abbreviationLocal>hwcNT</abbreviationLocal><description>NT:1st ed.</description><range>Protestant New Testament (27 books)</range><tradition>Western Protestant order</tradition><division id="NT"><books><book code="MAT" /><book code="MRK" /><book code="LUK" /><book code="JHN" /><book code="ACT" /><book code="ROM" /><book code="1CO" /><book code="2CO" /><book code="GAL" /><book code="EPH" /><book code="PHP" /><book code="COL" /><book code="1TH" /><book code="2TH" /><book code="1TI" /><book code="2TI" /><book code="TIT" /><book code="PHM" /><book code="HEB" /><book code="JAS" /><book code="1PE" /><book code="2PE" /><book code="1JN" /><book code="2JN" /><book code="3JN" /><book code="JUD" /><book code="REV" /></books></division></bookList></contents><progress dcds:propertyURI="description/stage" /><checking><validatedMarkers dcds:propertyURI="conformsTo/validatedMarkers">Yes</validatedMarkers><validatedVerses dcds:propertyURI="conformsTo/validatedVerses">Yes</validatedVerses></checking><contact><rightsHolder dcds:propertyURI="rightsHolder">Wycliffe Inc.</rightsHolder><rightsHolderLocal dcds:propertyURI="rightsHolder/contactLocal">Wycliffe Inc.</rightsHolderLocal><rightsHolderAbbreviation dcds:propertyURI="rightsHolder/contactAbbreviation">WBT</rightsHolderAbbreviation><rightsHolderURL dcds:propertyURI="rightsHolder/contactURL">http://www.wycliffe.org</rightsHolderURL><rightsHolderFacebook dcds:propertyURI="rightsHolder/contactFacebook">http://www.facebook.com/WycliffeUSA</rightsHolderFacebook></contact><rights><dateLicense dcds:propertyURI="accessRights/pubLicenseDate" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-06-22</dateLicense><dateLicenseExpiry dcds:propertyURI="accessRights/pubLicenseExpiryDate" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2014-06-22</dateLicenseExpiry><rightsStatement dcds:propertyURI="rights" contentType="xhtml">© 2000, Wycliffe Inc. All rights reserved.</rightsStatement><publicationRights><allowOffline>Yes</allowOffline><allowAudio>Yes</allowAudio><allowFootnotes>Yes</allowFootnotes><allowCrossReferences>Yes</allowCrossReferences><allowNewPublishers>No</allowNewPublishers><denyPlatforms /><exchangeLicenseFCBH>No</exchangeLicenseFCBH></publicationRights></rights><promotion><promoVersionInfo dcds:propertyURI="description/pubPromoVersionInfo" contentType="xhtml"><p>Name<br />
+Description<br />
+editions</p>
+
+<h2>Copyright Information</h2>
+
+<p>© 2000, Wycliffe Inc. All rights reserved.</p>
+
+
+<p>This translation text is made available to you under the
+terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works.
+(<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>)
+In addition, you have permission to port the text to different file formats, as long as you
+do not change any of the text or punctuation of the Bible.</p>
+
+<p>You may share, copy, distribute, transmit, and extract portions
+or quotations from this work, provided that you include the above copyright
+information:</p>
+<ul>
+<li>You must give Attribution to the work.</li>
+<li>You do not sell this work for a profit.</li>
+<li>You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.</li>
+</ul>
+<p>Permissions beyond the scope of this license may be
+available if you <a href="mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org">contact
+us</a> with your request. If you want to revise a translation, use a translation
+in an adaptation, or use a translation commercially, we will consider your
+request.</p>
+<p>Printed book ISBN 0938978217</p>
+
+<p>First edition<br />
+<b>The New Testament</b><br />
+in <a href="http://www.ethnologue.com/show_language.asp?code=hwc">Hawai'i Creole English</a></p>
+</promoVersionInfo><promoEmail dcds:propertyURI="description/pubPromoEmail">&amp;lt;p&amp;gt;Name&amp;lt;br/&amp;gt;
+Description&amp;lt;br/&amp;gt;
+editions&amp;lt;/p&amp;gt;
+
+&amp;lt;h2&amp;gt;Copyright Information&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;© 2000, Wycliffe Inc. All rights reserved.&amp;lt;/p&amp;gt;
+
+
+&amp;lt;p&amp;gt;This translation text is made available to you under the
+terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works.
+(&amp;lt;a href=&amp;quot;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;quot;&amp;gt;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;lt;/a&amp;gt;)
+In addition, you have permission to port the text to different file formats, as long as you
+do not change any of the text or punctuation of the Bible.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;You may share, copy, distribute, transmit, and extract portions
+or quotations from this work, provided that you include the above copyright
+information:&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;You must give Attribution to the work.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You do not sell this work for a profit.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;Permissions beyond the scope of this license may be
+available if you &amp;lt;a href=&amp;quot;mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org&amp;quot;&amp;gt;contact
+us&amp;lt;/a&amp;gt; with your request. If you want to revise a translation, use a translation
+in an adaptation, or use a translation commercially, we will consider your
+request.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Printed book ISBN 0938978217&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;First edition&amp;lt;br/&amp;gt;
+&amp;lt;b&amp;gt;The New Testament&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;
+in &amp;lt;a href=&amp;quot;http://www.ethnologue.com/show_language.asp?code=hwc&amp;quot;&amp;gt;Hawai'i Creole English&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+</promoEmail></promotion><archiveStatus><archivistName dcds:propertyURI="contributor/archivist" /><dateArchived dcds:propertyURI="dateSubmitted" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-09-29</dateArchived><dateUpdated dcds:propertyURI="modified" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-09-29</dateUpdated><comments dcds:propertyURI="abstract" /></archiveStatus><format dcds:propertyURI="format" dcds:sesURI="http://purl.org/dc/terms/IMT">text/xml</format></DBLScriptureProject>

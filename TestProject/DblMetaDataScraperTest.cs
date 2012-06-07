@@ -359,10 +359,32 @@ namespace TestProject
             var process = new Process();
             process.StartInfo.WorkingDirectory = _tf.Output("");
             process.StartInfo.FileName = Path.Combine("..", "..", "..", "xml", "jing.jar");
-            process.StartInfo.Arguments = "-c metadata.rnc " + testName + ".xml";
+            process.StartInfo.Arguments = "-c metadataWbt-1.1.rnc " + testName + ".xml";
             process.Start();
             process.WaitForExit();
             Assert.AreEqual(0, process.ExitCode);
+        }
+
+        [TestMethod()]
+        public void ResetPromoStatementTest()
+        {
+            const string testName = "ResetPromoStatementTest";
+            var target = new DblMetaDataScraper();
+            target.Options = new Options();
+            target.Load(_tf.InputData("REAP record page.xml"));
+            target.ScrapeReapData();
+            target.PublicationDescription = @"Name
+
+Description
+  
+
+editions
+";
+            target.ResetPromoStatements();
+            target.InsertDataInDblMetaData();
+            var fileName = testName + ".xml";
+            target.Save(_tf.Output(fileName));
+            XmlAssert.AreEqual(_tf.Expected(fileName), _tf.Output(fileName), "Reset Promo statement error");
         }
     }
 }
