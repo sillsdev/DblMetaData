@@ -53,8 +53,8 @@ start =
         attribute dcds:propertyURI { "description/sponsorship" },
         text 
         },
-      # publishing may be the same as translation (description/sponsorship) 
-      element publishing {
+      # publisher may be the same as translation (description/sponsorship) 
+      element publisher {
         attribute dcds:propertyURI { "publisher" },
         text 
         }

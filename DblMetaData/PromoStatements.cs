@@ -75,7 +75,7 @@ request.</p>
 
         public void AddDescription(string edition, string range, string language, string isocode)
         {
-            if (edition == "1st ed.")
+            if (edition == "First")
             {
                 _sb.Append("<p>First edition<br/>\r\n");
             }

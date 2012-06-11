@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SIL")]
 [assembly: AssemblyProduct("DblDataPrep")]
-[assembly: AssemblyCopyright("Copyright © SIL International 2011")]
+[assembly: AssemblyCopyright("Copyright © SIL International 2011-2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,8 +33,8 @@ using System.Resources;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.10.0.53")]
-[assembly: AssemblyFileVersion("1.10.0.53")]
+[assembly: AssemblyVersion("1.11.0.54")]
+[assembly: AssemblyFileVersion("1.11.0.53")]
 
 [assembly: System.Runtime.CompilerServices.InternalsVisibleTo("TestProject")]
 [assembly: NeutralResourcesLanguageAttribute("en")]

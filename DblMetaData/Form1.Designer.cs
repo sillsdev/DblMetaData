@@ -37,7 +37,7 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(855, 636);
+            this.save.Location = new System.Drawing.Point(855, 757);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(75, 23);
             this.save.TabIndex = 3;
@@ -47,7 +47,7 @@
             // 
             // reap
             // 
-            this.reap.Location = new System.Drawing.Point(687, 636);
+            this.reap.Location = new System.Drawing.Point(687, 757);
             this.reap.Name = "reap";
             this.reap.Size = new System.Drawing.Size(75, 23);
             this.reap.TabIndex = 1;
@@ -60,13 +60,13 @@
             this.webBrowser1.Location = new System.Drawing.Point(12, 12);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(918, 618);
+            this.webBrowser1.Size = new System.Drawing.Size(918, 739);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/advanced-search", System.UriKind.Absolute);
             // 
             // review
             // 
-            this.review.Location = new System.Drawing.Point(774, 636);
+            this.review.Location = new System.Drawing.Point(774, 757);
             this.review.Name = "review";
             this.review.Size = new System.Drawing.Size(75, 23);
             this.review.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             // options
             // 
-            this.options.Location = new System.Drawing.Point(606, 636);
+            this.options.Location = new System.Drawing.Point(606, 757);
             this.options.Name = "options";
             this.options.Size = new System.Drawing.Size(75, 23);
             this.options.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(942, 669);
+            this.ClientSize = new System.Drawing.Size(942, 792);
             this.Controls.Add(this.options);
             this.Controls.Add(this.review);
             this.Controls.Add(this.webBrowser1);

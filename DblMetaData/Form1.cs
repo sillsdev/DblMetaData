@@ -102,9 +102,9 @@ namespace DblMetaData
             Control control = (Control) sender;
 
             int deltaWidth = control.Size.Width - 960;
-            int deltaHeight = control.Size.Height - 714;
-            webBrowser1.Size = new Size(918 + deltaWidth, 618 + deltaHeight);
-            int buttonTop = deltaHeight + 636;
+            int deltaHeight = control.Size.Height - 837;
+            webBrowser1.Size = new Size(918 + deltaWidth, 739 + deltaHeight);
+            int buttonTop = deltaHeight + 757;
             reap.Location = new Point(reap.Location.X, buttonTop);
             review.Location = new Point(review.Location.X, buttonTop);
             save.Location = new Point(save.Location.X, buttonTop);

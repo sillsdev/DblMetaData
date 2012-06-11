@@ -70,6 +70,7 @@
       <Name>DblMetaData</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Shadow Include="Test References\DblMetaData.accessor" />
   </ItemGroup>

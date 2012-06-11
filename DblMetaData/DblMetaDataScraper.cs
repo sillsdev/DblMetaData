@@ -14,6 +14,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -22,6 +23,15 @@ namespace DblMetaData
     public class DblMetaDataScraper
     {
         #region Properties
+        #region Confidential
+        private string _confidential;
+        public string Confidential
+        {
+            get { return _confidential; }
+            set { _confidential = value; }
+        }
+        #endregion Confidential
+
         #region Title
         private string _title;
         public string Title
@@ -30,6 +40,42 @@ namespace DblMetaData
             set { _title = value; }
         }
         #endregion Title
+
+        #region Scope
+        private string _scope;
+        public string Scope
+        {
+            get { return _scope; }
+            set { _scope = value; }
+        }
+        #endregion Scope
+
+        #region DateCompleted
+        private string _dateCompleted;
+        public string DateCompleted
+        {
+            get { return _dateCompleted; }
+            set { _dateCompleted = value; }
+        }
+        #endregion DateCompleted
+
+        #region ReapUrl
+        private string _reapUrl;
+        public string ReapUrl
+        {
+            get { return _reapUrl; }
+            set { _reapUrl = value; }
+        }
+        #endregion ReapUrl
+
+        #region TranslationType
+        private string _translationType;
+        public string TranslationType
+        {
+            get { return _translationType; }
+            set { _translationType = value; }
+        }
+        #endregion TranslationType
 
         #region LanguageCode
         private string _languageCode;
@@ -49,86 +95,59 @@ namespace DblMetaData
         }
         #endregion LanguageName
 
-        #region Scope
-        private string _scope;
-        public string Scope
+        #region Script
+        private string _script;
+        public string Script
         {
-            get { return _scope; }
-            set { _scope = value; }
+            get { return _script; }
+            set { _script = value; }
         }
-        #endregion Scope
+        #endregion Script
 
-        #region Abbreviation
-        private string _abbreviation;
-        public string Abbreviation
+        #region ScriptDirection
+        private string _scriptDirection;
+        public string ScriptDirection
         {
-            get { return _abbreviation; }
-            set { _abbreviation = value; }
+            get { return _scriptDirection; }
+            set { _scriptDirection = value; }
         }
-        #endregion Abbreviation
+        #endregion ScriptDirection
 
-        #region Confidential
-        private string _confidential;
-        public string Confidential
+        #region Ldml
+        private string _ldml = "en";
+        public string Ldml
         {
-            get { return _confidential; }
-            set { _confidential = value; }
+            get { return _ldml; }
+            set { _ldml = value; }
         }
-        #endregion Confidential
+        #endregion Ldml
 
-        #region DateCompleted
-        private string _dateCompleted;
-        public string DateCompleted
+        #region Rod - registry of dialects
+        private string _rod = string.Empty;
+        public string Rod
         {
-            get { return _dateCompleted; }
-            set { _dateCompleted = value; }
+            get { return _rod; }
+            set { _rod = value; }
         }
-        #endregion DateCompleted
+        #endregion Rod
 
-        #region Publisher
-        private string _publisher;
-        public string Publisher
+        #region DialectName
+        private string _dialectName = string.Empty;
+        public string DialectName
         {
-            get { return _publisher; }
-            set { _publisher = value; }
+            get { return _dialectName; }
+            set { _dialectName = value; }
         }
-        #endregion Publisher
+        #endregion DialectName
 
-        #region RightsHolder
-        private string _rightsHolder;
-        public string RightsHolder
+        #region NumeralScript
+        private string _numeralScript = string.Empty;
+        public string NumeralScript
         {
-            get { return _rightsHolder; }
-            set { _rightsHolder = value; }
+            get { return _numeralScript; }
+            set { _numeralScript = value; }
         }
-        #endregion RightsHolder
-
-        #region PublisherUrl
-        private string _publisherUrl;
-        public string PublisherUrl
-        {
-            get { return _publisherUrl; }
-            set { _publisherUrl = value; }
-        }
-        #endregion PublisherUrl
-
-        #region PublisherFacebook
-        private string _publisherFacebook;
-        public string PublisherFacebook
-        {
-            get { return _publisherFacebook; }
-            set { _publisherFacebook = value; }
-        }
-        #endregion PublisherFacebook
-
-        #region ReapUrl
-        private string _reapUrl;
-        public string ReapUrl
-        {
-            get { return _reapUrl; }
-            set { _reapUrl = value; }
-        }
-        #endregion ReapUrl
+        #endregion NumeralScript
 
         #region CountryCode
         private string _countryCode;
@@ -148,41 +167,77 @@ namespace DblMetaData
         }
         #endregion CountryName
 
-        #region Edition
-        private string _edition;
-        public string Edition
+        #region Abbreviation
+        private string _abbreviation;
+        public string Abbreviation
         {
-            get { return _edition; }
-            set { _edition = value; }
+            get { return _abbreviation; }
+            set { _abbreviation = value; }
         }
-        #endregion Edition
+        #endregion Abbreviation
 
-        #region EditionType
-        private string _editionType;
-        public string EditionType
+        #region Description
+        private string _description = string.Empty;
+        public string Description
         {
-            get { return _editionType; }
-            set { _editionType = value; }
+            get { return _description; }
+            set { _description = value; }
         }
-        #endregion EditionType
+        #endregion Description
 
-        #region Range
-        private string _range;
-        public string Range
+        #region Publisher
+        private string _publisher;
+        public string Publisher
         {
-            get { return _range; }
-            set { _range = value; }
+            get { return _publisher; }
+            set { _publisher = value; }
         }
-        #endregion Range
+        #endregion Publisher
 
-        #region RangeDescription
-        private string _rangeDescription;
-        public string RangeDescription
+        #region Contributor
+        private string _contributor;
+        public string Contributor
         {
-            get { return _rangeDescription; }
-            set { _rangeDescription = value; }
+            get { return _contributor; }
+            set { _contributor = value; }
         }
-        #endregion RangeDescription
+        #endregion Contributor
+
+        #region RightsHolder
+        private string _rightsHolder;
+        public string RightsHolder
+        {
+            get { return _rightsHolder; }
+            set { _rightsHolder = value; }
+        }
+        #endregion RightsHolder
+
+        #region RightsHolderAbbr
+        private string _rightsHolderAbbr;
+        public string RightsHolderAbbr
+        {
+            get { return _rightsHolderAbbr; }
+            set { _rightsHolderAbbr = value; }
+        }
+        #endregion RightsHolderAbbr
+
+        #region PublisherUrl
+        private string _publisherUrl;
+        public string PublisherUrl
+        {
+            get { return _publisherUrl; }
+            set { _publisherUrl = value; }
+        }
+        #endregion PublisherUrl
+
+        #region PublisherFacebook
+        private string _publisherFacebook;
+        public string PublisherFacebook
+        {
+            get { return _publisherFacebook; }
+            set { _publisherFacebook = value; }
+        }
+        #endregion PublisherFacebook
 
         #region RightsStatement
         private string _rightsStatement;
@@ -229,24 +284,6 @@ namespace DblMetaData
         }
         #endregion PublicationDescription
 
-        #region Script
-        private string _script;
-        public string Script
-        {
-            get { return _script; }
-            set { _script = value; }
-        }
-        #endregion Script
-
-        #region ScriptDirection
-        private string _scriptDirection;
-        public string ScriptDirection
-        {
-            get { return _scriptDirection; }
-            set { _scriptDirection = value; }
-        }
-        #endregion ScriptDirection
-
         #region Options
         private Options _options;
         public Options Options
@@ -282,53 +319,54 @@ namespace DblMetaData
         }
 
         #region dblMetaData (template)
-        private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""utf-8""?>
-<?xml-model href=""metadataWbt-1.1.rnc"" type=""application/relax-ng-compact-syntax""?>
-<DBLScriptureProject resourceURI="""" xml:base=""http://purl.org/ubs/metadata/dc/terms/"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
+        private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<?xml-model href=""metadataWbt-1.2.rnc"" type=""application/relax-ng-compact-syntax""?>
+<DBLMetadata xmlns:ns0=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"" id=""2880c78491b2f8ce"" revision=""3"" type=""text"" typeVersion=""1.2"" xml:base=""http://purl.org/ubs/metadata/dc/terms/"">
   <identification>
-    <systemId type=""dbl"" dcds:propertyURI=""identifier/dblID""/>
-    <name dcds:propertyURI=""title"">Da Jesus book</name>
-    <nameLocal>Da Jesus book</nameLocal>
-    <abbreviation>hwcNT</abbreviation>
-    <abbreviationLocal>hwcNT</abbreviationLocal>
-    <scope dcds:propertyURI=""title/scriptureScope"">NT</scope>
-    <description dcds:propertyURI=""description"">1st ed.</description>
-    <dateCompleted dcds:propertyURI=""date"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2000</dateCompleted>
-    <systemId type=""tms"" dcds:propertyURI=""identifier/tmsID""/>
-    <systemId type=""reap"" dcds:propertyURI=""identifier/reapID"" >http://www.reap.insitehome.org/handle/9284745/16286</systemId>
-    <systemId type=""paratext"" dcds:propertyURI=""identifier/ptxID""/>
-    <isResource>No</isResource>
-    <bundleVersion>1.1</bundleVersion>
-    <bundleProducer>Paratext/7.3.0.60</bundleProducer>
+    <name ns0:propertyURI=""title"" />
+    <nameLocal />
+    <abbreviation />
+    <abbreviationLocal />
+    <scope ns0:propertyURI=""title/scriptureScope"" />
+    <description ns0:propertyURI=""description"" />
+    <dateCompleted ns0:propertyURI=""date"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"" />
+    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"" />
+    <systemId type=""reap"" ns0:propertyURI=""identifier/reapID"" />
+    <systemId type=""paratext"" ns0:propertyURI=""identifier/ptxID"" />
+    <bundleProducer/>
   </identification>
-  <confidential dcds:propertyURI=""accessRights/confidential"">No</confidential>
+  <confidential ns0:propertyURI=""accessRights/confidential"">false</confidential>
   <agencies>
     <etenPartner>WBT</etenPartner>
-    <translation dcds:propertyURI=""description/sponsorship"">Wycliffe Inc.</translation>
-    <publishing dcds:propertyURI=""publisher"">Wycliffe Inc.</publishing>
+    <creator ns0:propertyURI=""creator"">Wycliffe Inc.</creator>
+    <publisher ns0:propertyURI=""publisher"">Wycliffe Inc.</publisher>
+    <contributor ns0:propertyURI=""contributor"" />
   </agencies>
   <language>
-    <iso dcds:propertyURI=""language/iso"" dcds:sesURI=""http://purl.org/dc/terms/ISO639-3"">hwc</iso>
-    <name dcds:propertyURI=""subject/subjectLanguage"" dcds:sesURI=""http://purl.org/dc/terms/ISO639-3"">Hawai'i Creole English</name>
-    <script dcds:propertyURI=""language/script"">Latin</script>
-    <scriptDirection dcds:propertyURI=""language/scriptDirection"">LTR</scriptDirection>
+    <iso ns0:propertyURI=""language/iso"" ns0:sesURI=""http://purl.org/dc/terms/ISO639-3"">eng</iso>
+    <name ns0:propertyURI=""subject/subjectLanguage"" ns0:sesURI=""http://purl.org/dc/terms/ISO639-3"">English</name>
+    <ldml ns0:propertyURI=""language/ldml"">en</ldml>
+    <rod ns0:propertyURI=""language/rod"" />
+    <script ns0:propertyURI=""language/script"">Latin</script>
+    <scriptDirection ns0:propertyURI=""language/scriptDirection"">LTR</scriptDirection>
+    <numerals ns0:propertyURI=""language/numerals"" />
   </language>
   <country>
-    <iso dcds:propertyURI=""coverage/spatial"" dcds:sesURI=""http://purl.org/dc/terms/ISO3166"">US</iso>
-    <name dcds:propertyURI=""subject/subjectCountry"">United States</name>
+    <iso ns0:propertyURI=""coverage/spatial"" ns0:sesURI=""http://purl.org/dc/terms/ISO3166"">US</iso>
+    <name ns0:propertyURI=""subject/subjectCountry"">United States</name>
   </country>
-  <translation>
-    <type dcds:propertyURI=""type/translationType"">New</type>
-    <level dcds:propertyURI=""audience"">Common</level>
-  </translation>
+  <type>
+    <translationType ns0:propertyURI=""type/translationType"">Revision</translationType>
+    <audience ns0:propertyURI=""audience"">Common</audience>
+  </type>
   <bookNames/>
-  <contents dcds:propertyURI=""tableOfContents"">
-    <bookList id=""default"">
-      <name>Da Jesus book</name>
-      <nameLocal>Da Jesus book</nameLocal>
-      <abbreviation>hwcNT</abbreviation>
-      <abbreviationLocal>hwcNT</abbreviationLocal>
-      <description>NT: 1st Edition</description>
+  <contents ns0:propertyURI=""tableOfContents"">
+    <bookList>
+      <name>Good News Translation</name>
+      <nameLocal>Good News Translation</nameLocal>
+      <abbreviation>gntNT</abbreviation>
+      <abbreviationLocal>gntNT</abbreviationLocal>
+      <description>NT</description>
       <range>Protestant New Testament (27 books)</range>
       <tradition>Western Protestant order</tradition>
       <division id=""NT"">
@@ -364,44 +402,28 @@ namespace DblMetaData
       </division>
     </bookList>
   </contents>
-  <progress dcds:propertyURI=""description/stage""/>
-  <checking>
-    <validatedMarkers dcds:propertyURI=""conformsTo/validatedMarkers"">Yes</validatedMarkers>
-    <validatedVerses dcds:propertyURI=""conformsTo/validatedVerses"">Yes</validatedVerses>
-  </checking>
   <contact>
-    <rightsHolder dcds:propertyURI=""rightsHolder"">Wycliffe Inc.</rightsHolder>
-    <rightsHolderLocal dcds:propertyURI=""rightsHolder/contactLocal"">Wycliffe Inc.</rightsHolderLocal>
-    <rightsHolderAbbreviation dcds:propertyURI=""rightsHolder/contactAbbreviation"">WBT</rightsHolderAbbreviation>
-    <rightsHolderURL dcds:propertyURI=""rightsHolder/contactURL"">http://www.wycliffe.org</rightsHolderURL>
-    <rightsHolderFacebook dcds:propertyURI=""rightsHolder/contactFacebook"">http://www.facebook.com/WycliffeUSA</rightsHolderFacebook>
+    <rightsHolder ns0:propertyURI=""rightsHolder""/>
+    <rightsHolderLocal ns0:propertyURI=""rightsHolder/contactLocal"" />
+    <rightsHolderAbbreviation ns0:propertyURI=""rightsHolder/contactAbbreviation"" />
+    <rightsHolderURL ns0:propertyURI=""rightsHolder/contactURL"" />
+    <rightsHolderFacebook ns0:propertyURI=""rightsHolder/contactFacebook"" />
   </contact>
-  <rights>
-    <dateLicense dcds:propertyURI=""accessRights/pubLicenseDate"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2011-06-22</dateLicense>
-    <dateLicenseExpiry dcds:propertyURI=""accessRights/pubLicenseExpiryDate"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2014-06-22</dateLicenseExpiry>
-    <rightsStatement dcds:propertyURI=""rights"" contentType=""xhtml"">© 2000, Wycliffe Inc. All Rights Reserved.</rightsStatement>
-    <publicationRights>
-      <allowOffline>Yes</allowOffline>
-      <allowAudio>Yes</allowAudio>
-      <allowFootnotes>Yes</allowFootnotes>
-      <allowCrossReferences>Yes</allowCrossReferences>
-      <allowNewPublishers>No</allowNewPublishers>
-      <denyPlatforms />
-      <exchangeLicenseFCBH>No</exchangeLicenseFCBH>
-    </publicationRights>
-  </rights>
+  <copyright>
+    <statement contentType=""xhtml"" ns0:propertyURI=""rights"" />
+  </copyright>
   <promotion>
-    <promoVersionInfo dcds:propertyURI=""description/pubPromoVersionInfo"" contentType=""xhtml""></promoVersionInfo>
-    <promoEmail dcds:propertyURI=""description/pubPromoEmail""></promoEmail>
+    <promoVersionInfo contentType=""xhtml"" ns0:propertyURI=""description/pubPromoVersionInfo"" />
+    <promoEmail contentType=""xhtml"" ns0:propertyURI=""description/pubPromoEmail"" />
   </promotion>
   <archiveStatus>
-    <archivistName dcds:propertyURI=""contributor/archivist""/>
-    <dateArchived dcds:propertyURI=""dateSubmitted"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2011-09-29</dateArchived>
-    <dateUpdated dcds:propertyURI=""modified"" dcds:sesURI=""http://purl.org/dc/terms/W3CDTF"">2011-09-29</dateUpdated>
-    <comments dcds:propertyURI=""abstract""/>
+    <archivistName ns0:propertyURI=""contributor/archivist"" />
+    <dateArchived ns0:propertyURI=""dateSubmitted"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"">2012-03-12T17:51:32.7907868+00:00</dateArchived>
+    <dateUpdated ns0:propertyURI=""modified"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"">2012-03-17T14:21:02.8293104+00:00</dateUpdated>
+    <comments ns0:propertyURI=""abstract"">DBL example bundle</comments>
   </archiveStatus>
-  <format dcds:propertyURI=""format"" dcds:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
-</DBLScriptureProject>";
+  <format ns0:propertyURI=""format"" ns0:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
+</DBLMetadata>";
         #endregion dblMetaData (template)
 
         #region dblMetaDataSchema
@@ -409,9 +431,11 @@ namespace DblMetaData
 namespace dcds = ""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/""
 
 start =
-  element DBLScriptureProject {
-    # resourceURI is overwritten by Paratext
-    attribute resourceURI { xsd:anyURI },
+  element DBLMetadata {
+    attribute id { xsd:string { pattern = ""[0-9abcdef]+"" } },
+    attribute type { ""text"" },
+    attribute typeVersion { ""1.2"" },
+    attribute revision { xsd:decimal },
     attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" },
     element identification {
       (abbreviation
@@ -436,34 +460,33 @@ start =
            attribute dcds:propertyURI { ""title/scriptureScope"" },
            (""NT"" | ""BI"") 
            }
-         # systemId[@type='dbl'] is overwritten by Paratext
          # systemId[@type='paratext'] is overwritten by Paratext
        | element systemId {
-           attribute type { ""dbl"" | ""tms"" | ""reap"" | ""paratext"" | ""biblica"" },
+           attribute type { ""tms"" | ""reap"" | ""paratext"" | ""biblica"" },
            attribute dcds:propertyURI { ""identifier/dblID"" | ""identifier/tmsID"" | ""identifier/reapID"" | ""identifier/ptxID"" | ""identifier/biblicaID"" },
            text 
            })+,
-      # isResource is overwritten by Paratext
-      element isResource { ""Yes"" | ""No"" },
-      # bundleVersion is overwritten by Paratext
-      element bundleVersion { xsd:decimal },
       # bundleProducer is overwritten by Paratext
       element bundleProducer { text }
     },
     element confidential {
       attribute dcds:propertyURI { ""accessRights/confidential"" },
-      (""Yes"" | ""No"")
+      (""true"" | ""false"")
     },
     element agencies {
       element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" },
-      element translation { 
-        attribute dcds:propertyURI { ""description/sponsorship"" },
+      element creator { 
+        attribute dcds:propertyURI { ""creator"" },
         (""Wycliffe Inc."")
         },
-      # publishing may be the same as translation (description/sponsorship) 
-      element publishing {
+      # publisher may be the same as translation (description/sponsorship) 
+      element publisher {
         attribute dcds:propertyURI { ""publisher"" },
         (""Wycliffe Inc."")
+        },
+      element contributor {
+        attribute dcds:propertyURI { ""contributor"" },
+        text
         }
     },
     element language {
@@ -473,8 +496,16 @@ start =
         xsd:string { pattern = ""[a-z][a-z][a-z]"" } 
         },
       element name { 
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
         attribute dcds:propertyURI { ""subject/subjectLanguage"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" }, 
+        text 
+        },
+      element ldml { 
+        attribute dcds:propertyURI { ""language/ldml"" },
+        text 
+        },
+      element rod { 
+        attribute dcds:propertyURI { ""language/rod"" },
         text 
         },
       element script {
@@ -486,6 +517,10 @@ start =
       element scriptDirection {
         attribute dcds:propertyURI { ""language/scriptDirection"" },
         (""LTR"" | ""RTL"") 
+        },
+      element numerals {
+        attribute dcds:propertyURI { ""language/numerals"" },
+        text
         }
     },
     element country { 
@@ -498,12 +533,12 @@ start =
       attribute dcds:propertyURI { ""subject/subjectCountry"" }, 
       text 
       }},
-    element translation { 
-      element type { 
+    element type { 
+      element translationType { 
         attribute dcds:propertyURI { ""type/translationType"" }, 
         (""First"" | ""New"" | ""Revision"") 
         }, 
-      element level {
+      element audience {
         attribute dcds:propertyURI { ""audience"" }, 
         ( ""Basic"" | ""Common"" | ""Common - Literary"" | ""Literary"" | ""Liturgical"")
         }},
@@ -536,7 +571,7 @@ start =
         # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
         element description { text }, 
         # Protestant Bible (66 books) 
-        element range { (""Protestant New Testament (27 books)"" | ""Protestant Bible (66 books)"") }, 
+        element range { (""Protestant New Testament (27 books)"" | ""Protestant Bible (66 books)"" | ""Bible with DC (Anglican Tradition)"") }, 
         # Western Protestant order 
         element tradition { ""Western Protestant order"" },
         element division {
@@ -545,27 +580,6 @@ start =
             element book { 
               attribute code { bookCode }
             }+ } }+ }+ },
-    # 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview 
-    # progress is overwritten by Paratext
-    element progress {
-      attribute dcds:propertyURI { ""description/stage"" },
-      element book {
-        attribute code { bookCode },
-        attribute stage {""1"" | ""2"" | ""3"" | ""4"" | ""-1""}
-      }*
-    },
-    element checking {
-      # validatedMarkers is overwritten by Paratext
-      element validatedMarkers {
-        attribute dcds:propertyURI { ""conformsTo/validatedMarkers"" },
-        (""Yes"" | ""No"")
-      },
-      # validatedVerses is overwritten by Paratext
-      element validatedVerses {
-        attribute dcds:propertyURI { ""conformsTo/validatedVerses"" },
-        (""Yes"" | ""No"")
-      }
-    },
 	# Default to Publisher (from agencies) 
     element contact {
       element rightsHolder {
@@ -590,34 +604,12 @@ start =
         xsd:anyURI
       }
     },
-    element rights {
-	  # yyyy-mm-dd 
-      element dateLicense {
-        attribute dcds:propertyURI { ""accessRights/pubLicenseDate"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:date
-      },
-	  # yyyy-mm-dd (must be after dateLicense) 
-      element dateLicenseExpiry {
-        attribute dcds:propertyURI { ""accessRights/pubLicenseExpiryDate"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:date
-      },
+    element copyright {
 	  # For example: ©1983, 1992 SIL International 
-      element rightsStatement {
+      element statement {
         attribute contentType { ""xhtml"" },
         attribute dcds:propertyURI { ""rights"" },
         htmlMarkup
-      },
-      element publicationRights {
-        element allowOffline { ""Yes"" | ""No"" },
-        element allowAudio { ""Yes"" | ""No"" },
-        element allowFootnotes { ""Yes"" | ""No"" },
-        element allowCrossReferences { ""Yes"" | ""No"" },
-		# default to No? 
-        element allowNewPublishers { ""Yes"" | ""No"" },
-        element denyPlatforms { empty },
-        element exchangeLicenseFCBH { licenseType | ""No"" }
       }
     },
     element promotion {
@@ -627,8 +619,9 @@ start =
 		htmlMarkup
       },
       element promoEmail {
+        attribute contentType { ""xhtml"" },
         attribute dcds:propertyURI { ""description/pubPromoEmail"" },
-        text
+        htmlMarkup
       }
     },
     element archiveStatus {
@@ -642,13 +635,13 @@ start =
       element dateArchived {
         attribute dcds:propertyURI { ""dateSubmitted"" },
         attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:date
+        xsd:dateTime
       },
       # dateUpdated is overwritten by Paratext
       element dateUpdated {
         attribute dcds:propertyURI { ""modified"" },
         attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:date
+        xsd:dateTime
       },
       element comments {
         attribute dcds:propertyURI { ""abstract"" },
@@ -664,10 +657,10 @@ start =
   }
 nameLocal = element nameLocal { text }
 abbreviation = element abbreviation { 
-	xsd:string { pattern = ""[a-z][a-z][a-z]NT"" } 
+	xsd:string { pattern = ""[a-z][a-z][a-z](NT|BI)"" } 
 	}
 abbreviationLocal = element abbreviationLocal { 
-	xsd:string { pattern = ""[a-z][a-z][a-z]NT"" } 
+	xsd:string { pattern = ""[a-z][a-z][a-z](NT|BI)"" } 
 	}
 htmlMarkup = (text
          | element p { (text | htmlCharMarkup)+ }
@@ -693,8 +686,7 @@ htmlCharMarkup = (element a {
          | element br { empty }
          | element strong { text }
          | element b { text }
-         | element em { text }
-         | element i { text })
+         | element em { text })
 bookCode = (""GEN""   # Genesis
          | ""EXO"" # Exodus
          | ""LEV"" # Leviticus
@@ -825,10 +817,10 @@ licenseType = (""BY"" # Attributaion only
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
-<publisher name=""Wycliffe Inc."" rights=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
-<publisher name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
-<publisher name=""Bible League International"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
-<publisher name=""Bible League"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher abbr=""WBT"" name=""Wycliffe Inc."" rights=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher abbr=""BLI"" name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher abbr=""BLI"" name=""Bible League International"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
+<publisher abbr=""BLI"" name=""Bible League"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <!-- publisher name="" url="" fb=""/ -->
 </root>
 ";
@@ -855,9 +847,39 @@ licenseType = (""BY"" # Attributaion only
 
         public void ScrapeReapData()
         {
+            _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "false" : "true";
             _title = GetValue("//default:title");
+
+            // Scope
+            var rawScope = "WNT:New Testament";
+            if (!_options.AlwaysUseNT)
+                rawScope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
+            _scope = TextField(rawScope, 0).Substring(1);
+
+            _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
+            _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
+
+            // TranslationType
+            var typeWords = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]").Split(' ');
+            _translationType = _firstList.Contains(typeWords[0]) ? "First" : "Revision";
+
             _languageCode = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 0);
             _languageName = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 1);
+
+            // Rod - dialect
+            _rod = GetField("//default:tr[default:td='dc.subject.rod']/default:td[2]", 0);
+            if (_rod.StartsWith("<>"))
+                _rod = string.Empty;
+            try
+            {
+                _dialectName = GetField("//default:tr[default:td='dc.subject.rod']/default:td[2]", 1);
+            }
+            catch (Exception)
+            {
+                _dialectName = "";
+            }
+
+            // Script & Direction
             try
             {
                 _script = GetField("//default:tr[default:td='dc.language.script']/default:td[2]", 1);
@@ -868,63 +890,101 @@ licenseType = (""BY"" # Attributaion only
                 _script = "Latin";
                 _scriptDirection = "LTR";
             }
-            var rawScope = "WNT:New Testament";
-            if (!_options.AlwaysUseNT)
-                rawScope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
-            _scope = TextField(rawScope, 0).Substring(1);
-            _abbreviation = _languageCode + _scope;
-            _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "No" : "Yes";
-            _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content");
-            _publisher = GetValue("//default:meta[@name='DC.publisher'][1]/@content");
+
+            _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
+            _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
+            SetAbbreviation();
+            SetDescription();
+
+            // Publisher
+            _publisher = GetValue("//default:tr[default:td='dc.publisher']/default:td[2]");
+            
+            SetRightsHolder();
+            SetRightsHolderUrl();
+            SetRightsHolderFacebook();
+            SetRightsHolderStatement();
+
+            _isbn = GetValue("//default:tr[default:td='dc.identifier.isbn']/default:td[2]");
+
+            // PromoInfo
+            if (_confidential == "false")
+            {
+                ResetPromoStatements();
+            }
+            else
+            {
+                _promoInfo = "<><>No promoVersionInfo<><>";
+            }
+
+            SetPromoEmail();
+        }
+
+        public void SetRightsHolder()
+        {
             if (_publisher.ToLower().Contains("wycliffe"))
                 _publisher = "Wycliffe Inc.";
+
             var rightsHolderNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@rights", _publisher));
             if (rightsHolderNode != null)
             {
                 _rightsHolder = rightsHolderNode.InnerText;
                 _publisher = _rightsHolder;
             }
-            else
-                _rightsHolder = _publisher;
-            var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _publisher));
+            if (!_options.PublisherRights)
+                _rightsHolder = _options.TransAgency;
+
+            var rightsHolderAbbrNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@abbr", _rightsHolder));
+            if (rightsHolderAbbrNode != null)
+                _rightsHolderAbbr = rightsHolderAbbrNode.InnerText;
+        }
+
+        public void SetRightsHolderUrl()
+        {
+            var publisherUrlNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@url", _rightsHolder));
             if (publisherUrlNode != null)
                 _publisherUrl = publisherUrlNode.InnerText;
             else
                 _publisherUrl = "<><> Publisher URL <><>";
-            var publisherFbNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@fb", _publisher));
+        }
+
+        public void SetRightsHolderFacebook()
+        {
+            var publisherFbNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@fb", _rightsHolder));
             if (publisherFbNode != null)
                 _publisherFacebook = publisherFbNode.InnerText;
             else
                 _publisherFacebook = "<><> Publisher Facebook <><>";
-            _isbn = GetValue("//default:tr[default:td='dc.identifier.isbn']/default:td[2]");
-            _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
-            _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
-            _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
-            _range = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]");
-            var valueWords = _range.Split(' ');
-            var range = _scope == "NT" ? "NT" : "<><> Check Range <><>";
-            _range = range + ":" + _range;
-            if (_firstList.Contains(valueWords[0]))
-            {
-                _editionType = "New";
-                _edition = "First edition";
-            }
-            else
-            {
-                _editionType = "<><> Check Edition <><>";
-                _edition = _range.Replace("ed.", "edition");
-            }
-            _rangeDescription = TextField(rawScope, 1);
-            if (_confidential == "No")
-            {
-                ResetPromoStatements();
-            }
-            else
-            {
-                _rightsStatement = "© " + _dateCompleted + ", " + _rightsHolder;
-                _promoInfo = "<><>No promoVersionInfo<><>";
-                _promoEmail = "<><>No promoVersionEmail<><>";
-            }
+        }
+
+        public void SetRightsHolderStatement()
+        {
+            _rightsStatement = "© " + _dateCompleted + ", " + _rightsHolder + ". All rights reserved.";
+            _rightsStatement = _rightsStatement.Replace("..", ".");
+        }
+
+        public string TypeDescription()
+        {
+            if (_translationType == "First")
+                return "";
+            return string.Format("{0} of ", _translationType);
+        }
+
+        public void SetDescription()
+        {
+            _description = string.Format("{0}{1} in {2} {3}", TypeDescription(), ScopeDescription(),
+                                              _languageName, _dialectName).Trim();
+        }
+
+        public void SetAbbreviation()
+        {
+            _abbreviation = _languageCode + _scope;
+        }
+
+        public void SetPromoEmail()
+        {
+            _promoEmail = _options.PromoEmailText(_ldml);
+            _promoEmail = _promoEmail.Replace("${name}",  _title);
+            _promoEmail = _promoEmail.Replace("${description}", _description);
         }
 
         public void ResetPromoStatements()
@@ -940,76 +1000,99 @@ licenseType = (""BY"" # Attributaion only
                     promoStatements.AddParagraph(trimmedDescription);
             }
             promoStatements.AddSubhead("Copyright Information");
-            _rightsStatement = "© " + _dateCompleted + ", " + _rightsHolder + ". All rights reserved.";
-            _rightsStatement = _rightsStatement.Replace("..", ".");
             promoStatements.AddParagraph(_rightsStatement);
             promoStatements.AddLicense();
             if (_isbn != null && _isbn.Substring(0,4) != "<><>")
                 promoStatements.AddIsbn(_isbn);
-            promoStatements.AddDescription(_edition, _rangeDescription, _languageName, _languageCode);
+            promoStatements.AddDescription(_translationType, ScopeDescription(), _languageName, _languageCode);
             _promoInfo = promoStatements.ToHtml();
-            _promoEmail = promoStatements.ToEscapedString();
         }
 
         public void InsertDataInDblMetaData()
         {
             SetValue(_title, "//identification/name");
             SetValue(_title, "//identification/nameLocal");
-            SetValue(_title, "//contents/bookList/name");
-            SetValue(_title, "//contents/bookList/nameLocal");
             SetValue(_abbreviation, "//identification/abbreviation");
             SetValue(_abbreviation, "//identification/abbreviationLocal");
-            SetValue(_abbreviation, "//contents/bookList/abbreviation");
-            SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
-            SetValue(_languageCode, "//language/iso");
-            SetValue(_languageName, "//language/name");
-            SetValue(_script, "//language/script");
-            SetValue(_scriptDirection, "//language/scriptDirection");
             SetValue(_scope, "//identification/scope");
-            SetValue(_confidential, "//confidential");
+            SetValue(_description, "//identification/description"); 
             SetValue(_dateCompleted, "//identification/dateCompleted");
             SetValue(_reapUrl, "//identification/systemId[@type='reap']");
-            //SetValue(_publisher, "//agencies/translation"); -- we are using the agency in the constant above for all uploaded files.
-            //SetValue(_publisher, "//agencies/publishing");
-            SetValue(_options.TransAgency, "//agencies/translation"); 
-            SetValue(_options.TransAgency, "//agencies/publishing");
-            SetValue(_rightsHolder, "//contact/rightsHolder");
-            SetValue(_publisher, "//contact/rightsHolderLocal");
+
+            SetValue(_confidential, "//confidential");
+            
+            SetValue(_options.TransAgency, "//agencies/creator");
+            SetValue(_options.TransAgency, "//agencies/publisher");
+            SetValue(_contributor, "//agencies/contributor");
+            
+            SetValue(_languageCode, "//language/iso");
+            SetValue(_languageName, "//language/name");
+            SetValue(_ldml, "//language/ldml");
+            SetValue(_rod, "//language/rod");
+            SetValue(_script, "//language/script");
+            SetValue(_scriptDirection, "//language/scriptDirection");
+            SetValue(_numeralScript, "//language/numerals");
+
             SetValue(_countryCode, "//country/iso");
             SetValue(_countryName, "//country/name");
-            SetValue(_editionType, "//translation/type");
-            SetValue(_range, "//contents/bookList/description");
+
+            SetValue(_translationType, "//type/translationType");
+
+            SetValue(_title, "//contents/bookList/name");
+            SetValue(_title, "//contents/bookList/nameLocal");
+            SetValue(_abbreviation, "//contents/bookList/abbreviation");
+            SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
+            SetValue(_scope, "//contents/bookList/description");
+            var range = _scope == "NT" ? "Protestant New Testament (27 books)" : "Protestant Bible (66 books)";
+            SetValue(range, "//contents/bookList/range");
+
+            SetValue(_rightsHolder, "//contact/rightsHolder");
+            SetValue(_rightsHolder, "//contact/rightsHolderLocal");
+            SetValue(_rightsHolderAbbr, "//contact/rightsHolderAbbreviation");
             SetValue(_publisherUrl, "//contact/rightsHolderURL");
             SetValue(_publisherFacebook, "//contact/rightsHolderFacebook");
-            SetValue(_rightsStatement, "//rights/rightsStatement");
+
+            SetValue(_rightsStatement, "//copyright/statement");
+
             SetXmlValue(_promoInfo, "//promotion/promoVersionInfo");
-            SetValue(_promoEmail, "//promotion/promoEmail");
+            SetXmlValue(_promoEmail, "//promotion/promoEmail");
+        }
+
+        public string ScopeDescription()
+        {
+            switch (_scope)
+            {
+                case "NT":
+                    return "New Testament";
+                case "BI":
+                    return "Bible";
+                default:
+                    return _scope;
+            }
+        }
+
+        public List<string> publishers()
+        {
+            var results = _publisherDoc.SelectNodes("//publisher/@name");
+            return (from XmlNode node in results select node.InnerText).ToList();
         }
 
         public List<string> publisherUrls()
         {
-            var urls = new List<string>();
             var results = _publisherDoc.SelectNodes("//publisher/@url");
-            foreach (XmlNode node in results)
-            {
-                urls.Add(node.InnerText);
-            }
-            return urls;
+            return (from XmlNode node in results select node.InnerText).ToList();
         }
 
         public List<string> publisherFacebooks()
         {
-            var urls = new List<string>();
             var results = _publisherDoc.SelectNodes("//publisher/@fb");
-            foreach (XmlNode node in results)
-            {
-                urls.Add(node.InnerText);
-            }
-            return urls;
+            return (from XmlNode node in results select node.InnerText).ToList();
         }
 
         private void SetValue(string value, string xpath)
         {
+            if (value == null)
+                return;
             XmlNode xmlNode = _dblMetaDataDoc.SelectSingleNode(xpath);
             xmlNode.InnerText = value;
         }
@@ -1017,7 +1100,7 @@ licenseType = (""BY"" # Attributaion only
         private void SetXmlValue(string value, string xpath)
         {
             XmlNode xmlNode = _dblMetaDataDoc.SelectSingleNode(xpath);
-            xmlNode.InnerXml = value;
+            xmlNode.InnerXml = value.Replace("<>", "&lt;&gt;");
         }
 
         private string GetValue(string xpath)
@@ -1050,7 +1133,7 @@ licenseType = (""BY"" # Attributaion only
             sw.Close();
 
             var folder = Path.GetDirectoryName(p);
-            var schemaName = Path.Combine(folder, "metadataWbt-1.1.rnc");
+            var schemaName = Path.Combine(folder, "metadataWbt-1.2.rnc");
             var schemaStreamWriter = new StreamWriter(schemaName);
             schemaStreamWriter.Write(DblMetaDataSchema);
             schemaStreamWriter.Close();

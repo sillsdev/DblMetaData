@@ -19,8 +19,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestProject
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DblMetaDataScraperTest and is intended
     ///to contain all DblMetaDataScraperTest Unit Tests
@@ -39,16 +39,19 @@ namespace TestProject
         #endregion TestContext
 
         #region Additional test attributes
+
         // 
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first test in the class
         private static TestFiles _tf;
+
         [ClassInitialize()]
         public static void MyClassInitialize(TestContext testContext)
         {
             _tf = new TestFiles("TestProject");
         }
+
         //
         //Use ClassCleanup to run code after all tests in a class have run
         //[ClassCleanup()]
@@ -68,6 +71,7 @@ namespace TestProject
         //{
         //}
         //
+
         #endregion
 
         /// <summary>
@@ -84,22 +88,19 @@ namespace TestProject
             Assert.AreEqual("hwc", target.LanguageCode);
             Assert.AreEqual("Hawai'i Creole English", target.LanguageName);
             Assert.AreEqual("NT", target.Scope);
-            Assert.AreEqual("No", target.Confidential);
+            Assert.AreEqual("false", target.Confidential);
             Assert.AreEqual("2000", target.DateCompleted);
             Assert.AreEqual("Wycliffe Inc.", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/16286", target.ReapUrl);
             Assert.AreEqual("US", target.CountryCode);
             Assert.AreEqual("United States", target.CountryName);
-            Assert.AreEqual("First edition", target.Edition);
-            Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:1st ed.", target.Range);
-            Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
         //[TestMethod()]
         //public void HwcRevewTest()
         //{
-        //    ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
+        //    var target = new Form1();
+        //    target.ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
         //}
 
         /// <summary>
@@ -116,22 +117,19 @@ namespace TestProject
             Assert.AreEqual("acu", target.LanguageCode);
             Assert.AreEqual("Achuar-shiwiar", target.LanguageName);
             Assert.AreEqual("NT", target.Scope);
-            Assert.AreEqual("No", target.Confidential);
+            Assert.AreEqual("false", target.Confidential);
             Assert.AreEqual("1981", target.DateCompleted);
             Assert.AreEqual("Liga Bíblica Mundial del Hogar", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/29385", target.ReapUrl);
             Assert.AreEqual("PE", target.CountryCode);
             Assert.AreEqual("Peru", target.CountryName);
-            Assert.AreEqual("First edition", target.Edition);
-            Assert.AreEqual("New", target.EditionType);
-            Assert.AreEqual("NT:[1st] ed.", target.Range);
-            Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
         //[TestMethod()]
         //public void AcuRevewTest()
         //{
-        //    ReviewSiteData(_tf.InputData("acuReap.xml"), "My Description");
+        //    var target = new Form1();
+        //    target.ReviewSiteData(_tf.InputData("acuReap.xml"), "My Description");
         //}
 
         /// <summary>
@@ -147,24 +145,21 @@ namespace TestProject
             Assert.AreEqual("أمثال واحدين من الملك سليمان، الجزء التاني", target.Title);
             Assert.AreEqual("shu", target.LanguageCode);
             Assert.AreEqual("Arabic, Chadian", target.LanguageName);
-            Assert.AreEqual("Arabic", target.Script); 
+            Assert.AreEqual("Arabic", target.Script);
             Assert.AreEqual("NT", target.Scope);
-            Assert.AreEqual("Yes", target.Confidential);
+            Assert.AreEqual("true", target.Confidential);
             Assert.AreEqual("2010", target.DateCompleted);
             Assert.AreEqual("Alliance Biblique du Tchad", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/41224", target.ReapUrl);
             Assert.AreEqual("CD", target.CountryCode);
             Assert.AreEqual("Chad", target.CountryName);
-            Assert.AreEqual("NT:<><> Value not found <><>", target.Edition);
-            Assert.AreEqual("<><> Check Edition <><>", target.EditionType);
-            Assert.AreEqual("NT:<><> Value not found <><>", target.Range);
-            Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
         //[TestMethod()]
         //public void ShuRevewTest()
         //{
-        //    ReviewSiteData(_tf.InputData("shu-chad.xhtml"), "My Description");
+        //    var target = new Form1();
+        //    target.ReviewSiteData(_tf.InputData("shu-chad.xhtml"), "My Description");
         //}
 
         /// <summary>
@@ -182,16 +177,12 @@ namespace TestProject
             Assert.AreEqual("Achi", target.LanguageName);
             Assert.AreEqual("Latin", target.Script);
             Assert.AreEqual("NT", target.Scope);
-            Assert.AreEqual("No", target.Confidential);
+            Assert.AreEqual("false", target.Confidential);
             Assert.AreEqual("2009", target.DateCompleted);
             Assert.AreEqual("Wycliffe Inc.", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/10273", target.ReapUrl);
             Assert.AreEqual("GT", target.CountryCode);
             Assert.AreEqual("Guatemala", target.CountryName);
-            Assert.AreEqual("NT:segunda edición", target.Edition);
-            Assert.AreEqual("<><> Check Edition <><>", target.EditionType);
-            Assert.AreEqual("NT:segunda edición", target.Range);
-            Assert.AreEqual("New Testament", target.RangeDescription);
         }
 
         /// <summary>
@@ -215,7 +206,8 @@ namespace TestProject
         public void LoadTest()
         {
             var target = new DblMetaDataScraper_Accessor();
-            const string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
+            const string webDocText =
+                @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
             target.Load(webDocText);
             var titleNode = target._webDoc.SelectSingleNode("//title");
             var title = (titleNode != null) ? titleNode.InnerText : "Missing Title Node";
@@ -241,22 +233,25 @@ namespace TestProject
             TestXpathValue("hwc", "//language/iso", target);
             TestXpathValue("Hawai'i Creole English", "//language/name", target);
             TestXpathValue("NT", "//identification/scope", target);
-            TestXpathValue("No", "//confidential", target);
+            TestXpathValue("false", "//confidential", target);
             TestXpathValue("2000", "//identification/dateCompleted", target);
-            TestXpathValue("http://www.reap.insitehome.org/handle/9284745/16286", "//identification/systemId[@type='reap']", target);
-            TestXpathValue("Wycliffe Inc.", "//agencies/publishing", target);
+            TestXpathValue("http://www.reap.insitehome.org/handle/9284745/16286",
+                           "//identification/systemId[@type='reap']", target);
+            TestXpathValue("Wycliffe Inc.", "//agencies/publisher", target);
             TestXpathValue("US", "//country/iso", target);
             TestXpathValue("United States", "//country/name", target);
-            TestXpathValue("New", "//translation/type", target);
-            TestXpathValue("NT:1st ed.", "//contents/bookList/description", target);
+            TestXpathValue("First", "//translationType", target);
+            TestXpathValue("NT", "//contents/bookList/description", target);
             TestXpathValue("http://www.wycliffe.org", "//contact/rightsHolderURL", target);
             TestXpathValue("http://www.facebook.com/WycliffeUSA", "//contact/rightsHolderFacebook", target);
-            TestXpathValue("© 2000, Wycliffe Inc. All rights reserved.", "//rights/rightsStatement", target);
+            TestXpathValue("© 2000, Wycliffe Inc. All rights reserved.", "//copyright/statement", target);
             TestXpathValue(publicationDescription, "//promoVersionInfo", target, publicationDescription.Length);
-            TestXpathValue("&lt;p&gt;" + publicationDescription, "//promotion/promoEmail", target, publicationDescription.Length + 9);
+            TestXpathValue("Hi YouVersion friend,Ni", "//promotion/promoEmail", target,
+                           publicationDescription.Length + 9);
         }
 
-        private static void TestXpathValue(string expected, string xpath, DblMetaDataScraper_Accessor target, int len = 0)
+        private static void TestXpathValue(string expected, string xpath, DblMetaDataScraper_Accessor target,
+                                           int len = 0)
         {
             var node = target._dblMetaDataDoc.SelectSingleNode(xpath);
             var actual = (node != null) ? node.InnerText : "No " + xpath.Substring(2) + " node!";
@@ -274,7 +269,8 @@ namespace TestProject
         public void GetValueTest()
         {
             var target = new DblMetaDataScraper_Accessor();
-            const string webDocText = @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
+            const string webDocText =
+                @"<?xml version=""1.0""?><html><head><title>My Title</title></head><body></body></html>";
             target.Load(webDocText);
             const string xpath = "//title";
             const string expected = "My Title";
@@ -290,7 +286,8 @@ namespace TestProject
         public void GetFieldTest()
         {
             var target = new DblMetaDataScraper_Accessor();
-            const string webDocText = @"<?xml version=""1.0""?><html><head><title>Type:My Title</title></head><body></body></html>";
+            const string webDocText =
+                @"<?xml version=""1.0""?><html><head><title>Type:My Title</title></head><body></body></html>";
             target.Load(webDocText);
             const string xpath = "//title";
             const int i = 0;
@@ -314,7 +311,7 @@ namespace TestProject
             var actualTitle = (titleNode != null) ? titleNode.InnerText : "Missing Title node!";
             Assert.AreEqual("hwc-NT", actualTitle);
         }
-        
+
         /// <summary>
         ///A test for SetXmlValue
         ///</summary>
@@ -359,7 +356,7 @@ namespace TestProject
             var process = new Process();
             process.StartInfo.WorkingDirectory = _tf.Output("");
             process.StartInfo.FileName = Path.Combine("..", "..", "..", "xml", "jing.jar");
-            process.StartInfo.Arguments = "-c metadataWbt-1.1.rnc " + testName + ".xml";
+            process.StartInfo.Arguments = "-c metadataWbt-1.2.rnc " + testName + ".xml";
             process.Start();
             process.WaitForExit();
             Assert.AreEqual(0, process.ExitCode);
@@ -388,3 +385,5 @@ editions
         }
     }
 }
+
+    

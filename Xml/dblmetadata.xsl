@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:template match="DBLScriptureProject">
+    <xsl:template match="DBLScriptureProject |DBLMetadata">
         <html>
             <head></head>
             <body>
@@ -169,10 +169,10 @@
         </tr>
     </xsl:template>
     
-    <xsl:template match="agencies/translation">
+    <xsl:template match="agencies/translation |creator">
         <tr>
             <td><b>
-                <xsl:text>Translation Agency</xsl:text>
+                <xsl:text>Creator</xsl:text>
             </b></td>
             <td>
                 <xsl:value-of select="."/>
@@ -180,10 +180,21 @@
         </tr>
     </xsl:template>
     
-    <xsl:template match="publishing">
+    <xsl:template match="publishing |publisher">
         <tr>
             <td><b>
-                <xsl:text>Publishing Agency</xsl:text>
+                <xsl:text>Publisher</xsl:text>
+            </b></td>
+            <td>
+                <xsl:value-of select="."/>
+            </td>
+        </tr>
+    </xsl:template>
+    
+    <xsl:template match="contributor">
+        <tr>
+            <td><b>
+                <xsl:text>Contributor</xsl:text>
             </b></td>
             <td>
                 <xsl:value-of select="."/>
@@ -220,6 +231,28 @@
         </tr>
     </xsl:template>
 
+    <xsl:template match="ldml">
+        <tr>
+            <td><b>
+                <xsl:text>UI Language (ldml)</xsl:text>
+            </b></td>
+            <td>
+                <xsl:value-of select="."/>
+            </td>
+        </tr>
+    </xsl:template>
+    
+    <xsl:template match="rod">
+        <tr>
+            <td><b>
+                <xsl:text>ROD (dialect)</xsl:text>
+            </b></td>
+            <td>
+                <xsl:value-of select="."/>
+            </td>
+        </tr>
+    </xsl:template>
+    
     <xsl:template match="script">
         <tr>
             <td><b>
@@ -242,6 +275,17 @@
         </tr>
     </xsl:template>
 
+    <xsl:template match="numerals">
+        <tr>
+            <td><b>
+                <xsl:text>Numerals script</xsl:text>
+            </b></td>
+            <td>
+                <xsl:value-of select="."/>
+            </td>
+        </tr>
+    </xsl:template>
+    
     <xsl:template match="country">
         <h1>Country</h1>
         <table>
@@ -271,17 +315,17 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="DBLScriptureProject/translation">
-        <h1>Translation</h1>
+    <xsl:template match="DBLScriptureProject/translation |DBLMetadata/type">
+        <h1>Type</h1>
         <table>
             <xsl:apply-templates />
         </table>
     </xsl:template>
 
-    <xsl:template match="type">
+    <xsl:template match="DBLScriptureProject/translation/type |translationType">
         <tr>
             <td><b>
-                <xsl:text>Type (New / Revision)</xsl:text>
+                <xsl:text>Translation Type</xsl:text>
             </b></td>
             <td>
                 <xsl:value-of select="."/>
@@ -289,10 +333,10 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="level">
+    <xsl:template match="level |audience">
         <tr>
             <td><b>
-                <xsl:text>Level (Common / Literary)</xsl:text>
+                <xsl:text>Audience</xsl:text>
             </b></td>
             <td>
                 <xsl:value-of select="."/>
@@ -482,7 +526,7 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="rights">
+    <xsl:template match="rights |copyright">
         <h1>Rights</h1>
         <table>
             <xsl:apply-templates />
@@ -511,7 +555,7 @@
         </tr>
     </xsl:template>
 
-    <xsl:template match="rightsStatement">
+    <xsl:template match="rightsStatement |statement">
         <tr>
             <td><b>
                 <xsl:text>Rights statement</xsl:text>
@@ -618,7 +662,7 @@
     </xsl:template>
 
     <!--Straight copy for these elements. -->
-    <xsl:template match="a | em | br | ol | ul | img | p | li">
+    <xsl:template match="a | em | br | ol | ul | img | p | li | h2 | b | i">
         <xsl:copy>
             <xsl:for-each select="@*">
                 <xsl:copy/>

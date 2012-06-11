@@ -37,7 +37,7 @@
     </xsl:template>
     
     <!-- Translation and Publishing agency should always be "Wycliffe Inc." (for us) -->
-    <xsl:template match="publishing |agencies/translation">
+    <xsl:template match="publisher |creator">
         <xsl:copy>
             <xsl:for-each select="@*">
                 <xsl:copy/>

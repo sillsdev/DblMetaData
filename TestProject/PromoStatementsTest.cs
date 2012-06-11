@@ -88,7 +88,7 @@ namespace TestProject
 in <a href=""http://www.ethnologue.com/show_language.asp?code=acr"">Achi</a></p>
 ";
             PromoStatements target = new PromoStatements();
-            string edition = "1st ed.";
+            string edition = "First";
             string range = "New Testament";
             string language = "Achi";
             string isoCode = "acr";

@@ -28,47 +28,121 @@ namespace DblMetaData
         }
         #endregion Data
 
+        private bool _userAction = false;
+        private bool _userSetAbbreviation = false;
+        private bool _userSetDescription = false;
+        private bool _userSetPromoEmail = false;
+        private bool _userSetRightsStatment = false;
+        private bool _userSetPublisherUrl = false;
+        private bool _userSetPublisherFacebook = false;
+
         public Review()
         {
             InitializeComponent();
         }
 
+        protected void SetDescription()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetDescription();
+            description.Text = _data.Description;
+            if (!_userSetPromoEmail)
+                SetPromoEmail();
+            _userAction = saveUserAction;
+        }
+
+        protected void SetAbbreviation()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetAbbreviation();
+            abbreviation.Text = _data.Abbreviation;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetPromoEmail()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetPromoEmail();
+            promoEmail.Text = _data.PromoEmail;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetRightsStatement()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetRightsHolderStatement();
+            copyright.Text = _data.RightsStatement;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetPublisherUrl()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetRightsHolderUrl();
+            publisherUrl.Text = _data.PublisherUrl;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetPublisherFacebook()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetRightsHolderFacebook();
+            publisherFacebook.Text = _data.PublisherFacebook;
+            _userAction = saveUserAction;
+        }
+
         private void Review_Load(object sender, EventArgs e)
         {
+            confidential.Checked = _data.Confidential == "true";
             title.Text = _data.Title;
+            scope.Text = _data.Scope;
+            dateCompleted.Text = _data.DateCompleted;
+            reapUrl.Text = _data.ReapUrl;
+			translationType.Text = _data.TranslationType;
             languageCode.Text = _data.LanguageCode;
             languageName.Text = _data.LanguageName;
             script.Text = _data.Script;
             scriptDirection.Text = _data.ScriptDirection;
-            scope.Text = _data.Scope;
+			uiLanguage.Text = _data.Ldml;
+			dialect.Text = _data.Rod;
+			numeralScript.Text = _data.NumeralScript;
+            countryCode.Text = _data.CountryCode;
+            countryName.Text = _data.CountryName;
             abbreviation.Text = _data.Abbreviation;
-            confidential.Text = _data.Confidential;
-            dateCompleted.Text = _data.DateCompleted;
+			description.Text = _data.Description;
             publisher.Text = _data.Publisher;
             publisherUrl.Text = _data.PublisherUrl;
             publisherFacebook.Text = _data.PublisherFacebook;
-            reapUrl.Text = _data.ReapUrl;
-            countryCode.Text = _data.CountryCode;
-            countryName.Text = _data.CountryName;
-            Edition.Text = _data.Edition;
-            editionType.Text = _data.EditionType;
-            range.Text = _data.Range;
-            rangeDescription.Text = _data.RangeDescription;
+			copyright.Text = _data.RightsStatement;
             promoInfo.Text = _data.PromoInfo;
             promoEmail.Text = _data.PromoEmail;
             PubDescTextBox.Text = _data.PublicationDescription;
+            uiLanguage.Items.AddRange(_data.Options.Ldmls().ToArray());
+            publisher.Items.AddRange(_data.publishers().ToArray());
             publisherUrl.Items.AddRange(_data.publisherUrls().ToArray());
             publisherFacebook.Items.AddRange(_data.publisherFacebooks().ToArray());
+            _userAction = true;
         }
 
-        private void Preview_Click(object sender, EventArgs e)
+        private void PreviewInfo_Click(object sender, EventArgs e)
+        {
+            Preview(promoInfo.Text);
+        }
+
+        protected void Preview(string text)
         {
             var xml = new XmlDocument{XmlResolver = null};
             xml.LoadXml("<root/>");
             var node = xml.SelectSingleNode("/root");
             try
             {
-                node.InnerXml = promoInfo.Text;
+                node.InnerXml = text;
             }
             catch (Exception)
             {
@@ -76,7 +150,7 @@ namespace DblMetaData
                 return;
             }
             var previewDialog = new PromoPreview();
-            previewDialog.XmlData = "<html><body>" + promoInfo.Text + "</body></html>";
+            previewDialog.XmlData = "<html><body>" + text + "</body></html>";
             previewDialog.ShowDialog();
         }
 
@@ -85,7 +159,6 @@ namespace DblMetaData
             _data.PublicationDescription = PubDescTextBox.Text;
             _data.ResetPromoStatements();
             promoInfo.Text = _data.PromoInfo;
-            promoEmail.Text = _data.PromoEmail;
         }
 
         private void Ok_Click(object sender, EventArgs e)
@@ -103,36 +176,37 @@ namespace DblMetaData
         private void title_TextChanged(object sender, EventArgs e)
         {
             _data.Title = title.Text;
+            if (!_userSetPromoEmail)
+                SetPromoEmail();
         }
 
         private void languageCode_TextChanged(object sender, EventArgs e)
         {
             _data.LanguageCode = languageCode.Text;
+            if (!_userSetAbbreviation)
+                SetAbbreviation();
         }
 
         private void languageName_TextChanged(object sender, EventArgs e)
         {
             _data.LanguageName = languageName.Text;
-        }
-
-        private void scope_TextChanged(object sender, EventArgs e)
-        {
-            _data.Scope = scope.Text;
+            if (!_userSetDescription)
+                SetDescription();
         }
 
         private void abbreviation_TextChanged(object sender, EventArgs e)
         {
             _data.Abbreviation = abbreviation.Text;
-        }
-
-        private void confidential_TextChanged(object sender, EventArgs e)
-        {
-            _data.Confidential = confidential.Text;
+            if (_userAction)
+                _userSetAbbreviation = true;
         }
 
         private void dateCompleted_TextChanged(object sender, EventArgs e)
         {
             _data.DateCompleted = dateCompleted.Text;
+            if (!_userSetRightsStatment)
+                SetRightsStatement();
+
         }
 
         private void reapUrl_TextChanged(object sender, EventArgs e)
@@ -150,21 +224,6 @@ namespace DblMetaData
             _data.CountryName = countryName.Text;
         }
 
-        private void Edition_TextChanged(object sender, EventArgs e)
-        {
-            _data.Edition = Edition.Text;
-        }
-
-        private void range_TextChanged(object sender, EventArgs e)
-        {
-            _data.Range = range.Text;
-        }
-
-        private void rangeDescription_TextChanged(object sender, EventArgs e)
-        {
-            _data.RangeDescription = rangeDescription.Text;
-        }
-
         private void PubDescTextBox_TextChanged(object sender, EventArgs e)
         {
             _data.PublicationDescription = PubDescTextBox.Text;
@@ -180,24 +239,163 @@ namespace DblMetaData
             _data.ScriptDirection = scriptDirection.Text;
         }
 
-        private void editionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _data.EditionType = editionType.Text;
-        }
-
         private void publisherUrl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            publisherUrl_Changed();
+        }
+
+        private void publisherUrl_Changed()
+        {
             _data.PublisherUrl = publisherUrl.Text;
+            if (_userAction)
+                _userSetPublisherUrl = true;
         }
 
         private void publisherFacebook_SelectedIndexChanged(object sender, EventArgs e)
         {
+            publisherFacebook_Changed();
+        }
+
+        private void publisherFacebook_Changed()
+        {
             _data.PublisherFacebook = publisherFacebook.Text;
+            if (_userAction)
+                _userSetPublisherFacebook = true;
         }
 
         private void publisher_SelectedIndexChanged(object sender, EventArgs e)
         {
+            publisher_Changed();
+        }
+
+        private void publisher_Changed()
+        {
             _data.Publisher = publisher.Text;
+            _data.SetRightsHolder();
+            if (!_userSetRightsStatment)
+                SetRightsStatement();
+            if (!_userSetPublisherUrl)
+                SetPublisherUrl();
+            if (!_userSetPublisherFacebook)
+                SetPublisherFacebook();
+        }
+
+        private void confidential_CheckedChanged(object sender, EventArgs e)
+        {
+            _data.Confidential = confidential.Checked ? "true" : "false";
+        }
+
+        private void scope_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            scope_Changed();
+        }
+
+        protected void scope_Changed()
+        {
+            _data.Scope = scope.Text;
+            if (!_userSetAbbreviation)
+                SetAbbreviation();
+            if (!_userSetDescription)
+                SetDescription();
+        }
+
+        private void translationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            translationType_Changed();
+        }
+
+        protected void translationType_Changed()
+        {
+            _data.TranslationType = translationType.Text;
+            if (!_userSetDescription)
+                SetDescription();
+        }
+
+        private void uiLanguage_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            uiLanguage_Changed();
+        }
+
+        protected void uiLanguage_Changed()
+        {
+            _data.Ldml = uiLanguage.Text;
+            if (!_userSetPromoEmail)
+                SetPromoEmail();
+        }
+
+        private void dialect_TextChanged(object sender, EventArgs e)
+        {
+            _data.Rod = dialect.Text;
+            if (!_userSetDescription)
+                SetDescription();
+        }
+
+        private void numeralScript_TextChanged(object sender, EventArgs e)
+        {
+            _data.NumeralScript = numeralScript.Text;
+        }
+
+        private void description_TextChanged(object sender, EventArgs e)
+        {
+            _data.Description = description.Text;
+            if (!_userSetPromoEmail)
+                _data.SetPromoEmail();
+            if (_userAction)
+                _userSetDescription = true;
+        }
+
+        private void copyright_TextChanged(object sender, EventArgs e)
+        {
+            _data.RightsStatement = copyright.Text;
+            if (_userAction)
+                _userSetRightsStatment = true;
+        }
+
+        private void promoEmail_TextChanged(object sender, EventArgs e)
+        {
+            _data.PromoEmail = promoEmail.Text;
+            if (_userAction)
+                _userSetPromoEmail = true;
+        }
+
+        private void promoInfo_TextChanged(object sender, EventArgs e)
+        {
+            _data.PromoInfo = promoInfo.Text;
+        }
+
+        private void previewEmail_Click(object sender, EventArgs e)
+        {
+            Preview(promoEmail.Text);
+        }
+
+        private void publisherUrl_TextChanged(object sender, EventArgs e)
+        {
+            publisherUrl_Changed();
+        }
+
+        private void publisherFacebook_TextChanged(object sender, EventArgs e)
+        {
+            publisherFacebook_Changed();
+        }
+
+        private void publisher_TextChanged(object sender, EventArgs e)
+        {
+            publisher_Changed();
+        }
+
+        private void uiLanguage_TextChanged(object sender, EventArgs e)
+        {
+            uiLanguage_Changed();
+        }
+
+        private void translationType_TextChanged(object sender, EventArgs e)
+        {
+            translationType_Changed();
+        }
+
+        private void scope_TextChanged(object sender, EventArgs e)
+        {
+            scope_Changed();
         }
     }
 }
