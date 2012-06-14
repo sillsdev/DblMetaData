@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<license id="66f69e2e951292b7" xmlns:dcds="http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/">
+  <dateLicense>2011-10-01</dateLicense>
+  <dateLicenseExpiry>2014-09-30</dateLicenseExpiry>
+  <publicationRights>
+    <allowOffline>false</allowOffline>
+    <allowIntroductions>true</allowIntroductions>
+    <allowFootnotes>true</allowFootnotes>
+    <allowCrossReferences>true</allowCrossReferences>
+    <allowExtendedNotes>false</allowExtendedNotes>
+  </publicationRights>
+</license>

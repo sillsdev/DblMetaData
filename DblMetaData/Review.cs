@@ -12,6 +12,7 @@
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
 using System;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -299,6 +300,11 @@ namespace DblMetaData
                 SetDescription();
         }
 
+        protected void script_Changed()
+        {
+            _data.Script = script.Text;
+        }
+
         private void translationType_SelectedIndexChanged(object sender, EventArgs e)
         {
             translationType_Changed();
@@ -396,6 +402,73 @@ namespace DblMetaData
         private void scope_TextChanged(object sender, EventArgs e)
         {
             scope_Changed();
+        }
+
+        private void script_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            script_Changed();
+        }
+
+        private void script_TextChanged_1(object sender, EventArgs e)
+        {
+            script_Changed();
+        }
+
+        private void languageCode_Leave(object sender, EventArgs e)
+        {
+            var validPat = new Regex("^[a-z]{3}$");
+            if (!validPat.IsMatch(languageCode.Text))
+            {
+                MessageBox.Show("Language code must be three lower case letters", "Invalid Response", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                languageCode.Focus();
+            }
+        }
+
+        private void dialect_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(dialect.Text))
+                return;
+            var validPat = new Regex("^[0-9]{5}$");
+            if (!validPat.IsMatch(dialect.Text))
+            {
+                MessageBox.Show("dialect code must be five digits", "Invalid Response", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dialect.Focus();
+            }
+        }
+
+        protected void numeralScript_Changed()
+        {
+            _data.NumeralScript = numeralScript.Text;
+        }
+
+        private void numeralScript_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            numeralScript_Changed();
+        }
+
+        private void numeralScript_TextChanged_1(object sender, EventArgs e)
+        {
+            numeralScript_Changed();
+        }
+
+        private void countryCode_Leave(object sender, EventArgs e)
+        {
+            var validPat = new Regex("^[A-Za-z]{2,3}$");
+            if (!validPat.IsMatch(countryCode.Text))
+            {
+                MessageBox.Show("Country codes must be two or three alphabetic characters","Invalid Response",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                countryCode.Focus();
+            }
+        }
+
+        private void abbreviation_Leave(object sender, EventArgs e)
+        {
+            var validPat = new Regex("^[A-Za-z0-9]{2,8}$");
+            if (!validPat.IsMatch(abbreviation.Text))
+            {
+                MessageBox.Show("Abbreviations must be from two to eight characters", "Invalid Response", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                abbreviation.Focus();
+            }
         }
     }
 }

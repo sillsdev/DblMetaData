@@ -192,6 +192,7 @@ namespace TestProject
         public void SaveTest()
         {
             var target = new DblMetaDataScraper();
+            target.Options = new Options();
             const string template = "MetaDataTemplate.xml";
             string p = _tf.Output(template);
             target.Save(p);

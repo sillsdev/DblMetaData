@@ -13,6 +13,7 @@
 // ---------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -330,9 +331,9 @@ namespace DblMetaData
     <scope ns0:propertyURI=""title/scriptureScope"" />
     <description ns0:propertyURI=""description"" />
     <dateCompleted ns0:propertyURI=""date"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"" />
-    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"" />
     <systemId type=""reap"" ns0:propertyURI=""identifier/reapID"" />
     <systemId type=""paratext"" ns0:propertyURI=""identifier/ptxID"" />
+    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"" />
     <bundleProducer/>
   </identification>
   <confidential ns0:propertyURI=""accessRights/confidential"">false</confidential>
@@ -362,11 +363,11 @@ namespace DblMetaData
   <bookNames/>
   <contents ns0:propertyURI=""tableOfContents"">
     <bookList>
-      <name>Good News Translation</name>
-      <nameLocal>Good News Translation</nameLocal>
-      <abbreviation>gntNT</abbreviation>
-      <abbreviationLocal>gntNT</abbreviationLocal>
-      <description>NT</description>
+      <name/>
+      <nameLocal/>
+      <abbreviation/>
+      <abbreviationLocal/>
+      <description/>
       <range>Protestant New Testament (27 books)</range>
       <tradition>Western Protestant order</tradition>
       <division id=""NT"">
@@ -432,10 +433,10 @@ namespace dcds = ""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/""
 
 start =
   element DBLMetadata {
-    attribute id { xsd:string { pattern = ""[0-9abcdef]+"" } },
-    attribute type { ""text"" },
+    attribute id { xsd:string { pattern = ""[0-9a-f]{16}"" } },
+    attribute type { ""text"" },  # “text” | “print” | “audio” | “video”
     attribute typeVersion { ""1.2"" },
-    attribute revision { xsd:decimal },
+    attribute revision { xsd:integer },
     attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" },
     element identification {
       (abbreviation
@@ -447,18 +448,21 @@ start =
            }
        | element name {
            attribute dcds:propertyURI { ""title"" },
-            text 
-            }
+           xsd:string { minLength = ""2"" }
+           }
          # Name local should default to name 
-       | nameLocal
+       | element nameLocal {
+           xsd:string { minLength = ""2"" }
+           }
        | element dateCompleted {
            attribute dcds:propertyURI { ""date"" },
            attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-           xsd:string { pattern = ""\d\d\d\d"" }
+           #xsd:string { pattern = ""\d{4}"" }
+           (xsd:date |xsd:gYear |xsd:gYearMonth |xsd:dateTime)
            }
        | element scope {
            attribute dcds:propertyURI { ""title/scriptureScope"" },
-           (""NT"" | ""BI"") 
+           (""NT"" | scopes) 
            }
          # systemId[@type='paratext'] is overwritten by Paratext
        | element systemId {
@@ -471,46 +475,47 @@ start =
     },
     element confidential {
       attribute dcds:propertyURI { ""accessRights/confidential"" },
-      (""true"" | ""false"")
+      #(""true"" | ""false"")
+      xsd:boolean
     },
     element agencies {
-      element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" },
+      element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" }*,
       element creator { 
         attribute dcds:propertyURI { ""creator"" },
-        (""Wycliffe Inc."")
-        },
+        xsd:string { minLength = ""2"" }
+        }+,
       # publisher may be the same as translation (description/sponsorship) 
       element publisher {
         attribute dcds:propertyURI { ""publisher"" },
-        (""Wycliffe Inc."")
-        },
+        xsd:string { minLength = ""2"" }
+        }*,
       element contributor {
         attribute dcds:propertyURI { ""contributor"" },
         text
-        }
+        }*
     },
     element language {
       element iso { 
         attribute dcds:propertyURI { ""language/iso"" },
         attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
-        xsd:string { pattern = ""[a-z][a-z][a-z]"" } 
+        xsd:string { pattern = ""[a-z]{3}"" } 
         },
       element name { 
         attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
         attribute dcds:propertyURI { ""subject/subjectLanguage"" },
-        text 
+        xsd:string
         },
       element ldml { 
         attribute dcds:propertyURI { ""language/ldml"" },
-        text 
+        xsd:string { pattern = ""[A-Za-z]{2,3}([\-_][A-Za-z0-9]+){0,3}"" }? 
         },
       element rod { 
         attribute dcds:propertyURI { ""language/rod"" },
-        text 
+        xsd:string { pattern = ""[0-9]{5}"" }?
         },
       element script {
         attribute dcds:propertyURI { ""language/script"" },
-        xsd:NCName 
+        scripts?
         },
       # LTR (Left to Right) or RTL (Right to Left) 
       # scriptDirection is overwritten by Paratext
@@ -520,18 +525,18 @@ start =
         },
       element numerals {
         attribute dcds:propertyURI { ""language/numerals"" },
-        text
+        numeralSystems?
         }
     },
     element country { 
       element iso { 
       attribute dcds:propertyURI { ""coverage/spatial"" },
       attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO3166"" }, 
-      xsd:NCName 
+      xsd:string { pattern = ""[A-Za-z]{2,3}"" } 
       }, 
     element name { 
       attribute dcds:propertyURI { ""subject/subjectCountry"" }, 
-      text 
+      xsd:string
       }},
     element type { 
       element translationType { 
@@ -563,9 +568,9 @@ start =
       element bookList {
         attribute id { ""default"" }?, 
         # default to name from identification section  
-        element name { text }, 
-        # default to name local from identification section 
-        nameLocal, 
+        element name { xsd:string { minLength=""2"" } }, 
+        # default to name local from identification section
+        element nameLocal { xsd:string { minLength=""2"" } },
         abbreviation, 
         abbreviationLocal, 
         # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
@@ -630,7 +635,7 @@ start =
         attribute dcds:propertyURI { ""contributor/archivist"" },
         text
       },
-	  # yyyy-mm-dd
+	  # ex. 2012-03-12T17:51:32.7907868+00:00
       # dateArchived is overwritten by Paratext
       element dateArchived {
         attribute dcds:propertyURI { ""dateSubmitted"" },
@@ -655,15 +660,17 @@ start =
       ""text/xml""
     }
   }
-nameLocal = element nameLocal { text }
+
 abbreviation = element abbreviation { 
-	xsd:string { pattern = ""[a-z][a-z][a-z](NT|BI)"" } 
+	xsd:string { pattern = ""[A-Za-z0-9]{2,8}"" } 
 	}
+
 abbreviationLocal = element abbreviationLocal { 
-	xsd:string { pattern = ""[a-z][a-z][a-z](NT|BI)"" } 
+	xsd:string { pattern = ""[A-Za-z0-9]{2,8}"" } 
 	}
-htmlMarkup = (text
-         | element p { (text | htmlCharMarkup)+ }
+
+htmlMarkup = (
+           element p { (text | htmlCharMarkup)+ }
          | element h1 { text }
          | element h2 { text }
          | element h3 { text }
@@ -673,21 +680,84 @@ htmlMarkup = (text
              element li { text }+}
          | element blockquote { text }
          | htmlCharMarkup)+
-htmlCharMarkup = (element a {
+
+htmlCharMarkup = ( text
+		 | element a {
              attribute href { xsd:anyURI },
-             attribute rel { text }?,
-             (htmlCharMarkup | text)
+             htmlCharMarkup
            }
          | element img {
-             attribute alt { text }?,
-             attribute style { text }?,
-             attribute src { xsd:anyURI }
-           }
+            attribute src { xsd:anyURI },
+            attribute alt { text }?,
+            text
+            }           
          | element br { empty }
          | element strong { text }
          | element b { text }
-         | element em { text })
-bookCode = (""GEN""   # Genesis
+         | element em { text }
+         | element i { text })
+
+scopes = (""Bible with Deuterocanon"" |
+        ""Bible without Deuterocanon"" |
+        ""New Testament and Psalms"" |
+        ""New Testament and Shorter Old Testament"" |
+        ""New Testament only"" |
+        ""Old Testament only"" |
+        ""Old Testament with Deuterocanon"" |
+        ""Shorter Old Testament only"" |
+        ""Study Bible"" |
+        ""Portion only"" |
+        ""Selection only"")
+
+scripts = (""Arabic"" |
+        ""Arabic (Modified)"" |
+        ""Armenian"" |
+        ""Assamese"" |
+        ""Bengali"" |
+        ""Burmese"" |
+        ""Chinese (Simplified)"" |
+        ""Chinese (Traditional)"" |
+        ""Cyrillic"" |
+        ""Cyrillic (Modified)"" |
+        ""Devanagari"" |
+        ""Ethiopic"" |
+        ""Georgian"" |
+        ""Greek"" |
+        ""Gurmukhi"" |
+        ""Hebrew"" |
+        ""Japanese"" |
+        ""Khmer"" |
+        ""Korean"" |
+        ""Latin"" |
+        ""Persian"" |
+        ""Persian (Modified)"" |
+        ""Pollard"" |
+        ""Syllabic"" |
+        ""Syriac"" |
+        ""Syriac"" |
+        ""Thai"" |
+        ""Tibetan"")
+
+numeralSystems = (""Arabic"" #(a.k.a. 'Hindu') = 0123456789
+         | ""Bengali""
+         | ""Burmese""
+         | ""Devanagari""
+         | ""Ethiopic""
+         | ""Farsi""
+         | ""Gujarati""
+         | ""Gurmukhi""
+         | ""Hindi"" #(i.e. 'Arabic' as used in Egypt)
+         | ""Kannada""
+         | ""Khmer""
+         | ""Malayalam""
+         | ""Oriya""
+         | ""Tamil""
+         | ""Telugu""
+         | ""Thai""
+         | ""Tibetan"")
+
+bookCode = (
+           ""GEN""   # Genesis
          | ""EXO"" # Exodus
          | ""LEV"" # Leviticus
          | ""NUM"" # Numbers
@@ -804,6 +874,7 @@ bookCode = (""GEN""   # Genesis
          | ""GLO"" # Glossary 
          | ""TDX"" # Topical Index 
          | ""NDX"") # Names Index 
+
 licenseType = (""BY"" # Attributaion only
          | ""BY-ND""       #  Attribution-NoDerivatives
          | ""BY-NC-ND"" # Attribution-NonCommercial- NoDerivatives 
@@ -813,6 +884,22 @@ licenseType = (""BY"" # Attributaion only
          | ""PD"")           # Dedicated to or marked as being in the public domain
 ";
         #endregion dblMetaDataSchema
+
+        #region license (template)
+        private const string _license = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+<license id=""66f69e2e951292b7"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
+  <dateLicense>2011-10-01</dateLicense>
+  <dateLicenseExpiry>2014-09-30</dateLicenseExpiry>
+  <publicationRights>
+    <allowOffline>false</allowOffline>
+    <allowIntroductions>true</allowIntroductions>
+    <allowFootnotes>true</allowFootnotes>
+    <allowCrossReferences>true</allowCrossReferences>
+    <allowExtendedNotes>false</allowExtendedNotes>
+  </publicationRights>
+</license>
+";
+        #endregion license (template)
 
         #region _publisherData
         private readonly string _publisherData = @"
@@ -1137,6 +1224,32 @@ licenseType = (""BY"" # Attributaion only
             var schemaStreamWriter = new StreamWriter(schemaName);
             schemaStreamWriter.Write(DblMetaDataSchema);
             schemaStreamWriter.Close();
+
+            // Write License based on options and current date.
+            var licenseDoc = new XmlDocument {XmlResolver = null};
+            licenseDoc.LoadXml(_license);
+            SetLicenseValue(_options.AllowOffline.ToString(), "//allowOffline", licenseDoc);
+            SetLicenseValue(_options.AllowIntroductions.ToString(), "//allowIntroductions", licenseDoc);
+            SetLicenseValue(_options.AllowFootnotes.ToString(), "//allowFootnotes", licenseDoc);
+            SetLicenseValue(_options.AllowCrossReferences.ToString(), "//allowCrossReferences", licenseDoc);
+            SetLicenseValue(_options.AllowExtendedNotes.ToString(), "//allowExtendedNotes", licenseDoc);
+            SetLicenseValue(DateTime.Today.ToString("yyyy-MM-dd"), "//dateLicense", licenseDoc);
+            SetLicenseValue(DateTime.Today.AddYears(3).ToString("yyyy-MM-dd"), "//dateLicenseExpiry", licenseDoc);
+            var licenseName = Path.Combine(folder, _languageCode + "License.xml");
+            var licenseStreamWriter = new StreamWriter(licenseName);
+            var licenseXmlWriter = XmlWriter.Create(licenseStreamWriter);
+            licenseDoc.WriteContentTo(licenseXmlWriter);
+            licenseXmlWriter.Close();
+            licenseStreamWriter.Close();
+        }
+
+        private void SetLicenseValue(string value, string xpath, XmlDocument doc)
+        {
+            if (value == null)
+                return;
+            XmlNode xmlNode = doc.SelectSingleNode(xpath);
+            Debug.Assert(xmlNode != null);
+            xmlNode.InnerText = value;
         }
 
         internal string GetDefaultName()

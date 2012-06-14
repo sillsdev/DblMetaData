@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<options version="1.0">
+<options version="2">
     <NTscope>true</NTscope>
-  <publisherHoldsRights>true</publisherHoldsRights>
+    <publisherHoldsRights>true</publisherHoldsRights>
     <translationAgency>Wycliffe Inc.</translationAgency>
+    <allowOffline>true</allowOffline>
+    <allowIntroductions>true</allowIntroductions>
+    <allowFootnotes>true</allowFootnotes>
+    <allowCrossReferences>true</allowCrossReferences>
+    <allowExtendedNotes>false</allowExtendedNotes>
     <email lang="en">
         <p>Hi YouVersion friend,</p>
         <p>Nice work downloading the <em>${name}</em> (${description}) in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device—even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</p>

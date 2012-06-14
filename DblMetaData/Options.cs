@@ -42,6 +42,51 @@ namespace DblMetaData
         }
         #endregion PublisherRights
 
+        #region AllowOffline
+        private bool _allowOffline;
+        public bool AllowOffline
+        {
+            get { return _allowOffline; }
+            set { _allowOffline = value; }
+        }
+        #endregion AllowOffline
+
+        #region AllowIntroductions
+        private bool _allowIntroductions;
+        public bool AllowIntroductions
+        {
+            get { return _allowIntroductions; }
+            set { _allowIntroductions = value; }
+        }
+        #endregion AllowIntroductions
+
+        #region AllowFootnotes
+        private bool _allowFootnotes;
+        public bool AllowFootnotes
+        {
+            get { return _allowFootnotes; }
+            set { _allowFootnotes = value; }
+        }
+        #endregion AllowFootnotes
+
+        #region AllowCrossReferences
+        private bool _allowCrossReferences;
+        public bool AllowCrossReferences
+        {
+            get { return _allowCrossReferences; }
+            set { _allowCrossReferences = value; }
+        }
+        #endregion AllowCrossReferences
+
+        #region AllowExtendedNotes
+        private bool _allowExtendedNotes;
+        public bool AllowExtendedNotes
+        {
+            get { return _allowExtendedNotes; }
+            set { _allowExtendedNotes = value; }
+        }
+        #endregion AllowExtendedNotes
+
         #region TransAgency
         private string _translationAgency;
         public string TransAgency 
@@ -75,17 +120,50 @@ namespace DblMetaData
             {
                 _optionsDoc.Load(XmlReader.Create(Assembly.GetExecutingAssembly().GetManifestResourceStream("DblMetaData.Options.xml")));
             }
-            var ntScopeNode = _optionsDoc.SelectSingleNode("//NTscope");
-            Debug.Assert(ntScopeNode != null);
-            var ntScope = ntScopeNode.InnerText.Trim().ToLower();
-            _alwaysUseNT = (ntScope == "true");
-            var publisherRights = _optionsDoc.SelectSingleNode("//publisherHoldsRights");
-            Debug.Assert(publisherRights != null);
-            _publisherRights = publisherRights.InnerText.Trim().ToLower() == "true";
+            Migrate();
+            _alwaysUseNT = ReadBooleanValue("//NTscope");
+            _publisherRights = ReadBooleanValue("//publisherHoldsRights");
+            _allowOffline = ReadBooleanValue("//allowOffline");
+            _allowIntroductions = ReadBooleanValue("//allowIntroductions");
+            _allowFootnotes = ReadBooleanValue("//allowFootnotes");
+            _allowCrossReferences = ReadBooleanValue("//allowCrossReferences");
+            _allowExtendedNotes = ReadBooleanValue("//allowExtendedNotes");
             var translationAgencyNode = _optionsDoc.SelectSingleNode("//translationAgency");
             Debug.Assert(translationAgencyNode != null);
             _translationAgency = translationAgencyNode.InnerText.Trim();
             _promoEmail = PromoEmailText("en");
+        }
+
+        private bool ReadBooleanValue(string xpath)
+        {
+            var node = _optionsDoc.SelectSingleNode(xpath);
+            Debug.Assert(node != null);
+            return node.InnerText.Trim().ToLower() == "true";
+        }
+
+        private void Migrate()
+        {
+            Debug.Assert(_optionsDoc != null);
+            var versionNode = _optionsDoc.DocumentElement.SelectSingleNode("@version");
+            Debug.Assert(versionNode != null);
+            var version = int.Parse(versionNode.InnerText);
+            if (version == 1)
+            {
+                Debug.Assert(_optionsDoc.DocumentElement != null, "_optionsDoc.DocumentElement != null");
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowOffline", "true"));
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowIntroductions", "true"));
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowFootnotes", "true"));
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowCrossReferences", "true"));
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowExtendedNotes", "false"));
+                versionNode.InnerText = "2";
+            }
+        }
+
+        private XmlElement NewXmlNode(string name, string value)
+        {
+            var node = _optionsDoc.CreateElement(name);
+            node.InnerText = value;
+            return node;
         }
 
         public string PromoEmailText(string lang)
@@ -157,6 +235,31 @@ namespace DblMetaData
         private void PublisherHoldsRights_CheckedChanged(object sender, EventArgs e)
         {
             _publisherRights = PublisherHoldsRights.Checked;
+        }
+
+        private void AllowOfflineCb_CheckedChanged(object sender, EventArgs e)
+        {
+            _allowOffline = AllowOfflineCb.Checked;
+        }
+
+        private void AllowIntroductionsCb_CheckedChanged(object sender, EventArgs e)
+        {
+            _allowIntroductions = AllowIntroductionsCb.Checked;
+        }
+
+        private void AllowFootnotesCb_CheckedChanged(object sender, EventArgs e)
+        {
+            _allowFootnotes = AllowFootnotesCb.Checked;
+        }
+
+        private void AllowCrossReferencesCb_CheckedChanged(object sender, EventArgs e)
+        {
+            _allowCrossReferences = AllowCrossReferencesCb.Checked;
+        }
+
+        private void AllowExtendedNotesCb_CheckedChanged(object sender, EventArgs e)
+        {
+            _allowExtendedNotes = AllowExtendedNotesCb.Checked;
         }
     }
 }

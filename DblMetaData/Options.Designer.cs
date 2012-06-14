@@ -36,6 +36,11 @@
             this.Email = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
             this.PublisherHoldsRights = new System.Windows.Forms.CheckBox();
+            this.AllowOfflineCb = new System.Windows.Forms.CheckBox();
+            this.AllowIntroductionsCb = new System.Windows.Forms.CheckBox();
+            this.AllowFootnotesCb = new System.Windows.Forms.CheckBox();
+            this.AllowCrossReferencesCb = new System.Windows.Forms.CheckBox();
+            this.AllowExtendedNotesCb = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // AlwaysNT
@@ -53,7 +58,7 @@
             // 
             // TranslationAgency
             // 
-            this.TranslationAgency.Location = new System.Drawing.Point(154, 66);
+            this.TranslationAgency.Location = new System.Drawing.Point(154, 204);
             this.TranslationAgency.Name = "TranslationAgency";
             this.TranslationAgency.Size = new System.Drawing.Size(404, 22);
             this.TranslationAgency.TabIndex = 1;
@@ -63,7 +68,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 66);
+            this.label1.Location = new System.Drawing.Point(18, 204);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 17);
             this.label1.TabIndex = 2;
@@ -72,7 +77,7 @@
             // Ldml
             // 
             this.Ldml.FormattingEnabled = true;
-            this.Ldml.Location = new System.Drawing.Point(132, 106);
+            this.Ldml.Location = new System.Drawing.Point(132, 244);
             this.Ldml.Name = "Ldml";
             this.Ldml.Size = new System.Drawing.Size(121, 24);
             this.Ldml.TabIndex = 3;
@@ -81,7 +86,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 106);
+            this.label2.Location = new System.Drawing.Point(18, 244);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 17);
             this.label2.TabIndex = 4;
@@ -89,7 +94,7 @@
             // 
             // Email
             // 
-            this.Email.Location = new System.Drawing.Point(23, 136);
+            this.Email.Location = new System.Drawing.Point(23, 274);
             this.Email.Multiline = true;
             this.Email.Name = "Email";
             this.Email.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -99,7 +104,7 @@
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(252, 439);
+            this.Save.Location = new System.Drawing.Point(252, 577);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 6;
@@ -120,11 +125,71 @@
             this.PublisherHoldsRights.UseVisualStyleBackColor = true;
             this.PublisherHoldsRights.CheckedChanged += new System.EventHandler(this.PublisherHoldsRights_CheckedChanged);
             // 
+            // AllowOfflineCb
+            // 
+            this.AllowOfflineCb.AutoSize = true;
+            this.AllowOfflineCb.Location = new System.Drawing.Point(21, 66);
+            this.AllowOfflineCb.Name = "AllowOfflineCb";
+            this.AllowOfflineCb.Size = new System.Drawing.Size(107, 21);
+            this.AllowOfflineCb.TabIndex = 8;
+            this.AllowOfflineCb.Text = "Allow Offline";
+            this.AllowOfflineCb.UseVisualStyleBackColor = true;
+            this.AllowOfflineCb.CheckedChanged += new System.EventHandler(this.AllowOfflineCb_CheckedChanged);
+            // 
+            // AllowIntroductionsCb
+            // 
+            this.AllowIntroductionsCb.AutoSize = true;
+            this.AllowIntroductionsCb.Location = new System.Drawing.Point(21, 93);
+            this.AllowIntroductionsCb.Name = "AllowIntroductionsCb";
+            this.AllowIntroductionsCb.Size = new System.Drawing.Size(147, 21);
+            this.AllowIntroductionsCb.TabIndex = 9;
+            this.AllowIntroductionsCb.Text = "Allow Introductions";
+            this.AllowIntroductionsCb.UseVisualStyleBackColor = true;
+            this.AllowIntroductionsCb.CheckedChanged += new System.EventHandler(this.AllowIntroductionsCb_CheckedChanged);
+            // 
+            // AllowFootnotesCb
+            // 
+            this.AllowFootnotesCb.AutoSize = true;
+            this.AllowFootnotesCb.Location = new System.Drawing.Point(21, 120);
+            this.AllowFootnotesCb.Name = "AllowFootnotesCb";
+            this.AllowFootnotesCb.Size = new System.Drawing.Size(129, 21);
+            this.AllowFootnotesCb.TabIndex = 10;
+            this.AllowFootnotesCb.Text = "Allow Footnotes";
+            this.AllowFootnotesCb.UseVisualStyleBackColor = true;
+            this.AllowFootnotesCb.CheckedChanged += new System.EventHandler(this.AllowFootnotesCb_CheckedChanged);
+            // 
+            // AllowCrossReferencesCb
+            // 
+            this.AllowCrossReferencesCb.AutoSize = true;
+            this.AllowCrossReferencesCb.Location = new System.Drawing.Point(21, 147);
+            this.AllowCrossReferencesCb.Name = "AllowCrossReferencesCb";
+            this.AllowCrossReferencesCb.Size = new System.Drawing.Size(179, 21);
+            this.AllowCrossReferencesCb.TabIndex = 11;
+            this.AllowCrossReferencesCb.Text = "Allow Cross References";
+            this.AllowCrossReferencesCb.UseVisualStyleBackColor = true;
+            this.AllowCrossReferencesCb.CheckedChanged += new System.EventHandler(this.AllowCrossReferencesCb_CheckedChanged);
+            // 
+            // AllowExtendedNotesCb
+            // 
+            this.AllowExtendedNotesCb.AutoSize = true;
+            this.AllowExtendedNotesCb.Location = new System.Drawing.Point(21, 174);
+            this.AllowExtendedNotesCb.Name = "AllowExtendedNotesCb";
+            this.AllowExtendedNotesCb.Size = new System.Drawing.Size(158, 21);
+            this.AllowExtendedNotesCb.TabIndex = 12;
+            this.AllowExtendedNotesCb.Text = "AllowExtendedNotes";
+            this.AllowExtendedNotesCb.UseVisualStyleBackColor = true;
+            this.AllowExtendedNotesCb.CheckedChanged += new System.EventHandler(this.AllowExtendedNotesCb_CheckedChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 474);
+            this.ClientSize = new System.Drawing.Size(570, 613);
+            this.Controls.Add(this.AllowExtendedNotesCb);
+            this.Controls.Add(this.AllowCrossReferencesCb);
+            this.Controls.Add(this.AllowFootnotesCb);
+            this.Controls.Add(this.AllowIntroductionsCb);
+            this.Controls.Add(this.AllowOfflineCb);
             this.Controls.Add(this.PublisherHoldsRights);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Email);
@@ -151,5 +216,10 @@
         private System.Windows.Forms.TextBox Email;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.CheckBox PublisherHoldsRights;
+        private System.Windows.Forms.CheckBox AllowOfflineCb;
+        private System.Windows.Forms.CheckBox AllowIntroductionsCb;
+        private System.Windows.Forms.CheckBox AllowFootnotesCb;
+        private System.Windows.Forms.CheckBox AllowCrossReferencesCb;
+        private System.Windows.Forms.CheckBox AllowExtendedNotesCb;
     }
 }

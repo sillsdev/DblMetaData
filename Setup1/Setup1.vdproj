@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_89967C6F90A34CFF92ACF9264AADAF17"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_93886CC772AB443D9AE7F28741567EFF"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -81,7 +87,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D0A12A29250F44FF9E334BEF70384A69"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D1B94A25EC6949E283CE75C06B0F5370"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D4B5F0A1732D4E8189EFBEC31F90F44C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD70C6D13AEB45058DD586C908D7B4E6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -314,6 +338,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_89967C6F90A34CFF92ACF9264AADAF17"
+            {
+            "SourcePath" = "8:..\\Xml\\UpdateMetaData-1.2.xsl"
+            "TargetName" = "8:UpdateMetaData-1.2.xsl"
+            "Tag" = "8:"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_93886CC772AB443D9AE7F28741567EFF"
             {
             "SourcePath" = "8:..\\Xml\\metadata.rnc"
@@ -414,12 +458,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D0A12A29250F44FF9E334BEF70384A69"
+            {
+            "SourcePath" = "8:..\\Xml\\license.xml"
+            "TargetName" = "8:license.xml"
+            "Tag" = "8:"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1B94A25EC6949E283CE75C06B0F5370"
+            {
+            "SourcePath" = "8:..\\Xml\\metadataWbt-1.2.rnc"
+            "TargetName" = "8:metadataWbt-1.2.rnc"
+            "Tag" = "8:"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D4B5F0A1732D4E8189EFBEC31F90F44C"
             {
             "SourcePath" = "8:..\\Xml\\styles.rnc"
             "TargetName" = "8:styles.rnc"
             "Tag" = "8:"
             "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD70C6D13AEB45058DD586C908D7B4E6"
+            {
+            "SourcePath" = "8:..\\dist\\ApplyUpd12.exe"
+            "TargetName" = "8:ApplyUpd12.exe"
+            "Tag" = "8:"
+            "Folder" = "8:_8EFEB84609F04CBCB78E95D622859613"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -646,7 +750,7 @@
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.11.0"
+        "ProductVersion" = "8:1.12.0"
         "Manufacturer" = "8:SIL"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

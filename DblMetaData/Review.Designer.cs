@@ -60,7 +60,6 @@
             this.Reset = new System.Windows.Forms.Button();
             this.publisherUrl = new System.Windows.Forms.ComboBox();
             this.publisherFacebook = new System.Windows.Forms.ComboBox();
-            this.script = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.scriptDirection = new System.Windows.Forms.ComboBox();
@@ -76,7 +75,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.dialect = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.numeralScript = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -86,6 +84,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.contributor = new System.Windows.Forms.TextBox();
             this.previewEmail = new System.Windows.Forms.Button();
+            this.script = new System.Windows.Forms.ComboBox();
+            this.numeralScript = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -184,10 +184,12 @@
             // languageCode
             // 
             this.languageCode.Location = new System.Drawing.Point(160, 21);
+            this.languageCode.MaxLength = 3;
             this.languageCode.Name = "languageCode";
             this.languageCode.Size = new System.Drawing.Size(100, 22);
             this.languageCode.TabIndex = 1;
             this.languageCode.TextChanged += new System.EventHandler(this.languageCode_TextChanged);
+            this.languageCode.Leave += new System.EventHandler(this.languageCode_Leave);
             // 
             // languageName
             // 
@@ -220,6 +222,7 @@
             this.countryCode.Size = new System.Drawing.Size(100, 22);
             this.countryCode.TabIndex = 15;
             this.countryCode.TextChanged += new System.EventHandler(this.countryCode_TextChanged);
+            this.countryCode.Leave += new System.EventHandler(this.countryCode_Leave);
             // 
             // countryName
             // 
@@ -322,6 +325,7 @@
             this.abbreviation.Size = new System.Drawing.Size(100, 22);
             this.abbreviation.TabIndex = 1;
             this.abbreviation.TextChanged += new System.EventHandler(this.abbreviation_TextChanged);
+            this.abbreviation.Leave += new System.EventHandler(this.abbreviation_Leave);
             // 
             // PreviewInfo
             // 
@@ -382,15 +386,6 @@
             this.publisherFacebook.SelectedIndexChanged += new System.EventHandler(this.publisherFacebook_SelectedIndexChanged);
             this.publisherFacebook.TextChanged += new System.EventHandler(this.publisherFacebook_TextChanged);
             // 
-            // script
-            // 
-            this.script.Location = new System.Drawing.Point(160, 78);
-            this.script.Name = "script";
-            this.script.Size = new System.Drawing.Size(100, 22);
-            this.script.TabIndex = 5;
-            this.script.Text = "Latin";
-            this.script.TextChanged += new System.EventHandler(this.script_TextChanged);
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -437,7 +432,17 @@
             this.scope.FormattingEnabled = true;
             this.scope.Items.AddRange(new object[] {
             "NT",
-            "BI"});
+            "Bible with Deuterocanon",
+            "Bible without Deuterocanon",
+            "New Testament and Psalms",
+            "New Testament and Shorter Old Testament",
+            "New Testament only",
+            "Old Testament only",
+            "Old Testament with Deuterocanon",
+            "Shorter Old Testament only",
+            "Study Bible",
+            "Portion only",
+            "Selection only"});
             this.scope.Location = new System.Drawing.Point(160, 61);
             this.scope.Name = "scope";
             this.scope.Size = new System.Drawing.Size(100, 24);
@@ -542,9 +547,10 @@
             // 
             this.dialect.Location = new System.Drawing.Point(160, 166);
             this.dialect.Name = "dialect";
-            this.dialect.Size = new System.Drawing.Size(189, 22);
+            this.dialect.Size = new System.Drawing.Size(121, 22);
             this.dialect.TabIndex = 11;
             this.dialect.TextChanged += new System.EventHandler(this.dialect_TextChanged);
+            this.dialect.Leave += new System.EventHandler(this.dialect_Leave);
             // 
             // label12
             // 
@@ -554,14 +560,6 @@
             this.label12.Size = new System.Drawing.Size(51, 17);
             this.label12.TabIndex = 10;
             this.label12.Text = "Dialect";
-            // 
-            // numeralScript
-            // 
-            this.numeralScript.Location = new System.Drawing.Point(160, 194);
-            this.numeralScript.Name = "numeralScript";
-            this.numeralScript.Size = new System.Drawing.Size(100, 22);
-            this.numeralScript.TabIndex = 13;
-            this.numeralScript.TextChanged += new System.EventHandler(this.numeralScript_TextChanged);
             // 
             // label13
             // 
@@ -574,15 +572,15 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.numeralScript);
+            this.groupBox2.Controls.Add(this.script);
+            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.dialect);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.uiLanguage);
             this.groupBox2.Controls.Add(this.scriptDirection);
             this.groupBox2.Controls.Add(this.label22);
-            this.groupBox2.Controls.Add(this.script);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.countryName);
             this.groupBox2.Controls.Add(this.countryCode);
@@ -674,6 +672,75 @@
             this.previewEmail.UseVisualStyleBackColor = true;
             this.previewEmail.Click += new System.EventHandler(this.previewEmail_Click);
             // 
+            // script
+            // 
+            this.script.FormattingEnabled = true;
+            this.script.Items.AddRange(new object[] {
+            "Latin",
+            "Arabic",
+            "Arabic (Modified)",
+            "Armenian",
+            "Assamese",
+            "Bengali",
+            "Burmese",
+            "Chinese (Simplified)",
+            "Chinese (Traditional)",
+            "Cyrillic",
+            "Cyrillic (Modified)",
+            "Devanagari",
+            "Ethiopic",
+            "Georgian",
+            "Greek",
+            "Gurmukhi",
+            "Hebrew",
+            "Japanese",
+            "Khmer",
+            "Korean",
+            "Persian",
+            "Persian (Modified)",
+            "Pollard",
+            "Syllabic",
+            "Syriac",
+            "Syriac",
+            "Thai",
+            "Tibetan"});
+            this.script.Location = new System.Drawing.Point(160, 78);
+            this.script.Name = "script";
+            this.script.Size = new System.Drawing.Size(121, 24);
+            this.script.TabIndex = 18;
+            this.script.Text = "Latin";
+            this.script.SelectedIndexChanged += new System.EventHandler(this.script_SelectedIndexChanged);
+            this.script.TextChanged += new System.EventHandler(this.script_TextChanged_1);
+            // 
+            // numeralScript
+            // 
+            this.numeralScript.FormattingEnabled = true;
+            this.numeralScript.Items.AddRange(new object[] {
+            "Arabic",
+            "Bengali",
+            "Burmese",
+            "Devanagari",
+            "Ethiopic",
+            "Farsi",
+            "Gujarati",
+            "Gurmukhi",
+            "Hindi",
+            "Kannada",
+            "Khmer",
+            "Malayalam",
+            "Oriya",
+            "Tamil",
+            "Telugu",
+            "Thai",
+            "Tibetan"});
+            this.numeralScript.Location = new System.Drawing.Point(162, 194);
+            this.numeralScript.Name = "numeralScript";
+            this.numeralScript.Size = new System.Drawing.Size(121, 24);
+            this.numeralScript.TabIndex = 19;
+            this.numeralScript.Text = "Arabic";
+            this.numeralScript.SelectedIndexChanged += new System.EventHandler(this.numeralScript_SelectedIndexChanged);
+            this.numeralScript.TextChanged += new System.EventHandler(this.numeralScript_TextChanged_1);
+            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -745,7 +812,6 @@
         private System.Windows.Forms.Button Reset;
         private System.Windows.Forms.ComboBox publisherUrl;
         private System.Windows.Forms.ComboBox publisherFacebook;
-        private System.Windows.Forms.TextBox script;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox scriptDirection;
@@ -761,7 +827,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox dialect;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox numeralScript;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -771,5 +836,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox contributor;
         private System.Windows.Forms.Button previewEmail;
+        private System.Windows.Forms.ComboBox script;
+        private System.Windows.Forms.ComboBox numeralScript;
     }
 }
