@@ -19,7 +19,7 @@
     <xsl:template match="processing-instruction()"/>
     
     <!-- New root -->
-    <xsl:template match="DBLScriptureProject">
+    <xsl:template match="DBLScriptureProject |DBLMetadata">
         <xsl:processing-instruction name="xml-model">href="metadataWbt-1.2.rnc" type="application/relax-ng-compact-syntax"</xsl:processing-instruction>
         <DBLMetadata>
             <!-- xsl:copy-of select="namespace::identification/scope/@*"/ -->
@@ -48,7 +48,8 @@
             </scope>
             <description>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">description</xsl:attribute>
-                <xsl:value-of select="description"/>
+                <!-- xsl:value-of select="description"/ -->
+                <xsl:call-template name="description"/>
             </description>
             <dateCompleted>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">date</xsl:attribute>
@@ -70,9 +71,15 @@
             <systemId>
                 <xsl:attribute name="type">tms</xsl:attribute>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">identifier/tmsID</xsl:attribute>
+                <xsl:text>seeReap</xsl:text>
             </systemId>
             <xsl:apply-templates select="bundleProducer"/>
         </identification>
+    </xsl:template>
+    
+    <xsl:template name="description">
+        <xsl:text>New Testament in </xsl:text>
+        <xsl:value-of select="//language/name"/>
     </xsl:template>
     
     <xsl:template match="confidential">
@@ -81,6 +88,9 @@
             <xsl:choose>
                 <xsl:when test="text() = 'No'">false</xsl:when>
                 <xsl:when test="text() = 'Yes'">true</xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="."/>
+                </xsl:otherwise>
             </xsl:choose>
         </confidential>
     </xsl:template>
@@ -90,11 +100,11 @@
             <xsl:apply-templates select="etenPartner" />
             <creator>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">creator</xsl:attribute>
-                <xsl:value-of select="translation"/>
+                <xsl:value-of select="translation |creator"/>
             </creator>
             <publisher>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">publisher</xsl:attribute>
-                <xsl:value-of select="publishing"/>
+                <xsl:value-of select="publishing |publisher"/>
             </publisher>
             <contributor>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">contributor</xsl:attribute>
@@ -149,15 +159,15 @@
         </country>
     </xsl:template>
     
-    <xsl:template match="translation">
+    <xsl:template match="translation |/DBLMetadata/type">
         <type>
             <translationType>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">type/translationType</xsl:attribute>
-                <xsl:value-of select="type"/>
+                <xsl:value-of select="type |translationType"/>
             </translationType>
             <audience>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">audience</xsl:attribute>
-                <xsl:value-of select="level"/>
+                <xsl:value-of select="level |audience"/>
             </audience>
         </type>
     </xsl:template>
@@ -170,6 +180,7 @@
         <contents>
             <xsl:attribute name="propertyURI" namespace="{$dcds}">tableOfContents</xsl:attribute>
             <bookList>
+                <xsl:attribute name="id">default</xsl:attribute>
                 <name>
                     <xsl:value-of select="bookList/name"/>
                 </name>
@@ -212,12 +223,12 @@
         </contact>
     </xsl:template>
     
-    <xsl:template match="rights">
+    <xsl:template match="rights |copyright">
         <copyright>
             <statement>
                 <xsl:attribute name="contentType">xhtml</xsl:attribute>
                 <xsl:attribute name="propertyURI" namespace="{$dcds}">rights</xsl:attribute>
-                <xsl:value-of select="rightsStatement"/>
+                <xsl:value-of select="rightsStatement |statement"/>
             </statement>
         </copyright>
     </xsl:template>
@@ -235,12 +246,8 @@
                 <p>Hi YouVersion friend,</p>
                 <p>
                     <xsl:text>Nice work downloading the </xsl:text>
-                    <xsl:element name="em">
-                        <xsl:value-of select="/DBLScriptureProject/identification/name"/>
-                    </xsl:element>
-                    <xsl:text> (New Testament in </xsl:text>
-                    <xsl:value-of select="/DBLScriptureProject/language/name"/>
-                    <xsl:text>) in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device—even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
+                    <xsl:call-template name="nameDescription"/>
+                    <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device—even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
                 </p>
                 <p>
                     <xsl:text>This download was made possible by Wycliffe Inc. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe Inc. is doing on many fronts by visiting </xsl:text>
@@ -249,15 +256,29 @@
                         <xsl:text>www.wycliffe.org.</xsl:text>
                     </xsl:element>
                 </p>
-                <p>Again, we're glad you downloaded the ${name} and hope it enriches your interaction with God's Word.</p>
+                <p>
+                    <xsl:text>Again, we're glad you downloaded the </xsl:text>
+                    <xsl:call-template name="nameDescription"/>
+                    <xsl:text> and hope it enriches your interaction with God's Word.</xsl:text>
+                </p>
                 <p>Your Friends at YouVersion</p>
             </promoEmail>
         </promotion>
     </xsl:template>
     
+    <xsl:template name="nameDescription">
+        <xsl:element name="em">
+            <xsl:value-of select="//identification/name"/>
+        </xsl:element>
+        <xsl:text> (</xsl:text>
+        <xsl:call-template name="description"/>
+        <xsl:text>)</xsl:text>
+    </xsl:template>
+    
     <!-- Don't allow multiple br -->
     <xsl:template match="br">
-        <xsl:if test="not(name(preceding-sibling::node()[1]) = 'br')">
+        <xsl:if test="not(name(preceding-sibling::node()[1]) = 'br' or 
+            normalize-space(preceding-sibling::node()[1]) = '' and name(preceding-sibling::node()[2]) = 'br')">
             <br/>
         </xsl:if>
     </xsl:template>

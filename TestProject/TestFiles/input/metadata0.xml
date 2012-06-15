@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DBLScriptureProject resourceURI="https://dbl.ubs-archives.org/entry/index?uid=tbl-0b17e4b1479916e1" xml:base="http://purl.org/ubs/metadata/dc/terms/" xmlns:dcds="http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/">
+  <identification>
+    <systemId type="dbl" dcds:propertyURI="identifier/dblID">tbl-0b17e4b1479916e1</systemId>
+    <name dcds:propertyURI="title">Udél dwata: gna kesfasad ne lomi kesfasad</name>
+    <nameLocal>Udél dwata: gna kesfasad ne lomi kesfasad</nameLocal>
+    <abbreviation>tblNT</abbreviation>
+    <abbreviationLocal>tblNT</abbreviationLocal>
+    <scope dcds:propertyURI="title/scriptureScope">NT</scope>
+    <description dcds:propertyURI="description">1st ed.</description>
+    <dateCompleted dcds:propertyURI="date" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2007</dateCompleted>
+    <systemId type="tms" dcds:propertyURI="identifier/tmsID"></systemId>
+    <systemId type="reap" dcds:propertyURI="identifier/reapID">http://www.reap.insitehome.org/handle/9284745/25370</systemId>
+    <systemId type="paratext" dcds:propertyURI="identifier/ptxID">0b17e4b1479916e1d992c2b84d078dcbababc170</systemId>
+    <isResource>No</isResource>
+    <bundleVersion>1.1</bundleVersion>
+    <bundleProducer>Paratext/7.3.100.4</bundleProducer>
+  </identification>
+  <confidential dcds:propertyURI="accessRights/confidential">No</confidential>
+  <agencies>
+    <etenPartner>WBT</etenPartner>
+    <translation dcds:propertyURI="description/sponsorship">Wycliffe Inc.</translation>
+    <publishing dcds:propertyURI="publisher">Wycliffe Inc.</publishing>
+  </agencies>
+  <language>
+    <iso dcds:propertyURI="language/iso" dcds:sesURI="http://purl.org/dc/terms/ISO639-3">tbl</iso>
+    <name dcds:propertyURI="subject/subjectLanguage" dcds:sesURI="http://purl.org/dc/terms/ISO639-3">Tboli</name>
+    <script dcds:propertyURI="language/script">Latin</script>
+    <scriptDirection dcds:propertyURI="language/scriptDirection">LTR</scriptDirection>
+    <!-- LTR (Left to Right) or RTL (Right to Left) -->
+  </language>
+  <country>
+    <iso dcds:propertyURI="coverage/spatial" dcds:sesURI="http://purl.org/dc/terms/ISO3166">RP</iso>
+    <name dcds:propertyURI="subject/subjectCountry">Philippines</name>
+  </country>
+  <translation>
+    <type dcds:propertyURI="type/translationType">New</type>
+    <level dcds:propertyURI="audience">Common</level>
+  </translation>
+  <bookNames>
+    <book code="GEN">
+      <name type="long">Piiligu gbaŋŋu</name>
+      <name type="short">Piiligu gbaŋŋu</name>
+      <name type="abbr">GEN</name>
+    </book>
+    <book code="MAT">
+      <name type="long">Yeeso yaseesi Matiyu n daa n sebi n ŋa</name>
+      <name type="short">Matthew</name>
+      <name type="abbr">MAT</name>
+    </book>
+    <book code="MRK">
+      <name type="long">Yeeso yaseesi Maaki n daa n sebi n ŋa</name>
+      <name type="short">Mark</name>
+      <name type="abbr">MRK</name>
+    </book>
+    <book code="LUK">
+      <name type="long">Yeeso yaseesi Luuka n daa n sebi n ŋa</name>
+      <name type="short">Luke</name>
+      <name type="abbr">LUK</name>
+    </book>
+    <book code="JHN">
+      <name type="long">Yeeso yaseesi Jon n daa n sebi n ŋa</name>
+      <name type="short">John</name>
+      <name type="abbr">JHN</name>
+    </book>
+    <book code="ACT">
+      <name type="long">Yaseesi Yeeso nyaaŋpaariba n daa n niŋi</name>
+      <name type="short">Acts</name>
+      <name type="abbr">ACT</name>
+    </book>
+    <book code="ROM">
+      <name type="long">Gbaŋso Pool n daa n sebi n ti Aroom dima</name>
+      <name type="short">Romans</name>
+      <name type="abbr">ROM</name>
+    </book>
+    <book code="1CO">
+      <name type="long">Gbaŋso Pool n daa n piili n sebi n ti Korinti dima</name>
+      <name type="short">1 Corinthians</name>
+      <name type="abbr">1CO</name>
+    </book>
+    <book code="2CO">
+      <name type="long">Pool gbana ayidaana o n sebi n ti Korinti dima</name>
+      <name type="short">2 Corinthians</name>
+      <name type="abbr">2CO</name>
+    </book>
+    <book code="GAL">
+      <name type="long">Gbaŋso Pool n daa n sebi n ti Galeetiya paaligu dima</name>
+      <name type="short">Galatians</name>
+      <name type="abbr">GAL</name>
+    </book>
+    <book code="EPH">
+      <name type="long">Gbaŋso Pool n daa n sebi n ti Afesu dima</name>
+      <name type="short">Ephesians</name>
+      <name type="abbr">EPH</name>
+    </book>
+    <book code="PHP">
+      <name type="long">Gbaŋaa n na Pool daa n sebi n ti Filipai dima</name>
+      <name type="short">Philippians</name>
+      <name type="abbr">PHP</name>
+    </book>
+    <book code="COL">
+      <name type="long">Gbaŋso Pool n daa n sebi n ti Kolosi dima puwa.</name>
+      <name type="short">Colossians</name>
+      <name type="abbr">COL</name>
+    </book>
+    <book code="1TH">
+      <name type="long">Gbaŋso Pool n daa n piili n sebi n ti Tesalonika dima</name>
+      <name type="short">1 Thessalonians</name>
+      <name type="abbr">1TH</name>
+    </book>
+    <book code="2TH">
+      <name type="long">Pool gbana ayidaana o n daa n sebi n ti Tesalonika dima</name>
+      <name type="short">2 Thessalonians</name>
+      <name type="abbr">2TH</name>
+    </book>
+    <book code="1TI">
+      <name type="long">Gbaŋso Pool n daa n piili n sebi n ti Timoti</name>
+      <name type="short">1 Timothy</name>
+      <name type="abbr">1TI</name>
+    </book>
+    <book code="2TI">
+      <name type="long">Pool gbana ayidaana o n daa n sebi n ti Timoti n ŋa</name>
+      <name type="short">2 Timothy</name>
+      <name type="abbr">2TI</name>
+    </book>
+    <book code="TIT">
+      <name type="long">Gbaŋso Pool n daa n sebi n ti Tito</name>
+      <name type="short">Titus</name>
+      <name type="abbr">TIT</name>
+    </book>
+    <book code="PHM">
+      <name type="long">Gbaŋso Pool n daa n sebi ti Faliimon</name>
+      <name type="short">Philemon</name>
+      <name type="abbr">PHM</name>
+    </book>
+    <book code="HEB">
+      <name type="long">Gbaŋso ba n daa n sebi n ti Juusidima</name>
+      <name type="short">Hebrews</name>
+      <name type="abbr">HEB</name>
+    </book>
+    <book code="JAS">
+      <name type="long">Gbaŋso Jeemsi n daa n sebi</name>
+      <name type="short">James</name>
+      <name type="abbr">JAS</name>
+    </book>
+    <book code="1PE">
+      <name type="long">Gbaŋso Piita n piili n sebi</name>
+      <name type="short">1 Peter</name>
+      <name type="abbr">1PE</name>
+    </book>
+    <book code="2PE">
+      <name type="long">Piita gbana ayidaana</name>
+      <name type="short">2 Peter</name>
+      <name type="abbr">2PE</name>
+    </book>
+    <book code="1JN">
+      <name type="long">Jon piiligu gbaŋŋu</name>
+      <name type="short">1 John</name>
+      <name type="abbr">1JN</name>
+    </book>
+    <book code="2JN">
+      <name type="long">Jon gbana ayidaana</name>
+      <name type="short">2 John</name>
+      <name type="abbr">2JN</name>
+    </book>
+    <book code="3JN">
+      <name type="long">Jon gbana atadaana</name>
+      <name type="short">3 John</name>
+      <name type="abbr">3JN</name>
+    </book>
+    <book code="JUD">
+      <name type="long">Gbaŋso Juuda n daa n sebi</name>
+      <name type="short">Jude</name>
+      <name type="abbr">JUD</name>
+    </book>
+    <book code="REV">
+      <name type="long">Yaseesi Yeeso Kiristo n daa n wusi Jon</name>
+      <name type="short">Revelation</name>
+      <name type="abbr">REV</name>
+    </book>
+  </bookNames>
+  <contents dcds:propertyURI="tableOfContents">
+    <bookList id="default">
+      <name>Udél dwata: gna kesfasad ne lomi kesfasad</name>
+      <nameLocal>Udél dwata: gna kesfasad ne lomi kesfasad</nameLocal>
+      <abbreviation>tblNT</abbreviation>
+      <abbreviationLocal>tblNT</abbreviationLocal>
+      <description>NT:3rd Edition</description>
+      <range>Protestant New Testament (27 books)</range>
+      <tradition>Western Protestant order</tradition>
+      <division id="NT">
+        <books>
+          <book code="MAT" />
+          <book code="MRK" />
+          <book code="LUK" />
+          <book code="JHN" />
+          <book code="ACT" />
+          <book code="ROM" />
+          <book code="1CO" />
+          <book code="2CO" />
+          <book code="GAL" />
+          <book code="EPH" />
+          <book code="PHP" />
+          <book code="COL" />
+          <book code="1TH" />
+          <book code="2TH" />
+          <book code="1TI" />
+          <book code="2TI" />
+          <book code="TIT" />
+          <book code="PHM" />
+          <book code="HEB" />
+          <book code="JAS" />
+          <book code="1PE" />
+          <book code="2PE" />
+          <book code="1JN" />
+          <book code="2JN" />
+          <book code="3JN" />
+          <book code="JUD" />
+          <book code="REV" />
+        </books>
+      </division>
+    </bookList>
+  </contents>
+  <progress dcds:propertyURI="description/stage">
+    <!-- 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview -->
+  </progress>
+  <checking>
+    <validatedMarkers dcds:propertyURI="conformsTo/validatedMarkers">Yes</validatedMarkers>
+    <validatedVerses dcds:propertyURI="conformsTo/validatedVerses">No</validatedVerses>
+  </checking>
+  <contact>
+    <rightsHolder dcds:propertyURI="rightsHolder">Bible League International</rightsHolder>
+    <rightsHolderLocal dcds:propertyURI="rightsHolder/contactLocal">Bible League International</rightsHolderLocal>
+    <rightsHolderAbbreviation dcds:propertyURI="rightsHolder/contactAbbreviation">WBT</rightsHolderAbbreviation>
+    <rightsHolderURL dcds:propertyURI="rightsHolder/contactURL">http://www.bibleleague.org/</rightsHolderURL>
+    <rightsHolderFacebook dcds:propertyURI="rightsHolder/contactFacebook">http://www.facebook.com/BibleLeagueInternational</rightsHolderFacebook>
+  </contact>
+  <rights>
+    <dateLicense dcds:propertyURI="accessRights/pubLicenseDate" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2011-06-22</dateLicense>
+    <dateLicenseExpiry dcds:propertyURI="accessRights/pubLicenseExpiryDate" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2014-06-22</dateLicenseExpiry>
+    <rightsStatement dcds:propertyURI="rights" contentType="xhtml">© 2007, Bible League International. All rights reserved.</rightsStatement>
+    <publicationRights>
+      <allowOffline>Yes</allowOffline>
+      <allowAudio>Yes</allowAudio>
+      <allowFootnotes>Yes</allowFootnotes>
+      <allowCrossReferences>Yes</allowCrossReferences>
+      <allowNewPublishers>No</allowNewPublishers>
+      <denyPlatforms />
+      <exchangeLicenseFCBH>No</exchangeLicenseFCBH>
+    </publicationRights>
+  </rights>
+  <promotion>
+    <promoVersionInfo dcds:propertyURI="description/pubPromoVersionInfo" contentType="xhtml"><p>Tboli (tbl) Philippines<br />
+The Tboli are one of the indigenous peoples of South Cotabato in Southern Mindanao. The population is 95,300. There are 10,000 monolinguals. The total Ethnic population is 100,000 to 120,000. They live in the region of South Cotabato Province, Southwestern Mindanao. From the body of ethnographic and linguistic literature on Mindanao they are variously known as Tboli, T'boli, Tböli, Tiboli, Tibole, Tagabili, Tagabeli, and Tagabulu. They term themselves Tboli or T'boli. The language classification is Austronesian, Malayo-Polynesian, Philippine, Bilic, Tboli. They reside on the mountain slopes on either side of the upper Alah Valley and the coastal area of Maitum, Maasim and Kiamba. In former times, the Tbolis also inhabited the upper Alah Valley floor. Since the arrival of settlers originating from other parts of the Philippines, they have been gradually pushed onto the mountain slopes. As of now, they are almost expelled from the fertile valley floor. Language use is by all ages. They speak their language to each other more freely in buses, surrounding towns, etc. Language development includes literacy programs in heretofore unreached coastal mountain ranges. They operate their own government schools. They have there own poetry, dictionary and grammar. A Bible was produced 2007. The writing system is in the Latin script.<br />
+UDÉL DWATA<br />
+The New Testament<br />
+in Tboli<br />
+Previous Editions<br />
+First Edition, 1979<br />
+Published by New York International Bible Society<br />
+Second Edition, 1992<br />
+Published by International Bible Society<br />
+Third Edition, 2007<br />
+Published by Bible League International</p>
+<h2>Copyright Information</h2>
+<p>© 2007, Bible League International. All rights reserved.</p>
+<p>This translation text is made available to you under the
+terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works.
+(<a href="http://creativecommons.org/licenses/by-nc-nd/3.0/">http://creativecommons.org/licenses/by-nc-nd/3.0/</a>)
+In addition, you have permission to port the text to different file formats, as long as you
+do not change any of the text or punctuation of the Bible.</p>
+<p>You may share, copy, distribute, transmit, and extract portions
+or quotations from this work, provided that you include the above copyright
+information:</p>
+<ul>
+  <li>You must give Attribution to the work.</li>
+  <li>You do not sell this work for a profit.</li>
+  <li>You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.</li>
+</ul>
+<p>Permissions beyond the scope of this license may be
+available if you <a href="mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org">contact
+us</a> with your request. If you want to revise a translation, use a translation
+in an adaptation, or use a translation commercially, we will consider your
+request.</p>
+<p>Printed book ISBN 9789718960715</p>
+<p>NT:3rd Edition<br /><b>The New Testament</b><br />
+in <a href="http://www.ethnologue.com/show_language.asp?code=tbl">Tboli</a></p></promoVersionInfo>
+    <promoEmail dcds:propertyURI="description/pubPromoEmail">&amp;lt;p&amp;gt;Tboli (tbl) Philippines&amp;lt;br/&amp;gt;
+The Tboli are one of the indigenous peoples of South Cotabato in Southern Mindanao. The population is 95,300. There are 10,000 monolinguals. The total Ethnic population is 100,000 to 120,000. They live in the region of South Cotabato Province, Southwestern Mindanao. From the body of ethnographic and linguistic literature on Mindanao they are variously known as Tboli, T'boli, Tböli, Tiboli, Tibole, Tagabili, Tagabeli, and Tagabulu. They term themselves Tboli or T'boli. The language classification is Austronesian, Malayo-Polynesian, Philippine, Bilic, Tboli. They reside on the mountain slopes on either side of the upper Alah Valley and the coastal area of Maitum, Maasim and Kiamba. In former times, the Tbolis also inhabited the upper Alah Valley floor. Since the arrival of settlers originating from other parts of the Philippines, they have been gradually pushed onto the mountain slopes. As of now, they are almost expelled from the fertile valley floor. Language use is by all ages. They speak their language to each other more freely in buses, surrounding towns, etc. Language development includes literacy programs in heretofore unreached coastal mountain ranges. They operate their own government schools. They have there own poetry, dictionary and grammar. A Bible was produced 2007. The writing system is in the Latin script.&amp;lt;br/&amp;gt;
+UDÉL DWATA&amp;lt;br/&amp;gt;
+The New Testament&amp;lt;br/&amp;gt;
+in Tboli&amp;lt;br/&amp;gt;
+Previous Editions&amp;lt;br/&amp;gt;
+First Edition, 1979&amp;lt;br/&amp;gt;
+Published by New York International Bible Society&amp;lt;br/&amp;gt;
+Second Edition, 1992&amp;lt;br/&amp;gt;
+Published by International Bible Society&amp;lt;br/&amp;gt;
+Third Edition, 2007&amp;lt;br/&amp;gt;
+Published by Bible League International&amp;lt;/p&amp;gt;
+
+&amp;lt;h2&amp;gt;Copyright Information&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;© 2007, Bible League International. All rights reserved.&amp;lt;/p&amp;gt;
+
+
+&amp;lt;p&amp;gt;This translation text is made available to you under the
+terms of the Creative Commons License: Attribution-Noncommercial-No Derivative Works.
+(&amp;lt;a href=&amp;quot;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;quot;&amp;gt;http://creativecommons.org/licenses/by-nc-nd/3.0/&amp;lt;/a&amp;gt;)
+In addition, you have permission to port the text to different file formats, as long as you
+do not change any of the text or punctuation of the Bible.&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;You may share, copy, distribute, transmit, and extract portions
+or quotations from this work, provided that you include the above copyright
+information:&amp;lt;/p&amp;gt;
+&amp;lt;ul&amp;gt;
+&amp;lt;li&amp;gt;You must give Attribution to the work.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You do not sell this work for a profit.&amp;lt;/li&amp;gt;
+&amp;lt;li&amp;gt;You do not make any derivative works that change any of the actual words or punctuation of the Scriptures.&amp;lt;/li&amp;gt;
+&amp;lt;/ul&amp;gt;
+&amp;lt;p&amp;gt;Permissions beyond the scope of this license may be
+available if you &amp;lt;a href=&amp;quot;mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org&amp;quot;&amp;gt;contact
+us&amp;lt;/a&amp;gt; with your request. If you want to revise a translation, use a translation
+in an adaptation, or use a translation commercially, we will consider your
+request.&amp;lt;/p&amp;gt;
+&amp;lt;p&amp;gt;Printed book ISBN 9789718960715&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;NT:3rd Edition&amp;lt;br/&amp;gt;
+&amp;lt;b&amp;gt;The New Testament&amp;lt;/b&amp;gt;&amp;lt;br/&amp;gt;
+in &amp;lt;a href=&amp;quot;http://www.ethnologue.com/show_language.asp?code=tbl&amp;quot;&amp;gt;Tboli&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt;
+</promoEmail>
+  </promotion>
+  <archiveStatus>
+    <archivistName dcds:propertyURI="contributor/archivist">Greg Trihus</archivistName>
+    <dateArchived dcds:propertyURI="dateSubmitted" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2012-06-07T15:37:52.6416751+00:00</dateArchived>
+    <dateUpdated dcds:propertyURI="modified" dcds:sesURI="http://purl.org/dc/terms/W3CDTF">2012-06-07T15:37:52.6646764+00:00</dateUpdated>
+    <comments dcds:propertyURI="abstract"></comments>
+  </archiveStatus>
+  <format dcds:propertyURI="format" dcds:sesURI="http://purl.org/dc/terms/IMT">text/xml</format>
+</DBLScriptureProject>

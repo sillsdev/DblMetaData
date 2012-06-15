@@ -77,6 +77,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numeralScript = new System.Windows.Forms.ComboBox();
+            this.script = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.copyright = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -84,8 +86,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.contributor = new System.Windows.Forms.TextBox();
             this.previewEmail = new System.Windows.Forms.Button();
-            this.script = new System.Windows.Forms.ComboBox();
-            this.numeralScript = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -445,7 +445,7 @@
             "Selection only"});
             this.scope.Location = new System.Drawing.Point(160, 61);
             this.scope.Name = "scope";
-            this.scope.Size = new System.Drawing.Size(100, 24);
+            this.scope.Size = new System.Drawing.Size(190, 24);
             this.scope.TabIndex = 4;
             this.scope.Text = "NT";
             this.scope.SelectedIndexChanged += new System.EventHandler(this.scope_SelectedIndexChanged);
@@ -597,6 +597,75 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Language";
             // 
+            // numeralScript
+            // 
+            this.numeralScript.FormattingEnabled = true;
+            this.numeralScript.Items.AddRange(new object[] {
+            "Arabic",
+            "Bengali",
+            "Burmese",
+            "Devanagari",
+            "Ethiopic",
+            "Farsi",
+            "Gujarati",
+            "Gurmukhi",
+            "Hindi",
+            "Kannada",
+            "Khmer",
+            "Malayalam",
+            "Oriya",
+            "Tamil",
+            "Telugu",
+            "Thai",
+            "Tibetan"});
+            this.numeralScript.Location = new System.Drawing.Point(162, 194);
+            this.numeralScript.Name = "numeralScript";
+            this.numeralScript.Size = new System.Drawing.Size(121, 24);
+            this.numeralScript.TabIndex = 19;
+            this.numeralScript.Text = "Arabic";
+            this.numeralScript.SelectedIndexChanged += new System.EventHandler(this.numeralScript_SelectedIndexChanged);
+            this.numeralScript.TextChanged += new System.EventHandler(this.numeralScript_TextChanged_1);
+            // 
+            // script
+            // 
+            this.script.FormattingEnabled = true;
+            this.script.Items.AddRange(new object[] {
+            "Latin",
+            "Arabic",
+            "Arabic (Modified)",
+            "Armenian",
+            "Assamese",
+            "Bengali",
+            "Burmese",
+            "Chinese (Simplified)",
+            "Chinese (Traditional)",
+            "Cyrillic",
+            "Cyrillic (Modified)",
+            "Devanagari",
+            "Ethiopic",
+            "Georgian",
+            "Greek",
+            "Gurmukhi",
+            "Hebrew",
+            "Japanese",
+            "Khmer",
+            "Korean",
+            "Persian",
+            "Persian (Modified)",
+            "Pollard",
+            "Syllabic",
+            "Syriac",
+            "Syriac",
+            "Thai",
+            "Tibetan"});
+            this.script.Location = new System.Drawing.Point(160, 78);
+            this.script.Name = "script";
+            this.script.Size = new System.Drawing.Size(121, 24);
+            this.script.TabIndex = 18;
+            this.script.Text = "Latin";
+            this.script.SelectedIndexChanged += new System.EventHandler(this.script_SelectedIndexChanged);
+            this.script.TextChanged += new System.EventHandler(this.script_TextChanged_1);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.description);
@@ -671,75 +740,6 @@
             this.previewEmail.Text = "Preview Email";
             this.previewEmail.UseVisualStyleBackColor = true;
             this.previewEmail.Click += new System.EventHandler(this.previewEmail_Click);
-            // 
-            // script
-            // 
-            this.script.FormattingEnabled = true;
-            this.script.Items.AddRange(new object[] {
-            "Latin",
-            "Arabic",
-            "Arabic (Modified)",
-            "Armenian",
-            "Assamese",
-            "Bengali",
-            "Burmese",
-            "Chinese (Simplified)",
-            "Chinese (Traditional)",
-            "Cyrillic",
-            "Cyrillic (Modified)",
-            "Devanagari",
-            "Ethiopic",
-            "Georgian",
-            "Greek",
-            "Gurmukhi",
-            "Hebrew",
-            "Japanese",
-            "Khmer",
-            "Korean",
-            "Persian",
-            "Persian (Modified)",
-            "Pollard",
-            "Syllabic",
-            "Syriac",
-            "Syriac",
-            "Thai",
-            "Tibetan"});
-            this.script.Location = new System.Drawing.Point(160, 78);
-            this.script.Name = "script";
-            this.script.Size = new System.Drawing.Size(121, 24);
-            this.script.TabIndex = 18;
-            this.script.Text = "Latin";
-            this.script.SelectedIndexChanged += new System.EventHandler(this.script_SelectedIndexChanged);
-            this.script.TextChanged += new System.EventHandler(this.script_TextChanged_1);
-            // 
-            // numeralScript
-            // 
-            this.numeralScript.FormattingEnabled = true;
-            this.numeralScript.Items.AddRange(new object[] {
-            "Arabic",
-            "Bengali",
-            "Burmese",
-            "Devanagari",
-            "Ethiopic",
-            "Farsi",
-            "Gujarati",
-            "Gurmukhi",
-            "Hindi",
-            "Kannada",
-            "Khmer",
-            "Malayalam",
-            "Oriya",
-            "Tamil",
-            "Telugu",
-            "Thai",
-            "Tibetan"});
-            this.numeralScript.Location = new System.Drawing.Point(162, 194);
-            this.numeralScript.Name = "numeralScript";
-            this.numeralScript.Size = new System.Drawing.Size(121, 24);
-            this.numeralScript.TabIndex = 19;
-            this.numeralScript.Text = "Arabic";
-            this.numeralScript.SelectedIndexChanged += new System.EventHandler(this.numeralScript_SelectedIndexChanged);
-            this.numeralScript.TextChanged += new System.EventHandler(this.numeralScript_TextChanged_1);
             // 
             // Review
             // 

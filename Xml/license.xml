@@ -3,7 +3,7 @@
   <dateLicense>2011-10-01</dateLicense>
   <dateLicenseExpiry>2014-09-30</dateLicenseExpiry>
   <publicationRights>
-    <allowOffline>false</allowOffline>
+    <allowOffline>true</allowOffline>
     <allowIntroductions>true</allowIntroductions>
     <allowFootnotes>true</allowFootnotes>
     <allowCrossReferences>true</allowCrossReferences>

@@ -333,7 +333,7 @@ namespace DblMetaData
     <dateCompleted ns0:propertyURI=""date"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"" />
     <systemId type=""reap"" ns0:propertyURI=""identifier/reapID"" />
     <systemId type=""paratext"" ns0:propertyURI=""identifier/ptxID"" />
-    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"" />
+    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"">seeReap</systemId>
     <bundleProducer/>
   </identification>
   <confidential ns0:propertyURI=""accessRights/confidential"">false</confidential>
@@ -362,7 +362,7 @@ namespace DblMetaData
   </type>
   <bookNames/>
   <contents ns0:propertyURI=""tableOfContents"">
-    <bookList>
+    <bookList id=""default"">
       <name/>
       <nameLocal/>
       <abbreviation/>
@@ -1228,11 +1228,11 @@ licenseType = (""BY"" # Attributaion only
             // Write License based on options and current date.
             var licenseDoc = new XmlDocument {XmlResolver = null};
             licenseDoc.LoadXml(_license);
-            SetLicenseValue(_options.AllowOffline.ToString(), "//allowOffline", licenseDoc);
-            SetLicenseValue(_options.AllowIntroductions.ToString(), "//allowIntroductions", licenseDoc);
-            SetLicenseValue(_options.AllowFootnotes.ToString(), "//allowFootnotes", licenseDoc);
-            SetLicenseValue(_options.AllowCrossReferences.ToString(), "//allowCrossReferences", licenseDoc);
-            SetLicenseValue(_options.AllowExtendedNotes.ToString(), "//allowExtendedNotes", licenseDoc);
+            SetLicenseValue(_options.AllowOffline.ToString().ToLower(), "//allowOffline", licenseDoc);
+            SetLicenseValue(_options.AllowIntroductions.ToString().ToLower(), "//allowIntroductions", licenseDoc);
+            SetLicenseValue(_options.AllowFootnotes.ToString().ToLower(), "//allowFootnotes", licenseDoc);
+            SetLicenseValue(_options.AllowCrossReferences.ToString().ToLower(), "//allowCrossReferences", licenseDoc);
+            SetLicenseValue(_options.AllowExtendedNotes.ToString().ToLower(), "//allowExtendedNotes", licenseDoc);
             SetLicenseValue(DateTime.Today.ToString("yyyy-MM-dd"), "//dateLicense", licenseDoc);
             SetLicenseValue(DateTime.Today.AddYears(3).ToString("yyyy-MM-dd"), "//dateLicenseExpiry", licenseDoc);
             var licenseName = Path.Combine(folder, _languageCode + "License.xml");

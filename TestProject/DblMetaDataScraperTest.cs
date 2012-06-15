@@ -14,6 +14,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+using System.Xml.Xsl;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -383,6 +384,26 @@ editions
             var fileName = testName + ".xml";
             target.Save(_tf.Output(fileName));
             XmlAssert.AreEqual(_tf.Expected(fileName), _tf.Output(fileName), "Reset Promo statement error");
+        }
+
+        [TestMethod()]
+        public void Transform12to12()
+        {
+            const string data = "aucMetadata.xml";
+            var xform = new XslTransform();
+            xform.Load(_tf.Input("../../../Xml/UpdateMetaData-1.2.xsl"));
+            xform.Transform(_tf.Input(data), _tf.Output(data));
+            FileAssert.AreEqual(_tf.Expected(data), _tf.Output(data));
+        }
+
+        [TestMethod()]
+        public void Transform11to12()
+        {
+            const string data = "metadata0.xml";
+            var xform = new XslTransform();
+            xform.Load(_tf.Input("../../../Xml/UpdateMetaData-1.2.xsl"));
+            xform.Transform(_tf.Input(data), _tf.Output(data));
+            FileAssert.AreEqual(_tf.Expected(data), _tf.Output(data));
         }
     }
 }
