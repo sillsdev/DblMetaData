@@ -1,269 +1,268 @@
+# metadata.rnc
+# ----------------------------------------------------------------------------------------------------------------------
+# This is a compact syntax Relax NG Schema for the DBL @type="text" metadata information file.
+# DBL bundle version = 1.2
+
+# Suggested Dublin Core Metadata (DCMI) element/refinement relationships are added as documentation strings "## DCMI: "
+# A syntax encoding scheme may be mentioned after the DCMI documentation in parentheses; e.g. language/iso (ISO639-3)
+# ----------------------------------------------------------------------------------------------------------------------
+
 default namespace = ""
-namespace dcds = "http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"
+datatypes xsd = "http://www.w3.org/2001/XMLSchema-datatypes"
 
 start =
-  element DBLScriptureProject {
-    # resourceURI is overwritten by Paratext
-    attribute resourceURI { xsd:anyURI },
-    attribute xml:base { "http://purl.org/ubs/metadata/dc/terms/" },
+  element DBLMetadata {
+    attribute type { "text" }&
+    attribute typeVersion { "1.2" }&
+    # id is overwritten at submission 
+    attribute id { xsd:string { pattern="[a-f0-9]{16}" } }&
+    attribute revision { xsd:integer }&
     element identification {
-      (abbreviation
-         # abbreviation local should default to abbreviation
-       | abbreviationLocal
-       | element description {
-           attribute dcds:propertyURI { "description" },
-           text 
-           }
-       | element name {
-           attribute dcds:propertyURI { "title" },
-            text 
-            }
-         # Name local should default to name 
-       | nameLocal
-       | element dateCompleted {
-           attribute dcds:propertyURI { "date" },
-           attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-           (xsd:date | xsd:gYear)?
-           }
-       | element scope {
-           attribute dcds:propertyURI { "title/scriptureScope" },
-           text 
-           }
-         # systemId[@type='dbl'] is overwritten by Paratext
-         # systemId[@type='paratext'] is overwritten by Paratext
-       | element systemId {
-           attribute type { "dbl" | "tms" | "reap" | "paratext" | "biblica" },
-           attribute dcds:propertyURI { "identifier/dblID" | "identifier/tmsID" | "identifier/reapID" | "identifier/ptxID" | "identifier/biblicaID" },
-           text 
-           })+,
-      # isResource is overwritten by Paratext
-      element isResource { "Yes" | "No" },
-      # bundleVersion is overwritten by Paratext
-      element bundleVersion { xsd:decimal },
-      # bundleProducer is overwritten by Paratext
-      element bundleProducer { text }
-    },
-    element confidential {
-      attribute dcds:propertyURI { "accessRights/confidential" },
-      ("Yes" | "No")
-    },
-    element agencies {
-      element etenPartner { "UBS" | "WBT" | "Biblica" },
-      element translation { 
-        attribute dcds:propertyURI { "description/sponsorship" },
+      element name {
+        ## DCMI: title
+        xsd:string { minLength = "2" }
+      }&
+      # nameLocal should default to name 
+      element nameLocal { xsd:string { minLength = "2" } }&
+      element abbreviation { xsd:string { pattern="[A-Za-z0-9\-]{2,8}" } }&
+      # abbreviationLocal should default to abbreviation
+      element abbreviationLocal { xsd:string { minLength="1" maxLength="8" } }&
+      element scope {
+        ## DCMI: title/scriptureScope
         text 
-        },
+      }&
+      element description {
+        ## DCMI: description
+        text 
+      }&
+      element dateCompleted {
+        ## DCMI: date
+        (xsd:date | xsd:gYear | xsd:gYearMonth | xsd:dateTime )?
+	  }&
+      # systemId[@type='paratext'] is overwritten by Paratext
+      element systemId {
+        attribute type {
+        ## UBS Translation Management System database ID
+        "tms" |
+        ## Paratext Project GUID
+        "paratext" |
+        ## SIL REAP database ID
+        "reap" |
+        ## Biblica database id
+        "biblica" },
+        xsd:string { minLength = "2" } 
+      }*&
+      # bundleProducer is overwritten by Paratext
+      element bundleProducer { xsd:string { minLength = "2" } }
+    }&
+    element confidential {
+      ## DCMI: accessRights/confidential
+      xsd:boolean
+    }&
+    element agencies {
+      element etenPartner { "UBS" | "WBT" | "Biblica" }?&
+      # primary translation or coordination/sponsorship agency
+      element creator { 
+        ## DCMI: creator
+        xsd:string { minLength = "2" } 
+      }+&
       # publisher may be the same as translation (description/sponsorship) 
       element publisher {
-        attribute dcds:propertyURI { "publisher" },
+        ## DCMI: publisher
+        xsd:string { minLength = "2" } 
+      }?&
+      element contributor {
+        ## DCMI: contributor
         text 
-        }
-    },
+      }*
+    }&
     element language {
       element iso { 
-        attribute dcds:propertyURI { "language/iso" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/ISO639-3" },
-        xsd:string { pattern = "[a-z][a-z][a-z]" } 
-        },
+        ## DCMI: language/iso (ISO639-3)
+        xsd:string { pattern = "[a-z]{3}" }
+      }&
       element name { 
-        attribute dcds:propertyURI { "subject/subjectLanguage" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/ISO639-3" }, 
-        text 
-        },
+        ## DCMI: subject/language (ISO639-3)
+        xsd:string { minLength = "2" }
+      }&
+      element ldml { 
+        ## DCMI: language/ldml
+        xsd:string { pattern = "[A-Za-z]{2,3}([\-_][A-Za-z0-9]+){0,3}" }?
+      }&
+      element rod { 
+        ## DCMI: language/rod
+        xsd:string { pattern = "[0-9]{5}" }?
+      }&
       element script {
-        attribute dcds:propertyURI { "language/script" },
-        text # Re #24.  Was xsd:NCName 
-        },
+        ## DCMI: language/script
+        xsd:string { minLength = "2" }
+      }&
       # LTR (Left to Right) or RTL (Right to Left) 
       # scriptDirection is overwritten by Paratext
       element scriptDirection {
-        attribute dcds:propertyURI { "language/scriptDirection" },
+        ## DCMI: language/scriptDirection
         ("LTR" | "RTL") 
-        }
-    },
+      }&
+      element numerals {
+        ## DCMI: language/numerals
+        ( empty | numeralSystem )
+      }
+    }&
     element country { 
       element iso { 
-      attribute dcds:propertyURI { "coverage/spatial" },
-      attribute dcds:sesURI { "http://purl.org/dc/terms/ISO3166" }, 
-      xsd:NCName? 
-      }, 
-    element name { 
-      attribute dcds:propertyURI { "subject/subjectCountry" }, 
-      text 
-      }},
-    element translation { 
-      element type { 
-        attribute dcds:propertyURI { "type/translationType" }, 
-        ("First" | "New" | "Revision")?
-        }, 
-      element level {
-        attribute dcds:propertyURI { "audience" }, 
-        ( "Basic" | "Common" | "Common - Literary" | "Literary" | "Liturgical")?
-        }},
+        ## DCMI: coverage/spatial (ISO3166)
+        xsd:string { pattern = "[A-Z]{2,3}" } 
+      }&
+      element name { 
+        ## DCMI: subject/subjectCountry
+        xsd:string { minLength = "2" } 
+      }
+    }&
+    element type { 
+      element translationType { 
+        ## DCMI: type/translationType
+        translationType ?
+      }& 
+      element audience {
+        ## DCMI: audience
+        translationLevel ?
+      }
+    }&
     # bookNames/book is overwritten by Paratext
     element bookNames { 
       element book { 
-        attribute code { bookCode }, 
-        element name { 
-          attribute type {"long"}, 
+        attribute code { bookCode }& 
+        element long { 
           text 
-          }, 
-        element name { 
-          attribute type {"short"}, 
+        }& 
+        element short { 
           text 
-          }, 
-        element name { 
-          attribute type {"abbr"}, 
+        }& 
+        element abbr { 
           text 
-          } }* },
+        }
+#        element name { 
+#          attribute type {"long"}, 
+#          text 
+#        }& 
+#        element name { 
+#          attribute type {"short"}, 
+#          text 
+#        }& 
+#        element name { 
+#          attribute type {"abbr"}, 
+#          text 
+#        }
+      }*
+    }&
     element contents {
-      attribute dcds:propertyURI { "tableOfContents" },
+      ## DCMI: tableOfContents
       element bookList {
-        attribute id { "default" }?, 
+        attribute id { "default" }?&
         # default to name from identification section  
-        element name { text }, 
+        element name { text }&
         # default to name local from identification section 
-        nameLocal, 
-        abbreviation, 
-        abbreviationLocal, 
-        # "NT" | "NT + OT" or <Name> from Cannons.xml
-        element description { text }, 
-        # Protestant Bible (66 books) 
-        element range { text }, 
-        # Western Protestant order 
-        element tradition { text },
+        element nameLocal { text }& 
+        element abbreviation { text }& 
+        element abbreviationLocal { text }&
+        # e.g. "NT" | "NT + OT" or <Name> from Cannons.xml
+        element description { text }&
+        # e.g Protestant Bible (66 books) 
+        element range { text }&
+        # e.g Western Protestant order 
+        element tradition { text }&
         element division {
           attribute id { "OT" | "NT" | "DC" },
           element books { 
             element book { 
               attribute code { bookCode }
-            }+ } }+ }+ },
-    # 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview 
+            }+
+          }
+        }+
+      }+
+    }&
     # progress is overwritten by Paratext
     element progress {
-      attribute dcds:propertyURI { "description/stage" },
+      ## DCMI description/stage
       element book {
-        attribute code { bookCode },
-        attribute stage {"1" | "2" | "3" | "4" | "-1"}
+        attribute code { bookCode }&
+        attribute stage { translationStage }
       }*
-    },
-    element checking {
-      # validatedMarkers is overwritten by Paratext
-      element validatedMarkers {
-        attribute dcds:propertyURI { "conformsTo/validatedMarkers" },
-        ("Yes" | "No")
-      },
-      # validatedVerses is overwritten by Paratext
-      element validatedVerses {
-        attribute dcds:propertyURI { "conformsTo/validatedVerses" },
-        ("Yes" | "No")
-      }
-    },
+    }?&
 	# Default to Publisher (from agencies) 
     element contact {
       element rightsHolder {
-        attribute dcds:propertyURI { "rightsHolder" },
-        text
-      },
+        ## DCMI: rightsHolder
+        xsd:string { minLength = "2" }
+      }&
 	  # Default to rights holder 
       element rightsHolderLocal {
-        attribute dcds:propertyURI { "rightsHolder/contactLocal" },
-        text
-      },
+        ## DCMI: rightsHolder/contactLocal
+        xsd:string { minLength = "2" }?
+      }&
       element rightsHolderAbbreviation {
-        attribute dcds:propertyURI { "rightsHolder/contactAbbreviation" },
-        xsd:NCName
-      },
+        ## DCMI: contactAbbreviation
+        xsd:string { minLength = "2" }?
+      }&
       element rightsHolderURL {
-        attribute dcds:propertyURI { "rightsHolder/contactURL" },
-        xsd:anyURI
-      },
+        ## DCMI: rightsHolder/contactURL
+        xsd:anyURI?
+      }&
       element rightsHolderFacebook {
-        attribute dcds:propertyURI { "rightsHolder/contactFacebook" },
-        xsd:anyURI
+        ## DCMI: rightsHolder/contactFacebook
+        xsd:anyURI?
       }
-    },
-    element rights {
-	  # yyyy-mm-dd 
-      element dateLicense {
-        attribute dcds:propertyURI { "accessRights/pubLicenseDate" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date? # re #22.
-      },
-	  # yyyy-mm-dd (must be after dateLicense) 
-      element dateLicenseExpiry {
-        attribute dcds:propertyURI { "accessRights/pubLicenseExpiryDate" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date? # re #22.
-      },
-	  # For example: (c)1983, 1992 SIL International 
-      element rightsStatement {
+    }&
+    element copyright {
+      # For example: (c) 2002, 2012 United Bible Societies
+      element statement {
         attribute contentType { "xhtml" },
-        attribute dcds:propertyURI { "rights" },
+        ## DCMI: rights
         htmlMarkup
-      },
-      element publicationRights {
-        element allowOffline { "Yes" | "No" },
-        element allowAudio { "Yes" | "No" },
-        element allowFootnotes { ("Yes" | "No")? }, # Re #27.
-        element allowCrossReferences { ("Yes" | "No")? }, # Re #27.
-		# default to No? 
-        element allowNewPublishers { "Yes" | "No" },
-        element denyPlatforms {
-           element platform { # Re #26.
-              text
-           }*
-        },
-        element exchangeLicenseFCBH { licenseType | "No" }
       }
-    },
+    }&
     element promotion {
       element promoVersionInfo {
         attribute contentType { "xhtml" },
-        attribute dcds:propertyURI { "description/pubPromoVersionInfo" },
+        ## DCMI: description/pubPromoVersionInfo
 		htmlMarkup
-      },
+      }&
       element promoEmail {
-        attribute dcds:propertyURI { "description/pubPromoEmail" },
-        text
+        attribute contentType { "xhtml" },
+        ## DCMI: description/pubPromoEmail
+        htmlMarkup
       }
-    },
+    }?&
     element archiveStatus {
       # archivistName is overwritten by Paratext
       element archivistName {
-        attribute dcds:propertyURI { "contributor/archivist" },
-        text
-      },
-	  # yyyy-mm-dd
+        ## DCMI: contributor/archivist
+        xsd:string { minLength = "2" }
+      }&
       # dateArchived is overwritten by Paratext
       element dateArchived {
-        attribute dcds:propertyURI { "dateSubmitted" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date
-      },
+        ## DCMI: dateSubmitted (xsd:dateTime)
+        xsd:dateTime
+      }&
       # dateUpdated is overwritten by Paratext
       element dateUpdated {
-        attribute dcds:propertyURI { "modified" },
-        attribute dcds:sesURI { "http://purl.org/dc/terms/W3CDTF" },
-        xsd:date
-      },
+        ## DCMI: modified (xsd:dateTime)
+        xsd:dateTime
+      }&
       element comments {
-        attribute dcds:propertyURI { "abstract" },
-        text
+        ## DCMI: abstract
+        xsd:string { minLength = "2" maxLength = "255" }
       }
-    },
+    }&
     # format is overwritten by Paratext
     element format {
-      attribute dcds:propertyURI { "format" },
-      attribute dcds:sesURI { "http://purl.org/dc/terms/IMT" },
+      ## DCMI: format
       "text/xml"
     }
   }
-nameLocal = element nameLocal { text }
-abbreviation = element abbreviation { text } # Re #24.  Was {xsd:NCName }
-abbreviationLocal = element abbreviationLocal { text } # Re #24.  Was {xsd:NCName }
-htmlMarkup = (text
-         | element p { (text | htmlCharMarkup)+ }
+
+htmlMarkup = (
+           element p { (text | htmlCharMarkup)+ }
          | element h1 { text }
          | element h2 { text }
          | element h3 { text }
@@ -273,16 +272,59 @@ htmlMarkup = (text
              element li { text }+}
          | element blockquote { text }
          | htmlCharMarkup)+
-htmlCharMarkup = (element a {
+
+htmlCharMarkup = ( text
+		 | element a {
              attribute href { xsd:anyURI },
-             text
+             htmlCharMarkup
            }
+         | element img {
+            attribute src { xsd:anyURI },
+            attribute alt { text }?,
+            text
+            }           
          | element br { empty }
          | element strong { text }
          | element b { text }
          | element em { text }
          | element i { text })
-bookCode = ("GEN"   # Genesis
+
+numeralSystem = (
+           "Arabic" # (a.k.a. 'Hindu') = 0123456789
+         | "Bengali"
+         | "Burmese"
+         | "Devanagari"
+         | "Ethiopic"
+         | "Farsi"
+         | "Gujarati"
+         | "Gurmukhi"
+         | "Hindi" # (i.e. 'Arabic' as used in Egypt)
+         | "Kannada"
+         | "Khmer"
+         | "Malayalam"
+         | "Oriya"
+         | "Tamil"
+         | "Telugu"
+         | "Thai"
+         | "Tibetan")
+
+translationType = (
+           "First"
+         | "New"
+         | "Revision")
+
+translationLevel = (
+           "Basic"
+         | "Common"
+         | "Common - Literary"
+         | "Literary"
+         | "Liturgical")
+
+# 1 = draft, 2 = internalReview, 3 = externalReview, 4 = finalReview
+translationStage = ( "1" | "2" | "3" | "4")
+
+bookCode = (
+           "GEN"   # Genesis
          | "EXO" # Exodus
          | "LEV" # Leviticus
          | "NUM" # Numbers
@@ -398,17 +440,4 @@ bookCode = ("GEN"   # Genesis
          | "CNC" # Concordance 
          | "GLO" # Glossary 
          | "TDX" # Topical Index 
-         | "NDX" # Names Index 
-         # Extras to get bundles to 'validate':
-         | "BLT" # BEL EN DIE DRAAK
-)
-licenseType = ("BY" # Attribution only
-         | "BY-ND"       #  Attribution-NoDerivatives
-         | "BY-NC-ND" # Attribution-NonCommercial- NoDerivatives 
-         | "BY-NC"       # Attribution-NonCommercial 
-         | "BY-NC-SA" # Attribution-NonCommercial- ShareAlike 
-         | "BY-SA"       # Attribution-ShareAlike 
-         | "PD"          # Dedicated to or marked as being in the public domain
-         # Extra codes added to make more documents 'valid':
-         | "Yes"
-)
+         | "NDX") # Names Index 

@@ -10,17 +10,6 @@
                         <scenarioAssociation-array>
                             <scenarioAssociation>
                                 <field name="name">
-                                    <String>aucMetadata</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
-                                <field name="url">
-                                    <String>../../../../../Desktop/aucMetadata.xml</String>
-                                </field>
-                            </scenarioAssociation>
-                            <scenarioAssociation>
-                                <field name="name">
                                     <String>UpdateMetaData-1.2</String>
                                 </field>
                                 <field name="type">
@@ -28,6 +17,17 @@
                                 </field>
                                 <field name="url">
                                     <String>UpdateMetaData-1.2.xsl</String>
+                                </field>
+                            </scenarioAssociation>
+                            <scenarioAssociation>
+                                <field name="name">
+                                    <String>aucMetadata</String>
+                                </field>
+                                <field name="type">
+                                    <String>XSL</String>
+                                </field>
+                                <field name="url">
+                                    <String>../../../../../Desktop/aucMetadata.xml</String>
                                 </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
