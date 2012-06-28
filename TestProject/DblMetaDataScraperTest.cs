@@ -97,12 +97,12 @@ namespace TestProject
             Assert.AreEqual("United States", target.CountryName);
         }
 
-        //[TestMethod()]
-        //public void HwcRevewTest()
-        //{
-        //    var target = new Form1();
-        //    target.ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
-        //}
+        [TestMethod()]
+        public void HwcRevewTest()
+        {
+            var target = new Form1();
+            target.ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
+        }
 
         /// <summary>
         ///A test for ScrapeReapData

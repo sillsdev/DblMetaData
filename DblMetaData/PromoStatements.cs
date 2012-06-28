@@ -36,9 +36,7 @@ information:</p>
 </ul>
 <p>Permissions beyond the scope of this license may be
 available if you <a href=""mailto:ScriptureCopyrightPermissions_Intl@Wycliffe.org"">contact
-us</a> with your request. If you want to revise a translation, use a translation
-in an adaptation, or use a translation commercially, we will consider your
-request.</p>
+us</a> with your request.</p>
 ";
         #endregion license
 
