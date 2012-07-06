@@ -86,6 +86,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.contributor = new System.Windows.Forms.TextBox();
             this.previewEmail = new System.Windows.Forms.Button();
+            this.range = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -234,10 +236,10 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(848, 722);
+            this.Ok.Location = new System.Drawing.Point(848, 747);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 23);
-            this.Ok.TabIndex = 13;
+            this.Ok.TabIndex = 0;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
             this.Ok.Click += new System.EventHandler(this.Ok_Click);
@@ -245,10 +247,10 @@
             // Cancel
             // 
             this.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancel.Location = new System.Drawing.Point(767, 722);
+            this.Cancel.Location = new System.Drawing.Point(767, 747);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 12;
+            this.Cancel.TabIndex = 14;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -277,7 +279,7 @@
             this.label17.Location = new System.Drawing.Point(534, 263);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(108, 17);
-            this.label17.TabIndex = 7;
+            this.label17.TabIndex = 8;
             this.label17.Text = "Promo Html Info";
             // 
             // promoInfo
@@ -286,27 +288,27 @@
             this.promoInfo.Multiline = true;
             this.promoInfo.Name = "promoInfo";
             this.promoInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.promoInfo.Size = new System.Drawing.Size(386, 132);
-            this.promoInfo.TabIndex = 8;
+            this.promoInfo.Size = new System.Drawing.Size(386, 158);
+            this.promoInfo.TabIndex = 9;
             this.promoInfo.TextChanged += new System.EventHandler(this.promoInfo_TextChanged);
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(534, 438);
+            this.label19.Location = new System.Drawing.Point(534, 463);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(118, 17);
-            this.label19.TabIndex = 10;
+            this.label19.TabIndex = 11;
             this.label19.Text = "Promo Email Text";
             // 
             // promoEmail
             // 
-            this.promoEmail.Location = new System.Drawing.Point(537, 458);
+            this.promoEmail.Location = new System.Drawing.Point(537, 483);
             this.promoEmail.Multiline = true;
             this.promoEmail.Name = "promoEmail";
             this.promoEmail.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.promoEmail.Size = new System.Drawing.Size(386, 224);
-            this.promoEmail.TabIndex = 11;
+            this.promoEmail.TabIndex = 12;
             this.promoEmail.TextChanged += new System.EventHandler(this.promoEmail_TextChanged);
             // 
             // label18
@@ -329,10 +331,10 @@
             // 
             // PreviewInfo
             // 
-            this.PreviewInfo.Location = new System.Drawing.Point(817, 422);
+            this.PreviewInfo.Location = new System.Drawing.Point(817, 447);
             this.PreviewInfo.Name = "PreviewInfo";
             this.PreviewInfo.Size = new System.Drawing.Size(106, 23);
-            this.PreviewInfo.TabIndex = 9;
+            this.PreviewInfo.TabIndex = 10;
             this.PreviewInfo.Text = "Preview Info";
             this.PreviewInfo.UseVisualStyleBackColor = true;
             this.PreviewInfo.Click += new System.EventHandler(this.PreviewInfo_Click);
@@ -343,7 +345,7 @@
             this.label20.Location = new System.Drawing.Point(534, 24);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(269, 17);
-            this.label20.TabIndex = 4;
+            this.label20.TabIndex = 5;
             this.label20.Text = "Publication Description (from rights page)";
             // 
             // PubDescTextBox
@@ -353,7 +355,7 @@
             this.PubDescTextBox.Name = "PubDescTextBox";
             this.PubDescTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.PubDescTextBox.Size = new System.Drawing.Size(386, 202);
-            this.PubDescTextBox.TabIndex = 5;
+            this.PubDescTextBox.TabIndex = 6;
             this.PubDescTextBox.TextChanged += new System.EventHandler(this.PubDescTextBox_TextChanged);
             // 
             // Reset
@@ -361,7 +363,7 @@
             this.Reset.Location = new System.Drawing.Point(817, 252);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(106, 23);
-            this.Reset.TabIndex = 6;
+            this.Reset.TabIndex = 7;
             this.Reset.Text = "Reset Promo";
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
@@ -435,6 +437,7 @@
             "Bible with Deuterocanon",
             "Bible without Deuterocanon",
             "New Testament and Psalms",
+            "New Testament, Psalms and Proverbs",
             "New Testament and Shorter Old Testament",
             "New Testament only",
             "Old Testament only",
@@ -445,7 +448,7 @@
             "Selection only"});
             this.scope.Location = new System.Drawing.Point(160, 61);
             this.scope.Name = "scope";
-            this.scope.Size = new System.Drawing.Size(190, 24);
+            this.scope.Size = new System.Drawing.Size(327, 24);
             this.scope.TabIndex = 4;
             this.scope.Text = "NT";
             this.scope.SelectedIndexChanged += new System.EventHandler(this.scope_SelectedIndexChanged);
@@ -621,7 +624,7 @@
             this.numeralScript.Location = new System.Drawing.Point(162, 194);
             this.numeralScript.Name = "numeralScript";
             this.numeralScript.Size = new System.Drawing.Size(121, 24);
-            this.numeralScript.TabIndex = 19;
+            this.numeralScript.TabIndex = 13;
             this.numeralScript.Text = "Arabic";
             this.numeralScript.SelectedIndexChanged += new System.EventHandler(this.numeralScript_SelectedIndexChanged);
             this.numeralScript.TextChanged += new System.EventHandler(this.numeralScript_TextChanged_1);
@@ -661,20 +664,22 @@
             this.script.Location = new System.Drawing.Point(160, 78);
             this.script.Name = "script";
             this.script.Size = new System.Drawing.Size(121, 24);
-            this.script.TabIndex = 18;
+            this.script.TabIndex = 5;
             this.script.Text = "Latin";
             this.script.SelectedIndexChanged += new System.EventHandler(this.script_SelectedIndexChanged);
             this.script.TextChanged += new System.EventHandler(this.script_TextChanged_1);
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.range);
+            this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.description);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.abbreviation);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Location = new System.Drawing.Point(8, 487);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(508, 80);
+            this.groupBox3.Size = new System.Drawing.Size(508, 105);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Summary";
@@ -708,10 +713,10 @@
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(8, 573);
+            this.groupBox4.Location = new System.Drawing.Point(8, 598);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(508, 172);
-            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Rights";
             // 
@@ -733,20 +738,37 @@
             // 
             // previewEmail
             // 
-            this.previewEmail.Location = new System.Drawing.Point(817, 688);
+            this.previewEmail.Location = new System.Drawing.Point(817, 713);
             this.previewEmail.Name = "previewEmail";
             this.previewEmail.Size = new System.Drawing.Size(106, 23);
-            this.previewEmail.TabIndex = 14;
+            this.previewEmail.TabIndex = 13;
             this.previewEmail.Text = "Preview Email";
             this.previewEmail.UseVisualStyleBackColor = true;
             this.previewEmail.Click += new System.EventHandler(this.previewEmail_Click);
+            // 
+            // range
+            // 
+            this.range.Location = new System.Drawing.Point(160, 77);
+            this.range.Name = "range";
+            this.range.Size = new System.Drawing.Size(327, 22);
+            this.range.TabIndex = 5;
+            this.range.TextChanged += new System.EventHandler(this.range_TextChanged);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(11, 80);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(50, 17);
+            this.label25.TabIndex = 4;
+            this.label25.Text = "Range";
             // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
-            this.ClientSize = new System.Drawing.Size(948, 754);
+            this.ClientSize = new System.Drawing.Size(948, 782);
             this.Controls.Add(this.previewEmail);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -838,5 +860,7 @@
         private System.Windows.Forms.Button previewEmail;
         private System.Windows.Forms.ComboBox script;
         private System.Windows.Forms.ComboBox numeralScript;
+        private System.Windows.Forms.TextBox range;
+        private System.Windows.Forms.Label label25;
     }
 }

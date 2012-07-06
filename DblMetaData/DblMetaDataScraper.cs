@@ -186,6 +186,15 @@ namespace DblMetaData
         }
         #endregion Description
 
+        #region Range
+        private string _range = string.Empty;
+        public string Range
+        {
+            get { return _range; }
+            set { _range = value; }
+        }
+        #endregion Range
+
         #region Publisher
         private string _publisher;
         public string Publisher
@@ -576,7 +585,7 @@ start =
         # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
         element description { text }, 
         # Protestant Bible (66 books) 
-        element range { (""Protestant New Testament (27 books)"" | ""Protestant Bible (66 books)"" | ""Bible with DC (Anglican Tradition)"") }, 
+        element range { xsd:string }, 
         # Western Protestant order 
         element tradition { ""Western Protestant order"" },
         element division {
@@ -982,6 +991,7 @@ licenseType = (""BY"" # Attributaion only
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
             SetAbbreviation();
             SetDescription();
+            SetRange();
 
             // Publisher
             _publisher = GetValue("//default:tr[default:td='dc.publisher']/default:td[2]");
@@ -1062,9 +1072,103 @@ licenseType = (""BY"" # Attributaion only
                                               _languageName, _dialectName).Trim();
         }
 
+        public void SetRange()
+        {
+            switch (_scope)
+            {
+                case "NT":
+                    _range = "Protestant New Testament (27 books)";
+                    break;
+                case "Bible with Deuterocanon":
+                    _range = "Bible with DC (Anglican Tradition)";
+                    break;
+                case "Bible without Deuterocanon":
+                    _range = "Protestant Bible (66 books)";
+                    break;
+                case "New Testament and Psalms":
+                    _range = "Protestant New Testament (27 books) and Psalms";
+                    break;
+                case "New Testament, Psalms and Proverbs":
+                    _range = "Protestant New Testament (27 books) with Psalms and Proverbs";
+                    break;
+                case "New Testament and Shorter Old Testament":
+                    _range = "Protestant New Testament (27 books) with a shortened Old Testament";
+                    break;
+                case "New Testament only":
+                    _range = "Protestant New Testament (27 books)";
+                    break;
+                case "Old Testament only":
+                    _range = "Protestant Old Testament (39 books)";
+                    break;
+                case "Old Testament with Deuterocanon":
+                    _range = "Old Testament with DC (Anglican Tradition)";
+                    break;
+                case "Shorter Old Testament only":
+                    _range = "Selections of Protestant Old Testament";
+                    break;
+                case "Study Bible":
+                    _range = "Protestant Bible (66 books) with study notes";
+                    break;
+                case "Portion only":
+                    _range = "Portion of Protestant New Testament";
+                    break;
+                case "Selection only":
+                    _range = "Selections of Protestant New Testament";
+                    break;
+                default:
+                    _range = "Portion of Protestant New Testament";
+                    break;
+            }
+        }
+
         public void SetAbbreviation()
         {
-            _abbreviation = _languageCode + _scope;
+            _abbreviation = _languageCode;
+            switch (_scope)
+            {
+                case "NT":
+                    _abbreviation += "NT";
+                    break;
+                case "Bible with Deuterocanon":
+                    _abbreviation += "BId";
+                    break;
+                case "Bible without Deuterocanon":
+                    _abbreviation += "BI";
+                    break;
+                case "New Testament and Psalms":
+                    _abbreviation += "NTps";
+                    break;
+                case "New Testament, Psalms and Proverbs":
+                    _abbreviation += "NTpp";
+                    break;
+                case "New Testament and Shorter Old Testament":
+                    _abbreviation += "NTpo";
+                    break;
+                case "New Testament only":
+                    _abbreviation += "NT";
+                    break;
+                case "Old Testament only":
+                    _abbreviation += "OT";
+                    break;
+                case "Old Testament with Deuterocanon":
+                    _abbreviation += "OTd";
+                    break;
+                case "Shorter Old Testament only":
+                    _abbreviation += "OTs";
+                    break;
+                case "Study Bible":
+                    _abbreviation += "SBI";
+                    break;
+                case "Portion only":
+                    _abbreviation += "POR";
+                    break;
+                case "Selection only":
+                    _abbreviation += "SEL";
+                    break;
+                default:
+                    _abbreviation += _scope;
+                    break;
+            }
         }
 
         public void SetPromoEmail()
@@ -1130,8 +1234,7 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_abbreviation, "//contents/bookList/abbreviation");
             SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
             SetValue(_scope, "//contents/bookList/description");
-            var range = _scope == "NT" ? "Protestant New Testament (27 books)" : "Protestant Bible (66 books)";
-            SetValue(range, "//contents/bookList/range");
+            SetValue(_range, "//contents/bookList/range");
 
             SetValue(_rightsHolder, "//contact/rightsHolder");
             SetValue(_rightsHolder, "//contact/rightsHolderLocal");

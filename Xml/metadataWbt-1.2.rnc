@@ -146,7 +146,7 @@ start =
         # "NT" | "NT + OT" or <Name> from Cannons.xml
         element description { text }, 
         # Protestant Bible (66 books) 
-        element range { ("Protestant New Testament (27 books)" | "Protestant Bible (66 books)" | "Bible with DC (Anglican Tradition)") }, 
+        element range { xsd:string }, 
         # Western Protestant order 
         element tradition { "Western Protestant order" },
         element division {

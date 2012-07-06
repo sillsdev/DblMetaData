@@ -32,6 +32,7 @@ namespace DblMetaData
         private bool _userAction = false;
         private bool _userSetAbbreviation = false;
         private bool _userSetDescription = false;
+        private bool _userSetRange = false;
         private bool _userSetPromoEmail = false;
         private bool _userSetRightsStatment = false;
         private bool _userSetPublisherUrl = false;
@@ -59,6 +60,15 @@ namespace DblMetaData
             _userAction = false;
             _data.SetAbbreviation();
             abbreviation.Text = _data.Abbreviation;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetRange()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetRange();
+            range.Text = _data.Range;
             _userAction = saveUserAction;
         }
 
@@ -117,6 +127,7 @@ namespace DblMetaData
             countryName.Text = _data.CountryName;
             abbreviation.Text = _data.Abbreviation;
 			description.Text = _data.Description;
+            range.Text = _data.Range;
             publisher.Text = _data.Publisher;
             publisherUrl.Text = _data.PublisherUrl;
             publisherFacebook.Text = _data.PublisherFacebook;
@@ -298,6 +309,8 @@ namespace DblMetaData
                 SetAbbreviation();
             if (!_userSetDescription)
                 SetDescription();
+            if (!_userSetRange)
+                SetRange();
         }
 
         protected void script_Changed()
@@ -469,6 +482,13 @@ namespace DblMetaData
                 MessageBox.Show("Abbreviations must be from two to eight characters", "Invalid Response", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 abbreviation.Focus();
             }
+        }
+
+        private void range_TextChanged(object sender, EventArgs e)
+        {
+            _data.Range = range.Text;
+            if (_userAction)
+                _userSetRange = true;
         }
     }
 }
