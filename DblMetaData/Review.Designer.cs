@@ -80,14 +80,16 @@
             this.numeralScript = new System.Windows.Forms.ComboBox();
             this.script = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.range = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
             this.copyright = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.localRights = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.contributor = new System.Windows.Forms.TextBox();
             this.previewEmail = new System.Windows.Forms.Button();
-            this.range = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -236,10 +238,10 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(848, 747);
+            this.Ok.Location = new System.Drawing.Point(848, 771);
             this.Ok.Name = "Ok";
             this.Ok.Size = new System.Drawing.Size(75, 23);
-            this.Ok.TabIndex = 0;
+            this.Ok.TabIndex = 14;
             this.Ok.Text = "Ok";
             this.Ok.UseVisualStyleBackColor = true;
             this.Ok.Click += new System.EventHandler(this.Ok_Click);
@@ -247,10 +249,10 @@
             // Cancel
             // 
             this.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Cancel.Location = new System.Drawing.Point(767, 747);
+            this.Cancel.Location = new System.Drawing.Point(767, 771);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(75, 23);
-            this.Cancel.TabIndex = 14;
+            this.Cancel.TabIndex = 0;
             this.Cancel.Text = "Cancel";
             this.Cancel.UseVisualStyleBackColor = true;
             this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
@@ -258,19 +260,19 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(13, 82);
+            this.label15.Location = new System.Drawing.Point(13, 113);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(111, 17);
-            this.label15.TabIndex = 4;
+            this.label15.TabIndex = 6;
             this.label15.Text = "Rights hoder Url";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(13, 112);
+            this.label16.Location = new System.Drawing.Point(13, 143);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(132, 17);
-            this.label16.TabIndex = 6;
+            this.label16.TabIndex = 8;
             this.label16.Text = "Rights H. Facebook";
             // 
             // label17
@@ -371,20 +373,20 @@
             // publisherUrl
             // 
             this.publisherUrl.FormattingEnabled = true;
-            this.publisherUrl.Location = new System.Drawing.Point(161, 79);
+            this.publisherUrl.Location = new System.Drawing.Point(161, 110);
             this.publisherUrl.Name = "publisherUrl";
-            this.publisherUrl.Size = new System.Drawing.Size(189, 24);
-            this.publisherUrl.TabIndex = 5;
+            this.publisherUrl.Size = new System.Drawing.Size(326, 24);
+            this.publisherUrl.TabIndex = 7;
             this.publisherUrl.SelectedIndexChanged += new System.EventHandler(this.publisherUrl_SelectedIndexChanged);
             this.publisherUrl.TextChanged += new System.EventHandler(this.publisherUrl_TextChanged);
             // 
             // publisherFacebook
             // 
             this.publisherFacebook.FormattingEnabled = true;
-            this.publisherFacebook.Location = new System.Drawing.Point(161, 109);
+            this.publisherFacebook.Location = new System.Drawing.Point(161, 140);
             this.publisherFacebook.Name = "publisherFacebook";
             this.publisherFacebook.Size = new System.Drawing.Size(327, 24);
-            this.publisherFacebook.TabIndex = 7;
+            this.publisherFacebook.TabIndex = 9;
             this.publisherFacebook.SelectedIndexChanged += new System.EventHandler(this.publisherFacebook_SelectedIndexChanged);
             this.publisherFacebook.TextChanged += new System.EventHandler(this.publisherFacebook_TextChanged);
             // 
@@ -424,7 +426,7 @@
             this.publisher.FormattingEnabled = true;
             this.publisher.Location = new System.Drawing.Point(160, 21);
             this.publisher.Name = "publisher";
-            this.publisher.Size = new System.Drawing.Size(189, 24);
+            this.publisher.Size = new System.Drawing.Size(327, 24);
             this.publisher.TabIndex = 1;
             this.publisher.SelectedIndexChanged += new System.EventHandler(this.publisher_SelectedIndexChanged);
             this.publisher.TextChanged += new System.EventHandler(this.publisher_TextChanged);
@@ -680,71 +682,9 @@
             this.groupBox3.Location = new System.Drawing.Point(8, 487);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(508, 105);
-            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Summary";
-            // 
-            // copyright
-            // 
-            this.copyright.Location = new System.Drawing.Point(162, 139);
-            this.copyright.Name = "copyright";
-            this.copyright.Size = new System.Drawing.Size(327, 22);
-            this.copyright.TabIndex = 9;
-            this.copyright.TextChanged += new System.EventHandler(this.copyright_TextChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(13, 142);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(68, 17);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Copyright";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.label24);
-            this.groupBox4.Controls.Add(this.contributor);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.copyright);
-            this.groupBox4.Controls.Add(this.publisher);
-            this.groupBox4.Controls.Add(this.publisherFacebook);
-            this.groupBox4.Controls.Add(this.publisherUrl);
-            this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Location = new System.Drawing.Point(8, 598);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(508, 172);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Rights";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(12, 54);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(135, 17);
-            this.label24.TabIndex = 2;
-            this.label24.Text = "Contributing Agency";
-            // 
-            // contributor
-            // 
-            this.contributor.Location = new System.Drawing.Point(161, 51);
-            this.contributor.Name = "contributor";
-            this.contributor.Size = new System.Drawing.Size(188, 22);
-            this.contributor.TabIndex = 3;
-            // 
-            // previewEmail
-            // 
-            this.previewEmail.Location = new System.Drawing.Point(817, 713);
-            this.previewEmail.Name = "previewEmail";
-            this.previewEmail.Size = new System.Drawing.Size(106, 23);
-            this.previewEmail.TabIndex = 13;
-            this.previewEmail.Text = "Preview Email";
-            this.previewEmail.UseVisualStyleBackColor = true;
-            this.previewEmail.Click += new System.EventHandler(this.previewEmail_Click);
             // 
             // range
             // 
@@ -763,12 +703,95 @@
             this.label25.TabIndex = 4;
             this.label25.Text = "Range";
             // 
+            // copyright
+            // 
+            this.copyright.Location = new System.Drawing.Point(162, 170);
+            this.copyright.Name = "copyright";
+            this.copyright.Size = new System.Drawing.Size(327, 22);
+            this.copyright.TabIndex = 11;
+            this.copyright.TextChanged += new System.EventHandler(this.copyright_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(13, 173);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(68, 17);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Copyright";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.localRights);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Controls.Add(this.contributor);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.copyright);
+            this.groupBox4.Controls.Add(this.publisher);
+            this.groupBox4.Controls.Add(this.publisherFacebook);
+            this.groupBox4.Controls.Add(this.publisherUrl);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label15);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Location = new System.Drawing.Point(8, 598);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(508, 202);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Rights";
+            // 
+            // localRights
+            // 
+            this.localRights.FormattingEnabled = true;
+            this.localRights.Location = new System.Drawing.Point(160, 52);
+            this.localRights.Name = "localRights";
+            this.localRights.Size = new System.Drawing.Size(325, 24);
+            this.localRights.TabIndex = 3;
+            this.localRights.SelectedIndexChanged += new System.EventHandler(this.localRights_SelectedIndexChanged);
+            this.localRights.TextChanged += new System.EventHandler(this.localRights_TextChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(11, 55);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(132, 17);
+            this.label26.TabIndex = 2;
+            this.label26.Text = "Local Rights Holder";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 85);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(135, 17);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Contributing Agency";
+            // 
+            // contributor
+            // 
+            this.contributor.Location = new System.Drawing.Point(161, 82);
+            this.contributor.Name = "contributor";
+            this.contributor.Size = new System.Drawing.Size(326, 22);
+            this.contributor.TabIndex = 5;
+            // 
+            // previewEmail
+            // 
+            this.previewEmail.Location = new System.Drawing.Point(817, 713);
+            this.previewEmail.Name = "previewEmail";
+            this.previewEmail.Size = new System.Drawing.Size(106, 23);
+            this.previewEmail.TabIndex = 13;
+            this.previewEmail.Text = "Preview Email";
+            this.previewEmail.UseVisualStyleBackColor = true;
+            this.previewEmail.Click += new System.EventHandler(this.previewEmail_Click);
+            // 
             // Review
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.Cancel;
-            this.ClientSize = new System.Drawing.Size(948, 782);
+            this.ClientSize = new System.Drawing.Size(948, 804);
             this.Controls.Add(this.previewEmail);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -862,5 +885,7 @@
         private System.Windows.Forms.ComboBox numeralScript;
         private System.Windows.Forms.TextBox range;
         private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ComboBox localRights;
+        private System.Windows.Forms.Label label26;
     }
 }

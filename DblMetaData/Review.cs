@@ -34,6 +34,7 @@ namespace DblMetaData
         private bool _userSetDescription = false;
         private bool _userSetRange = false;
         private bool _userSetPromoEmail = false;
+        private bool _userSetLocalRightsHolder = false;
         private bool _userSetRightsStatment = false;
         private bool _userSetPublisherUrl = false;
         private bool _userSetPublisherFacebook = false;
@@ -78,6 +79,15 @@ namespace DblMetaData
             _userAction = false;
             _data.SetPromoEmail();
             promoEmail.Text = _data.PromoEmail;
+            _userAction = saveUserAction;
+        }
+
+        protected void SetLocalRightsHolder()
+        {
+            var saveUserAction = _userAction;
+            _userAction = false;
+            _data.SetLocalRightsHolder();
+            localRights.Text = _data.RightsHolderLocal;
             _userAction = saveUserAction;
         }
 
@@ -129,6 +139,7 @@ namespace DblMetaData
 			description.Text = _data.Description;
             range.Text = _data.Range;
             publisher.Text = _data.Publisher;
+            localRights.Text = _data.RightsHolderLocal;
             publisherUrl.Text = _data.PublisherUrl;
             publisherFacebook.Text = _data.PublisherFacebook;
 			copyright.Text = _data.RightsStatement;
@@ -137,6 +148,7 @@ namespace DblMetaData
             PubDescTextBox.Text = _data.PublicationDescription;
             uiLanguage.Items.AddRange(_data.Options.Ldmls().ToArray());
             publisher.Items.AddRange(_data.publishers().ToArray());
+            localRights.Items.AddRange(_data.publishers().ToArray());
             publisherUrl.Items.AddRange(_data.publisherUrls().ToArray());
             publisherFacebook.Items.AddRange(_data.publisherFacebooks().ToArray());
             _userAction = true;
@@ -286,6 +298,8 @@ namespace DblMetaData
             _data.SetRightsHolder();
             if (!_userSetRightsStatment)
                 SetRightsStatement();
+            if (!_userSetLocalRightsHolder)
+                SetLocalRightsHolder();
             if (!_userSetPublisherUrl)
                 SetPublisherUrl();
             if (!_userSetPublisherFacebook)
@@ -489,6 +503,23 @@ namespace DblMetaData
             _data.Range = range.Text;
             if (_userAction)
                 _userSetRange = true;
+        }
+
+        private void localRights_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            localRights_Changed();
+        }
+
+        private void localRights_Changed()
+        {
+            _data.RightsHolderLocal = localRights.Text;
+            if (_userAction)
+                _userSetLocalRightsHolder = true;
+        }
+
+        private void localRights_TextChanged(object sender, EventArgs e)
+        {
+            localRights_Changed();
         }
     }
 }

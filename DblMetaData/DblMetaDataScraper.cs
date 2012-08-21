@@ -222,6 +222,15 @@ namespace DblMetaData
         }
         #endregion RightsHolder
 
+        #region RightsHolderLocal
+        private string _rightsHolderLocal;
+        public string RightsHolderLocal
+        {
+            get { return _rightsHolderLocal; }
+            set { _rightsHolderLocal = value; }
+        }
+        #endregion RightsHolderLocal
+
         #region RightsHolderAbbr
         private string _rightsHolderAbbr;
         public string RightsHolderAbbr
@@ -997,6 +1006,7 @@ licenseType = (""BY"" # Attributaion only
             _publisher = GetValue("//default:tr[default:td='dc.publisher']/default:td[2]");
             
             SetRightsHolder();
+            SetLocalRightsHolder();
             SetRightsHolderUrl();
             SetRightsHolderFacebook();
             SetRightsHolderStatement();
@@ -1033,6 +1043,11 @@ licenseType = (""BY"" # Attributaion only
             var rightsHolderAbbrNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@abbr", _rightsHolder));
             if (rightsHolderAbbrNode != null)
                 _rightsHolderAbbr = rightsHolderAbbrNode.InnerText;
+        }
+
+        public void SetLocalRightsHolder()
+        {
+            _rightsHolderLocal = _rightsHolder;
         }
 
         public void SetRightsHolderUrl()
@@ -1237,7 +1252,7 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_range, "//contents/bookList/range");
 
             SetValue(_rightsHolder, "//contact/rightsHolder");
-            SetValue(_rightsHolder, "//contact/rightsHolderLocal");
+            SetValue(_rightsHolderLocal, "//contact/rightsHolderLocal");
             SetValue(_rightsHolderAbbr, "//contact/rightsHolderAbbreviation");
             SetValue(_publisherUrl, "//contact/rightsHolderURL");
             SetValue(_publisherFacebook, "//contact/rightsHolderFacebook");
