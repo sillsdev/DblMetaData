@@ -62,7 +62,7 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(918, 739);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/advanced-search", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("https://www.reap.insitehome.org/discover", System.UriKind.Absolute);
             // 
             // review
             // 

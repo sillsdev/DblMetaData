@@ -53,7 +53,7 @@ namespace DblMetaData
 
         private void reap_Click(object sender, EventArgs e)
         {
-            webBrowser1.Url = new Uri("https://www.reap.insitehome.org/advanced-search");
+            webBrowser1.Url = new Uri("https://www.reap.insitehome.org/discover");
         }
 
         private void review_Click(object sender, EventArgs e)

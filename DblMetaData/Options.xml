@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<options version="2">
+<options version="3">
     <NTscope>true</NTscope>
     <publisherHoldsRights>true</publisherHoldsRights>
     <translationAgency>Wycliffe Inc.</translationAgency>
+    <localRightsHolder/>
     <allowOffline>true</allowOffline>
     <allowIntroductions>true</allowIntroductions>
     <allowFootnotes>true</allowFootnotes>

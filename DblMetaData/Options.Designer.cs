@@ -41,6 +41,8 @@
             this.AllowFootnotesCb = new System.Windows.Forms.CheckBox();
             this.AllowCrossReferencesCb = new System.Windows.Forms.CheckBox();
             this.AllowExtendedNotesCb = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.LocalRightsHolder = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // AlwaysNT
@@ -77,7 +79,7 @@
             // Ldml
             // 
             this.Ldml.FormattingEnabled = true;
-            this.Ldml.Location = new System.Drawing.Point(132, 244);
+            this.Ldml.Location = new System.Drawing.Point(132, 271);
             this.Ldml.Name = "Ldml";
             this.Ldml.Size = new System.Drawing.Size(121, 24);
             this.Ldml.TabIndex = 3;
@@ -86,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 244);
+            this.label2.Location = new System.Drawing.Point(18, 271);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 17);
             this.label2.TabIndex = 4;
@@ -94,7 +96,7 @@
             // 
             // Email
             // 
-            this.Email.Location = new System.Drawing.Point(23, 274);
+            this.Email.Location = new System.Drawing.Point(23, 301);
             this.Email.Multiline = true;
             this.Email.Name = "Email";
             this.Email.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -104,7 +106,7 @@
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(252, 577);
+            this.Save.Location = new System.Drawing.Point(252, 604);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(75, 23);
             this.Save.TabIndex = 6;
@@ -180,11 +182,30 @@
             this.AllowExtendedNotesCb.UseVisualStyleBackColor = true;
             this.AllowExtendedNotesCb.CheckedChanged += new System.EventHandler(this.AllowExtendedNotesCb_CheckedChanged);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 232);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(132, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Local Rights Holder";
+            // 
+            // LocalRightsHolder
+            // 
+            this.LocalRightsHolder.Location = new System.Drawing.Point(154, 232);
+            this.LocalRightsHolder.Name = "LocalRightsHolder";
+            this.LocalRightsHolder.Size = new System.Drawing.Size(404, 22);
+            this.LocalRightsHolder.TabIndex = 13;
+            this.LocalRightsHolder.TextChanged += new System.EventHandler(this.LocalRightsHolder_TextChanged);
+            // 
             // Options
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 613);
+            this.ClientSize = new System.Drawing.Size(570, 640);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.LocalRightsHolder);
             this.Controls.Add(this.AllowExtendedNotesCb);
             this.Controls.Add(this.AllowCrossReferencesCb);
             this.Controls.Add(this.AllowFootnotesCb);
@@ -221,5 +242,7 @@
         private System.Windows.Forms.CheckBox AllowFootnotesCb;
         private System.Windows.Forms.CheckBox AllowCrossReferencesCb;
         private System.Windows.Forms.CheckBox AllowExtendedNotesCb;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox LocalRightsHolder;
     }
 }

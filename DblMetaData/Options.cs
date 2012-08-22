@@ -96,6 +96,15 @@ namespace DblMetaData
         }
         #endregion TransAgency
 
+        #region LocalRightsHolder
+        private string _localRightsHolder;
+        public string LocalRights
+        {
+            get { return _localRightsHolder; }
+            set { _localRightsHolder = value; }
+        }
+        #endregion TransAgency
+
         #region PromoEmail
         private string _promoEmail;
         public string PromoEmail
@@ -131,6 +140,9 @@ namespace DblMetaData
             var translationAgencyNode = _optionsDoc.SelectSingleNode("//translationAgency");
             Debug.Assert(translationAgencyNode != null);
             _translationAgency = translationAgencyNode.InnerText.Trim();
+            var localRightsHolderNode = _optionsDoc.SelectSingleNode("//localRightsHolder");
+            Debug.Assert(localRightsHolderNode != null);
+            _localRightsHolder = localRightsHolderNode.InnerText.Trim();
             _promoEmail = PromoEmailText("en");
         }
 
@@ -156,6 +168,14 @@ namespace DblMetaData
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowCrossReferences", "true"));
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowExtendedNotes", "false"));
                 versionNode.InnerText = "2";
+                version = 2;
+            }
+            if (version == 2)
+            {
+                Debug.Assert(_optionsDoc.DocumentElement != null, "_optionsDoc.DocumentElement != null");
+                _optionsDoc.DocumentElement.AppendChild(NewXmlNode("localRightsHolder", ""));
+                versionNode.InnerText = "3";
+                version = 3;
             }
         }
 
@@ -186,6 +206,7 @@ namespace DblMetaData
         {
             AlwaysNT.Checked = _alwaysUseNT;
             TranslationAgency.Text = _translationAgency;
+            LocalRightsHolder.Text = _localRightsHolder;
             Ldml.Items.AddRange(Ldmls().ToArray());
             Ldml.SelectedIndex = 0;
             Email.Text = _promoEmail;
@@ -260,6 +281,14 @@ namespace DblMetaData
         private void AllowExtendedNotesCb_CheckedChanged(object sender, EventArgs e)
         {
             _allowExtendedNotes = AllowExtendedNotesCb.Checked;
+        }
+
+        private void LocalRightsHolder_TextChanged(object sender, EventArgs e)
+        {
+            _localRightsHolder = LocalRightsHolder.Text;
+            var localRightsHolderNode = _optionsDoc.SelectSingleNode("//localRightsHolder");
+            Debug.Assert(localRightsHolderNode != null);
+            localRightsHolderNode.InnerText = _localRightsHolder;
         }
     }
 }

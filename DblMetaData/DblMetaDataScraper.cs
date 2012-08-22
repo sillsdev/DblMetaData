@@ -319,6 +319,7 @@ namespace DblMetaData
         private readonly XmlDocument _dblMetaDataDoc;
 
         private readonly XmlDocument _publisherDoc;
+        private string _publisherDocName;
 
         public DblMetaDataScraper()
         {
@@ -328,8 +329,16 @@ namespace DblMetaData
             //_namespaceManager.AddNamespace("fn", "http://www.w3.org/2005/xpath-functions");
             _dblMetaDataDoc = new XmlDocument();
             _dblMetaDataDoc.LoadXml(_dblMetaData);
-            _publisherDoc = new XmlDocument();
-            _publisherDoc.LoadXml(_publisherData);
+            _publisherDoc = new XmlDocument {XmlResolver = null};
+            _publisherDocName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                                           @"SIL\DblDataPrep\Publishers.xml");
+            if (File.Exists(_publisherDocName))
+                _publisherDoc.Load(_publisherDocName);
+            else
+            {
+                _publisherDoc.LoadXml(_publisherData);
+                _publisherDoc.Save(_publisherDocName);
+            }
         }
 
         public void Load(string webDocText)
@@ -1039,6 +1048,8 @@ licenseType = (""BY"" # Attributaion only
             }
             if (!_options.PublisherRights)
                 _rightsHolder = _options.TransAgency;
+            else if (string.IsNullOrEmpty(_rightsHolder))
+                _rightsHolder = _publisher;
 
             var rightsHolderAbbrNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@abbr", _rightsHolder));
             if (rightsHolderAbbrNode != null)
@@ -1048,6 +1059,8 @@ licenseType = (""BY"" # Attributaion only
         public void SetLocalRightsHolder()
         {
             _rightsHolderLocal = _rightsHolder;
+            if (!string.IsNullOrEmpty(_options.LocalRights))
+                _rightsHolderLocal = _options.LocalRights;
         }
 
         public void SetRightsHolderUrl()
