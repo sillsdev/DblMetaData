@@ -26,8 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>ETEN Digital Bible Library Data Preparation</ProductName>
     <PublisherName>SIL International</PublisherName>
-    <ApplicationRevision>62</ApplicationRevision>
-    <ApplicationVersion>1.18.0.%2a</ApplicationVersion>
+    <ApplicationRevision>63</ApplicationRevision>
+    <ApplicationVersion>1.19.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>

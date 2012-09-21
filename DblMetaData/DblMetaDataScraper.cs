@@ -333,10 +333,29 @@ namespace DblMetaData
             _publisherDocName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                                            @"SIL\DblDataPrep\Publishers.xml");
             if (File.Exists(_publisherDocName))
+            {
                 _publisherDoc.Load(_publisherDocName);
+                MigratePublisherDoc();
+            }
             else
             {
                 _publisherDoc.LoadXml(_publisherData);
+                _publisherDoc.Save(_publisherDocName);
+            }
+        }
+
+        private void MigratePublisherDoc()
+        {
+            Debug.Assert(_publisherDoc != null && _publisherDoc.DocumentElement != null);
+            var versionNode = _publisherDoc.DocumentElement.SelectSingleNode("@version");
+            int version = (versionNode != null) ? int.Parse(versionNode.InnerText) : 0;
+            if (version == 0)
+            {
+                _publisherDoc.InnerXml = _publisherDoc.InnerXml.Replace("Wycliffe Inc.", "Wycliffe");
+                version = 1;
+                var versionAttr = _publisherDoc.CreateAttribute("version");
+                versionAttr.InnerText = version.ToString();
+                _publisherDoc.DocumentElement.Attributes.Append(versionAttr);
                 _publisherDoc.Save(_publisherDocName);
             }
         }
@@ -366,8 +385,8 @@ namespace DblMetaData
   <confidential ns0:propertyURI=""accessRights/confidential"">false</confidential>
   <agencies>
     <etenPartner>WBT</etenPartner>
-    <creator ns0:propertyURI=""creator"">Wycliffe Inc.</creator>
-    <publisher ns0:propertyURI=""publisher"">Wycliffe Inc.</publisher>
+    <creator ns0:propertyURI=""creator"">Wycliffe</creator>
+    <publisher ns0:propertyURI=""publisher"">Wycliffe</publisher>
     <contributor ns0:propertyURI=""contributor"" />
   </agencies>
   <language>
@@ -931,7 +950,7 @@ licenseType = (""BY"" # Attributaion only
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
-<publisher abbr=""WBT"" name=""Wycliffe Inc."" rights=""Wycliffe Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher abbr=""WBT"" name=""Wycliffe"" rights=""Wycliffe"" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
 <publisher abbr=""BLI"" name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <publisher abbr=""BLI"" name=""Bible League International"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <publisher abbr=""BLI"" name=""Bible League"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
@@ -1038,7 +1057,7 @@ licenseType = (""BY"" # Attributaion only
         public void SetRightsHolder()
         {
             if (_publisher.ToLower().Contains("wycliffe"))
-                _publisher = "Wycliffe Inc.";
+                _publisher = "Wycliffe";
 
             var rightsHolderNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@rights", _publisher));
             if (rightsHolderNode != null)

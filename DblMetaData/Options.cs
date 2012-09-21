@@ -177,6 +177,20 @@ namespace DblMetaData
                 versionNode.InnerText = "3";
                 version = 3;
             }
+            if (version == 3)
+            {
+                Debug.Assert(_optionsDoc.DocumentElement != null, "_optionsDoc.DocumentElement != null");
+                var transAgency = _optionsDoc.SelectSingleNode("//translationAgency");
+                Debug.Assert(transAgency != null);
+                if (transAgency.InnerText == "Wycliffe Inc.")
+                    transAgency.InnerText = "Wycliffe";
+                var email = _optionsDoc.SelectSingleNode("//email");
+                Debug.Assert(email != null);
+                if (email.InnerXml.Contains("Wycliffe Inc."))
+                    email.InnerXml = email.InnerXml.Replace("Wycliffe Inc.", "Wycliffe");
+                versionNode.InnerText = "4";
+                version = 4;
+            }
         }
 
         private XmlElement NewXmlNode(string name, string value)

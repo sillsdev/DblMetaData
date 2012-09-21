@@ -128,13 +128,27 @@
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">creator</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="translation |creator"/>
+                <xsl:choose>
+                    <xsl:when test="(translation |creator)/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="translation |creator"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </creator>
             <publisher>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">publisher</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="publishing |publisher"/>
+                <xsl:choose>
+                    <xsl:when test="(publishing |publisher)/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="publishing |publisher"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </publisher>
             <contributor>
                 <xsl:if test="'$UseProp' = 'true'">
@@ -260,13 +274,27 @@
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsHolder"/>                
+                <xsl:choose>
+                    <xsl:when test="rightsHolder/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="rightsHolder"/>                
+                    </xsl:otherwise>
+                </xsl:choose>
             </rightsHolder>
             <rightsHolderLocal>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder/contactLocal</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsHolderLocal"/>                
+                <xsl:choose>
+                    <xsl:when test="rightsHolderLocal/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="rightsHolderLocal"/>                
+                    </xsl:otherwise>
+                </xsl:choose>
             </rightsHolderLocal>
             <rightsHolderAbbreviation>
                 <xsl:if test="'$UseProp' = 'true'">
@@ -296,7 +324,11 @@
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rights</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsStatement |statement"/>
+                <xsl:call-template name="string-replace-all">
+                    <xsl:with-param name="text" select="rightsStatement |statement"/>
+                    <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
+                    <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+                </xsl:call-template>
             </statement>
         </copyright>
     </xsl:template>
@@ -322,7 +354,7 @@
                     <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device—even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
                 </p>
                 <p>
-                    <xsl:text>This download was made possible by Wycliffe Inc. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe Inc. is doing on many fronts by visiting </xsl:text>
+                    <xsl:text>This download was made possible by Wycliffe. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe is doing on many fronts by visiting </xsl:text>
                     <xsl:element name="a">
                         <xsl:attribute name="href">http://www.wycliffe.org</xsl:attribute>
                         <xsl:text>www.wycliffe.org.</xsl:text>
@@ -421,8 +453,36 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="text()">
+        <xsl:call-template name="string-replace-all">
+            <xsl:with-param name="text" select="."/>
+            <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
+            <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+    
     <xsl:template match="comment()">
         <xsl:copy/>
     </xsl:template>
 
+    <xsl:template name="string-replace-all">
+        <xsl:param name="text"/>
+        <xsl:param name="target"/>
+        <xsl:param name="result"/>
+        <xsl:choose>
+            <xsl:when test="contains($text,$target)">
+                <xsl:copy-of select="substring-before($text, $target)"/>
+                <xsl:value-of select="$result"/>
+                <xsl:call-template name="string-replace-all">
+                    <xsl:with-param name="text" select="substring-after($text, $target)"/>
+                    <xsl:with-param name="target" select="$target"/>
+                    <xsl:with-param name="result" select="$result"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$text"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
 </xsl:stylesheet>
