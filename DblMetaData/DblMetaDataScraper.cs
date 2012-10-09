@@ -340,6 +340,9 @@ namespace DblMetaData
             else
             {
                 _publisherDoc.LoadXml(_publisherData);
+                var folder = Path.GetDirectoryName(_publisherDocName);
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
                 _publisherDoc.Save(_publisherDocName);
             }
         }

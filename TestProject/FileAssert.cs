@@ -31,7 +31,7 @@ namespace TestProject
             try
             {
                 if (outputStream.Length != expectStream.Length)
-                    Assert.Fail(string.Format("{0}: Output is {1} bytes, Expected {3}", msg, outputStream.Length, expectStream.Length));
+                    Assert.Fail("{0}: Output is {1} bytes, Expected {2}", msg, outputStream.Length, expectStream.Length);
                 for (long i = expectStream.Length; i > 0; i--)
                 {
                     var expect = expectStream.ReadByte();
