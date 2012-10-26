@@ -125,7 +125,7 @@ namespace DblMetaData
             scope.Text = _data.Scope;
             dateCompleted.Text = _data.DateCompleted;
             reapUrl.Text = _data.ReapUrl;
-			translationType.Text = _data.TranslationType;
+			//translationType.Text = _data.TranslationType;  // Always default to "New"
             languageCode.Text = _data.LanguageCode;
             languageName.Text = _data.LanguageName;
             script.Text = _data.Script;

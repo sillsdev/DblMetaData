@@ -6,6 +6,7 @@
     # Author:      Greg Trihus <greg_trihus@sil.org>
     #
     # Created:     2012/06/07
+    # Updated:     2012/10/26 gt-removed ethnologue link and Revision
     # Copyright:   (c) 2011 SIL International
     # Licence:     <LPGL>
     ################################################################-->
@@ -351,7 +352,7 @@
                 <p>
                     <xsl:text>Nice work downloading the </xsl:text>
                     <xsl:call-template name="nameDescription"/>
-                    <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device—even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
+                    <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device&#x2014;even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
                 </p>
                 <p>
                     <xsl:text>This download was made possible by Wycliffe. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe is doing on many fronts by visiting </xsl:text>
@@ -442,7 +443,7 @@
     </xsl:template>
     
     <!-- Copy unaffected non-span elements-->
-    <xsl:template match="nameLocal |abbreviation |abbreviationLocal |bundleProducer |etenPartner |division |books |book |h2 |p |ul |li |a |b |em">
+    <xsl:template match="nameLocal |abbreviation |abbreviationLocal |bundleProducer |etenPartner |division |books |book |h2 |ul |li |b |em">
         <xsl:element name="{name()}" namespace="{namespace-uri()}">
             <xsl:for-each select="@*">
                 <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
@@ -451,6 +452,43 @@
             </xsl:for-each>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="p">
+        <xsl:choose>
+            <xsl:when test="text()[1] = 'Revision'">
+                <p>
+                    <xsl:for-each select="* | text()">
+                        <xsl:if test="position() &gt; 3">
+                            <xsl:apply-templates select="."/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </p>
+            </xsl:when>
+            <xsl:otherwise>
+                <p>
+                    <xsl:for-each select="* | text()">
+                        <xsl:apply-templates select="."/>
+                    </xsl:for-each>
+                </p>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="a">
+        <xsl:choose>
+            <xsl:when test="contains(.//@href, 'ethnologue')">
+                <xsl:value-of select="text()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <a>
+                    <xsl:for-each select="* | @*">
+                        <xsl:copy/>
+                    </xsl:for-each>
+                    <xsl:apply-templates/>
+                </a>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="text()">

@@ -406,7 +406,7 @@ namespace DblMetaData
     <name ns0:propertyURI=""subject/subjectCountry"">United States</name>
   </country>
   <type>
-    <translationType ns0:propertyURI=""type/translationType"">Revision</translationType>
+    <translationType ns0:propertyURI=""type/translationType"">New</translationType>
     <audience ns0:propertyURI=""audience"">Common</audience>
   </type>
   <bookNames/>
@@ -996,8 +996,9 @@ licenseType = (""BY"" # Attributaion only
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
 
             // TranslationType
-            var typeWords = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]").Split(' ');
-            _translationType = _firstList.Contains(typeWords[0]) ? "First" : "Revision";
+            //var typeWords = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]").Split(' ');
+            //_translationType = _firstList.Contains(typeWords[0]) ? "First" : "Revision";
+            _translationType = "New";
 
             _languageCode = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 0);
             _languageName = GetField("//default:tr[default:td='dc.language.iso']/default:td[2]", 1);
@@ -1111,9 +1112,12 @@ licenseType = (""BY"" # Attributaion only
 
         public string TypeDescription()
         {
-            if (_translationType == "First")
-                return "";
-            return string.Format("{0} of ", _translationType);
+            var type = _translationType.ToLower();
+            if (type == "first")
+                return "First edition of ";
+            if (type == "revision")
+                return "Revision of ";
+            return "";                  // New
         }
 
         public void SetDescription()

@@ -73,16 +73,21 @@ us</a> with your request.</p>
 
         public void AddDescription(string edition, string range, string language, string isocode)
         {
-            if (edition == "First")
+            if (edition.ToLower() == "first")
             {
                 _sb.Append("<p>First edition<br/>\r\n");
             }
+            else if (edition.ToLower() == "revision")
+            {
+                _sb.Append("<p>Revision<br/>\r\n");
+            }
             else
             {
-                _sb.Append(string.Format("<p>{0}<br/>\r\n", edition));
+                _sb.Append("<p>");
             }
             _sb.Append(string.Format("<b>The {0}</b><br/>\r\n", range));
-            _sb.Append(string.Format("in <a href=\"http://www.ethnologue.com/show_language.asp?code={0}\">{1}</a></p>\r\n", isocode, language));
+            //_sb.Append(string.Format("in <a href=\"http://www.ethnologue.com/show_language.asp?code={0}\">{1}</a></p>\r\n", isocode, language));
+            _sb.Append(string.Format("in {1}</p>\r\n", isocode, language));
         }
 
         public string ToHtml()

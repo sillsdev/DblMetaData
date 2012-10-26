@@ -85,7 +85,7 @@ namespace TestProject
         {
             const string promostatement = @"<p>First edition<br/>
 <b>The New Testament</b><br/>
-in <a href=""http://www.ethnologue.com/show_language.asp?code=acr"">Achi</a></p>
+in Achi</p>
 ";
             PromoStatements target = new PromoStatements();
             string edition = "First";

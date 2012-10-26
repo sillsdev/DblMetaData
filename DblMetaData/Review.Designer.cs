@@ -524,7 +524,7 @@
             this.translationType.Name = "translationType";
             this.translationType.Size = new System.Drawing.Size(121, 24);
             this.translationType.TabIndex = 10;
-            this.translationType.Text = "First";
+            this.translationType.Text = "New";
             this.translationType.SelectedIndexChanged += new System.EventHandler(this.translationType_SelectedIndexChanged);
             this.translationType.TextChanged += new System.EventHandler(this.translationType_TextChanged);
             // 

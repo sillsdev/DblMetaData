@@ -1,77 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="13.2">
+<project version="14.1">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
         <options>
-            <serialized version="13.2" xml:space="preserve">
+            <serialized version="14.1" xml:space="preserve">
                 <map>
                     <entry>
                         <String>scenario.associations</String>
                         <scenarioAssociation-array>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>UpdateMetaData-1.2</String>
-                                </field>
-                                <field name="type">
-                                    <String>XML</String>
-                                </field>
                                 <field name="url">
                                     <String>UpdateMetaData-1.2.xsl</String>
                                 </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>UpdateMetaData-1.2</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>aucMetadata</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
                                 <field name="url">
                                     <String>../../../../../Desktop/aucMetadata.xml</String>
                                 </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>aucMetadata</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>metadata</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
                                 <field name="url">
                                     <String>metadata.xml</String>
                                 </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>metadata</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
+                                </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>test</String>
-                                </field>
-                                <field name="type">
-                                    <String>XML</String>
-                                </field>
                                 <field name="url">
                                     <String>test.xsl</String>
                                 </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>test</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>dblmetadata</String>
-                                </field>
-                                <field name="type">
-                                    <String>XML</String>
-                                </field>
                                 <field name="url">
                                     <String>dblmetadata.xsl</String>
                                 </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>dblmetadata</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XML</String>
+                                    </list>
+                                </field>
                             </scenarioAssociation>
                             <scenarioAssociation>
-                                <field name="name">
-                                    <String>metadata</String>
-                                </field>
-                                <field name="type">
-                                    <String>XSL</String>
-                                </field>
                                 <field name="url">
                                     <String>acuMetaData6.xml</String>
+                                </field>
+                                <field name="scenarioIds">
+                                    <list>
+                                        <String>metadata</String>
+                                    </list>
+                                </field>
+                                <field name="scenarioTypes">
+                                    <list>
+                                        <String>XSL</String>
+                                    </list>
                                 </field>
                             </scenarioAssociation>
                         </scenarioAssociation-array>
@@ -271,7 +295,7 @@
                                     <String>${currentFileURL}</String>
                                 </field>
                                 <field name="inputXMLURL">
-                                    <String>file:/C:/Users/Trihus.DALLAS/Documents/Visual%20Studio%202010/Projects/DblMetaData/Xml/metadata0.xml</String>
+                                    <String>file:/C:/Users/Trihus/Documents/Visual%20Studio%202010/Projects/DblMetaData/Xml/metadata.xml</String>
                                 </field>
                                 <field name="defaultScenario">
                                     <Boolean>false</Boolean>
@@ -289,7 +313,7 @@
                                     <Boolean>false</Boolean>
                                 </field>
                                 <field name="outputFile">
-                                    <File>C:/Users/Trihus.DALLAS/Documents/Visual Studio 2010/Projects/DblMetaData/Xml/UpdatedMetadata0.xml</File>
+                                    <File>C:/Users/Trihus/Documents/Visual Studio 2010/Projects/DblMetaData/Xml/UpdatedMetadata.xml</File>
                                 </field>
                                 <field name="openOtherLocationInBrowser">
                                     <Boolean>false</Boolean>

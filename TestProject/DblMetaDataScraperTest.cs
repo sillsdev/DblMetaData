@@ -242,7 +242,7 @@ namespace TestProject
             TestXpathValue("Wycliffe", "//agencies/publisher", target);
             TestXpathValue("US", "//country/iso", target);
             TestXpathValue("United States", "//country/name", target);
-            TestXpathValue("First", "//translationType", target);
+            TestXpathValue("New", "//translationType", target);
             TestXpathValue("NT", "//contents/bookList/description", target);
             TestXpathValue("http://www.wycliffe.org", "//contact/rightsHolderURL", target);
             TestXpathValue("http://www.facebook.com/WycliffeUSA", "//contact/rightsHolderFacebook", target);

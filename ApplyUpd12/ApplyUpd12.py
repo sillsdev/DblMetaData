@@ -16,7 +16,7 @@
 import os,sys
 from lxml import etree
 
-#the em-dash before the word even was replaced with -- in this constant:
+#the em-dash before the word even was replaced with &#x2014; in this constant:
 default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
 <!-- #############################################################
     # Name:        UpdateMetaData-1.2.xsl
@@ -25,6 +25,7 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
     # Author:      Greg Trihus <greg_trihus@sil.org>
     #
     # Created:     2012/06/07
+    # Updated:     2012/10/26 gt- remove ethnologue link and Revision
     # Copyright:   (c) 2011 SIL International
     # Licence:     <LPGL>
     ################################################################-->
@@ -147,13 +148,27 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">creator</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="translation |creator"/>
+                <xsl:choose>
+                    <xsl:when test="(translation |creator)/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="translation |creator"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </creator>
             <publisher>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">publisher</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="publishing |publisher"/>
+                <xsl:choose>
+                    <xsl:when test="(publishing |publisher)/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="publishing |publisher"/>
+                    </xsl:otherwise>
+                </xsl:choose>
             </publisher>
             <contributor>
                 <xsl:if test="'$UseProp' = 'true'">
@@ -279,13 +294,27 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsHolder"/>                
+                <xsl:choose>
+                    <xsl:when test="rightsHolder/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="rightsHolder"/>                
+                    </xsl:otherwise>
+                </xsl:choose>
             </rightsHolder>
             <rightsHolderLocal>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder/contactLocal</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsHolderLocal"/>                
+                <xsl:choose>
+                    <xsl:when test="rightsHolderLocal/text() = 'Wycliffe Inc.'">
+                        <xsl:text>Wycliffe</xsl:text>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="rightsHolderLocal"/>                
+                    </xsl:otherwise>
+                </xsl:choose>
             </rightsHolderLocal>
             <rightsHolderAbbreviation>
                 <xsl:if test="'$UseProp' = 'true'">
@@ -315,7 +344,11 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rights</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="rightsStatement |statement"/>
+                <xsl:call-template name="string-replace-all">
+                    <xsl:with-param name="text" select="rightsStatement |statement"/>
+                    <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
+                    <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+                </xsl:call-template>
             </statement>
         </copyright>
     </xsl:template>
@@ -338,10 +371,10 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
                 <p>
                     <xsl:text>Nice work downloading the </xsl:text>
                     <xsl:call-template name="nameDescription"/>
-                    <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device--even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
+                    <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device&#x2014;even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
                 </p>
                 <p>
-                    <xsl:text>This download was made possible by Wycliffe Inc. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe Inc. is doing on many fronts by visiting </xsl:text>
+                    <xsl:text>This download was made possible by Wycliffe. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe is doing on many fronts by visiting </xsl:text>
                     <xsl:element name="a">
                         <xsl:attribute name="href">http://www.wycliffe.org</xsl:attribute>
                         <xsl:text>www.wycliffe.org.</xsl:text>
@@ -429,7 +462,7 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
     
     <!-- Copy unaffected non-span elements-->
-    <xsl:template match="nameLocal |abbreviation |abbreviationLocal |bundleProducer |etenPartner |division |books |book |h2 |p |ul |li |a |b |em">
+    <xsl:template match="nameLocal |abbreviation |abbreviationLocal |bundleProducer |etenPartner |division |books |book |h2 |ul |li |b |em">
         <xsl:element name="{name()}" namespace="{namespace-uri()}">
             <xsl:for-each select="@*">
                 <xsl:attribute name="{name()}" namespace="{namespace-uri()}">
@@ -440,11 +473,77 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="p">
+        <xsl:choose>
+            <xsl:when test="text()[1] = 'Revision'">
+                <p>
+                    <xsl:for-each select="* | text()">
+                        <xsl:if test="position() &gt; 3">
+                            <xsl:apply-templates select="."/>
+                        </xsl:if>
+                    </xsl:for-each>
+                </p>
+            </xsl:when>
+            <xsl:otherwise>
+                <p>
+                    <xsl:for-each select="* | text()">
+                        <xsl:apply-templates select="."/>
+                    </xsl:for-each>
+                </p>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="a">
+        <xsl:choose>
+            <xsl:when test="contains(.//@href, 'ethnologue')">
+                <xsl:value-of select="text()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <a>
+                    <xsl:for-each select="* | @*">
+                        <xsl:copy/>
+                    </xsl:for-each>
+                    <xsl:apply-templates/>
+                </a>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
+    <xsl:template match="text()">
+        <xsl:call-template name="string-replace-all">
+            <xsl:with-param name="text" select="."/>
+            <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
+            <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+        </xsl:call-template>
+    </xsl:template>
+    
     <xsl:template match="comment()">
         <xsl:copy/>
     </xsl:template>
 
+    <xsl:template name="string-replace-all">
+        <xsl:param name="text"/>
+        <xsl:param name="target"/>
+        <xsl:param name="result"/>
+        <xsl:choose>
+            <xsl:when test="contains($text,$target)">
+                <xsl:copy-of select="substring-before($text, $target)"/>
+                <xsl:value-of select="$result"/>
+                <xsl:call-template name="string-replace-all">
+                    <xsl:with-param name="text" select="substring-after($text, $target)"/>
+                    <xsl:with-param name="target" select="$target"/>
+                    <xsl:with-param name="result" select="$result"/>
+                </xsl:call-template>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$text"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+    
 </xsl:stylesheet>
+
 """
 modules ={}
 
