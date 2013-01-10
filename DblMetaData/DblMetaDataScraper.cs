@@ -1004,7 +1004,6 @@ licenseType = (""BY"" # Attributaion only
         public void ScrapeReapData()
         {
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "false" : "true";
-            _name = GetValue("//default:tr[default:td='dc.subject.subjectLanguage']/default:td[2]");
             _title = GetValue("//default:title");
 
             // Scope
@@ -1051,6 +1050,8 @@ licenseType = (""BY"" # Attributaion only
 
             _countryCode = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 0);
             _countryName = GetField("//default:meta[@name='DCTERMS.spatial'][1]/@content", 1);
+
+            _name = _countryCode + ":" + GetValue("//default:tr[default:td='dc.subject.subjectLanguage']/default:td[2]");
             SetAbbreviation();
             SetDescription();
             SetRange();

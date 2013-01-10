@@ -8,6 +8,7 @@
     # Created:     2012/06/07
     # Updated:     2012/10/26 gt-removed ethnologue link and Revision
     # Updated:     2013/01/10 gt-make name useful for google analytics
+    #                         use Wycliffe Bible Translators, Inc.
     # Copyright:   (c) 2011 SIL International
     # Licence:     <LPGL>
     ################################################################-->
@@ -51,6 +52,8 @@
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">title</xsl:attribute>
                 </xsl:if>
+                <xsl:value-of select="//country/iso"/>
+                <xsl:text>:</xsl:text>
                 <xsl:value-of select="//language/iso"/>
                 <xsl:text>:</xsl:text>
                 <xsl:value-of select="//language/name"/>
@@ -133,8 +136,8 @@
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">creator</xsl:attribute>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="(translation |creator)/text() = 'Wycliffe Inc.'">
-                        <xsl:text>Wycliffe</xsl:text>
+                    <xsl:when test="(translation |creator)/text() = 'Wycliffe Inc.' or (translation | creator)/text() = 'Wycliffe'">
+                        <xsl:text>Wycliffe Bible Translators, Inc.</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="translation |creator"/>
@@ -146,8 +149,8 @@
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">publisher</xsl:attribute>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="(publishing |publisher)/text() = 'Wycliffe Inc.'">
-                        <xsl:text>Wycliffe</xsl:text>
+                    <xsl:when test="(publishing |publisher)/text() = 'Wycliffe Inc.' or (publishing |publisher)/text() = 'Wycliffe'">
+                        <xsl:text>Wycliffe Bible Translators, Inc.</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="publishing |publisher"/>
@@ -279,8 +282,8 @@
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder</xsl:attribute>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="rightsHolder/text() = 'Wycliffe Inc.'">
-                        <xsl:text>Wycliffe</xsl:text>
+                    <xsl:when test="rightsHolder/text() = 'Wycliffe Inc.' or rightsHolder/text() = 'Wycliffe'">
+                        <xsl:text>Wycliffe Bible Translators, Inc.</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="rightsHolder"/>                
@@ -292,8 +295,8 @@
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">rightsHolder/contactLocal</xsl:attribute>
                 </xsl:if>
                 <xsl:choose>
-                    <xsl:when test="rightsHolderLocal/text() = 'Wycliffe Inc.'">
-                        <xsl:text>Wycliffe</xsl:text>
+                    <xsl:when test="rightsHolderLocal/text() = 'Wycliffe Inc.' or rightsHolderLocal/text() = 'Wycliffe'">
+                        <xsl:text>Wycliffe Bible Translators, Inc.</xsl:text>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="rightsHolderLocal"/>                
@@ -331,7 +334,7 @@
                 <xsl:call-template name="string-replace-all">
                     <xsl:with-param name="text" select="rightsStatement |statement"/>
                     <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
-                    <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+                    <xsl:with-param name="result">Wycliffe Bible Translators, Inc.</xsl:with-param>
                 </xsl:call-template>
             </statement>
         </copyright>
@@ -358,7 +361,7 @@
                     <xsl:text> in the Bible App! Now you'll have anytime, anywhere access to God's Word on your mobile device&#x2014;even if you're outside of service coverage or not connected to the Internet. It also means faster service whenever you read that version since it's stored on your device. Enjoy!</xsl:text>
                 </p>
                 <p>
-                    <xsl:text>This download was made possible by Wycliffe. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe is doing on many fronts by visiting </xsl:text>
+                    <xsl:text>This download was made possible by Wycliffe Bible Translators, Inc. We really appreciate their passion for making the Bible available to millions of people around the world. Because of their generosity, YouVersion users like you can open up the Bible and hear from God no matter where you are. You can learn more about the great things Wycliffe Bible Translators, Inc. is doing on many fronts by visiting </xsl:text>
                     <xsl:element name="a">
                         <xsl:attribute name="href">http://www.wycliffe.org</xsl:attribute>
                         <xsl:text>www.wycliffe.org.</xsl:text>
@@ -498,7 +501,7 @@
         <xsl:call-template name="string-replace-all">
             <xsl:with-param name="text" select="."/>
             <xsl:with-param name="target">Wycliffe Inc.</xsl:with-param>
-            <xsl:with-param name="result">Wycliffe.</xsl:with-param>
+            <xsl:with-param name="result">Wycliffe Bible Translators, Inc.</xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     

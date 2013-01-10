@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+  <TITLE>DblMetaData Build steps</TITLE>
+  <META NAME="author" CONTENT="Greg Trihus">
+  <META NAME="generator" CONTENT="NoteTab Light 7.1 (www.notetab.com)">
+  <META NAME="created" CONTENT="2013-01-10">
+
+  <STYLE TYPE="text/css">
+    body{font-family:Verdana,Geneva,sans-serif;font-size:16px;line-height:1.4em;color:#333;background-color:White;}
+  </STYLE>
+</HEAD>
+
+<BODY>
+
+<H1>DblMetaData Build steps</H1>
+
+<OL>
+  <LI>Edit source</LI>
+  <LI>Right click Test Project and Rebuild all</LI>
+  <LI>Edit UpdateMetaData-1.2.xsl and rerun visual studio tests</LI>
+  <LI>Copy content of UpdateMetaData-1.2.xsl into ApplyUpd12.py</LI>
+  <LI>from XP virtual machine, python setup.py to rebuild ApplyUpd12</LI>
+  <LI>copy ApplyUpd12.exe into dist folder</LI>
+  <LI>Update version number in setup.py</LI>
+  <LI>Update version # in DblMetaData project on Application and Publish tabs</LI>
+  <LI>Update version # in Setup1.vdproj (when Visual Studio closed)</LI>
+  <LI>Right click DblDataPrepSetup project and rebuild all</LI>
+  <LI>Rename Setup1\Debug\DblDataPrepSetup to include version #</LI>
+  <LI>Right click DblMetaData folder and HG Commit new and changed files.</LI>
+  <LI>Use HG workbench on same folder. Right click revision and export to zip archive.</LI>
+  <LI>Copy created msi file and source to ETEN-DBL drop box</LI>
+</OL>
+
+<HR>
+<P>Created on January 10, 2013</P>
+
+</BODY>
+</HTML>

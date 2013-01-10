@@ -231,6 +231,7 @@ namespace TestProject
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
             TestXpathValue("hwcNT", "//abbreviation", target);
+            TestXpathValue("US:hwc:Hawai'i Creole English", "//identification/name", target);
             TestXpathValue("Da Jesus Book", "//identification/nameLocal", target);
             TestXpathValue("hwc", "//language/iso", target);
             TestXpathValue("Hawai'i Creole English", "//language/name", target);
