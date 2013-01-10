@@ -33,6 +33,15 @@ namespace DblMetaData
         }
         #endregion Confidential
 
+        #region Name
+        private string _name;
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        #endregion Name
+
         #region Title
         private string _title;
         public string Title
@@ -359,8 +368,19 @@ namespace DblMetaData
                 var versionAttr = _publisherDoc.CreateAttribute("version");
                 versionAttr.InnerText = version.ToString();
                 _publisherDoc.DocumentElement.Attributes.Append(versionAttr);
-                _publisherDoc.Save(_publisherDocName);
+                versionNode = _publisherDoc.DocumentElement.SelectSingleNode("@version");
             }
+            if (version == 1)
+            {
+                var node = _publisherDoc.SelectSingleNode("//publisher[@abbr='WBT']");
+                Debug.Assert(node != null && node.Attributes != null);
+                node.Attributes["name"].InnerText = "Wycliffe Bible Translators, Inc.";
+                node.Attributes["rights"].InnerText = "Wycliffe Bible Translators, Inc.";
+                version = 2;
+            }
+            Debug.Assert(versionNode != null); // it was created in migration 1
+            versionNode.InnerText = version.ToString();
+            _publisherDoc.Save(_publisherDocName);
         }
 
         public void Load(string webDocText)
@@ -953,7 +973,7 @@ licenseType = (""BY"" # Attributaion only
         #region _publisherData
         private readonly string _publisherData = @"
 <root>
-<publisher abbr=""WBT"" name=""Wycliffe"" rights=""Wycliffe"" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
+<publisher abbr=""WBT"" name=""Wycliffe Bible Translators, Inc."" rights=""Wycliffe Bible Translators, Inc."" url=""http://www.wycliffe.org"" fb=""http://www.facebook.com/WycliffeUSA""/>
 <publisher abbr=""BLI"" name=""La Liga Bíblica"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <publisher abbr=""BLI"" name=""Bible League International"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
 <publisher abbr=""BLI"" name=""Bible League"" rights=""Bible League International"" url=""http://www.bibleleague.org/"" fb=""http://www.facebook.com/BibleLeagueInternational""/>
@@ -984,6 +1004,7 @@ licenseType = (""BY"" # Attributaion only
         public void ScrapeReapData()
         {
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "false" : "true";
+            _name = GetValue("//default:tr[default:td='dc.subject.subjectLanguage']/default:td[2]");
             _title = GetValue("//default:title");
 
             // Scope
@@ -1061,7 +1082,7 @@ licenseType = (""BY"" # Attributaion only
         public void SetRightsHolder()
         {
             if (_publisher.ToLower().Contains("wycliffe"))
-                _publisher = "Wycliffe";
+                _publisher = "Wycliffe Bible Translators, Inc.";
 
             var rightsHolderNode = _publisherDoc.SelectSingleNode(string.Format("//publisher[@name='{0}']/@rights", _publisher));
             if (rightsHolderNode != null)
@@ -1255,7 +1276,7 @@ licenseType = (""BY"" # Attributaion only
 
         public void InsertDataInDblMetaData()
         {
-            SetValue(_title, "//identification/name");
+            SetValue(_name, "//identification/name");
             SetValue(_title, "//identification/nameLocal");
             SetValue(_abbreviation, "//identification/abbreviation");
             SetValue(_abbreviation, "//identification/abbreviationLocal");

@@ -167,14 +167,12 @@ namespace DblMetaData
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowFootnotes", "true"));
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowCrossReferences", "true"));
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("allowExtendedNotes", "false"));
-                versionNode.InnerText = "2";
                 version = 2;
             }
             if (version == 2)
             {
                 Debug.Assert(_optionsDoc.DocumentElement != null, "_optionsDoc.DocumentElement != null");
                 _optionsDoc.DocumentElement.AppendChild(NewXmlNode("localRightsHolder", ""));
-                versionNode.InnerText = "3";
                 version = 3;
             }
             if (version == 3)
@@ -188,9 +186,22 @@ namespace DblMetaData
                 Debug.Assert(email != null);
                 if (email.InnerXml.Contains("Wycliffe Inc."))
                     email.InnerXml = email.InnerXml.Replace("Wycliffe Inc.", "Wycliffe");
-                versionNode.InnerText = "4";
                 version = 4;
             }
+            if (version == 4)
+            {
+                var transAgency = _optionsDoc.SelectSingleNode("//translationAgency");
+                Debug.Assert(transAgency != null);
+                if (transAgency.InnerText != "Wycliffe Bible Translators, Inc.")
+                    transAgency.InnerText = transAgency.InnerText.Replace("Wycliffe", "Wycliffe Bible Translators, Inc.");
+                var email = _optionsDoc.SelectSingleNode("//email");
+                Debug.Assert(email != null);
+                if (email.InnerText != "Wycliffe Bible Translators, Inc.")
+                    email.InnerText = email.InnerText.Replace("Wycliffe", "Wycliffe Bible Translators, Inc.");
+                version = 5;
+            }
+            versionNode.InnerText = version.ToString();
+            _optionsDoc.Save(_optionsName);
         }
 
         private XmlElement NewXmlNode(string name, string value)

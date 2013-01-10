@@ -66,7 +66,7 @@
             this.TranslationAgency.Name = "TranslationAgency";
             this.TranslationAgency.Size = new System.Drawing.Size(304, 20);
             this.TranslationAgency.TabIndex = 1;
-            this.TranslationAgency.Text = "Wycliffe Inc.";
+            this.TranslationAgency.Text = "Wycliffe Bible Translators, Inc.";
             this.TranslationAgency.TextChanged += new System.EventHandler(this.TranslationAgency_TextChanged);
             // 
             // label1

@@ -91,7 +91,7 @@ namespace TestProject
             Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("false", target.Confidential);
             Assert.AreEqual("2000", target.DateCompleted);
-            Assert.AreEqual("Wycliffe", target.Publisher);
+            Assert.AreEqual("Wycliffe Bible Translators, Inc.", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/16286", target.ReapUrl);
             Assert.AreEqual("US", target.CountryCode);
             Assert.AreEqual("United States", target.CountryName);
@@ -180,7 +180,7 @@ namespace TestProject
             Assert.AreEqual("NT", target.Scope);
             Assert.AreEqual("false", target.Confidential);
             Assert.AreEqual("2009", target.DateCompleted);
-            Assert.AreEqual("Wycliffe", target.Publisher);
+            Assert.AreEqual("Wycliffe Bible Translators, Inc.", target.Publisher);
             Assert.AreEqual("http://www.reap.insitehome.org/handle/9284745/10273", target.ReapUrl);
             Assert.AreEqual("GT", target.CountryCode);
             Assert.AreEqual("Guatemala", target.CountryName);
@@ -231,7 +231,7 @@ namespace TestProject
             target.ScrapeReapData();
             target.InsertDataInDblMetaData();
             TestXpathValue("hwcNT", "//abbreviation", target);
-            TestXpathValue("Da Jesus Book", "//identification/name", target);
+            TestXpathValue("Da Jesus Book", "//identification/nameLocal", target);
             TestXpathValue("hwc", "//language/iso", target);
             TestXpathValue("Hawai'i Creole English", "//language/name", target);
             TestXpathValue("NT", "//identification/scope", target);
@@ -239,14 +239,14 @@ namespace TestProject
             TestXpathValue("2000", "//identification/dateCompleted", target);
             TestXpathValue("http://www.reap.insitehome.org/handle/9284745/16286",
                            "//identification/systemId[@type='reap']", target);
-            TestXpathValue("Wycliffe", "//agencies/publisher", target);
+            TestXpathValue("Wycliffe Bible Translators, Inc.", "//agencies/publisher", target);
             TestXpathValue("US", "//country/iso", target);
             TestXpathValue("United States", "//country/name", target);
             TestXpathValue("New", "//translationType", target);
             TestXpathValue("NT", "//contents/bookList/description", target);
             TestXpathValue("http://www.wycliffe.org", "//contact/rightsHolderURL", target);
             TestXpathValue("http://www.facebook.com/WycliffeUSA", "//contact/rightsHolderFacebook", target);
-            TestXpathValue("© 2000, Wycliffe. All rights reserved.", "//copyright/statement", target);
+            TestXpathValue("© 2000, Wycliffe Bible Translators, Inc. All rights reserved.", "//copyright/statement", target);
             TestXpathValue(publicationDescription, "//promoVersionInfo", target, publicationDescription.Length);
             TestXpathValue("Hi YouVersion friend,Ni", "//promotion/promoEmail", target,
                            publicationDescription.Length + 9);

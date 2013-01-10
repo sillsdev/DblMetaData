@@ -121,6 +121,7 @@ namespace DblMetaData
         private void Review_Load(object sender, EventArgs e)
         {
             confidential.Checked = _data.Confidential == "true";
+            name.Text = _data.Name;
             title.Text = _data.Title;
             scope.Text = _data.Scope;
             dateCompleted.Text = _data.DateCompleted;
@@ -520,6 +521,11 @@ namespace DblMetaData
         private void localRights_TextChanged(object sender, EventArgs e)
         {
             localRights_Changed();
+        }
+
+        private void name_TextChanged(object sender, EventArgs e)
+        {
+            _data.Name = name.Text;
         }
     }
 }

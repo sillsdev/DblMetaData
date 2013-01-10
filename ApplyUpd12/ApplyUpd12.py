@@ -25,7 +25,8 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
     # Author:      Greg Trihus <greg_trihus@sil.org>
     #
     # Created:     2012/06/07
-    # Updated:     2012/10/26 gt- remove ethnologue link and Revision
+    # Updated:     2012/10/26 gt-removed ethnologue link and Revision
+    # Updated:     2013/01/10 gt-make name useful for google analytics
     # Copyright:   (c) 2011 SIL International
     # Licence:     <LPGL>
     ################################################################-->
@@ -69,7 +70,9 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
                 <xsl:if test="'$UseProp' = 'true'">
                     <xsl:attribute name="propertyURI" namespace="{$dcds}">title</xsl:attribute>
                 </xsl:if>
-                <xsl:value-of select="name"/>
+                <xsl:value-of select="//language/iso"/>
+                <xsl:text>:</xsl:text>
+                <xsl:value-of select="//language/name"/>
             </name>
             <xsl:apply-templates select="nameLocal"/>
             <xsl:apply-templates select="abbreviation"/>
@@ -543,7 +546,6 @@ default_xslt = """<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
     
 </xsl:stylesheet>
-
 """
 modules ={}
 
