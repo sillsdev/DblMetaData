@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 
@@ -389,54 +390,71 @@ namespace DblMetaData
         }
 
         #region dblMetaData (template)
-        private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<?xml-model href=""metadataWbt-1.2.rnc"" type=""application/relax-ng-compact-syntax""?>
-<DBLMetadata xmlns:ns0=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"" id=""2880c78491b2f8ce"" revision=""3"" type=""text"" typeVersion=""1.2"" xml:base=""http://purl.org/ubs/metadata/dc/terms/"">
+        private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""UTF-8""?><?xml-model href=""metadataWbt-1.2.rnc"" type=""application/relax-ng-compact-syntax""?>
+<!-- Paratext automatically fills in the following tags. They must be present in the metadata provided but can be blank:
+ -  identification/systemId[@type='paratext']
+ -  language/scriptDirection
+ -  language/ldml
+ -  bookNames
+ -  progress
+ -  archiveStatus/archivist
+ -  archiveStatus/dateArchived
+ -  archiveStatus/dateUpdated
+ -  @id (id attribute)
+ -  @revision (id attribute)
+ -  identification/bundleProducer
+ -  format
+-->
+<DBLMetadata type=""text"" typeVersion=""1.2"" id="""" revision="""">
   <identification>
-    <name ns0:propertyURI=""title"" />
-    <nameLocal />
-    <abbreviation />
-    <abbreviationLocal />
-    <scope ns0:propertyURI=""title/scriptureScope"" />
-    <description ns0:propertyURI=""description"" />
-    <dateCompleted ns0:propertyURI=""date"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"" />
-    <systemId type=""reap"" ns0:propertyURI=""identifier/reapID"" />
-    <systemId type=""paratext"" ns0:propertyURI=""identifier/ptxID"" />
-    <systemId type=""tms"" ns0:propertyURI=""identifier/tmsID"">seeReap</systemId>
-    <bundleProducer/>
+    <name></name>
+    <nameLocal></nameLocal>
+    <abbreviation></abbreviation>
+    <abbreviationLocal></abbreviationLocal>
+    <scope></scope>
+    <description></description>
+    <dateCompleted></dateCompleted>
+    <systemId type=""paratext""></systemId>
+    <systemId type=""reap""></systemId>
+    <bundleProducer></bundleProducer>
   </identification>
-  <confidential ns0:propertyURI=""accessRights/confidential"">false</confidential>
+  <confidential></confidential>
   <agencies>
     <etenPartner>WBT</etenPartner>
-    <creator ns0:propertyURI=""creator"">Wycliffe</creator>
-    <publisher ns0:propertyURI=""publisher"">Wycliffe</publisher>
-    <contributor ns0:propertyURI=""contributor"" />
+    <!-- Currently ""UBS"", ""WBT"", ""Biblica"" -->
+    <creator></creator>
+    <!-- primary translation agency/sponsorship -->
+    <publisher></publisher>
+    <!-- primary publishing agency> -->
+    <contributor></contributor>
   </agencies>
   <language>
-    <iso ns0:propertyURI=""language/iso"" ns0:sesURI=""http://purl.org/dc/terms/ISO639-3"">eng</iso>
-    <name ns0:propertyURI=""subject/subjectLanguage"" ns0:sesURI=""http://purl.org/dc/terms/ISO639-3"">English</name>
-    <ldml ns0:propertyURI=""language/ldml"">en</ldml>
-    <rod ns0:propertyURI=""language/rod"" />
-    <script ns0:propertyURI=""language/script"">Latin</script>
-    <scriptDirection ns0:propertyURI=""language/scriptDirection"">LTR</scriptDirection>
-    <numerals ns0:propertyURI=""language/numerals"" />
+    <iso></iso>
+    <name></name>
+    <ldml></ldml>
+    <rod></rod>
+    <script></script>
+    <scriptDirection></scriptDirection>
+    <!-- LTR (Left to Right) or RTL (Right to Left) -->
+    <numerals></numerals>
   </language>
   <country>
-    <iso ns0:propertyURI=""coverage/spatial"" ns0:sesURI=""http://purl.org/dc/terms/ISO3166"">US</iso>
-    <name ns0:propertyURI=""subject/subjectCountry"">United States</name>
+    <iso></iso>
+    <name></name>
   </country>
   <type>
-    <translationType ns0:propertyURI=""type/translationType"">New</translationType>
-    <audience ns0:propertyURI=""audience"">Common</audience>
+    <translationType></translationType>
+    <audience>Common</audience>
   </type>
-  <bookNames/>
-  <contents ns0:propertyURI=""tableOfContents"">
+  <bookNames>
+  </bookNames>
+  <contents>
     <bookList id=""default"">
-      <name/>
-      <nameLocal/>
-      <abbreviation/>
-      <abbreviationLocal/>
-      <description/>
+      <name></name>
+      <nameLocal></nameLocal>
+      <abbreviation></abbreviation>
+      <abbreviationLocal></abbreviationLocal>
+      <description></description>
       <range>Protestant New Testament (27 books)</range>
       <tradition>Western Protestant order</tradition>
       <division id=""NT"">
@@ -473,27 +491,33 @@ namespace DblMetaData
     </bookList>
   </contents>
   <contact>
-    <rightsHolder ns0:propertyURI=""rightsHolder""/>
-    <rightsHolderLocal ns0:propertyURI=""rightsHolder/contactLocal"" />
-    <rightsHolderAbbreviation ns0:propertyURI=""rightsHolder/contactAbbreviation"" />
-    <rightsHolderURL ns0:propertyURI=""rightsHolder/contactURL"" />
-    <rightsHolderFacebook ns0:propertyURI=""rightsHolder/contactFacebook"" />
+    <rightsHolder></rightsHolder>
+    <rightsHolderLocal></rightsHolderLocal>
+    <rightsHolderAbbreviation></rightsHolderAbbreviation>
+    <rightsHolderURL></rightsHolderURL>
+    <rightsHolderFacebook></rightsHolderFacebook>
   </contact>
   <copyright>
-    <statement contentType=""xhtml"" ns0:propertyURI=""rights"" />
+    <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <statement contentType=""xhtml"">
+    </statement>
   </copyright>
   <promotion>
-    <promoVersionInfo contentType=""xhtml"" ns0:propertyURI=""description/pubPromoVersionInfo"" />
-    <promoEmail contentType=""xhtml"" ns0:propertyURI=""description/pubPromoEmail"" />
+    <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <promoVersionInfo contentType=""xhtml"">
+    </promoVersionInfo>
+    <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <promoEmail contentType=""xhtml""></promoEmail>
   </promotion>
   <archiveStatus>
-    <archivistName ns0:propertyURI=""contributor/archivist"" />
-    <dateArchived ns0:propertyURI=""dateSubmitted"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"">2012-03-12T17:51:32.7907868+00:00</dateArchived>
-    <dateUpdated ns0:propertyURI=""modified"" ns0:sesURI=""http://purl.org/dc/terms/W3CDTF"">2012-03-17T14:21:02.8293104+00:00</dateUpdated>
-    <comments ns0:propertyURI=""abstract"">DBL example bundle</comments>
+    <archivistName></archivistName>
+    <dateArchived></dateArchived>
+    <dateUpdated></dateUpdated>
+    <comments></comments>
   </archiveStatus>
-  <format ns0:propertyURI=""format"" ns0:sesURI=""http://purl.org/dc/terms/IMT"">text/xml</format>
-</DBLMetadata>";
+  <format>text/xml</format>
+</DBLMetadata>
+";
         #endregion dblMetaData (template)
 
         #region dblMetaDataSchema
@@ -502,21 +526,21 @@ namespace dcds = ""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/""
 
 start =
   element DBLMetadata {
-    attribute id { xsd:string { pattern = ""[0-9a-f]{16}"" } },
+    attribute id { xsd:string { pattern = ""[0-9a-f]{16}"" }? },
     attribute type { ""text"" },  # “text” | “print” | “audio” | “video”
     attribute typeVersion { ""1.2"" },
-    attribute revision { xsd:integer },
-    attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" },
+    attribute revision { xsd:integer? },
+    attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" }?,
     element identification {
       (abbreviation
          # abbreviation local should default to abbreviation
        | abbreviationLocal
        | element description {
-           attribute dcds:propertyURI { ""description"" },
+           attribute dcds:propertyURI { ""description"" }?,
            text 
            }
        | element name {
-           attribute dcds:propertyURI { ""title"" },
+           attribute dcds:propertyURI { ""title"" }?,
            xsd:string { minLength = ""2"" }
            }
          # Name local should default to name 
@@ -524,96 +548,96 @@ start =
            xsd:string { minLength = ""2"" }
            }
        | element dateCompleted {
-           attribute dcds:propertyURI { ""date"" },
-           attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
+           attribute dcds:propertyURI { ""date"" }?,
+           attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" }?,
            #xsd:string { pattern = ""\d{4}"" }
            (xsd:date |xsd:gYear |xsd:gYearMonth |xsd:dateTime)
            }
        | element scope {
-           attribute dcds:propertyURI { ""title/scriptureScope"" },
+           attribute dcds:propertyURI { ""title/scriptureScope"" }?,
            (""NT"" | scopes) 
            }
          # systemId[@type='paratext'] is overwritten by Paratext
        | element systemId {
            attribute type { ""tms"" | ""reap"" | ""paratext"" | ""biblica"" },
-           attribute dcds:propertyURI { ""identifier/dblID"" | ""identifier/tmsID"" | ""identifier/reapID"" | ""identifier/ptxID"" | ""identifier/biblicaID"" },
+           attribute dcds:propertyURI { ""identifier/dblID"" | ""identifier/tmsID"" | ""identifier/reapID"" | ""identifier/ptxID"" | ""identifier/biblicaID"" }?,
            text 
            })+,
       # bundleProducer is overwritten by Paratext
       element bundleProducer { text }
     },
     element confidential {
-      attribute dcds:propertyURI { ""accessRights/confidential"" },
+      attribute dcds:propertyURI { ""accessRights/confidential"" }?,
       #(""true"" | ""false"")
       xsd:boolean
     },
     element agencies {
       element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" }*,
       element creator { 
-        attribute dcds:propertyURI { ""creator"" },
+        attribute dcds:propertyURI { ""creator"" }?,
         xsd:string { minLength = ""2"" }
         }+,
       # publisher may be the same as translation (description/sponsorship) 
       element publisher {
-        attribute dcds:propertyURI { ""publisher"" },
+        attribute dcds:propertyURI { ""publisher"" }?,
         xsd:string { minLength = ""2"" }
         }*,
       element contributor {
-        attribute dcds:propertyURI { ""contributor"" },
+        attribute dcds:propertyURI { ""contributor"" }?,
         text
         }*
     },
     element language {
       element iso { 
-        attribute dcds:propertyURI { ""language/iso"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
+        attribute dcds:propertyURI { ""language/iso"" }?,
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" }?,
         xsd:string { pattern = ""[a-z]{3}"" } 
         },
       element name { 
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" },
-        attribute dcds:propertyURI { ""subject/subjectLanguage"" },
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO639-3"" }?,
+        attribute dcds:propertyURI { ""subject/subjectLanguage"" }?,
         xsd:string
         },
       element ldml { 
-        attribute dcds:propertyURI { ""language/ldml"" },
+        attribute dcds:propertyURI { ""language/ldml"" }?,
         xsd:string { pattern = ""[A-Za-z]{2,3}([\-_][A-Za-z0-9]+){0,3}"" }? 
         },
       element rod { 
-        attribute dcds:propertyURI { ""language/rod"" },
+        attribute dcds:propertyURI { ""language/rod"" }?,
         xsd:string { pattern = ""[0-9]{5}"" }?
         },
       element script {
-        attribute dcds:propertyURI { ""language/script"" },
+        attribute dcds:propertyURI { ""language/script"" }?,
         scripts?
         },
       # LTR (Left to Right) or RTL (Right to Left) 
       # scriptDirection is overwritten by Paratext
       element scriptDirection {
-        attribute dcds:propertyURI { ""language/scriptDirection"" },
+        attribute dcds:propertyURI { ""language/scriptDirection"" }?,
         (""LTR"" | ""RTL"") 
         },
       element numerals {
-        attribute dcds:propertyURI { ""language/numerals"" },
+        attribute dcds:propertyURI { ""language/numerals"" }?,
         numeralSystems?
         }
     },
     element country { 
       element iso { 
-      attribute dcds:propertyURI { ""coverage/spatial"" },
-      attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO3166"" }, 
+      attribute dcds:propertyURI { ""coverage/spatial"" }?,
+      attribute dcds:sesURI { ""http://purl.org/dc/terms/ISO3166"" }?, 
       xsd:string { pattern = ""[A-Za-z]{2,3}"" } 
       }, 
     element name { 
-      attribute dcds:propertyURI { ""subject/subjectCountry"" }, 
+      attribute dcds:propertyURI { ""subject/subjectCountry"" }?, 
       xsd:string
       }},
     element type { 
       element translationType { 
-        attribute dcds:propertyURI { ""type/translationType"" }, 
+        attribute dcds:propertyURI { ""type/translationType"" }?, 
         (""First"" | ""New"" | ""Revision"") 
         }, 
       element audience {
-        attribute dcds:propertyURI { ""audience"" }, 
+        attribute dcds:propertyURI { ""audience"" }?, 
         ( ""Basic"" | ""Common"" | ""Common - Literary"" | ""Literary"" | ""Liturgical"")
         }},
     # bookNames/book is overwritten by Paratext
@@ -633,7 +657,7 @@ start =
           text 
           } }* },
     element contents {
-      attribute dcds:propertyURI { ""tableOfContents"" },
+      attribute dcds:propertyURI { ""tableOfContents"" }?,
       element bookList {
         attribute id { ""default"" }?, 
         # default to name from identification section  
@@ -657,24 +681,24 @@ start =
 	# Default to Publisher (from agencies) 
     element contact {
       element rightsHolder {
-        attribute dcds:propertyURI { ""rightsHolder"" },
+        attribute dcds:propertyURI { ""rightsHolder"" }?,
         text
       },
 	  # Default to rights holder 
       element rightsHolderLocal {
-        attribute dcds:propertyURI { ""rightsHolder/contactLocal"" },
+        attribute dcds:propertyURI { ""rightsHolder/contactLocal"" }?,
         text
       },
       element rightsHolderAbbreviation {
-        attribute dcds:propertyURI { ""rightsHolder/contactAbbreviation"" },
+        attribute dcds:propertyURI { ""rightsHolder/contactAbbreviation"" }?,
         xsd:NCName
       },
       element rightsHolderURL {
-        attribute dcds:propertyURI { ""rightsHolder/contactURL"" },
+        attribute dcds:propertyURI { ""rightsHolder/contactURL"" }?,
         xsd:anyURI
       },
       element rightsHolderFacebook {
-        attribute dcds:propertyURI { ""rightsHolder/contactFacebook"" },
+        attribute dcds:propertyURI { ""rightsHolder/contactFacebook"" }?,
         xsd:anyURI
       }
     },
@@ -682,50 +706,50 @@ start =
 	  # For example: ©1983, 1992 SIL International 
       element statement {
         attribute contentType { ""xhtml"" },
-        attribute dcds:propertyURI { ""rights"" },
+        attribute dcds:propertyURI { ""rights"" }?,
         htmlMarkup
       }
     },
     element promotion {
       element promoVersionInfo {
         attribute contentType { ""xhtml"" },
-        attribute dcds:propertyURI { ""description/pubPromoVersionInfo"" },
+        attribute dcds:propertyURI { ""description/pubPromoVersionInfo"" }?,
 		htmlMarkup
       },
       element promoEmail {
         attribute contentType { ""xhtml"" },
-        attribute dcds:propertyURI { ""description/pubPromoEmail"" },
+        attribute dcds:propertyURI { ""description/pubPromoEmail"" }?,
         htmlMarkup
       }
     },
     element archiveStatus {
       # archivistName is overwritten by Paratext
       element archivistName {
-        attribute dcds:propertyURI { ""contributor/archivist"" },
+        attribute dcds:propertyURI { ""contributor/archivist"" }?,
         text
       },
 	  # ex. 2012-03-12T17:51:32.7907868+00:00
       # dateArchived is overwritten by Paratext
       element dateArchived {
-        attribute dcds:propertyURI { ""dateSubmitted"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:dateTime
+        attribute dcds:propertyURI { ""dateSubmitted"" }?,
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" }?,
+        xsd:dateTime?
       },
       # dateUpdated is overwritten by Paratext
       element dateUpdated {
-        attribute dcds:propertyURI { ""modified"" },
-        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" },
-        xsd:dateTime
+        attribute dcds:propertyURI { ""modified"" }?,
+        attribute dcds:sesURI { ""http://purl.org/dc/terms/W3CDTF"" }?,
+        xsd:dateTime?
       },
       element comments {
-        attribute dcds:propertyURI { ""abstract"" },
+        attribute dcds:propertyURI { ""abstract"" }?,
         text
       }
     },
     # format is overwritten by Paratext
     element format {
-      attribute dcds:propertyURI { ""format"" },
-      attribute dcds:sesURI { ""http://purl.org/dc/terms/IMT"" },
+      attribute dcds:propertyURI { ""format"" }?,
+      attribute dcds:sesURI { ""http://purl.org/dc/terms/IMT"" }?,
       ""text/xml""
     }
   }
@@ -956,15 +980,15 @@ licenseType = (""BY"" # Attributaion only
 
         #region license (template)
         private const string _license = @"<?xml version=""1.0"" encoding=""UTF-8""?>
-<license id=""66f69e2e951292b7"" xmlns:dcds=""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/"">
-  <dateLicense>2011-10-01</dateLicense>
-  <dateLicenseExpiry>2014-09-30</dateLicenseExpiry>
+<license id="""">
+  <dateLicense></dateLicense>
+  <dateLicenseExpiry></dateLicenseExpiry>
   <publicationRights>
-    <allowOffline>false</allowOffline>
-    <allowIntroductions>true</allowIntroductions>
-    <allowFootnotes>true</allowFootnotes>
-    <allowCrossReferences>true</allowCrossReferences>
-    <allowExtendedNotes>false</allowExtendedNotes>
+    <allowOffline></allowOffline>
+    <allowIntroductions></allowIntroductions>
+    <allowFootnotes></allowFootnotes>
+    <allowCrossReferences></allowCrossReferences>
+    <allowExtendedNotes></allowExtendedNotes>
   </publicationRights>
 </license>
 ";
@@ -1392,11 +1416,9 @@ licenseType = (""BY"" # Attributaion only
 
         internal void Save(string p)
         {
-            var sw = new StreamWriter(p);
-            var xw = XmlWriter.Create(sw);
-            _dblMetaDataDoc.WriteContentTo(xw);
-            xw.Close();
-            sw.Close();
+            var writer = new FullEndingXmlTextWriter(p);
+            _dblMetaDataDoc.WriteContentTo(writer);
+            writer.Close();
 
             var folder = Path.GetDirectoryName(p);
             var schemaName = Path.Combine(folder, "metadataWbt-1.2.rnc");
@@ -1415,11 +1437,9 @@ licenseType = (""BY"" # Attributaion only
             SetLicenseValue(DateTime.Today.ToString("yyyy-MM-dd"), "//dateLicense", licenseDoc);
             SetLicenseValue(DateTime.Today.AddYears(3).ToString("yyyy-MM-dd"), "//dateLicenseExpiry", licenseDoc);
             var licenseName = Path.Combine(folder, _languageCode + "License.xml");
-            var licenseStreamWriter = new StreamWriter(licenseName);
-            var licenseXmlWriter = XmlWriter.Create(licenseStreamWriter);
-            licenseDoc.WriteContentTo(licenseXmlWriter);
-            licenseXmlWriter.Close();
-            licenseStreamWriter.Close();
+            var licenseWriter = new FullEndingXmlTextWriter(licenseName);
+            licenseDoc.WriteContentTo(licenseWriter);
+            licenseWriter.Close();
         }
 
         private void SetLicenseValue(string value, string xpath, XmlDocument doc)
