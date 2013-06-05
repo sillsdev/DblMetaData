@@ -89,6 +89,14 @@ namespace DblMetaData
                 _scraper = reviewDialog.Data;
                 save.Enabled = true;
             }
+            try
+            {
+                new UpdateBookList(_scraper);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Unable to update book list. New Testament books are inserted in the meta data.");
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

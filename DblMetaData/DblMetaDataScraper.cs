@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
+using System.Collections;
 
 namespace DblMetaData
 {
@@ -519,6 +520,122 @@ namespace DblMetaData
 </DBLMetadata>
 ";
         #endregion dblMetaData (template)
+
+        #region division (template)
+        private const string divisions = @"<divisions>
+            <division id=""OT"">
+                <books>
+                    <book code=""GEN""/>
+                    <book code=""EXO""/>
+                    <book code=""LEV""/>
+                    <book code=""NUM""/>
+                    <book code=""DEU""/>
+                    <book code=""JOS""/>
+                    <book code=""JDG""/>
+                    <book code=""RUT""/>
+                    <book code=""1SA""/>
+                    <book code=""2SA""/>
+                    <book code=""1KI""/>
+                    <book code=""2KI""/>
+                    <book code=""1CH""/>
+                    <book code=""2CH""/>
+                    <book code=""EZR""/>
+                    <book code=""NEH""/>
+                    <book code=""EST""/>
+                    <book code=""JOB""/>
+                    <book code=""PSA""/>
+                    <book code=""PRO""/>
+                    <book code=""ECC""/>
+                    <book code=""SNG""/>
+                    <book code=""ISA""/>
+                    <book code=""JER""/>
+                    <book code=""LAM""/>
+                    <book code=""EZK""/>
+                    <book code=""DAN""/>
+                    <book code=""HOS""/>
+                    <book code=""JOL""/>
+                    <book code=""AMO""/>
+                    <book code=""OBA""/>
+                    <book code=""JON""/>
+                    <book code=""MIC""/>
+                    <book code=""NAM""/>
+                    <book code=""HAB""/>
+                    <book code=""ZEP""/>
+                    <book code=""HAG""/>
+                    <book code=""ZEC""/>
+                    <book code=""MAL""/>
+                </books>
+            </division>
+            <division id=""DC"">
+                <books>
+                    <book code=""TOB""/>
+                    <book code=""JDT""/>
+                    <book code=""ESG""/>
+                    <book code=""WIS""/>
+                    <book code=""SIR""/>
+                    <book code=""BAR""/>
+                    <book code=""LJE""/>
+                    <book code=""S3Y""/>
+                    <book code=""SUS""/>
+                    <book code=""BEL""/>
+                    <book code=""1MA""/>
+                    <book code=""2MA""/>
+                    <book code=""1ES""/>
+                    <book code=""2ES""/>
+                    <book code=""MAN""/>
+                </books>
+            </division>
+            <division id=""NT"">
+                <books>
+                    <book code=""MAT""/>
+                    <book code=""MRK""/>
+                    <book code=""LUK""/>
+                    <book code=""JHN""/>
+                    <book code=""ACT""/>
+                    <book code=""ROM""/>
+                    <book code=""1CO""/>
+                    <book code=""2CO""/>
+                    <book code=""GAL""/>
+                    <book code=""EPH""/>
+                    <book code=""PHP""/>
+                    <book code=""COL""/>
+                    <book code=""1TH""/>
+                    <book code=""2TH""/>
+                    <book code=""1TI""/>
+                    <book code=""2TI""/>
+                    <book code=""TIT""/>
+                    <book code=""PHM""/>
+                    <book code=""HEB""/>
+                    <book code=""JAS""/>
+                    <book code=""1PE""/>
+                    <book code=""2PE""/>
+                    <book code=""1JN""/>
+                    <book code=""2JN""/>
+                    <book code=""3JN""/>
+                    <book code=""JUD""/>
+                    <book code=""REV""/>
+                </books>
+            </division>
+</divisions>";
+
+        private static Dictionary<string, string> DivOfBook
+        {
+            get
+            {
+                var divTree = new XmlDocument { XmlResolver = null };
+                divTree.LoadXml(divisions);
+                var divOfBook = new Dictionary<string, string>();
+                var bookNodes = divTree.SelectNodes("//book");
+                Debug.Assert(bookNodes != null);
+                foreach (XmlNode bookNode in bookNodes)
+                {
+                    Debug.Assert(bookNode.Attributes != null && bookNode.ParentNode != null && bookNode.ParentNode.ParentNode != null && bookNode.ParentNode.ParentNode.Attributes != null);
+                    divOfBook[bookNode.Attributes["code"].InnerText] = bookNode.ParentNode.ParentNode.Attributes["id"].InnerText;
+                }
+                return divOfBook;
+            }
+        }
+        #endregion division (template)
 
         #region dblMetaDataSchema
         private const string DblMetaDataSchema = @"default namespace = """"
@@ -1391,6 +1508,69 @@ licenseType = (""BY"" # Attributaion only
         {
             XmlNode xmlNode = _dblMetaDataDoc.SelectSingleNode(xpath);
             xmlNode.InnerXml = value.Replace("<>", "&lt;&gt;");
+        }
+
+        public void SetBooks(ArrayList books)
+        {
+            RemoveCurrentDivisions();
+            var divList = GetActiveDivisions(books);
+            AddNewDivisions(books, divList);
+        }
+
+        private void RemoveCurrentDivisions()
+        {
+            var divisionNodes = _dblMetaDataDoc.SelectNodes("//division");
+            Debug.Assert(divisionNodes != null);
+            foreach (XmlNode divisionNode in divisionNodes)
+            {
+                Debug.Assert(divisionNode.ParentNode != null);
+                divisionNode.ParentNode.RemoveChild(divisionNode);
+            }
+        }
+
+        private static ArrayList GetActiveDivisions(ArrayList books)
+        {
+            var divList = new ArrayList();
+            foreach (string book in books)
+            {
+                if (!divList.Contains(DivOfBook[book]))
+                {
+                    divList.Add(DivOfBook[book]);
+                }
+            }
+            return divList;
+        }
+
+        private void AddNewDivisions(ArrayList books, ArrayList divList)
+        {
+            var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = 'default']");
+            foreach (string division in divList)
+            {
+                var divNode = _dblMetaDataDoc.CreateElement("division");
+                var divIdAttr = _dblMetaDataDoc.CreateAttribute("id");
+                divIdAttr.InnerText = division;
+                divNode.Attributes.Append(divIdAttr);
+                var booksNode = CreateBooksNode(books, division);
+                divNode.AppendChild(booksNode);
+                defList.AppendChild(divNode);
+            }
+        }
+
+        private XmlElement CreateBooksNode(ArrayList books, string division)
+        {
+            var booksNode = _dblMetaDataDoc.CreateElement("books");
+            foreach (string book in books)
+            {
+                if (DivOfBook[book] == division)
+                {
+                    var bookNode = _dblMetaDataDoc.CreateElement("book");
+                    var bookCodeAttr = _dblMetaDataDoc.CreateAttribute("code");
+                    bookCodeAttr.InnerText = book;
+                    bookNode.Attributes.Append(bookCodeAttr);
+                    booksNode.AppendChild(bookNode);
+                }
+            }
+            return booksNode;
         }
 
         private string GetValue(string xpath)

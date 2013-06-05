@@ -1,0 +1,44 @@
+﻿<ScriptureText>
+  <Name>accNT</Name>
+  <StyleSheet>usfm.2.2.sty</StyleSheet>
+  <ChapterMarker>c</ChapterMarker>
+  <VerseMarker>v</VerseMarker>
+  <FullName>Achi de Cubulco [acc]</FullName>
+  <FileNameBookNameForm>41MAT</FileNameBookNameForm>
+  <FileNamePostPart>accNT.SFM</FileNamePostPart>
+  <AutoKeyboardSwitching>F</AutoKeyboardSwitching>
+  <CloseBy>\p</CloseBy>
+  <CreatedWithPTW6>T</CreatedWithPTW6>
+  <DefaultFont>Arial</DefaultFont>
+  <DefaultFontSize>10</DefaultFontSize>
+  <Editable>T</Editable>
+  <Encoding>65001</Encoding>
+  <IgnoreCharacters>NullValue</IgnoreCharacters>
+  <IgnoreTheseAfterNumber>)</IgnoreTheseAfterNumber>
+  <IndividualBooks>No</IndividualBooks>
+  <Language>acc</Language>
+  <LeftToRight>T</LeftToRight>
+  <MaxErrorCount>10</MaxErrorCount>
+  <NeverShowBackupReminder>T</NeverShowBackupReminder>
+  <OccurrenceLimit>1</OccurrenceLimit>
+  <Pairs>(/) [/] {/} ¿/? ¡/! ‘/’ \f/\f*</Pairs>
+  <Punctuation>.,?:;!()[]&lt;&gt;¿¡“”‘’—__++</Punctuation>
+  <ReportCounts>No</ReportCounts>
+  <ShowScope>Yes</ShowScope>
+  <SoundAlikeCharacters>v/b/p</SoundAlikeCharacters>
+  <Versification>17</Versification>
+  <Guid>5d053ad7d5c341b92de7886ac9be71094f333b8b</Guid>
+  <NeedsEnglishLanguageFix>No</NeedsEnglishLanguageFix>
+  <NeedsPortugueseLanguageFix>No</NeedsPortugueseLanguageFix>
+  <Directory>C:\My Paratext Projects\accNT</Directory>
+  <TextHasChanged>F</TextHasChanged>
+  <LastBackedUp>2012Aug06</LastBackedUp>
+  <StylesheetModificationDate>4/3/2009 5:10:28 PM</StylesheetModificationDate>
+  <BooksPresent>000000000000000000000000000000000000000111111111111111111111111111000000000000000000000000000000000111000000000000000000000</BooksPresent>
+  <LanguageIsoCode>acr:::</LanguageIsoCode>
+  <EthnologueCode>acr</EthnologueCode>
+  <Copyright>my copyright</Copyright>
+  <FileNamePrePart />
+  <FileNameChapterNumberForm />
+  <Naming PrePart="" PostPart="accNT.SFM" BookNameForm="41MAT" ChapterNumberForm="" />
+</ScriptureText>

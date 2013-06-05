@@ -11,9 +11,9 @@
 // File: DblMetaDataScraperTest.cs
 // Responsibility: Trihus
 // ---------------------------------------------------------------------------------------------
+using System.Collections;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Xml.Xsl;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -329,6 +329,26 @@ namespace TestProject
             var promoInfNode = target._dblMetaDataDoc.SelectSingleNode(xpath);
             var actualTitle = (promoInfNode != null) ? promoInfNode.InnerText : "Missing promoVersionInfo node!";
             Assert.AreEqual("My Description", actualTitle);
+        }
+
+        /// <summary>
+        ///A test for SetBooks
+        ///</summary>
+        [TestMethod()]
+        [DeploymentItem("DblMetaData.exe")]
+        public void SetBooksTest()
+        {
+            var target = new DblMetaDataScraper_Accessor();
+            var books = new ArrayList();
+            books.Add("GEN");
+            books.Add("MAT");
+            books.Add("MRK");
+            target.SetBooks(books);
+            var divisionNodes = target._dblMetaDataDoc.SelectNodes("//division");
+            Assert.AreEqual(2, divisionNodes.Count);
+            Assert.AreEqual(1, divisionNodes[0].Attributes.Count);
+            var bookNodes = target._dblMetaDataDoc.SelectNodes("//book");
+            Assert.AreEqual(3, bookNodes.Count);
         }
 
         /// <summary>
