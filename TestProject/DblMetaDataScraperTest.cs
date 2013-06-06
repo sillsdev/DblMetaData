@@ -343,6 +343,7 @@ namespace TestProject
             books.Add("GEN");
             books.Add("MAT");
             books.Add("MRK");
+            books.Add("XXA");
             target.SetBooks(books);
             var divisionNodes = target._dblMetaDataDoc.SelectNodes("//division");
             Assert.AreEqual(2, divisionNodes.Count);

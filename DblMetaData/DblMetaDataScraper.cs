@@ -16,7 +16,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Collections;
@@ -1533,6 +1532,10 @@ licenseType = (""BY"" # Attributaion only
             var divList = new ArrayList();
             foreach (string book in books)
             {
+                if (!DivOfBook.Keys.Contains(book))
+                {
+                    continue;
+                }
                 if (!divList.Contains(DivOfBook[book]))
                 {
                     divList.Add(DivOfBook[book]);
@@ -1561,6 +1564,10 @@ licenseType = (""BY"" # Attributaion only
             var booksNode = _dblMetaDataDoc.CreateElement("books");
             foreach (string book in books)
             {
+                if (!DivOfBook.Keys.Contains(book))
+                {
+                    continue;
+                }
                 if (DivOfBook[book] == division)
                 {
                     var bookNode = _dblMetaDataDoc.CreateElement("book");
