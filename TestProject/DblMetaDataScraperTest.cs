@@ -14,6 +14,7 @@
 using System.Collections;
 using System.Diagnostics;
 using System.IO;
+using System.Xml;
 using System.Xml.Xsl;
 using DblMetaData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -98,10 +99,13 @@ namespace TestProject
         }
 
         [TestMethod()]
+        [DeploymentItem("DblMetaData.exe")]
         public void HwcRevewTest()
         {
+            DblMetaDataScraper_Accessor.NoDialogueTesting = true;
             var target = new Form1();
             target.ReviewSiteData(_tf.InputData("REAP record page.xml"), "My Description");
+            DblMetaDataScraper_Accessor.NoDialogueTesting = false;
         }
 
         /// <summary>
@@ -339,6 +343,7 @@ namespace TestProject
         public void SetBooksTest()
         {
             var target = new DblMetaDataScraper_Accessor();
+            DblMetaDataScraper_Accessor.NoDialogueTesting = true;
             var books = new ArrayList();
             books.Add("GEN");
             books.Add("MAT");
@@ -346,10 +351,126 @@ namespace TestProject
             books.Add("XXA");
             target.SetBooks(books);
             var divisionNodes = target._dblMetaDataDoc.SelectNodes("//division");
+            DblMetaDataScraper_Accessor.NoDialogueTesting = false;
             Assert.AreEqual(2, divisionNodes.Count);
             Assert.AreEqual(1, divisionNodes[0].Attributes.Count);
             var bookNodes = target._dblMetaDataDoc.SelectNodes("//book");
             Assert.AreEqual(3, bookNodes.Count);
+        }
+
+        #region divisions (template)
+        private const string divisions = @"<divisions>
+            <division id=""OT"">
+                <books>
+                    <book code=""GEN""/>
+                    <book code=""EXO""/>
+                    <book code=""LEV""/>
+                    <book code=""NUM""/>
+                    <book code=""DEU""/>
+                    <book code=""JOS""/>
+                    <book code=""JDG""/>
+                    <book code=""RUT""/>
+                    <book code=""1SA""/>
+                    <book code=""2SA""/>
+                    <book code=""1KI""/>
+                    <book code=""2KI""/>
+                    <book code=""1CH""/>
+                    <book code=""2CH""/>
+                    <book code=""EZR""/>
+                    <book code=""NEH""/>
+                    <book code=""EST""/>
+                    <book code=""JOB""/>
+                    <book code=""PSA""/>
+                    <book code=""PRO""/>
+                    <book code=""ECC""/>
+                    <book code=""SNG""/>
+                    <book code=""ISA""/>
+                    <book code=""JER""/>
+                    <book code=""LAM""/>
+                    <book code=""EZK""/>
+                    <book code=""DAN""/>
+                    <book code=""HOS""/>
+                    <book code=""JOL""/>
+                    <book code=""AMO""/>
+                    <book code=""OBA""/>
+                    <book code=""JON""/>
+                    <book code=""MIC""/>
+                    <book code=""NAM""/>
+                    <book code=""HAB""/>
+                    <book code=""ZEP""/>
+                    <book code=""HAG""/>
+                    <book code=""ZEC""/>
+                    <book code=""MAL""/>
+                </books>
+            </division>
+            <division id=""DC"">
+                <books>
+                    <book code=""TOB""/>
+                    <book code=""JDT""/>
+                    <book code=""ESG""/>
+                    <book code=""WIS""/>
+                    <book code=""SIR""/>
+                    <book code=""BAR""/>
+                    <book code=""LJE""/>
+                    <book code=""S3Y""/>
+                    <book code=""SUS""/>
+                    <book code=""BEL""/>
+                    <book code=""1MA""/>
+                    <book code=""2MA""/>
+                    <book code=""1ES""/>
+                    <book code=""2ES""/>
+                    <book code=""MAN""/>
+                </books>
+            </division>
+            <division id=""NT"">
+                <books>
+                    <book code=""MAT""/>
+                    <book code=""MRK""/>
+                    <book code=""LUK""/>
+                    <book code=""JHN""/>
+                    <book code=""ACT""/>
+                    <book code=""ROM""/>
+                    <book code=""1CO""/>
+                    <book code=""2CO""/>
+                    <book code=""GAL""/>
+                    <book code=""EPH""/>
+                    <book code=""PHP""/>
+                    <book code=""COL""/>
+                    <book code=""1TH""/>
+                    <book code=""2TH""/>
+                    <book code=""1TI""/>
+                    <book code=""2TI""/>
+                    <book code=""TIT""/>
+                    <book code=""PHM""/>
+                    <book code=""HEB""/>
+                    <book code=""JAS""/>
+                    <book code=""1PE""/>
+                    <book code=""2PE""/>
+                    <book code=""1JN""/>
+                    <book code=""2JN""/>
+                    <book code=""3JN""/>
+                    <book code=""JUD""/>
+                    <book code=""REV""/>
+                </books>
+            </division>
+</divisions>";
+        #endregion divisons (template)
+
+        /// <summary>
+        ///A test for BookCheck
+        ///</summary>
+        [TestMethod()]
+        public void BookCheckTest()
+        {
+            var target = new BookCheck();
+            var divDoc = new XmlDocument {XmlResolver = null};
+            divDoc.LoadXml(divisions);
+            target.LoadBooks(divDoc.DocumentElement);
+            target.ShowDialog();
+            var actual = target.SelectedBooks();
+            Assert.AreEqual(27, actual.Count);
+            Assert.AreEqual("MAT", actual[0]);
+            Assert.AreEqual("REV", actual[26]);
         }
 
         /// <summary>

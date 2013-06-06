@@ -24,6 +24,8 @@ namespace DblMetaData
 {
     public class DblMetaDataScraper
     {
+        public static bool NoDialogueTesting = false;
+
         #region Properties
         #region Confidential
         private string _confidential;
@@ -1514,6 +1516,17 @@ licenseType = (""BY"" # Attributaion only
             RemoveCurrentDivisions();
             var divList = GetActiveDivisions(books);
             AddNewDivisions(books, divList);
+            using (var bookCheck = new BookCheck())
+            {
+                var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = 'default']");
+                bookCheck.LoadBooks(defList);
+                if (!NoDialogueTesting)
+                    bookCheck.ShowDialog();
+                books = bookCheck.SelectedBooks();
+                RemoveCurrentDivisions();
+                var divList2 = GetActiveDivisions(books);
+                AddNewDivisions(books, divList2);
+            }
         }
 
         private void RemoveCurrentDivisions()
