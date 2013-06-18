@@ -103,6 +103,7 @@ namespace DblMetaData
         {
             save.Enabled = false;
             Form1_Resize(sender, e);
+            webBrowser1.AllowNavigation = true;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
