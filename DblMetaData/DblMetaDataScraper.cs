@@ -1155,7 +1155,7 @@ licenseType = (""BY"" # Attributaion only
             _scope = TextField(rawScope, 0).Substring(1);
 
             _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content").Trim(new char[] {',', ' ', '\n', '\r', '\f', '\t', ':', '\'', '"', '(', ')'});
-            _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2]");
+            _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2][contains(./text(),'reap')]");
 
             // TranslationType
             //var typeWords = GetValue("//default:tr[default:td='dc.description.edition']/default:td[2]").Split(' ');

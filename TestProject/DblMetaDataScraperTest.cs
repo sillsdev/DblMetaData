@@ -191,6 +191,19 @@ namespace TestProject
         }
 
         /// <summary>
+        ///A test for ScrapeReapData
+        ///</summary>
+        [TestMethod()]
+        public void ScrapeReapDataTest5()
+        {
+            var target = new DblMetaDataScraper();
+            target.Options = new Options();
+            target.Load(_tf.InputData("Amuzgo.xml"));
+            target.ScrapeReapData();
+            Assert.IsTrue(target.ReapUrl.Contains("reap"), "reap url:" + target.ReapUrl);
+        }
+
+        /// <summary>
         ///A test for Save
         ///</summary>
         [TestMethod()]
