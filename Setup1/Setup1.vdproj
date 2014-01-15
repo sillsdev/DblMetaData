@@ -111,6 +111,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_E430D0557E124A838466A50D19E23B3F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F7F3A3CD23FC4892B4C85A88CE56CC3F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -141,7 +147,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\DblDataPrepSetup-1.28.msi"
+        "OutputFilename" = "8:Debug\\DblDataPrepSetup-1.29.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -538,6 +544,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E430D0557E124A838466A50D19E23B3F"
+            {
+            "SourcePath" = "8:..\\Xml\\metadataWbt-1.3.rnc"
+            "TargetName" = "8:metadataWbt-1.3.rnc"
+            "Tag" = "8:"
+            "Folder" = "8:_DC8C2B5C991E4AAEA65BBA96DDC66A0A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F7F3A3CD23FC4892B4C85A88CE56CC3F"
             {
             "SourcePath" = "8:..\\dist\\AddToc.exe"
@@ -742,15 +768,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SIL DblDataPrep"
-        "ProductCode" = "8:{765F06E9-E1F7-428B-BDE4-885DD7DB39B8}"
-        "PackageCode" = "8:{9CCDB1B0-01AC-4BD2-A22C-9A4039465245}"
+        "ProductCode" = "8:{B950F8AE-750D-4FAF-89E6-2946C09DF0F0}"
+        "PackageCode" = "8:{A3CF18CD-D6C5-4BE7-89DA-E99B155B3349}"
         "UpgradeCode" = "8:{09D64854-86D6-4D25-A31B-4A93FCEB2F12}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.28.0"
+        "ProductVersion" = "8:1.29.0"
         "Manufacturer" = "8:SIL International"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

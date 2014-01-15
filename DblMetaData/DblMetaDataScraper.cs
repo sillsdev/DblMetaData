@@ -340,7 +340,7 @@ namespace DblMetaData
             _namespaceManager.AddNamespace("default", "http://www.w3.org/1999/xhtml");
             //_namespaceManager.AddNamespace("fn", "http://www.w3.org/2005/xpath-functions");
             _dblMetaDataDoc = new XmlDocument();
-            _dblMetaDataDoc.LoadXml(_dblMetaData);
+            _dblMetaDataDoc.LoadXml(DblMetaData);
             _publisherDoc = new XmlDocument {XmlResolver = null};
             _publisherDocName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                                            @"SIL\DblDataPrep\Publishers.xml");
@@ -353,6 +353,7 @@ namespace DblMetaData
             {
                 _publisherDoc.LoadXml(_publisherData);
                 var folder = Path.GetDirectoryName(_publisherDocName);
+                Debug.Assert(folder != null);
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
                 _publisherDoc.Save(_publisherDocName);
@@ -370,6 +371,7 @@ namespace DblMetaData
                 version = 1;
                 var versionAttr = _publisherDoc.CreateAttribute("version");
                 versionAttr.InnerText = version.ToString();
+                Debug.Assert(_publisherDoc.DocumentElement != null);
                 _publisherDoc.DocumentElement.Attributes.Append(versionAttr);
                 versionNode = _publisherDoc.DocumentElement.SelectSingleNode("@version");
             }
@@ -392,7 +394,7 @@ namespace DblMetaData
         }
 
         #region dblMetaData (template)
-        private const string _dblMetaData = @"<?xml version=""1.0"" encoding=""UTF-8""?><?xml-model href=""metadataWbt-1.2.rnc"" type=""application/relax-ng-compact-syntax""?>
+        private const string DblMetaData = @"<?xml version=""1.0"" encoding=""UTF-8""?><?xml-model href=""metadataWbt-1.3.rnc"" type=""application/relax-ng-compact-syntax""?>
 <!-- Paratext automatically fills in the following tags. They must be present in the metadata provided but can be blank:
  -  identification/systemId[@type='paratext']
  -  language/scriptDirection
@@ -407,7 +409,7 @@ namespace DblMetaData
  -  identification/bundleProducer
  -  format
 -->
-<DBLMetadata type=""text"" typeVersion=""1.2"" id="""" revision="""">
+<DBLMetadata type=""text"" typeVersion=""1.3"" id="""" revision="""">
   <identification>
     <name></name>
     <nameLocal></nameLocal>
@@ -423,7 +425,7 @@ namespace DblMetaData
   <confidential></confidential>
   <agencies>
     <etenPartner>WBT</etenPartner>
-    <!-- Currently ""UBS"", ""WBT"", ""Biblica"" -->
+    <!-- Currently ""UBS"", ""WBT"", ""Biblica"", ""PBT"", ""SIM"" -->
     <creator></creator>
     <!-- primary translation agency/sponsorship -->
     <publisher></publisher>
@@ -451,47 +453,73 @@ namespace DblMetaData
   <bookNames>
   </bookNames>
   <contents>
-    <bookList id=""default"">
+    <bookList id=""1"" default=""true"">
       <name></name>
       <nameLocal></nameLocal>
       <abbreviation></abbreviation>
       <abbreviationLocal></abbreviationLocal>
       <description></description>
-      <range>Protestant New Testament (27 books)</range>
-      <tradition>Western Protestant order</tradition>
-      <division id=""NT"">
-        <books>
-          <book code=""MAT"" />
-          <book code=""MRK"" />
-          <book code=""LUK"" />
-          <book code=""JHN"" />
-          <book code=""ACT"" />
-          <book code=""ROM"" />
-          <book code=""1CO"" />
-          <book code=""2CO"" />
-          <book code=""GAL"" />
-          <book code=""EPH"" />
-          <book code=""PHP"" />
-          <book code=""COL"" />
-          <book code=""1TH"" />
-          <book code=""2TH"" />
-          <book code=""1TI"" />
-          <book code=""2TI"" />
-          <book code=""TIT"" />
-          <book code=""PHM"" />
-          <book code=""HEB"" />
-          <book code=""JAS"" />
-          <book code=""1PE"" />
-          <book code=""2PE"" />
-          <book code=""1JN"" />
-          <book code=""2JN"" />
-          <book code=""3JN"" />
-          <book code=""JUD"" />
-          <book code=""REV"" />
-        </books>
-      </division>
+      <descriptionLocal></descriptionLocal>
+      <books>
+        <book code=""MAT"" />
+        <book code=""MRK"" />
+        <book code=""LUK"" />
+        <book code=""JHN"" />
+        <book code=""ACT"" />
+        <book code=""ROM"" />
+        <book code=""1CO"" />
+        <book code=""2CO"" />
+        <book code=""GAL"" />
+        <book code=""EPH"" />
+        <book code=""PHP"" />
+        <book code=""COL"" />
+        <book code=""1TH"" />
+        <book code=""2TH"" />
+        <book code=""1TI"" />
+        <book code=""2TI"" />
+        <book code=""TIT"" />
+        <book code=""PHM"" />
+        <book code=""HEB"" />
+        <book code=""JAS"" />
+        <book code=""1PE"" />
+        <book code=""2PE"" />
+        <book code=""1JN"" />
+        <book code=""2JN"" />
+        <book code=""3JN"" />
+        <book code=""JUD"" />
+        <book code=""REV"" />
+      </books>
     </bookList>
   </contents>
+  <progress><!-- 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview -->
+    <book code=""MAT"" stage=""4""/>
+    <book code=""MRK"" stage=""4""/>
+    <book code=""LUK"" stage=""4""/>
+    <book code=""JHN"" stage=""4""/>
+    <book code=""ACT"" stage=""4""/>
+    <book code=""ROM"" stage=""4""/>
+    <book code=""1CO"" stage=""4""/>
+    <book code=""2CO"" stage=""4""/>
+    <book code=""GAL"" stage=""4""/>
+    <book code=""EPH"" stage=""4""/>
+    <book code=""PHP"" stage=""4""/>
+    <book code=""COL"" stage=""4""/>
+    <book code=""1TH"" stage=""4""/>
+    <book code=""2TH"" stage=""4""/>
+    <book code=""1TI"" stage=""4""/>
+    <book code=""2TI"" stage=""4""/>
+    <book code=""TIT"" stage=""4""/>
+    <book code=""PHM"" stage=""4""/>
+    <book code=""HEB"" stage=""4""/>
+    <book code=""JAS"" stage=""4""/>
+    <book code=""1PE"" stage=""4""/>
+    <book code=""2PE"" stage=""4""/>
+    <book code=""1JN"" stage=""4""/>
+    <book code=""2JN"" stage=""4""/>
+    <book code=""3JN"" stage=""4""/>
+    <book code=""JUD"" stage=""4""/>
+    <book code=""REV"" stage=""4""/>
+  </progress>
   <contact>
     <rightsHolder></rightsHolder>
     <rightsHolderLocal></rightsHolderLocal>
@@ -522,122 +550,6 @@ namespace DblMetaData
 ";
         #endregion dblMetaData (template)
 
-        #region division (template)
-        private const string divisions = @"<divisions>
-            <division id=""OT"">
-                <books>
-                    <book code=""GEN""/>
-                    <book code=""EXO""/>
-                    <book code=""LEV""/>
-                    <book code=""NUM""/>
-                    <book code=""DEU""/>
-                    <book code=""JOS""/>
-                    <book code=""JDG""/>
-                    <book code=""RUT""/>
-                    <book code=""1SA""/>
-                    <book code=""2SA""/>
-                    <book code=""1KI""/>
-                    <book code=""2KI""/>
-                    <book code=""1CH""/>
-                    <book code=""2CH""/>
-                    <book code=""EZR""/>
-                    <book code=""NEH""/>
-                    <book code=""EST""/>
-                    <book code=""JOB""/>
-                    <book code=""PSA""/>
-                    <book code=""PRO""/>
-                    <book code=""ECC""/>
-                    <book code=""SNG""/>
-                    <book code=""ISA""/>
-                    <book code=""JER""/>
-                    <book code=""LAM""/>
-                    <book code=""EZK""/>
-                    <book code=""DAN""/>
-                    <book code=""HOS""/>
-                    <book code=""JOL""/>
-                    <book code=""AMO""/>
-                    <book code=""OBA""/>
-                    <book code=""JON""/>
-                    <book code=""MIC""/>
-                    <book code=""NAM""/>
-                    <book code=""HAB""/>
-                    <book code=""ZEP""/>
-                    <book code=""HAG""/>
-                    <book code=""ZEC""/>
-                    <book code=""MAL""/>
-                </books>
-            </division>
-            <division id=""DC"">
-                <books>
-                    <book code=""TOB""/>
-                    <book code=""JDT""/>
-                    <book code=""ESG""/>
-                    <book code=""WIS""/>
-                    <book code=""SIR""/>
-                    <book code=""BAR""/>
-                    <book code=""LJE""/>
-                    <book code=""S3Y""/>
-                    <book code=""SUS""/>
-                    <book code=""BEL""/>
-                    <book code=""1MA""/>
-                    <book code=""2MA""/>
-                    <book code=""1ES""/>
-                    <book code=""2ES""/>
-                    <book code=""MAN""/>
-                </books>
-            </division>
-            <division id=""NT"">
-                <books>
-                    <book code=""MAT""/>
-                    <book code=""MRK""/>
-                    <book code=""LUK""/>
-                    <book code=""JHN""/>
-                    <book code=""ACT""/>
-                    <book code=""ROM""/>
-                    <book code=""1CO""/>
-                    <book code=""2CO""/>
-                    <book code=""GAL""/>
-                    <book code=""EPH""/>
-                    <book code=""PHP""/>
-                    <book code=""COL""/>
-                    <book code=""1TH""/>
-                    <book code=""2TH""/>
-                    <book code=""1TI""/>
-                    <book code=""2TI""/>
-                    <book code=""TIT""/>
-                    <book code=""PHM""/>
-                    <book code=""HEB""/>
-                    <book code=""JAS""/>
-                    <book code=""1PE""/>
-                    <book code=""2PE""/>
-                    <book code=""1JN""/>
-                    <book code=""2JN""/>
-                    <book code=""3JN""/>
-                    <book code=""JUD""/>
-                    <book code=""REV""/>
-                </books>
-            </division>
-</divisions>";
-
-        private static Dictionary<string, string> DivOfBook
-        {
-            get
-            {
-                var divTree = new XmlDocument { XmlResolver = null };
-                divTree.LoadXml(divisions);
-                var divOfBook = new Dictionary<string, string>();
-                var bookNodes = divTree.SelectNodes("//book");
-                Debug.Assert(bookNodes != null);
-                foreach (XmlNode bookNode in bookNodes)
-                {
-                    Debug.Assert(bookNode.Attributes != null && bookNode.ParentNode != null && bookNode.ParentNode.ParentNode != null && bookNode.ParentNode.ParentNode.Attributes != null);
-                    divOfBook[bookNode.Attributes["code"].InnerText] = bookNode.ParentNode.ParentNode.Attributes["id"].InnerText;
-                }
-                return divOfBook;
-            }
-        }
-        #endregion division (template)
-
         #region dblMetaDataSchema
         private const string DblMetaDataSchema = @"default namespace = """"
 namespace dcds = ""http://purl.org/dc/xmlns/2008/09/01/dc-ds-xml/""
@@ -646,7 +558,7 @@ start =
   element DBLMetadata {
     attribute id { xsd:string { pattern = ""[0-9a-f]{16}"" }? },
     attribute type { ""text"" },  # “text” | “print” | “audio” | “video”
-    attribute typeVersion { ""1.2"" },
+    attribute typeVersion { ""1.3"" },
     attribute revision { xsd:integer? },
     attribute xml:base { ""http://purl.org/ubs/metadata/dc/terms/"" }?,
     element identification {
@@ -690,7 +602,8 @@ start =
       xsd:boolean
     },
     element agencies {
-      element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" }*,
+      element etenPartner { ""UBS"" | ""WBT"" | ""Biblica"" | ""PBT"" | ""SIM"" }*,
+      # primary translation agency/sponsorship
       element creator { 
         attribute dcds:propertyURI { ""creator"" }?,
         xsd:string { minLength = ""2"" }
@@ -762,40 +675,36 @@ start =
     element bookNames { 
       element book { 
         attribute code { bookCode }, 
-        element name { 
-          attribute type {""long""}, 
-          text 
-          }, 
-        element name { 
-          attribute type {""short""}, 
-          text 
-          }, 
-        element name { 
-          attribute type {""abbr""}, 
-          text 
-          } }* },
+        element long { text }, 
+        element short { text }, 
+        element abbr { text } }* },
     element contents {
       attribute dcds:propertyURI { ""tableOfContents"" }?,
       element bookList {
-        attribute id { ""default"" }?, 
+        attribute id { xsd:integer },
+        attribute default { ""true"" }?,
         # default to name from identification section  
         element name { xsd:string { minLength=""2"" } }, 
         # default to name local from identification section
         element nameLocal { xsd:string { minLength=""2"" } },
         abbreviation, 
         abbreviationLocal, 
-        # ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
+        # ""Protestant"" | ""NT"" | ""NT + OT"" or <Name> from Cannons.xml
         element description { text }, 
-        # Protestant Bible (66 books) 
-        element range { xsd:string }, 
-        # Western Protestant order 
-        element tradition { ""Western Protestant order"" },
-        element division {
-          attribute id { ""OT"" | ""NT"" | ""DC"" },
-          element books { 
-            element book { 
-              attribute code { bookCode }
-            }+ } }+ }+ },
+        # Protestant 
+        element descriptionLocal { text }, 
+        element books { 
+          element book { 
+            attribute code { bookCode }
+        }+ } }+ },
+    element progress {
+        element book {
+            attribute code { bookCode },
+            attribute stage {
+                xsd:string { pattern = ""[1-4]"" }
+            } 
+        }+
+    },
 	# Default to Publisher (from agencies) 
     element contact {
       element rightsHolder {
@@ -873,11 +782,11 @@ start =
   }
 
 abbreviation = element abbreviation { 
-	xsd:string { pattern = ""[A-Za-z0-9]{2,8}"" } 
+	xsd:string { pattern = ""[\-A-Za-z0-9]{2,8}"" } 
 	}
 
 abbreviationLocal = element abbreviationLocal { 
-	xsd:string { pattern = ""[A-Za-z0-9]{2,8}"" } 
+	xsd:string { pattern = ""[\-A-Za-z0-9]{2,8}"" } 
 	}
 
 htmlMarkup = (
@@ -939,7 +848,7 @@ scripts = (""Arabic"" |
         ""Japanese"" |
         ""Khmer"" |
         ""Korean"" |
-        ""Latin"" |
+        ""Latin"" | ""Roman"" |
         ""Persian"" |
         ""Persian (Modified)"" |
         ""Pollard"" |
@@ -1097,7 +1006,7 @@ licenseType = (""BY"" # Attributaion only
         #endregion dblMetaDataSchema
 
         #region license (template)
-        private const string _license = @"<?xml version=""1.0"" encoding=""UTF-8""?>
+        private const string License = @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <license id="""">
   <dateLicense></dateLicense>
   <dateLicenseExpiry></dateLicenseExpiry>
@@ -1124,25 +1033,6 @@ licenseType = (""BY"" # Attributaion only
 ";
         #endregion _SubjectBreakout
 
-        //Todo This was included based on an email from Joan Spanne to ETEN Text Format Group 10/26/2011 but upon verification with acr her logic didn't hold
-        #region _SubjectBreakout
-        private readonly string _subjectBreakout = @"
-<root>
-<silSubject value=""New Testament"" range=""New Testament"" abbr=""NT"" editionType=""New""/>
-<silSubject value=""Old Testament"" range=""Old Testament"" abbr=""OT"" editionType=""New""/>
-<silSubject value=""Complete Bible"" range=""Complete Bible"" abbr=""BL"" editionType=""New""/>
-<silSubject value=""New Testament revision"" range=""New Testament"" abbr=""NT"" editionType=""Revision""/>
-<silSubject value=""Old Testament revision"" range=""Old Testament"" abbr=""OT"" editionType=""Revision""/>
-<silSubject value=""Complete Bible revision"" range=""Complete Bible"" abbr=""BL"" editionType=""Revision""/>
-<silSubject value=""New Testament reprint"" range=""New Testament"" abbr=""NT"" editionType=""New""/>
-<silSubject value=""Old Testament reprint"" range=""Old Testament"" abbr=""OT"" editionType=""New""/>
-<silSubject value=""Complete Bible reprint"" range=""Complete Bible"" abbr=""BL"" editionType=""New""/>
-</root>
-";
-        #endregion _subjectBreakout
-
-        readonly List<string> _firstList = new List<string> { "1st", "first", "[1st]" };
-
         public void ScrapeReapData()
         {
             _confidential = GetValue("//default:tr[default:td='sil.sensitivity.metadata']/default:td[2]").ToLower() == "public" ? "false" : "true";
@@ -1154,7 +1044,7 @@ licenseType = (""BY"" # Attributaion only
                 rawScope = GetValue("//default:tr[default:td='dc.title.scriptureScope']/default:td[2]");
             _scope = TextField(rawScope, 0).Substring(1);
 
-            _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content").Trim(new char[] {',', ' ', '\n', '\r', '\f', '\t', ':', '\'', '"', '(', ')'});
+            _dateCompleted = GetValue("//default:meta[@name='DCTERMS.issued']/@content").Trim(new [] {',', ' ', '\n', '\r', '\f', '\t', ':', '\'', '"', '(', ')'});
             _reapUrl = GetValue("//default:tr[default:td='dc.identifier.uri']/default:td[2][contains(./text(),'reap')]");
 
             // TranslationType
@@ -1424,7 +1314,7 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_abbreviation, "//identification/abbreviation");
             SetValue(_abbreviation, "//identification/abbreviationLocal");
             SetValue(_scope, "//identification/scope");
-            SetValue(_description, "//identification/description"); 
+            SetValue(_description, "//identification/description");
             SetValue(_dateCompleted, "//identification/dateCompleted");
             SetValue(_reapUrl, "//identification/systemId[@type='reap']");
 
@@ -1452,7 +1342,7 @@ licenseType = (""BY"" # Attributaion only
             SetValue(_abbreviation, "//contents/bookList/abbreviation");
             SetValue(_abbreviation, "//contents/bookList/abbreviationLocal");
             SetValue(_scope, "//contents/bookList/description");
-            SetValue(_range, "//contents/bookList/range");
+            SetValue(_scope, "//contents/bookList/descriptionLocal");
 
             SetValue(_rightsHolder, "//contact/rightsHolder");
             SetValue(_rightsHolderLocal, "//contact/rightsHolderLocal");
@@ -1479,19 +1369,19 @@ licenseType = (""BY"" # Attributaion only
             }
         }
 
-        public List<string> publishers()
+        public List<string> Publishers()
         {
             var results = _publisherDoc.SelectNodes("//publisher/@name");
             return (from XmlNode node in results select node.InnerText).ToList();
         }
 
-        public List<string> publisherUrls()
+        public List<string> PublisherUrls()
         {
             var results = _publisherDoc.SelectNodes("//publisher/@url");
             return (from XmlNode node in results select node.InnerText).ToList();
         }
 
-        public List<string> publisherFacebooks()
+        public List<string> PublisherFacebooks()
         {
             var results = _publisherDoc.SelectNodes("//publisher/@fb");
             return (from XmlNode node in results select node.InnerText).ToList();
@@ -1502,93 +1392,97 @@ licenseType = (""BY"" # Attributaion only
             if (value == null)
                 return;
             XmlNode xmlNode = _dblMetaDataDoc.SelectSingleNode(xpath);
+            Debug.Assert(xmlNode != null);
             xmlNode.InnerText = value;
         }
 
         private void SetXmlValue(string value, string xpath)
         {
             XmlNode xmlNode = _dblMetaDataDoc.SelectSingleNode(xpath);
+            Debug.Assert(xmlNode != null);
             xmlNode.InnerXml = value.Replace("<>", "&lt;&gt;");
         }
 
         public void SetBooks(ArrayList books)
         {
-            RemoveCurrentDivisions();
-            var divList = GetActiveDivisions(books);
-            AddNewDivisions(books, divList);
+            UpdateBooks(books);
             using (var bookCheck = new BookCheck())
             {
-                var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = 'default']");
+                var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = '1']");
+                Debug.Assert(defList != null);
                 bookCheck.LoadBooks(defList);
                 if (!NoDialogueTesting)
                     bookCheck.ShowDialog();
                 books = bookCheck.SelectedBooks();
-                RemoveCurrentDivisions();
-                var divList2 = GetActiveDivisions(books);
-                AddNewDivisions(books, divList2);
+                UpdateBooks(books);
             }
         }
 
-        private void RemoveCurrentDivisions()
+        private void UpdateBooks(ArrayList books)
         {
-            var divisionNodes = _dblMetaDataDoc.SelectNodes("//division");
-            Debug.Assert(divisionNodes != null);
-            foreach (XmlNode divisionNode in divisionNodes)
-            {
-                Debug.Assert(divisionNode.ParentNode != null);
-                divisionNode.ParentNode.RemoveChild(divisionNode);
-            }
+            RemoveCurrentBooks();
+            AddBooks(books);
+            RemoveProgress();
+            AddProgress(books);
         }
 
-        private static ArrayList GetActiveDivisions(ArrayList books)
+        private void AddProgress(ArrayList books)
         {
-            var divList = new ArrayList();
+            var progressNode = _dblMetaDataDoc.SelectSingleNode("//progress");
+            Debug.Assert(progressNode != null);
             foreach (string book in books)
             {
-                if (!DivOfBook.Keys.Contains(book))
-                {
-                    continue;
-                }
-                if (!divList.Contains(DivOfBook[book]))
-                {
-                    divList.Add(DivOfBook[book]);
-                }
+                var codeAttr = _dblMetaDataDoc.CreateAttribute("code");
+                codeAttr.InnerText = book;
+                var stageAttr = _dblMetaDataDoc.CreateAttribute("stage");
+                stageAttr.InnerText = "4";
+                var bookNode = _dblMetaDataDoc.CreateElement("book");
+                bookNode.Attributes.Append(codeAttr);
+                bookNode.Attributes.Append(stageAttr);
+                progressNode.AppendChild(bookNode);
             }
-            return divList;
         }
 
-        private void AddNewDivisions(ArrayList books, ArrayList divList)
+        private void RemoveProgress()
         {
-            var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = 'default']");
-            foreach (string division in divList)
+            var bookNodes = _dblMetaDataDoc.SelectNodes("//progress/book");
+            Debug.Assert(bookNodes != null);
+            foreach (XmlElement bookNode in bookNodes)
             {
-                var divNode = _dblMetaDataDoc.CreateElement("division");
-                var divIdAttr = _dblMetaDataDoc.CreateAttribute("id");
-                divIdAttr.InnerText = division;
-                divNode.Attributes.Append(divIdAttr);
-                var booksNode = CreateBooksNode(books, division);
-                divNode.AppendChild(booksNode);
-                defList.AppendChild(divNode);
+                Debug.Assert(bookNode.ParentNode != null);
+                bookNode.ParentNode.RemoveChild(bookNode);
             }
         }
 
-        private XmlElement CreateBooksNode(ArrayList books, string division)
+        private void RemoveCurrentBooks()
+        {
+            var booksNodes = _dblMetaDataDoc.SelectNodes("//books");
+            Debug.Assert(booksNodes != null);
+            foreach (XmlNode bookNode in booksNodes)
+            {
+                Debug.Assert(bookNode.ParentNode != null);
+                bookNode.ParentNode.RemoveChild(bookNode);
+            }
+        }
+
+        private void AddBooks(ArrayList books)
+        {
+            var defList = _dblMetaDataDoc.SelectSingleNode("//bookList[@id = '1']");
+            Debug.Assert(defList != null);
+            var booksNode = CreateBooksNode(books);
+            defList.AppendChild(booksNode);
+        }
+
+        private XmlElement CreateBooksNode(ArrayList books)
         {
             var booksNode = _dblMetaDataDoc.CreateElement("books");
             foreach (string book in books)
             {
-                if (!DivOfBook.Keys.Contains(book))
-                {
-                    continue;
-                }
-                if (DivOfBook[book] == division)
-                {
-                    var bookNode = _dblMetaDataDoc.CreateElement("book");
-                    var bookCodeAttr = _dblMetaDataDoc.CreateAttribute("code");
-                    bookCodeAttr.InnerText = book;
-                    bookNode.Attributes.Append(bookCodeAttr);
-                    booksNode.AppendChild(bookNode);
-                }
+                var bookNode = _dblMetaDataDoc.CreateElement("book");
+                var bookCodeAttr = _dblMetaDataDoc.CreateAttribute("code");
+                bookCodeAttr.InnerText = book;
+                bookNode.Attributes.Append(bookCodeAttr);
+                booksNode.AppendChild(bookNode);
             }
             return booksNode;
         }
@@ -1621,14 +1515,15 @@ licenseType = (""BY"" # Attributaion only
             writer.Close();
 
             var folder = Path.GetDirectoryName(p);
-            var schemaName = Path.Combine(folder, "metadataWbt-1.2.rnc");
+            Debug.Assert(folder != null);
+            var schemaName = Path.Combine(folder, "metadataWbt-1.3.rnc");
             var schemaStreamWriter = new StreamWriter(schemaName);
             schemaStreamWriter.Write(DblMetaDataSchema);
             schemaStreamWriter.Close();
 
             // Write License based on options and current date.
             var licenseDoc = new XmlDocument {XmlResolver = null};
-            licenseDoc.LoadXml(_license);
+            licenseDoc.LoadXml(License);
             SetLicenseValue(_options.AllowOffline.ToString().ToLower(), "//allowOffline", licenseDoc);
             SetLicenseValue(_options.AllowIntroductions.ToString().ToLower(), "//allowIntroductions", licenseDoc);
             SetLicenseValue(_options.AllowFootnotes.ToString().ToLower(), "//allowFootnotes", licenseDoc);

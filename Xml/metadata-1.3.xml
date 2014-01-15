@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="metadataWbt-1.3.rnc" type="application/relax-ng-compact-syntax"?>
+<DBLMetadata type="text" typeVersion="1.3" id="66f69e2e951292b7" revision="1">
+  <identification>
+    <name>Good News Translation</name>
+    <nameLocal>Good News Translation</nameLocal>
+    <abbreviation>eng-GNT</abbreviation>
+    <abbreviationLocal>GNT</abbreviationLocal>
+    <scope>Bible with Deuterocanon</scope>
+    <description>English Good News Translation Bible with Deuterocanon</description>
+    <dateCompleted>1992-10-01</dateCompleted>
+    <systemId type="tms">401d0abc-018b-4036-81b7-13845ace8612</systemId>
+    <systemId type="paratext">66f69e2e951292b7d66582d3e2444332f641775b</systemId>
+    <bundleProducer>Paratext/7.3.0.92</bundleProducer>
+  </identification>
+  <confidential>false</confidential>
+  <agencies>
+    <etenPartner>UBS</etenPartner> <!-- e.g "UBS", "WBT", "Biblica", "PBT", "SIM" -->
+    <creator>American Bible Society</creator><!-- primary translation agency/sponsorship -->
+    <publisher>American Bible Society</publisher><!-- primary publishing agency> -->
+    <contributor ></contributor>
+  </agencies>
+  <language>
+  	<iso>eng</iso>
+    <name>English</name>
+    <ldml></ldml>
+    <rod></rod>
+    <script>Roman</script>
+    <scriptDirection>LTR</scriptDirection><!-- LTR (Left to Right) or RTL (Right to Left) -->
+    <numerals>Arabic</numerals>
+  </language>
+  <country>
+  	<iso>USA</iso>
+    <name>United States</name>
+  </country>
+  <type>
+    <translationType>Revision</translationType>
+    <audience>Common</audience>
+  </type>
+  <bookNames>
+    <book code="GEN">
+      <long>GENESIS</long>
+      <short>Genesis</short>
+      <abbr>Gn</abbr>
+    </book>
+    <book code="EXO">
+      <long>EXODUS</long>
+      <short>Exodus</short>
+      <abbr>Ex</abbr>
+    </book>
+    <book code="LEV">
+      <long>LEVITICUS</long>
+      <short>Leviticus</short>
+      <abbr>Lv</abbr>
+    </book>
+    <book code="NUM">
+      <long>NUMBERS</long>
+      <short>Numbers</short>
+      <abbr>Nu</abbr>
+    </book>
+    <book code="DEU">
+      <long>DEUTERONOMY</long>
+      <short>Deuteronomy</short>
+      <abbr>Dt</abbr>
+    </book>
+    <book code="JOS">
+      <long>The Book of JOSHUA</long>
+      <short>Joshua</short>
+      <abbr>Js</abbr>
+    </book>
+    <book code="JDG">
+      <long>The Book of JUDGES</long>
+      <short>Judges</short>
+      <abbr>Jg</abbr>
+    </book>
+    <book code="RUT">
+      <long>The Book of RUTH</long>
+      <short>Ruth</short>
+      <abbr>Ru</abbr>
+    </book>
+    <book code="1SA">
+      <long>The First Book of SAMUEL</long>
+      <short>1 Samuel</short>
+      <abbr>1 S</abbr>
+    </book>
+    <book code="2SA">
+      <long>The Second Book of SAMUEL</long>
+      <short>2 Samuel</short>
+      <abbr>2 S</abbr>
+    </book>
+    <book code="1KI">
+      <long>The First Book of KINGS</long>
+      <short>1 Kings</short>
+      <abbr>1 K</abbr>
+    </book>
+    <book code="2KI">
+      <long>The Second Book of KINGS</long>
+      <short>2 Kings</short>
+      <abbr>2 K</abbr>
+    </book>
+    <book code="1CH">
+      <long>The First Book of CHRONICLES</long>
+      <short>1 Chronicles</short>
+      <abbr>1 Ch</abbr>
+    </book>
+    <book code="2CH">
+      <long>The Second Book of CHRONICLES</long>
+      <short>2 Chronicles</short>
+      <abbr>2 Ch</abbr>
+    </book>
+    <book code="EZR">
+      <long>The Book of EZRA</long>
+      <short>Ezra</short>
+      <abbr>Ezra</abbr>
+    </book>
+    <book code="NEH">
+      <long>The Book of NEHEMIAH</long>
+      <short>Nehemiah</short>
+      <abbr>Ne</abbr>
+    </book>
+    <book code="EST">
+      <long>The Book of ESTHER</long>
+      <short>Esther</short>
+      <abbr>Es</abbr>
+    </book>
+    <book code="JOB">
+      <long>The Book of JOB</long>
+      <short>Job</short>
+      <abbr>Job</abbr>
+    </book>
+    <book code="PSA">
+      <long>PSALMS</long>
+      <short>Psalm</short>
+      <abbr>Ps</abbr>
+    </book>
+    <book code="PRO">
+      <long>PROVERBS</long>
+      <short>Proverbs</short>
+      <abbr>Pr</abbr>
+    </book>
+    <book code="ECC">
+      <long>ECCLESIASTES</long>
+      <short>Ecclesiastes</short>
+      <abbr>Ec</abbr>
+    </book>
+    <book code="SNG">
+      <long>SONG OF SONGS</long>
+      <short>Song of Songs</short>
+      <abbr>Sgs</abbr>
+    </book>
+    <book code="ISA">
+      <long>The Book of ISAIAH</long>
+      <short>Isaiah</short>
+      <abbr>Is</abbr>
+    </book>
+    <book code="JER">
+      <long>The Book of JEREMIAH</long>
+      <short>Jeremiah</short>
+      <abbr>Jr</abbr>
+    </book>
+    <book code="LAM">
+      <long>LAMENTATIONS</long>
+      <short>Lamentations</short>
+      <abbr>Lm</abbr>
+    </book>
+    <book code="EZK">
+      <long>The Book of EZEKIEL</long>
+      <short>Ezekiel</short>
+      <abbr>Ez</abbr>
+    </book>
+    <book code="DAN">
+      <long>The Book of DANIEL</long>
+      <short>Daniel</short>
+      <abbr>Dn</abbr>
+    </book>
+    <book code="HOS">
+      <long>The Book of HOSEA</long>
+      <short>Hosea</short>
+      <abbr>Ho</abbr>
+    </book>
+    <book code="JOL">
+      <long>The Book of JOEL</long>
+      <short>Joel</short>
+      <abbr>Jl</abbr>
+    </book>
+    <book code="AMO">
+      <long>The Book of AMOS</long>
+      <short>Amos</short>
+      <abbr>Am</abbr>
+    </book>
+    <book code="OBA">
+      <long>The Book of OBADIAH</long>
+      <short>Obadiah</short>
+      <abbr>Ob</abbr>
+    </book>
+    <book code="JON">
+      <long>The Book of JONAH</long>
+      <short>Jonah</short>
+      <abbr>Jon</abbr>
+    </book>
+    <book code="MIC">
+      <long>The Book of MICAH</long>
+      <short>Micah</short>
+      <abbr>Mic</abbr>
+    </book>
+    <book code="NAM">
+      <long>The Book of NAHUM</long>
+      <short>Nahum</short>
+      <abbr>Nh</abbr>
+    </book>
+    <book code="HAB">
+      <long>The Book of HABAKKUK</long>
+      <short>Habakkuk</short>
+      <abbr>Hb</abbr>
+    </book>
+    <book code="ZEP">
+      <long>The Book of ZEPHANIAH</long>
+      <short>Zephaniah</short>
+      <abbr>Zep</abbr>
+    </book>
+    <book code="HAG">
+      <long>The Book of HAGGAI</long>
+      <short>Haggai</short>
+      <abbr>Hg</abbr>
+    </book>
+    <book code="ZEC">
+      <long>The Book of ZECHARIAH</long>
+      <short>Zechariah</short>
+      <abbr>Zec</abbr>
+    </book>
+    <book code="MAL">
+      <long>The Book of MALACHI</long>
+      <short>Malachi</short>
+      <abbr>Ml</abbr>
+    </book>
+    <book code="TOB">
+      <long>The Book of TOBIT</long>
+      <short>Tobit</short>
+      <abbr>Tb</abbr>
+    </book>
+    <book code="JDT">
+      <long>The Book of JUDITH</long>
+      <short>Judith</short>
+      <abbr>Jdt</abbr>
+    </book>
+    <book code="ESG">
+      <long>The Book of ESTHER</long>
+      <short>Esther (Greek)</short>
+      <abbr>Gk Est</abbr>
+    </book>
+    <book code="WIS">
+      <long>THE WISDOM OF SOLOMON</long>
+      <short>The Wisdom of Solomon</short>
+      <abbr>Ws</abbr>
+    </book>
+    <book code="SIR">
+      <long>SIRACH THE WISDOM OF JESUS, SON OF SIRACH</long>
+      <short>Sirach</short>
+      <abbr>Si</abbr>
+    </book>
+    <book code="BAR">
+      <long>The Book of BARUCH</long>
+      <short>Baruch</short>
+      <abbr>Ba</abbr>
+    </book>
+    <book code="LJE">
+      <long>The Letter of JEREMIAH</long>
+      <short>Letter of Jeremiah</short>
+      <abbr>Let Jer</abbr>
+    </book>
+    <book code="S3Y">
+      <long>THE PRAYER OF AZARIAH AND THE SONG OF THE THREE YOUNG MEN</long>
+      <short>Song of Three Young Men</short>
+      <abbr>S of 3 Y</abbr>
+    </book>
+    <book code="SUS">
+      <long>The Book of SUSANNA</long>
+      <short>Susanna</short>
+      <abbr>Su</abbr>
+    </book>
+    <book code="BEL">
+      <long>BEL AND THE DRAGON</long>
+      <short>Bel and the Dragon</short>
+      <abbr>Bel</abbr>
+    </book>
+    <book code="1MA">
+      <long>The First Book of the MACCABEES</long>
+      <short>1 Maccabees</short>
+      <abbr>1 Macc</abbr>
+    </book>
+    <book code="2MA">
+      <long>The Second Book of the MACCABEES</long>
+      <short>2 Maccabees</short>
+      <abbr>2 Macc</abbr>
+    </book>
+    <book code="1ES">
+      <long>The First Book of ESDRAS</long>
+      <short>1 Esdras</short>
+      <abbr>1 Esd</abbr>
+    </book>
+    <book code="2ES">
+      <long>The Second Book of ESDRAS</long>
+      <short>2 Esdras</short>
+      <abbr>2 Esd</abbr>
+    </book>
+    <book code="MAN">
+      <long>THE PRAYER OF MANASSEH</long>
+      <short>The Prayer of Manasseh</short>
+      <abbr>Man</abbr>
+    </book>
+    <book code="MAT">
+      <long>The Gospel according to MATTHEW</long>
+      <short>Matthew</short>
+      <abbr>Mt</abbr>
+    </book>
+    <book code="MRK">
+      <long>The Gospel according to MARK</long>
+      <short>Mark</short>
+      <abbr>Mk</abbr>
+    </book>
+    <book code="LUK">
+      <long>The Gospel according to LUKE</long>
+      <short>Luke</short>
+      <abbr>Lk</abbr>
+    </book>
+    <book code="JHN">
+      <long>The Gospel according to JOHN</long>
+      <short>John</short>
+      <abbr>Jn</abbr>
+    </book>
+    <book code="ACT">
+      <long>THE ACTS of the Apostles</long>
+      <short>Acts</short>
+      <abbr>Ac</abbr>
+    </book>
+    <book code="ROM">
+      <long>Paul's Letter to the ROMANS</long>
+      <short>Romans</short>
+      <abbr>Ro</abbr>
+    </book>
+    <book code="1CO">
+      <long>Paul's First Letter to the CORINTHIANS</long>
+      <short>1 Corinthians</short>
+      <abbr>1 Co</abbr>
+    </book>
+    <book code="2CO">
+      <long>Paul's Second Letter to the CORINTHIANS</long>
+      <short>2 Corinthians</short>
+      <abbr>2 Co</abbr>
+    </book>
+    <book code="GAL">
+      <long>Paul's Letter to the GALATIANS</long>
+      <short>Galatians</short>
+      <abbr>Ga</abbr>
+    </book>
+    <book code="EPH">
+      <long>Paul's Letter to the EPHESIANS</long>
+      <short>Ephesians</short>
+      <abbr>Eph</abbr>
+    </book>
+    <book code="PHP">
+      <long>Paul's Letter to the PHILIPPIANS</long>
+      <short>Philippians</short>
+      <abbr>Phil</abbr>
+    </book>
+    <book code="COL">
+      <long>Paul's Letter to the COLOSSIANS</long>
+      <short>Colossians</short>
+      <abbr>Col</abbr>
+    </book>
+    <book code="1TH">
+      <long>Paul's First Letter to the THESSALONIANS</long>
+      <short>1 Thessalonians</short>
+      <abbr>1 Th</abbr>
+    </book>
+    <book code="2TH">
+      <long>Paul's Second Letter to the THESSALONIANS</long>
+      <short>2 Thessalonians</short>
+      <abbr>2 Th</abbr>
+    </book>
+    <book code="1TI">
+      <long>Paul's First Letter to TIMOTHY</long>
+      <short>1 Timothy</short>
+      <abbr>1 Ti</abbr>
+    </book>
+    <book code="2TI">
+      <long>Paul's Second Letter to TIMOTHY</long>
+      <short>2 Timothy</short>
+      <abbr>2 Ti</abbr>
+    </book>
+    <book code="TIT">
+      <long>Paul's Letter to TITUS</long>
+      <short>Titus</short>
+      <abbr>Titus</abbr>
+    </book>
+    <book code="PHM">
+      <long>Paul's Letter to PHILEMON</long>
+      <short>Philemon</short>
+      <abbr>Phm</abbr>
+    </book>
+    <book code="HEB">
+      <long>The Letter to the HEBREWS</long>
+      <short>Hebrews</short>
+      <abbr>He</abbr>
+    </book>
+    <book code="JAS">
+      <long>The Letter from JAMES</long>
+      <short>James</short>
+      <abbr>Jas</abbr>
+    </book>
+    <book code="1PE">
+      <long>The First Letter from PETER</long>
+      <short>1 Peter</short>
+      <abbr>1 P</abbr>
+    </book>
+    <book code="2PE">
+      <long>The Second Letter from PETER</long>
+      <short>2 Peter</short>
+      <abbr>2 P</abbr>
+    </book>
+    <book code="1JN">
+      <long>The First Letter of JOHN</long>
+      <short>1 John</short>
+      <abbr>1 Jn</abbr>
+    </book>
+    <book code="2JN">
+      <long>The Second Letter of JOHN</long>
+      <short>2 John</short>
+      <abbr>2 Jn</abbr>
+    </book>
+    <book code="3JN">
+      <long>The Third Letter of JOHN</long>
+      <short>3 John</short>
+      <abbr>3 Jn</abbr>
+    </book>
+    <book code="JUD">
+      <long>The Letter from JUDE</long>
+      <short>Jude</short>
+      <abbr>Jd</abbr>
+    </book>
+    <book code="REV">
+      <long>THE REVELATION to John</long>
+      <short>Revelation</short>
+      <abbr>Rev</abbr>
+    </book>
+  </bookNames>
+  <contents>
+    <bookList id="1" default="true">
+      <name>Good News Translation</name>
+      <nameLocal>Good News Translation</nameLocal>
+      <abbreviation>eng-GNT</abbreviation>
+      <abbreviationLocal>GNT</abbreviationLocal>
+      <description>Protestant</description>
+      <descriptionLocal>Protestant</descriptionLocal>
+      <books>
+        <book code="GEN"/>
+        <book code="EXO"/>
+        <book code="LEV"/>
+        <book code="NUM"/>
+        <book code="DEU"/>
+        <book code="JOS"/>
+        <book code="JDG"/>
+        <book code="RUT"/>
+        <book code="1SA"/>
+        <book code="2SA"/>
+        <book code="1KI"/>
+        <book code="2KI"/>
+        <book code="1CH"/>
+        <book code="2CH"/>
+        <book code="EZR"/>
+        <book code="NEH"/>
+        <book code="EST"/>
+        <book code="JOB"/>
+        <book code="PSA"/>
+        <book code="PRO"/>
+        <book code="ECC"/>
+        <book code="SNG"/>
+        <book code="ISA"/>
+        <book code="JER"/>
+        <book code="LAM"/>
+        <book code="EZK"/>
+        <book code="DAN"/>
+        <book code="HOS"/>
+        <book code="JOL"/>
+        <book code="AMO"/>
+        <book code="OBA"/>
+        <book code="JON"/>
+        <book code="MIC"/>
+        <book code="NAM"/>
+        <book code="HAB"/>
+        <book code="ZEP"/>
+        <book code="HAG"/>
+        <book code="ZEC"/>
+        <book code="MAL"/>
+        <book code="MAT"/>
+        <book code="MRK"/>
+        <book code="LUK"/>
+        <book code="JHN"/>
+        <book code="ACT"/>
+        <book code="ROM"/>
+        <book code="1CO"/>
+        <book code="2CO"/>
+        <book code="GAL"/>
+        <book code="EPH"/>
+        <book code="PHP"/>
+        <book code="COL"/>
+        <book code="1TH"/>
+        <book code="2TH"/>
+        <book code="1TI"/>
+        <book code="2TI"/>
+        <book code="TIT"/>
+        <book code="PHM"/>
+        <book code="HEB"/>
+        <book code="JAS"/>
+        <book code="1PE"/>
+        <book code="2PE"/>
+        <book code="1JN"/>
+        <book code="2JN"/>
+        <book code="3JN"/>
+        <book code="JUD"/>
+        <book code="REV"/>
+      </books>
+    </bookList>
+    <bookList id="2">
+      <name>Good News Translation with Deuterocanonicals/Apocrypha</name>
+      <nameLocal>Good News Translation with Deuterocanonicals/Apocrypha</nameLocal>
+      <abbreviation>eng-GNTD</abbreviation>
+      <abbreviationLocal>GNTD</abbreviationLocal>
+      <description>Ecumenical Bible with combined Catholic DCs + Anglican KJV Apocrypha</description>
+      <descriptionLocal>Ecumenical Bible with combined Catholic DCs + Anglican KJV Apocrypha</descriptionLocal>
+      <books>
+        <book code="GEN"/>
+        <book code="EXO"/>
+        <book code="LEV"/>
+        <book code="NUM"/>
+        <book code="DEU"/>
+        <book code="JOS"/>
+        <book code="JDG"/>
+        <book code="RUT"/>
+        <book code="1SA"/>
+        <book code="2SA"/>
+        <book code="1KI"/>
+        <book code="2KI"/>
+        <book code="1CH"/>
+        <book code="2CH"/>
+        <book code="EZR"/>
+        <book code="NEH"/>
+        <book code="EST"/>
+        <book code="JOB"/>
+        <book code="PSA"/>
+        <book code="PRO"/>
+        <book code="ECC"/>
+        <book code="SNG"/>
+        <book code="ISA"/>
+        <book code="JER"/>
+        <book code="LAM"/>
+        <book code="EZK"/>
+        <book code="DAN"/>
+        <book code="HOS"/>
+        <book code="JOL"/>
+        <book code="AMO"/>
+        <book code="OBA"/>
+        <book code="JON"/>
+        <book code="MIC"/>
+        <book code="NAM"/>
+        <book code="HAB"/>
+        <book code="ZEP"/>
+        <book code="HAG"/>
+        <book code="ZEC"/>
+        <book code="MAL"/>
+        <book code="TOB"/>
+        <book code="JDT"/>
+        <book code="ESG"/>
+        <book code="WIS"/>
+        <book code="SIR"/>
+        <book code="BAR"/>
+        <book code="LJE"/>
+        <book code="S3Y"/>
+        <book code="SUS"/>
+        <book code="BEL"/>
+        <book code="1MA"/>
+        <book code="2MA"/>
+        <book code="1ES"/>
+        <book code="2ES"/>
+        <book code="MAN"/>
+        <book code="MAT"/>
+        <book code="MRK"/>
+        <book code="LUK"/>
+        <book code="JHN"/>
+        <book code="ACT"/>
+        <book code="ROM"/>
+        <book code="1CO"/>
+        <book code="2CO"/>
+        <book code="GAL"/>
+        <book code="EPH"/>
+        <book code="PHP"/>
+        <book code="COL"/>
+        <book code="1TH"/>
+        <book code="2TH"/>
+        <book code="1TI"/>
+        <book code="2TI"/>
+        <book code="TIT"/>
+        <book code="PHM"/>
+        <book code="HEB"/>
+        <book code="JAS"/>
+        <book code="1PE"/>
+        <book code="2PE"/>
+        <book code="1JN"/>
+        <book code="2JN"/>
+        <book code="3JN"/>
+        <book code="JUD"/>
+        <book code="REV"/>
+      </books>
+    </bookList>
+  </contents>
+  <progress><!-- 1 = draft, 2 = internalReview, 3 = extenalReview, 4 = finalReview -->
+    <book code="GEN" stage="4"/>
+    <book code="EXO" stage="4"/>
+    <book code="LEV" stage="4"/>
+    <book code="NUM" stage="4"/>
+    <book code="DEU" stage="4"/>
+    <book code="JOS" stage="4"/>
+    <book code="JDG" stage="4"/>
+    <book code="RUT" stage="4"/>
+    <book code="1SA" stage="4"/>
+    <book code="2SA" stage="4"/>
+    <book code="1KI" stage="4"/>
+    <book code="2KI" stage="4"/>
+    <book code="1CH" stage="4"/>
+    <book code="2CH" stage="4"/>
+    <book code="EZR" stage="4"/>
+    <book code="NEH" stage="4"/>
+    <book code="EST" stage="4"/>
+    <book code="JOB" stage="4"/>
+    <book code="PSA" stage="4"/>
+    <book code="PRO" stage="4"/>
+    <book code="ECC" stage="4"/>
+    <book code="SNG" stage="4"/>
+    <book code="ISA" stage="4"/>
+    <book code="JER" stage="4"/>
+    <book code="LAM" stage="4"/>
+    <book code="EZK" stage="4"/>
+    <book code="DAN" stage="4"/>
+    <book code="HOS" stage="4"/>
+    <book code="JOL" stage="4"/>
+    <book code="AMO" stage="4"/>
+    <book code="OBA" stage="4"/>
+    <book code="JON" stage="4"/>
+    <book code="MIC" stage="4"/>
+    <book code="NAM" stage="4"/>
+    <book code="HAB" stage="4"/>
+    <book code="ZEP" stage="4"/>
+    <book code="HAG" stage="4"/>
+    <book code="ZEC" stage="4"/>
+    <book code="MAL" stage="4"/>
+    <book code="MAT" stage="4"/>
+    <book code="MRK" stage="4"/>
+    <book code="LUK" stage="4"/>
+    <book code="JHN" stage="4"/>
+    <book code="ACT" stage="4"/>
+    <book code="ROM" stage="4"/>
+    <book code="1CO" stage="4"/>
+    <book code="2CO" stage="4"/>
+    <book code="GAL" stage="4"/>
+    <book code="EPH" stage="4"/>
+    <book code="PHP" stage="4"/>
+    <book code="COL" stage="4"/>
+    <book code="1TH" stage="4"/>
+    <book code="2TH" stage="4"/>
+    <book code="1TI" stage="4"/>
+    <book code="2TI" stage="4"/>
+    <book code="TIT" stage="4"/>
+    <book code="PHM" stage="4"/>
+    <book code="HEB" stage="4"/>
+    <book code="JAS" stage="4"/>
+    <book code="1PE" stage="4"/>
+    <book code="2PE" stage="4"/>
+    <book code="1JN" stage="4"/>
+    <book code="2JN" stage="4"/>
+    <book code="3JN" stage="4"/>
+    <book code="JUD" stage="4"/>
+    <book code="REV" stage="4"/>
+    <book code="TOB" stage="4"/>
+    <book code="JDT" stage="4"/>
+    <book code="ESG" stage="4"/>
+    <book code="WIS" stage="4"/>
+    <book code="SIR" stage="4"/>
+    <book code="BAR" stage="4"/>
+    <book code="LJE" stage="4"/>
+    <book code="S3Y" stage="4"/>
+    <book code="SUS" stage="4"/>
+    <book code="BEL" stage="4"/>
+    <book code="1MA" stage="4"/>
+    <book code="2MA" stage="4"/>
+    <book code="1ES" stage="4"/>
+    <book code="2ES" stage="4"/>
+    <book code="MAN" stage="4"/>
+    <book code="XXA" stage="4"/>
+    <book code="FRT" stage="4"/>
+    <book code="BAK" stage="4"/>
+    <book code="INT" stage="4"/>
+    <book code="GLO" stage="4"/>
+    <book code="TDX" stage="4"/>
+  </progress>
+  <contact>
+    <rightsHolder>American Bible Society</rightsHolder>
+    <rightsHolderLocal>American Bible Society</rightsHolderLocal>
+    <rightsHolderAbbreviation>ABS</rightsHolderAbbreviation>
+    <rightsHolderURL>http://www.americanbible.org</rightsHolderURL>
+    <rightsHolderFacebook>http://www.facebook.com/americanbible</rightsHolderFacebook>
+  </contact>
+  <copyright>
+    <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <statement contentType="xhtml"><p>Good News Translation (Today’s English Version, Second Edition) © 1992 American Bible Society. All rights reserved.</p></statement>
+  </copyright>
+  <promotion>
+    <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <promoVersionInfo contentType="xhtml"><p>The <em>Good News Translation</em> of the Bible is a translation which seeks to state clearly and accurately the meaning of the original texts in words and forms that are widely accepted by people who use English as a means of communication. This translation does not follow the traditional vocabulary and style found in the historic English Bible versions. Rather it attempts for our time to set forth the biblical content and message in the standard, everyday, natural form of English.</p>
+      <p>The aim of this Bible is to give today's reader best possible understanding of the content of the original texts. The Preface sets forth the basic principles which the translators followed in their work and explains the nature of special aids for readers.</p>
+      <p>The bk Good News Translation was translated and published by the United Bible Societies for use throughout the world. The Bible Societies trust that the reading and study of this translation will result in a better understanding of the meaning of the Bible. We also earnestly pray that readers will discover the message of saving faith and hope for all people, which the Bible announces anew to each generation.</p></promoVersionInfo>
+      <!-- Allow XHTML: <h1> <h2> <h3> <p> <blockquote> <ul> <ol> <li> <br> <strong> <em> <a> -->
+    <promoEmail contentType="xhtml">This is where we place the text emailed to the user after downloading an offline version.</promoEmail>
+  </promotion>
+  <archiveStatus>
+    <archivistName>Jeff Klassen</archivistName>
+    <dateArchived>2011-04-19T00:00:00</dateArchived>
+    <dateUpdated>2011-06-24T00:00:00</dateUpdated>
+    <comments>Initial submission to DBL</comments>
+  </archiveStatus>
+  <format>text/xml</format>
+</DBLMetadata>

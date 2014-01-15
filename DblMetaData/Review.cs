@@ -148,10 +148,10 @@ namespace DblMetaData
             promoEmail.Text = _data.PromoEmail;
             PubDescTextBox.Text = _data.PublicationDescription;
             uiLanguage.Items.AddRange(_data.Options.Ldmls().ToArray());
-            publisher.Items.AddRange(_data.publishers().ToArray());
-            localRights.Items.AddRange(_data.publishers().ToArray());
-            publisherUrl.Items.AddRange(_data.publisherUrls().ToArray());
-            publisherFacebook.Items.AddRange(_data.publisherFacebooks().ToArray());
+            publisher.Items.AddRange(_data.Publishers().ToArray());
+            localRights.Items.AddRange(_data.Publishers().ToArray());
+            publisherUrl.Items.AddRange(_data.PublisherUrls().ToArray());
+            publisherFacebook.Items.AddRange(_data.PublisherFacebooks().ToArray());
             _userAction = true;
         }
 

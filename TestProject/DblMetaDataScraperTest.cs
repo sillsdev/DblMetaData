@@ -363,12 +363,10 @@ namespace TestProject
             books.Add("MRK");
             books.Add("XXA");
             target.SetBooks(books);
-            var divisionNodes = target._dblMetaDataDoc.SelectNodes("//division");
             DblMetaDataScraper_Accessor.NoDialogueTesting = false;
-            Assert.AreEqual(2, divisionNodes.Count);
-            Assert.AreEqual(1, divisionNodes[0].Attributes.Count);
             var bookNodes = target._dblMetaDataDoc.SelectNodes("//book");
-            Assert.AreEqual(3, bookNodes.Count);
+            //Selects nodes from both //bookList and //Progress
+            Assert.AreEqual(8, bookNodes.Count);
         }
 
         #region divisions (template)
@@ -514,7 +512,7 @@ namespace TestProject
             var process = new Process();
             process.StartInfo.WorkingDirectory = _tf.Output("");
             process.StartInfo.FileName = Path.Combine("..", "..", "..", "xml", "jing.jar");
-            process.StartInfo.Arguments = "-c metadataWbt-1.2.rnc " + testName + ".xml";
+            process.StartInfo.Arguments = "-c metadataWbt-1.3.rnc " + testName + ".xml";
             process.Start();
             process.WaitForExit();
             Assert.AreEqual(0, process.ExitCode);

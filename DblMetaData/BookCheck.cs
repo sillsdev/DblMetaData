@@ -28,37 +28,23 @@ namespace DblMetaData
 
         public void LoadBooks(XmlNode bookList)
         {
-            foreach (XmlNode division in bookList.SelectNodes("//division"))
+            foreach (XmlNode book in bookList.SelectNodes(".//book"))
             {
-                Debug.Assert(division.Attributes != null);
-                var node = bookTree.Nodes.Add(division.Attributes["id"].InnerText);
+                Debug.Assert(book.Attributes != null);
+                var node = bookTree.Nodes.Add(book.Attributes["code"].InnerText);
                 node.Checked = true;
-                LoadBookNodes(node, division);
             }
             bookTree.ExpandAll();
-        }
-
-        private void LoadBookNodes(TreeNode node, XmlNode division)
-        {
-            foreach (XmlNode bookNode in division.SelectNodes(".//book"))
-            {
-                Debug.Assert(bookNode.Attributes != null);
-                var subNode = node.Nodes.Add(bookNode.Attributes["code"].InnerText);
-                subNode.Checked = true;
-            }
         }
 
         public ArrayList SelectedBooks()
         {
             var books = new ArrayList();
-            foreach (TreeNode division in bookTree.Nodes)
+            foreach (TreeNode node in bookTree.Nodes)
             {
-                foreach (TreeNode node in division.Nodes)
+                if (node.Checked)
                 {
-                    if (node.Checked)
-                    {
-                        books.Add(node.Text);
-                    }
+                    books.Add(node.Text);
                 }
             }
             return books;
