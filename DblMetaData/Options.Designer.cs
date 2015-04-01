@@ -51,7 +51,7 @@
             this.AlwaysNT.Checked = true;
             this.AlwaysNT.CheckState = System.Windows.Forms.CheckState.Checked;
             this.AlwaysNT.Location = new System.Drawing.Point(16, 10);
-            this.AlwaysNT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AlwaysNT.Margin = new System.Windows.Forms.Padding(2);
             this.AlwaysNT.Name = "AlwaysNT";
             this.AlwaysNT.Size = new System.Drawing.Size(180, 17);
             this.AlwaysNT.TabIndex = 0;
@@ -62,7 +62,7 @@
             // TranslationAgency
             // 
             this.TranslationAgency.Location = new System.Drawing.Point(116, 166);
-            this.TranslationAgency.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.TranslationAgency.Margin = new System.Windows.Forms.Padding(2);
             this.TranslationAgency.Name = "TranslationAgency";
             this.TranslationAgency.Size = new System.Drawing.Size(304, 20);
             this.TranslationAgency.TabIndex = 1;
@@ -83,7 +83,7 @@
             // 
             this.Ldml.FormattingEnabled = true;
             this.Ldml.Location = new System.Drawing.Point(99, 220);
-            this.Ldml.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Ldml.Margin = new System.Windows.Forms.Padding(2);
             this.Ldml.Name = "Ldml";
             this.Ldml.Size = new System.Drawing.Size(92, 21);
             this.Ldml.TabIndex = 3;
@@ -102,7 +102,7 @@
             // Email
             // 
             this.Email.Location = new System.Drawing.Point(17, 245);
-            this.Email.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Email.Margin = new System.Windows.Forms.Padding(2);
             this.Email.Multiline = true;
             this.Email.Name = "Email";
             this.Email.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -112,10 +112,11 @@
             // 
             // Save
             // 
+            this.Save.AutoSize = true;
             this.Save.Location = new System.Drawing.Point(189, 491);
-            this.Save.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Save.Margin = new System.Windows.Forms.Padding(2);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(56, 19);
+            this.Save.Size = new System.Drawing.Size(56, 23);
             this.Save.TabIndex = 6;
             this.Save.Text = "&Save";
             this.Save.UseVisualStyleBackColor = true;
@@ -127,7 +128,7 @@
             this.PublisherHoldsRights.Checked = true;
             this.PublisherHoldsRights.CheckState = System.Windows.Forms.CheckState.Checked;
             this.PublisherHoldsRights.Location = new System.Drawing.Point(16, 32);
-            this.PublisherHoldsRights.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PublisherHoldsRights.Margin = new System.Windows.Forms.Padding(2);
             this.PublisherHoldsRights.Name = "PublisherHoldsRights";
             this.PublisherHoldsRights.Size = new System.Drawing.Size(139, 17);
             this.PublisherHoldsRights.TabIndex = 7;
@@ -139,7 +140,7 @@
             // 
             this.AllowOfflineCb.AutoSize = true;
             this.AllowOfflineCb.Location = new System.Drawing.Point(16, 54);
-            this.AllowOfflineCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AllowOfflineCb.Margin = new System.Windows.Forms.Padding(2);
             this.AllowOfflineCb.Name = "AllowOfflineCb";
             this.AllowOfflineCb.Size = new System.Drawing.Size(84, 17);
             this.AllowOfflineCb.TabIndex = 8;
@@ -151,7 +152,7 @@
             // 
             this.AllowIntroductionsCb.AutoSize = true;
             this.AllowIntroductionsCb.Location = new System.Drawing.Point(16, 76);
-            this.AllowIntroductionsCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AllowIntroductionsCb.Margin = new System.Windows.Forms.Padding(2);
             this.AllowIntroductionsCb.Name = "AllowIntroductionsCb";
             this.AllowIntroductionsCb.Size = new System.Drawing.Size(115, 17);
             this.AllowIntroductionsCb.TabIndex = 9;
@@ -163,7 +164,7 @@
             // 
             this.AllowFootnotesCb.AutoSize = true;
             this.AllowFootnotesCb.Location = new System.Drawing.Point(16, 98);
-            this.AllowFootnotesCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AllowFootnotesCb.Margin = new System.Windows.Forms.Padding(2);
             this.AllowFootnotesCb.Name = "AllowFootnotesCb";
             this.AllowFootnotesCb.Size = new System.Drawing.Size(101, 17);
             this.AllowFootnotesCb.TabIndex = 10;
@@ -175,7 +176,7 @@
             // 
             this.AllowCrossReferencesCb.AutoSize = true;
             this.AllowCrossReferencesCb.Location = new System.Drawing.Point(16, 119);
-            this.AllowCrossReferencesCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AllowCrossReferencesCb.Margin = new System.Windows.Forms.Padding(2);
             this.AllowCrossReferencesCb.Name = "AllowCrossReferencesCb";
             this.AllowCrossReferencesCb.Size = new System.Drawing.Size(138, 17);
             this.AllowCrossReferencesCb.TabIndex = 11;
@@ -187,7 +188,7 @@
             // 
             this.AllowExtendedNotesCb.AutoSize = true;
             this.AllowExtendedNotesCb.Location = new System.Drawing.Point(16, 141);
-            this.AllowExtendedNotesCb.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.AllowExtendedNotesCb.Margin = new System.Windows.Forms.Padding(2);
             this.AllowExtendedNotesCb.Name = "AllowExtendedNotesCb";
             this.AllowExtendedNotesCb.Size = new System.Drawing.Size(124, 17);
             this.AllowExtendedNotesCb.TabIndex = 12;
@@ -208,7 +209,7 @@
             // LocalRightsHolder
             // 
             this.LocalRightsHolder.Location = new System.Drawing.Point(116, 188);
-            this.LocalRightsHolder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.LocalRightsHolder.Margin = new System.Windows.Forms.Padding(2);
             this.LocalRightsHolder.Name = "LocalRightsHolder";
             this.LocalRightsHolder.Size = new System.Drawing.Size(304, 20);
             this.LocalRightsHolder.TabIndex = 13;
@@ -234,7 +235,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TranslationAgency);
             this.Controls.Add(this.AlwaysNT);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Options";
             this.Text = "Options";
             this.Load += new System.EventHandler(this.Options_Load);
